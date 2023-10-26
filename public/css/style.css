@@ -12100,8 +12100,8 @@ fieldset:disabled .ajax-upload-dragdrop a.ajax-file-upload,
 
 .btn-primary {
     color: #fff;
-    background-color: #ec37fc;
-    border-color: #ec37fc;
+    background-color: #FC4F00;
+    border-color: #FC4F00;
 }
 
 .btn-primary:hover {
@@ -22271,7 +22271,7 @@ code {
 }
 
 .card .card-title {
-    color: #001737;
+    color: #fff;
     margin-bottom: .5rem;
     text-transform: capitalize;
     font-size: 0.875rem;
@@ -24266,20 +24266,20 @@ dl li {
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link:hover {
-    color: #b10dbf;
+    color: #bf3322;
     background: transparent;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link:hover::before {
-    border: 1px solid #b10dbf;
+    border: 1px solid #553d0a;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active {
-    color: #b10dbf;
+    color: #553d0a;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active::before {
-    border: 1px solid #b10dbf;
+    border: 1px solid #553d0a;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link::before {
@@ -24365,6 +24365,7 @@ dl li {
 
 .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini {
     display: none;
+    color: #fff;
 }
 
 .navbar .navbar-brand-wrapper .navbar-brand:active,
@@ -24992,7 +24993,8 @@ dl li {
     }
 
     .navbar .navbar-brand-wrapper .navbar-brand.brand-logo {
-        display: none;
+        /* display: none; */
+        color: #fff;
     }
 
     .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini {
@@ -25097,7 +25099,7 @@ dl li {
         display: flex;
         -webkit-align-items: center;
         align-items: center;
-        background: #b10dbf;
+        background: #bf3322;
         padding: 0 1.4rem;
         left: 70px;
         position: absolute;
@@ -25129,7 +25131,7 @@ dl li {
     .sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapsing {
         display: block;
         padding: 0 0;
-        background: #ec37fc;
+        background: #f2a654;
         border-radius: 0 0 5px 0;
         position: absolute;
         left: 70px;

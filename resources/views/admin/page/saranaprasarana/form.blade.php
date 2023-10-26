@@ -35,6 +35,10 @@
                             <label for="perangkat">Perangkat Yang Dimiliki</label>
                             <textarea class="form-control" id="perangkat" name="perangkat" rows="4"></textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="id_pt_unit">Id PT Unit</label>
+                            <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit">
+                        </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                     </form>

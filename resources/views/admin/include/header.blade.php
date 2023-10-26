@@ -82,11 +82,22 @@
                     <a class="dropdown-item preview-item">
                         <i class="icon-head"></i> Profile
                     </a>
-                    <a class="dropdown-item preview-item">
+                    {{-- <a href="{{ route('logout') }}" class="dropdown-item preview-item">
                         <i class="icon-inbox"></i> Logout
+                    </a> --}}
+                    <a class="dropdown-item preview-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();"><i
+                            class="icon-inbox"></i>
+                        {{ __('Logout') }}
                     </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </li>
+
             <li class="nav-item dropdown mr-4 d-lg-flex d-none">
                 <a class="nav-link count-indicatord-flex align-item s-center justify-content-center" href="#">
                     <i class="icon-grid"></i>

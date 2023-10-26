@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class PenelitianPengabdian extends Controller
 {
-    public function beranda()
-    {
-        return view('ppkm.dashboard');
-    }
+
     public function ppkmadmin()
     {
         $data['admin'] = DB::table('ppkm')->orderBy('pk_id_ppkm', 'asc')->get(); //untuk mengambil semua data ditabel user

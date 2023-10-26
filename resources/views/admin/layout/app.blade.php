@@ -3,7 +3,7 @@
 
 <head>
     @include('admin.include.style')
-   
+
 </head>
 
 <body>

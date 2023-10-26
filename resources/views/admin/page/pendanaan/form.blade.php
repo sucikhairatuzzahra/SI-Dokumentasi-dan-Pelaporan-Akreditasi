@@ -5,7 +5,7 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Form Sumber Pendanaan Prodi</h4>
+                    <h4 class="card-title">Form Sumber Pendanaan Program Studi</h4>
                     <p class="card-description">
                         Input data
                     </p>
@@ -26,6 +26,10 @@
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
                             <input type="text" class="form-control" id="keterangan" name="keterangan">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_pt_unit">Id PT Unit</label>
+                            <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit">
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

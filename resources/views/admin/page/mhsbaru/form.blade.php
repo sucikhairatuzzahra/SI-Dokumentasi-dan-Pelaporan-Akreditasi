@@ -5,15 +5,19 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Form Sarana Dan Prasarana</h4>
+                    <h4 class="card-title">Form Jumlah Calon Mahasiswa Baru</h4>
                     <p class="card-description">
-                        Input Data Sarana Dan Prasarana
+                        Input Data Jumlah Calon Mahasiswa Baru
 
                     <form action="/simpan-cmb" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="tahun_akademik">Tahun Akademik</label>
-                            <input type="text" class="form-control" id="tahun_akademik" name="tahun_akademik">
+                            <label for="thn_akademik">Tahun Akademik</label>
+                            <input type="text" class="form-control" id="thn_akademik" name="thn_akademik">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_pt_unit">Id PT Unit</label>
+                            <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit">
                         </div>
                         <div class="form-group">
                             <label for="daya_tampung">Daya Tampung</label>
@@ -28,11 +32,11 @@
                             <input type="text" class="form-control" id="lulus_seleksi" name="lulus_seleksi">
                         </div>
                         <div class="form-group">
-                            <label for="maba_reguler">Maba Reguler</label>
+                            <label for="maba_reguler">Mahasiswa Baru Reguler</label>
                             <input type="text" class="form-control" id="maba_reguler" name="maba_reguler">
                         </div>
                         <div class="form-group">
-                            <label for="maba_transfer">Maba Transfer</label>
+                            <label for="maba_transfer">Mahasiswa Baru Transfer</label>
                             <input type="text" class="form-control" id="maba_transfer" name="maba_transfer">
                         </div>
                         <div class="form-group">

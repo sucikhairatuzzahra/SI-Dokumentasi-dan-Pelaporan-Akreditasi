@@ -50,6 +50,7 @@ class SaranaPrasaranaController extends Controller
             'jml_mhs' => $request->jml_mhs,
             'jam_lyn' => $request->jam_lyn,
             'perangkat' => $request->perangkat,
+            'id_pt_unit' => $request->id_pt_unit,
 
         ]);
         if ($input) {
@@ -81,7 +82,8 @@ class SaranaPrasaranaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['editData'] = SaranaPrasarana::find($id);
+        return view('admin.page.saranaprasarana.form_edit', $data);
     }
 
     /**
@@ -93,7 +95,24 @@ class SaranaPrasaranaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sarana = SaranaPrasarana::find($id);
+        $update = $sarana->update([
+            'sarana' => $request->sarana,
+            'daya_tampung' => $request->daya_tampung,
+            'luas_ruang' => $request->luas_ruang,
+            'jml_mhs' => $request->jml_mhs,
+            'jam_lyn' => $request->jam_lyn,
+            'perangkat' => $request->perangkat,
+            'id_pt_unit' => $request->id_pt_unit,
+        ]);
+        if ($update) {
+            return redirect('sarana')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+                alert('Data gagal diinput, masukkan kembali data dengan benar');
+                window.location = '/admin.page.saranaprasarana.index';
+                </script>";
+        }
     }
 
     /**

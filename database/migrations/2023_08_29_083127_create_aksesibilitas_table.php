@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('tanpa_jrg')->nullable();
             $table->string('lan')->nullable();
             $table->string('wan');
+            $table->unsignedBigInteger('id_pt_unit');
+            $table->foreign('id_pt_unit')->references('pk_id_pt_unit')->on('pt_unit')->onDelete('restrict');
             $table->timestamps();
         });
     }

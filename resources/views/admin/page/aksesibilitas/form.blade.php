@@ -31,6 +31,10 @@
                             <label for="wan">Dengan Komputer Serta Dapat Diakses Melalui jaringan Luas (WAN)</label>
                             <input type="text" class="form-control" id="wan" name="wan">
                         </div>
+                        <div class="form-group">
+                            <label for="id_pt_unit">Id PT_Unit</label>
+                            <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit">
+                        </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                     </form>

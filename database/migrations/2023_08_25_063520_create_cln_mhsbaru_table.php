@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('cln_mhsbaru', function (Blueprint $table) {
             $table->id();
-            $table->string('thn_akademik');
-            $table->string('daya_tampung');
+            $table->integer('thn_akademik');
+            $table->unsignedBigInteger('id_pt_unit');
+            $table->foreign('id_pt_unit')->references('pk_id_pt_unit')->on('pt_unit')->onDelete('restrict');
+            $table->integer('daya_tampung');
             $table->integer('pendaftar');
             $table->integer('lulus_seleksi');
             $table->integer('maba_reguler');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aksesibilitas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AksesibilitasController extends Controller
 {
@@ -49,6 +50,7 @@ class AksesibilitasController extends Controller
             'tanpa_jrg' => $request->tanpa_jrg,
             'lan' => $request->lan,
             'wan' => $request->wan,
+            'id_pt_unit' => $request->id_pt_unit,
 
         ]);
         if ($input) {
@@ -80,7 +82,13 @@ class AksesibilitasController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $data['editData'] = DB::table('masa_tunggu_lulusan')
+        //     ->where('id', $id)
+        //     ->first();
+
+        $data['editData'] = Aksesibilitas::find($id);
+
+        return view('admin.page.aksesibilitas.form_edit', $data);
     }
 
     /**
@@ -92,7 +100,23 @@ class AksesibilitasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $akses = Aksesibilitas::find($id);
+        $update = $akses->update([
+            'jenis_data' => $request->jenis_data,
+            'secara_manual' => $request->secara_manual,
+            'tanpa_jrg' => $request->tanpa_jrg,
+            'lan' => $request->lan,
+            'wan' => $request->wan,
+            'id_pt_unit' => $request->id_pt_unit,
+        ]);
+        if ($update) {
+            return redirect('aksesibilitas')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+                alert('Data gagal diinput, masukkan kembali data dengan benar');
+                window.location = '/admin.page.aksesibilitas.index';
+                </script>";
+        }
     }
 
     /**

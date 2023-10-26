@@ -48,6 +48,8 @@ class PendanaanController extends Controller
             'jumlah' => $request->jumlah,
             'bukti' => $request->bukti,
             'keterangan' => $request->keterangan,
+            'id_pt_unit' => $request->id_pt_unit,
+
         ]);
 
         if ($input) {
@@ -79,7 +81,8 @@ class PendanaanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['editData'] = Pendanaan::find($id);
+        return view('admin.page.pendanaan.form_edit', $data);
     }
 
     /**
@@ -91,7 +94,22 @@ class PendanaanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dana = Pendanaan::find($id);
+        $update = $dana->update([
+            'sumber_dana' => $request->sumber_dana,
+            'jumlah' => $request->jumlah,
+            'bukti' => $request->bukti,
+            'keterangan' => $request->keterangan,
+            'id_pt_unit' => $request->id_pt_unit,
+        ]);
+        if ($update) {
+            return redirect('pendanaan')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+                alert('Data gagal diinput, masukkan kembali data dengan benar');
+                window.location = '/admin.page.pendanaan.index';
+                </script>";
+        }
     }
 
     /**
