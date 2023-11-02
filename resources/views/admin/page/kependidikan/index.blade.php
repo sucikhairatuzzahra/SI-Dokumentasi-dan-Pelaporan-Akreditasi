@@ -1,4 +1,4 @@
-@extends('jurusan.layout.app')
+@extends('admin.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">

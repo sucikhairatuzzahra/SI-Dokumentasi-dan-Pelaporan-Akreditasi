@@ -2,28 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MahasiswaExport;
 use App\Models\Mhsbaru;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+use Maatwebsite\Excel\Facades\Excel;
+// use Maatwebsite\Excel\Excel;
 
 class CalonMhsBaruController extends Controller
 
 {
+
     public function index()
     {
         $data = Mhsbaru::paginate('20');
         // dd($data);
 
         return view('admin.page.mhsbaru.index', compact('data'));
+    }
+    public function kaprodiIndex()
+    {
+        $mahasiswa = Mhsbaru::paginate('20');
 
-        // if (auth()->user()->role == 'admin') {
-        //     return view('admin.page.mhsbaru.index', compact('data'));
-        // } else if (auth()->user()->role == 'kaprodi') {
-        //     return view('kaprodi.page.mhsbaru.index', compact('data'));
-        // } else { //role == jurusan
-        //     return view('kaprodi.page.mhsbaru.index', compact('data'));
-        // }
+        return view('kaprodi.page.mhsbaru.index', compact('mahasiswa'));
     }
     public function create()
     {
@@ -91,5 +94,25 @@ class CalonMhsBaruController extends Controller
         $mhsbaru->delete();
 
         return redirect()->route('mhs-baru')->with('success', 'Data Calon Mahasiswa Baru berhasil dihapus');
+    }
+    public function show($id)
+    {
+        $prodi = Mhsbaru::findOrFail($id);
+
+        return view('jurusan.page.mhsbaru.index', compact('prodi'));
+    }
+    public function download()
+    {
+        $mahasiswa = Mhsbaru::all();
+
+        Excel::create('mahasiswa', function ($excel) use ($mahasiswa) {
+            $excel->sheet('Data Mahasiswa', function ($sheet) use ($mahasiswa) {
+                $sheet->fromArray($mahasiswa->toArray());
+            });
+        })->export('xlsx');
+
+        // return Excel::download(new MahasiswaExport, 'Data Jumalah Mahasiswa Baru.xlsx');
+        // return FacadesExcel::download(new MahasiswaExport, 'Mahasiswa.xlsx');
+        // return FacadesExcel::download(new MahasiswaExport, 'Data Mahasiswa.xlsx');
     }
 }

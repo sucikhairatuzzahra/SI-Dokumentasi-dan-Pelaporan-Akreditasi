@@ -28,6 +28,14 @@ class MasaTunguLulusanController extends Controller
         // dd($data);
         return view('admin.page.masa_tunggu_lulusan.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = MasaTungguLulusan::paginate(20);
+        foreach ($data as $key => $tahun) {
+            $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
+        }
+        return view('kaprodi.page.masa_tunggu_lulusan.index', compact('data'));
+    }
 
     /**
      * Show the form for creating a new resource.

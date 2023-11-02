@@ -31,6 +31,11 @@ class HomeController extends Controller
         // return view('home', ["msg" => "i am Kaprodi role"]);
         return view('kaprodi.page.dashboard.index');
     }
+    public function admprodiHome()
+    {
+        // return view('home', ["msg" => "i am Adm Program Studi role"]);
+        return view('admprodi.page.dashboard.index');
+    }
     public function adminHome()
     {
         // return view('home', ["msg" => "i am Admin role"]);

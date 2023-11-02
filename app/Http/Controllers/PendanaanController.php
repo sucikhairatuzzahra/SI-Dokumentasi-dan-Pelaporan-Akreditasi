@@ -18,7 +18,12 @@ class PendanaanController extends Controller
         // dd($data);
         return view('admin.page.pendanaan.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = Pendanaan::paginate('20');
 
+        return view('kaprodi.page.pendanaan.index', compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

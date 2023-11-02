@@ -1,4 +1,4 @@
-@extends('jurusan.layout.app')
+@extends('kaprodi.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -13,11 +13,11 @@
                 <div class="col-md-4">
                     <ul class="breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                            <a href="#"> <i class="fa fa-home"></i> </a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Mahasiswa</a>
                         </li>
-                        {{-- <li class="breadcrumb-item"><a href="#!">Provinsi</a> --}}
+
                         </li>
                     </ul>
                 </div>
@@ -35,9 +35,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Jumlah Calon Mahasiswa</h5>
-                            <a href="{{ route('tambah-cmb') }}">
-                                <span>Tambah data <code>disini</code> </span>
-                            </a>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -51,9 +48,10 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-
-                                {{-- <a href="{{ route('list.provinsi') }}" type="submit" class="btn btn-primary"
-                                    style="margin-bottom:10px ">Tambah</a> --}}
+                                <div class="row">
+                                    <a href="{{ route('mhs-download') }}">
+                                        <button class="btn btn-success">Download</button></a>
+                                </div>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr align="center">
@@ -100,7 +98,7 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($data as $no => $item)
+                                        @foreach ($mahasiswa as $no => $item)
                                             <tr align="center">
                                                 {{-- <td>{{ $no + 1 }}</td> --}}
                                                 <td>{{ $item->thn_akademik }}</td>

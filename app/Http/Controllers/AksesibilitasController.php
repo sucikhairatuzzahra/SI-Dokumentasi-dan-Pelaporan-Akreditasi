@@ -19,7 +19,12 @@ class AksesibilitasController extends Controller
         // dd($data);
         return view('admin.page.aksesibilitas.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = Aksesibilitas::paginate('20');
 
+        return view('kaprodi.page.aksesibilitas.index', compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

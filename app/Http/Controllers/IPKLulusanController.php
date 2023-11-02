@@ -18,7 +18,12 @@ class IPKLulusanController extends Controller
         // dd($data);
         return view('admin.page.ipk_lulusan.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = IPKLulusan::paginate('20');
 
+        return view('kaprodi.page.ipk_lulusan.index', compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

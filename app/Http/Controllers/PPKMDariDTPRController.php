@@ -18,6 +18,12 @@ class PPKMDariDTPRController extends Controller
         // dd($data);
         return view('admin.page.ppkm_dtpr.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = PPKMDariDTPR::paginate('20');
+        // dd($data);
+        return view('kaprodi.page.ppkm_dtpr.index', compact('data'));
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -18,7 +18,12 @@ class BebanDTRPController extends Controller
         // dd($data);
         return view('admin.page.beban_dtpr.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = BebanDTPR::paginate('20');
 
+        return view('kaprodi.page.beban_dtpr.index', compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

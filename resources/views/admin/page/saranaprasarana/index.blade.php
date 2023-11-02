@@ -1,4 +1,4 @@
-@extends('jurusan.layout.app')
+@extends('admin.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Kesesuaian Bidang Kerja Lulusan</h5>
-                        <p class="m-b-0">Data Bidang Kerja Lulusan</p>
+                        <h5 class="m-b-10">Pendayagunaan Sarana dan Prasarana Utama</h5>
+                        <p class="m-b-0">Data Pendayagunaan Sarana dan Prasarana Utama</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -15,9 +15,8 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">Luaran dan Capaian Tridarma</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#!">Kesesuaian Bidang Kerja Lulusan</a>
+
+                        <li class="breadcrumb-item"><a href="#!">Pendayagunaan Sarana dan Prasarana Utama</a>
                         </li>
                     </ul>
                 </div>
@@ -34,7 +33,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Kesesuaian Bidang Kerja Lulusan</h5>
+                            <h5>Pendayagunaan Sarana dan Prasarana Utama</h5>
                             <a href="{{ route('tambah-kerjalulusan') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>

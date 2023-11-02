@@ -19,7 +19,12 @@ class KelulusanTepatWaktuController extends Controller
         // dd($data);
         return view('admin.page.kelulusan_tepat_waktu.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = KelulusanTepatWaktu::paginate('20');
 
+        return view('kaprodi.page.kelulusan_tepat_waktu.index', compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

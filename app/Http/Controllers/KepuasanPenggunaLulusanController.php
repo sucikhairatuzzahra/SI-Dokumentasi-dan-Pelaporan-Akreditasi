@@ -26,7 +26,12 @@ class KepuasanPenggunaLulusanController extends Controller
         //     ]
         // );
     }
+    public function kaprodiIndex()
+    {
+        $data = KepuasanPenggunaLulusan::paginate('20');
 
+        return view('kaprodi.page.kepuasan_pengguna_lulusan.index', compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

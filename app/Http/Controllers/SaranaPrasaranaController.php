@@ -18,7 +18,12 @@ class SaranaPrasaranaController extends Controller
         // dd($data);
         return view('admin.page.saranaprasarana.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = SaranaPrasarana::paginate('20');
 
+        return view('kaprodi.page.saranaprasarana.index', compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

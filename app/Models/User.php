@@ -49,8 +49,9 @@ class User extends Authenticatable
     protected function role(): CastsAttribute
     {
         return new CastsAttribute(
-            get: fn ($value) => ['jurusan', 'kaprodi', 'admin'][$value],
+            get: fn ($value) => ['jurusan', 'kaprodi', 'admprodi', 'admin'][$value],
         );
+        // jurusan =0, kaprodi=1, admprodi=2, admin=3
     }
     // protected function role(): Attribute
     // {

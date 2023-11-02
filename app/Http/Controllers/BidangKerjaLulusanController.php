@@ -18,7 +18,12 @@ class BidangKerjaLulusanController extends Controller
         // dd($data);
         return view('admin.page.bidang_kerja_lulusan.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = BidangKerjaLulusan::paginate('20');
 
+        return view('kaprodi.page.bidang_kerja_lulusan.index', compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -39,7 +39,7 @@ class DashboardController extends Controller
      */
     public function indexKaprodi()
     {
-        //
+        return view('kaprodi.page.dashboard.index');
     }
 
     /**

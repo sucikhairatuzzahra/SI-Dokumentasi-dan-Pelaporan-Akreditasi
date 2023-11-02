@@ -1,4 +1,4 @@
-@extends('jurusan.layout.app')
+@extends('admin.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Kesesuaian Bidang Kerja Lulusan</h5>
-                        <p class="m-b-0">Data Bidang Kerja Lulusan</p>
+                        <h5 class="m-b-10">Jumlah Calon Mahasiswa Baru</h5>
+                        <p class="m-b-0">Data Jumlah Calon Mahasiswa Baru</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -15,9 +15,9 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">Luaran dan Capaian Tridarma</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#!">Kesesuaian Bidang Kerja Lulusan</a>
+                        {{-- <li class="breadcrumb-item"><a href="#!">Luaran dan Capaian Tridarma</a>
+                        </li> --}}
+                        <li class="breadcrumb-item"><a href="#!">Jumlah Calon Mahasiswa Baru</a>
                         </li>
                     </ul>
                 </div>
@@ -34,8 +34,8 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Kesesuaian Bidang Kerja Lulusan</h5>
-                            <a href="{{ route('tambah-kerjalulusan') }}">
+                            <h5>Jumlah Calon Mahasiswa Baru</h5>
+                            <a href="{{ route('tambah-cmb') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>
 
@@ -49,8 +49,13 @@
                                 </ul>
                             </div>
                         </div>
+
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
+                                <div class="row">
+                                    <a href="{{ route('mhs-download') }}">
+                                        <button class="btn btn-success">Download</button></a>
+                                </div>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">

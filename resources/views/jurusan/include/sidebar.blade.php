@@ -145,16 +145,5 @@
             </li>
         </ul>
 
-        <div class="pcoded-navigation-label" data-i18n="nav.category.other">Users</div>
-        <ul class="pcoded-item pcoded-left-item">
-            <li class="pcoded-hasmenu ">
-                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="ti-user"></i><b>M</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Daftar Users</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-
-            </li>
-        </ul>
     </div>
 </nav>

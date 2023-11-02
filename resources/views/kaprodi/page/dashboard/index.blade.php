@@ -1,4 +1,4 @@
-@extends('jurusan.layout.app')
+@extends('kaprodi.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -77,21 +77,16 @@
                                         </tr>
                                         <tr>
                                             <td>Kriteria 3</td>
-                                            <td><a href="{{ route('mhs-baru') }}">Mahasiswa</a></td>
+                                            <td><a href="{{ route('kaprodi-mahasiswa') }}">Mahasiswa</a></td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 4</td>
-                                            <td><a href="{{ route('bebandtpr') }}">Sumber Daya Manusia</a> </td>
-                                            {{-- <td><a href="{{ route('bebandtpr') }}">Rata-rata beban
-                                                    DTPR </a> </td>
-                                        <tr>
-                                            <td><a href="{{ route('kependidikan') }}">Kualifikasi
-                                                    Tenaga Kependidikan</a></td>
-                                        </tr> --}}
+                                            <td><a href="{{ route('kaprodi-kependidikan') }}">Sumber Daya Manusia</a> </td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 5</td>
-                                            <td><a href="{{ route('pendanaan') }}">Keuangan, Sarana dan Prasarana</a></td>
+                                            <td><a href="{{ route('kaprodi-sumberdana') }}">Keuangan, Sarana dan
+                                                    Prasarana</a></td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 6</td>
@@ -107,7 +102,8 @@
                                         </tr>
                                         <tr>
                                             <td>Kriteria 9</td>
-                                            <td><a href="{{ route('ipklulusan') }}">Luaran dan Capaian Tridarma</a></td>
+                                            <td><a href="{{ route('kaprodi-ipklulusan') }}">Luaran dan Capaian Tridarma</a>
+                                            </td>
                                         </tr>
                                     </tbody>
 

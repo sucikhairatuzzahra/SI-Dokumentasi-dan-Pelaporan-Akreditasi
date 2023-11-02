@@ -1,172 +1,160 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <div class="user-profile">
-        <div class="user-image">
-            <img src="/images/faces/logoti.png">
+<nav class="pcoded-navbar">
+    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+    <div class="pcoded-inner-navbar main-menu">
+        <div class="">
+            <div class="main-menu-header">
+                <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                <div class="user-details">
+                    <span id="more-details">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <b>{{ Auth::user()->name }}</b>
+                        <i class="fa fa-caret-down"></i>
+                    </span>
+
+                </div>
+            </div>
+
+            <div class="main-menu-content">
+                <ul>
+                    <li class="more-details">
+                        {{-- <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                         --}}
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();"><i
+                                class="icon-inbox"></i>
+                            {{ __('Logout') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
-        {{ Auth::user()->name }}
 
+        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Dashboard &amp; Mahasiswa</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="">
+                <a href="{{ route('dashboard') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('mhs-baru') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Mahasiswa</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
+        </ul>
+        {{-- <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Forms &amp; Tables</div> --}}
+        <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Sumber Daya Manusia</div>
+
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="{{ route('bebandtpr') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Beban DTPR</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kependidikan') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Tenaga Kependidikan</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <br>
+
+        </ul>
+
+        <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Keuangan dan Sarana</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="{{ route('pendanaan') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Sumber Dana Prodi</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('aksesibilitas') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Aksesibilitas</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('sarana') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Sarana dan Prasarana</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
+        </ul>
+        <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Luaran &amp; Capaian Tridarma</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="{{ route('ipklulusan') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">IPK Lulusan</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kelulusan_tepatwaktu') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Kelulusan Tepat Waktu</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kepuasan_pengguna') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Kepuasan Pengguna</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('masatunggu') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Masa Tunggu</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kerjalulusan') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Bidang Kerja Lulusan</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('ppkm_dtpr') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Penelitian &amp; Pengabdian</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="pcoded-navigation-label" data-i18n="nav.category.other">Users</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="pcoded-hasmenu ">
+                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-user"></i><b>M</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Daftar Users</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+
+            </li>
+        </ul>
     </div>
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('dashboard') }}">
-                <i class="icon-box menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('mhs-baru') }}">
-                <i class="icon-disc menu-icon"></i>
-                <span class="menu-title">Mahasiswa Baru</span>
-                {{-- <i class="menu-arrow"></i> --}}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-move menu-icon"></i>
-                <span class="menu-title">Sumber Daya Manusia</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('bebandtpr') }}">Beban DTPR</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('kependidikan') }}">Kualifikasi
-                            Pendidikan</a>
-                    </li>
-
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-pie-graph menu-icon"></i>
-                <span class="menu-title">Keuangan dan Sarana</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('pendanaan') }}">Sumber Dana Prodi</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('aksesibilitas') }}">Aksesibilitas</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('sarana') }}">Sarana Prasarana</a>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-folder menu-icon"></i>
-                <span class="menu-title">Capaian Tridarma</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('ipklulusan') }}">IPK Lulusan</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('kelulusan_tepatwaktu') }}">Kelulusan
-                            Tepat
-                            Waktu
-                        </a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('kepuasan_pengguna') }}">Kepuasan Pengguna
-                        </a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('masatunggu') }}">Masa Tunggu </a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('kerjalulusan') }}">Bidang Kerja
-                            Lulusan</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('ppkm_dtpr') }}">PPKM DTPR</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('ppkmadmin') }}">
-                <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Penelitian Pengabdian</span>
-            </a>
-        </li>
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('pendanaan') }}">
-                <i class="icon-pie-graph menu-icon"></i>
-                <span class="menu-title">Sumber Dana Prodi</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('aksesibilitas') }}">
-                <i class="icon-link menu-icon"></i>
-                <span class="menu-title">Aksesibilitas</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('sarana') }}">
-                <i class="icon-folder menu-icon"></i>
-                <span class="menu-title">Sarana Prasarana</span>
-            </a>
-        </li> --}}
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('kependidikan') }}">
-                <i class="icon-command menu-icon"></i>
-                <span class="menu-title">Tenaga Kependidikan</span>
-            </a>
-        </li> --}}
-        {{-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-move menu-icon"></i>
-                <span class="menu-title">Lulusan</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('ipklulusan') }}">IPK Lulusan</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('masatunggu') }}">Rata2 Waktu
-                            Tunggu</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('kelulusan_tepatwaktu') }}">Kelulusan
-                            Tepat
-                            Waktu</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('kerjalulusan') }}">Bidang Kerja
-                            Lulusan</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('kepuasan_pengguna') }}">Kepuasan
-                            Pengguna
-                            Lulusan</a>
-                    </li>
-                </ul>
-            </div>
-        </li> --}}
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('bebandtpr') }}">
-                <i class="icon-help menu-icon"></i>
-                <span class="menu-title">Beban DTPR</span>
-            </a>
-        </li> --}}
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="icon-head menu-icon"></i>
-                <span class="menu-title">User Pages</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="docs/documentation.html">
-                <i class="icon-book menu-icon"></i>
-                <span class="menu-title">Documentation</span>
-            </a>
-        </li>
-    </ul>
 </nav>

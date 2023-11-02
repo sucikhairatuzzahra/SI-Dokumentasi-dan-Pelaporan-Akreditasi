@@ -19,7 +19,12 @@ class TenagaKependidikanController extends Controller
         // dd($data);
         return view('admin.page.kependidikan.index', compact('data'));
     }
+    public function kaprodiIndex()
+    {
+        $data = TenagaKependidikan::paginate('20');
 
+        return view('kaprodi.page.kependidikan.index', compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

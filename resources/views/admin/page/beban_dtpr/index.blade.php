@@ -1,4 +1,4 @@
-@extends('jurusan.layout.app')
+@extends('admin.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -15,8 +15,7 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">Sumber Daya Manusia</a>
-                        </li>
+
                         <li class="breadcrumb-item"><a href="#!">Rata-rata beban DTPR</a>
                         </li>
                     </ul>

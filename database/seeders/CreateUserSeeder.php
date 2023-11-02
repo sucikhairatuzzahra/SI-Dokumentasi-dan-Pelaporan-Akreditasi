@@ -29,10 +29,16 @@ class CreateUserSeeder extends Seeder
                 'role' => 1
             ],
             [
+                'name' => 'AdmProdi',
+                'email' => 'admprodi@gmail.com',
+                'password' => bcrypt('12345678'),
+                'role' => 2
+            ],
+            [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('12345678'),
-                'role' => 2
+                'role' => 3
             ]
         ];
         foreach ($users as $user) {

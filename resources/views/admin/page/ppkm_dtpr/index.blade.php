@@ -1,4 +1,4 @@
-@extends('jurusan.layout.app')
+@extends('admin.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -15,8 +15,7 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">Luaran dan Capaian Tridarma</a>
-                        </li>
+
                         <li class="breadcrumb-item"><a href="#!">PPKM DTPR</a>
                         </li>
                     </ul>
@@ -35,7 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                            <a href="{{ route('tambah-ppkm_dtpr') }}">
+                            <a href="{{ route('tambah-ppkmdtpr') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>
 
