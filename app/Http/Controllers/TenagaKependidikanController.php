@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TenagaKependidikanExport;
 use App\Models\TenagaKependidikan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TenagaKependidikanController extends Controller
 {
@@ -124,5 +126,10 @@ class TenagaKependidikanController extends Controller
         $kpddkn = TenagaKependidikan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kpddkn->delete();
         return redirect()->route('sarana')->with('success', 'Data Kualifikasi Tenaga Kependidikan berhasil dihapus');
+    }
+
+    public function download()
+    {
+        return Excel::download(new TenagaKependidikanExport, 'Kualifikasi Tenaga Kependidikan.xlsx');
     }
 }

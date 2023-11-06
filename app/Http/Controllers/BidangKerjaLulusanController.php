@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BidangKerjaLulusanExport;
 use App\Models\BidangKerjaLulusan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BidangKerjaLulusanController extends Controller
 {
@@ -134,5 +136,10 @@ class BidangKerjaLulusanController extends Controller
         $kerjalulusan = BidangKerjaLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kerjalulusan->delete();
         return redirect()->route('kerjalulusan')->with('success', 'Data Bidang Kerja Lulusan berhasil dihapus');
+    }
+
+    public function download()
+    {
+        return Excel::download(new BidangKerjaLulusanExport, 'Bidang Kerja Lulusan.xlsx');
     }
 }

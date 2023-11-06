@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IPKLulusanExport;
 use App\Models\IPKLulusan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IPKLulusanController extends Controller
 {
@@ -129,5 +131,10 @@ class IPKLulusanController extends Controller
         $ipk = IPKLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $ipk->delete();
         return redirect()->route('ipklulusan')->with('success', 'Data IPK Lulusan berhasil dihapus');
+    }
+
+    public function download()
+    {
+        return Excel::download(new IPKLulusanExport, 'IPK Lulusan.xlsx');
     }
 }

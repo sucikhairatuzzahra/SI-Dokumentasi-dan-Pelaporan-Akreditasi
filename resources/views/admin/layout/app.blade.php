@@ -29,6 +29,18 @@
     </div>
     @include('admin.include.script')
 
+    @stack('addon-script')
+
+    @stack('js')
+
+    @if (session('pesan'))
+        <script>
+            Swal.fire({
+                icon: 'pesan',
+                title: '{{ session('pesan') }}',
+            })
+        </script>
+    @endif
 </body>
 
 </html>

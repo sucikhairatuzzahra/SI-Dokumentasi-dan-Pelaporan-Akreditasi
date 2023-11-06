@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PPKMDTPRExport;
 use App\Models\PPKMDariDTPR;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PPKMDariDTPRController extends Controller
 {
@@ -132,5 +134,10 @@ class PPKMDariDTPRController extends Controller
         $ppkm = PPKMDariDTPR::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $ppkm->delete();
         return redirect()->route('ppkm_dtpr')->with('success', 'Data PPKM berhasil dihapus');
+    }
+
+    public function download()
+    {
+        return Excel::download(new PPKMDTPRExport, 'PPKM Dari DTPR.xlsx');
     }
 }

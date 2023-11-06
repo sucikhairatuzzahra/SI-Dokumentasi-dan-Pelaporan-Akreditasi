@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SaranaPrasaranaExport;
 use App\Models\SaranaPrasarana;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SaranaPrasaranaController extends Controller
 {
@@ -131,5 +133,10 @@ class SaranaPrasaranaController extends Controller
         $sarana = SaranaPrasarana::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $sarana->delete();
         return redirect()->route('sarana')->with('success', 'Data Sarana dan Prasarana berhasil dihapus');
+    }
+
+    public function download()
+    {
+        return Excel::download(new SaranaPrasaranaExport, 'Sarana Prasarana.xlsx');
     }
 }

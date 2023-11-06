@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AksesibilitasExport;
 use App\Models\Aksesibilitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AksesibilitasController extends Controller
 {
@@ -135,5 +137,9 @@ class AksesibilitasController extends Controller
         $akses = Aksesibilitas::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $akses->delete();
         return redirect()->route('aksesibilitas')->with('success', 'Data Aksesibilitas berhasil dihapus');
+    }
+    public function download()
+    {
+        return Excel::download(new AksesibilitasExport, 'Aksesibilitasi.xlsx');
     }
 }

@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Exports\MahasiswaExport;
 use App\Models\Mhsbaru;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Excel as ExcelExcel;
+
 use Maatwebsite\Excel\Facades\Excel;
-// use Maatwebsite\Excel\Excel;
+
 
 class CalonMhsBaruController extends Controller
 
@@ -21,17 +19,24 @@ class CalonMhsBaruController extends Controller
         // dd($data);
 
         return view('admin.page.mhsbaru.index', compact('data'));
+        
     }
     public function kaprodiIndex()
     {
-        $mahasiswa = Mhsbaru::paginate('20');
+        $data = Mhsbaru::paginate('20');
 
-        return view('kaprodi.page.mhsbaru.index', compact('mahasiswa'));
+        return view('kaprodi.page.mhsbaru.index', compact('data'));
+    }
+    public function admprodiIndex()
+    {
+        $data = Mhsbaru::paginate('20');
+
+        return view('admprodi.page.mhsbaru.index', compact('data'));
     }
     public function create()
     {
         return view(
-            'admin.page.mhsbaru.form',
+            'admprodi.page.mhsbaru.form',
             [
                 'url' => 'simpan-cmb',
             ]
@@ -101,18 +106,12 @@ class CalonMhsBaruController extends Controller
 
         return view('jurusan.page.mhsbaru.index', compact('prodi'));
     }
+    // public function download(){
+
+    // }
+
     public function download()
     {
-        $mahasiswa = Mhsbaru::all();
-
-        Excel::create('mahasiswa', function ($excel) use ($mahasiswa) {
-            $excel->sheet('Data Mahasiswa', function ($sheet) use ($mahasiswa) {
-                $sheet->fromArray($mahasiswa->toArray());
-            });
-        })->export('xlsx');
-
-        // return Excel::download(new MahasiswaExport, 'Data Jumalah Mahasiswa Baru.xlsx');
-        // return FacadesExcel::download(new MahasiswaExport, 'Mahasiswa.xlsx');
-        // return FacadesExcel::download(new MahasiswaExport, 'Data Mahasiswa.xlsx');
+        return Excel::download(new MahasiswaExport, 'Mahasiswa Baru.xlsx');
     }
 }

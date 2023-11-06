@@ -48,7 +48,7 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 <div class="row">
-                                    <a href="{{ route('mhs-download') }}">
+                                    <a href="{{ route('kepuasan_pengguna-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div>
                                 <table class="table table-bordered">

@@ -49,7 +49,7 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 <div class="row">
-                                    <a href="{{ route('mhs-download') }}">
+                                    <a href="{{ route('mahasiswa-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div>
                                 <table class="table table-bordered">
@@ -98,7 +98,7 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($mahasiswa as $no => $item)
+                                        @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 {{-- <td>{{ $no + 1 }}</td> --}}
                                                 <td>{{ $item->thn_akademik }}</td>

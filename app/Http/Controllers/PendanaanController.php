@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SumberDanaExport;
 use App\Models\Pendanaan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PendanaanController extends Controller
 {
@@ -129,5 +131,10 @@ class PendanaanController extends Controller
         $dana->delete();
 
         return redirect()->route('pendanaan')->with('success', 'Data Pendanaan berhasil dihapus');
+    }
+
+    public function download()
+    {
+        return Excel::download(new SumberDanaExport, 'Sumber Dana Prodi.xlsx');
     }
 }

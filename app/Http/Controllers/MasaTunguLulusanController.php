@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MasaTungguLulusanExport;
 use App\Models\BidangKerjaLulusan;
 use App\Models\MasaTungguLulusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MasaTunguLulusanController extends Controller
 {
@@ -151,5 +153,10 @@ class MasaTunguLulusanController extends Controller
         $masatunggu = MasaTungguLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $masatunggu->delete();
         return redirect()->route('masatunggu')->with('success', 'Data Masa Tunggu Lulusan Bekerja berhasil dihapus');
+    }
+
+    public function download()
+    {
+        return Excel::download(new MasaTungguLulusanExport, 'Masa Tunggu Lulusan.xlsx');
     }
 }

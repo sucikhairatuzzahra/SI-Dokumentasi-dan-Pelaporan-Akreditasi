@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KelulusanTepatWaktuExport;
 use App\Models\KelulusanTepatWaktu;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KelulusanTepatWaktuController extends Controller
 {
@@ -53,7 +55,6 @@ class KelulusanTepatWaktuController extends Controller
             'tahun_masuk' => $request->tahun_masuk,
             'id_pt_unit' => $request->id_pt_unit,
             'jml_mhs' => $request->jml_mhs,
-            'tahun' => $request->tahun,
             'jml_lulusan' => $request->jml_lulusan,
             'masa_studi' => $request->masa_studi,
             'jml_mhs_aktif' => $request->jml_mhs_aktif,
@@ -131,5 +132,10 @@ class KelulusanTepatWaktuController extends Controller
         $kelulusan = KelulusanTepatWaktu::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kelulusan->delete();
         return redirect()->route('kelulusan_tepatwaktu')->with('success', 'Data Kelulusan Tepat Waktu Berhasil Dihapus');
+    }
+
+    public function download()
+    {
+        return Excel::download(new KelulusanTepatWaktuExport, 'Kelulusan Tepat Waktu.xlsx');
     }
 }

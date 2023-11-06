@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BebanDTPRExport;
 use App\Models\BebanDTPR;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BebanDTRPController extends Controller
 {
@@ -135,5 +137,9 @@ class BebanDTRPController extends Controller
         $bebandtpr = BebanDTPR::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $bebandtpr->delete();
         return redirect()->route('bebandtpr')->with('success', 'Data Rata-Rata Beban DTPR Per Semester berhasil dihapus');
+    }
+    public function download()
+    {
+        return Excel::download(new BebanDTPRExport, 'Beban DTPR.xlsx');
     }
 }

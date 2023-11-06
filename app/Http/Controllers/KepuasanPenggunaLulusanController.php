@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KepuasanPenggunaLulusanExport;
 use App\Models\KepuasanPenggunaLulusan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KepuasanPenggunaLulusanController extends Controller
 {
@@ -138,5 +140,10 @@ class KepuasanPenggunaLulusanController extends Controller
         $kepuasan = KepuasanPenggunaLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kepuasan->delete();
         return redirect()->route('kepuasan_pengguna')->with('success', 'Data Kepuasan Pengguna Lulusan berhasil dihapus');
+    }
+
+    public function download()
+    {
+        return Excel::download(new KepuasanPenggunaLulusanExport, 'Kepuasan Pengguna Lulusan.xlsx');
     }
 }
