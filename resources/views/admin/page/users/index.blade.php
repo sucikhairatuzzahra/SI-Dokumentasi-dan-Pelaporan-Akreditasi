@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="page-header-title">
                         <h5 class="m-b-10">Daftar Pengguna</h5>
-                        <p class="m-b-0">Data Daftar Pengguna</p>
+                        <p class="m-b-0">Data Pengguna</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -71,9 +71,8 @@
                                                 Role
                                             </th>
                                             <th scope="col">
-                                                Id PT_Unit
+                                                Aksi
                                             </th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -87,7 +86,23 @@
                                                 <td>{{ $item->email }}</td>
                                                 <td>{{ $item->password }}</td>
                                                 <td>{{ $item->role }}</td>
+                                                <td>
+                                                    <a href="{{ route('edit-users', ['id' => $item->id]) }}"
+                                                        style="margin-right: 7px">
+                                                        Edit
+                                                    </a>
+                                                    <a href="{{ route('hapus-users', $item->id) }}"
+                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
+                                                        Hapus
+                                                    </a>
+                                                    <form id="delete-form-{{ $item->id }}"
+                                                        action="{{ route('hapus-users', ['id' => $item->id]) }}"
+                                                        method="POST" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
 
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -157,7 +157,11 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'adminHome'])->name('dashboard');
 
     //user
-    // Route::get('/user', [UserController::class, 'index'])->name('user');
+    Route::get('/admin-users', [DashboardController::class,'index'])->name('admin-users');
+    Route::get('/edit-users/{id}', [DashboardController::class, 'edit'])->name('edit-users');
+    Route::put('/update-users/{id}', [DashboardController::class, 'update'])->name('update-users');
+    Route::delete('/hapus-users/{id}', [DashboardController::class, 'destroy'])->name('hapus-users'); //destroy
+
 
     //route Calon Mahasiswa Baru
     Route::get('/admin-mahasiswa', [CalonMhsBaruController::class, 'index'])->name('admin-mahasiswa'); //index
@@ -196,7 +200,7 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::get('/admin-kelulusan_tepatwaktu', [KelulusanTepatWaktuController::class, 'index'])->name('admin-kelulusan_tepatwaktu'); //index
 
 
-    });
+});
 // Admin Route
 Route::middleware(['auth', 'user-role:admprodi'])->group(function () {
    

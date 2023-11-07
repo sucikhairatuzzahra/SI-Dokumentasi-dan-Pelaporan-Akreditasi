@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li class="">
-                <a href="{{ route('user') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-users') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Users</span>
                     <span class="pcoded-mcaret"></span>

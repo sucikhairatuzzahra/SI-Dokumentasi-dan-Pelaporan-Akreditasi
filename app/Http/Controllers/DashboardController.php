@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -16,6 +17,12 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index(){
+        $data = User::all();
+      
+        return view('admin.page.users.index', compact('data'));
+    }
+
     public function indexAdmin()
     {
         return view('admin.page.dashboard.index');
@@ -66,7 +73,8 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['editData'] = User::find($id);
+        return view('admin.page.users.form_edit', $data);
     }
 
     /**
@@ -78,7 +86,21 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $update = $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'role' => $request->role,
+        ]);
+        if ($update) {
+            return redirect('admin-users')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+                alert('Data gagal diinput, masukkan kembali data dengan benar');
+                window.location = '/admin.page.users.index';
+                </script>";
+        }
     }
 
     /**
@@ -89,7 +111,9 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $user->delete();
+        return redirect()->route('admin-users')->with('success', 'Data User berhasil dihapus');
     }
     function aksi_logout(Request $request)
     {
