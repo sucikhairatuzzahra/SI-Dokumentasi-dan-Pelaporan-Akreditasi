@@ -34,9 +34,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Kelulusan Tepat Waktu</h5>
-                            <a href="{{ route('tambah-kelulusan_tepatwaktu') }}">
-                                <span>Tambah data <code>disini</code> </span>
-                            </a>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -50,6 +47,10 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
+                                {{-- <div class="row">
+                                    <a href="{{ route('kelulusan_tepatwaktu-download') }}">
+                                        <button class="btn btn-success">Download</button></a>
+                                </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr align="center">
@@ -74,9 +75,7 @@
                                             <th scope="col" rowspan="2">
                                                 Jumlah Mhs, Yang Masih Aktif
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Keterangan
-                                            </th>
+
                                         </tr>
                                         <tr align="center">
                                             <th>
@@ -120,22 +119,7 @@
                                                 <td>{{ $item->jml_lulusan }}</td>
                                                 <td>{{ $item->masa_studi }}</td>
                                                 <td>{{ $item->jml_mhs_aktif }}</td>
-                                                <td>
-                                                    <a href="{{ route('edit-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('hapus-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                </td>
+
                                             </tr>
                                         @endforeach
                                     </tbody>

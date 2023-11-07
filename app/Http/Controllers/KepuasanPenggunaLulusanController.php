@@ -28,6 +28,12 @@ class KepuasanPenggunaLulusanController extends Controller
         //     ]
         // );
     }
+    public function admprodiIndex()
+    {
+        $data = KepuasanPenggunaLulusan::paginate('20');
+        // dd($data);
+        return view('admprodi.page.kepuasan_pengguna_lulusan.index', compact('data'));
+    }
     public function kaprodiIndex()
     {
         $data = KepuasanPenggunaLulusan::paginate('20');
@@ -42,7 +48,7 @@ class KepuasanPenggunaLulusanController extends Controller
     public function create()
     {
         return view(
-            'admin.page.kepuasan_pengguna_lulusan.form',
+            'admprodi.page.kepuasan_pengguna_lulusan.form',
             [
                 'url' => 'simpan-kepuasan_pengguna',
             ]
@@ -72,7 +78,7 @@ class KepuasanPenggunaLulusanController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.kepuasan_pengguna_lulusan.index';
+            window.location = '/admprodi.page.kepuasan_pengguna_lulusan.index';
             </script>";
         }
     }

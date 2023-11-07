@@ -61,7 +61,7 @@ class CalonMhsBaruController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.mhsbaru.index';
+            window.location = '/admprodi.page.mhsbaru.index';
             </script>";
         }
     }

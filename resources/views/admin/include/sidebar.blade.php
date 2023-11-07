@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Dashboard &amp; Mahasiswa</div>
+        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Dashboard &amp; Users</div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="">
                 <a href="{{ route('dashboard') }}" class="waves-effect waves-dark">
@@ -43,28 +43,39 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            <li class="">
+                <a href="{{ route('user') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Users</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
+
+        </ul>
+        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Mahasiswa</div>
+        <ul class="pcoded-item pcoded-left-item">
             <li>
-                <a href="{{ route('mhs-baru') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-mahasiswa') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Mahasiswa</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-
         </ul>
         {{-- <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Forms &amp; Tables</div> --}}
         <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Sumber Daya Manusia</div>
 
         <ul class="pcoded-item pcoded-left-item">
             <li>
-                <a href="{{ route('bebandtpr') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-bebandtpr') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Beban DTPR</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('kependidikan') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-kependidikan') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Tenaga Kependidikan</span>
                     <span class="pcoded-mcaret"></span>
@@ -77,21 +88,21 @@
         <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Keuangan dan Sarana</div>
         <ul class="pcoded-item pcoded-left-item">
             <li>
-                <a href="{{ route('pendanaan') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-sumberdana') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Sumber Dana Prodi</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('aksesibilitas') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-aksesibilitas') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Aksesibilitas</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('sarana') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-saranaprasarana') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Sarana dan Prasarana</span>
                     <span class="pcoded-mcaret"></span>
@@ -102,42 +113,42 @@
         <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Luaran &amp; Capaian Tridarma</div>
         <ul class="pcoded-item pcoded-left-item">
             <li>
-                <a href="{{ route('ipklulusan') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-ipklulusan') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">IPK Lulusan</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('kelulusan_tepatwaktu') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-kelulusan_tepatwaktu') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Kelulusan Tepat Waktu</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('kepuasan_pengguna') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-kepuasan_pengguna') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Kepuasan Pengguna</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('masatunggu') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-masatunggu') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Masa Tunggu</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('kerjalulusan') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-kerjalulusan') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Bidang Kerja Lulusan</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('ppkm_dtpr') }}" class="waves-effect waves-dark">
+                <a href="{{ route('admin-ppkm_dtpr') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Penelitian &amp; Pengabdian</span>
                     <span class="pcoded-mcaret"></span>
@@ -145,16 +156,6 @@
             </li>
         </ul>
 
-        <div class="pcoded-navigation-label" data-i18n="nav.category.other">Users</div>
-        <ul class="pcoded-item pcoded-left-item">
-            <li class="pcoded-hasmenu ">
-                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="ti-user"></i><b>M</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Daftar Users</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
 
-            </li>
-        </ul>
     </div>
 </nav>

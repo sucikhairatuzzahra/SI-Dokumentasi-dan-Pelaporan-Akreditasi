@@ -20,6 +20,12 @@ class PPKMDariDTPRController extends Controller
         // dd($data);
         return view('admin.page.ppkm_dtpr.index', compact('data'));
     }
+    public function admprodiIndex()
+    {
+        $data = PPKMDariDTPR::paginate('20');
+        // dd($data);
+        return view('admprodi.page.ppkm_dtpr.index', compact('data'));
+    }
     public function kaprodiIndex()
     {
         $data = PPKMDariDTPR::paginate('20');
@@ -35,7 +41,7 @@ class PPKMDariDTPRController extends Controller
     public function create()
     {
         return view(
-            'admin.page.ppkm_dtpr.form',
+            'admprodi.page.ppkm_dtpr.form',
             [
                 'url' => 'simpan-kependidikan',
             ]
@@ -66,7 +72,7 @@ class PPKMDariDTPRController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.ppkm_dtpr.index';
+            window.location = '/admprodi.page.ppkm_dtpr.index';
             </script>";
         }
     }
@@ -91,7 +97,7 @@ class PPKMDariDTPRController extends Controller
     public function edit($id)
     {
         $data['editData'] = PPKMDariDTPR::find($id);
-        return view('admin.page.ppkm_dtpr.form_edit', $data);
+        return view('admprodi.page.ppkm_dtpr.form_edit', $data);
     }
 
     /**
@@ -118,7 +124,7 @@ class PPKMDariDTPRController extends Controller
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.ppkm_dtpr.index';
+                window.location = '/admprodi.page.ppkm_dtpr.index';
                 </script>";
         }
     }

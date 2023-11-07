@@ -14,7 +14,7 @@ class JumlahTenagaKependidikanController extends Controller
         $kependidikan = TenagaKependidikan::find($id)->first();
         // dd($kependidikan);
         return view(
-            'admin.page.kependidikan.jumlah.form',
+            'admprodi.page.kependidikan.jumlah.form',
             [
                 'url' => 'kependidikan/' . $id . '/simpan',
             ]
@@ -38,7 +38,7 @@ class JumlahTenagaKependidikanController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.kependidikan.jumlah.index';
+            window.location = '/admprodi.page.kependidikan.jumlah.index';
             </script>";
         }
     }

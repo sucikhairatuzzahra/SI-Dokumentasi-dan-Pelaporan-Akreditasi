@@ -21,6 +21,13 @@ class TenagaKependidikanController extends Controller
         // dd($data);
         return view('admin.page.kependidikan.index', compact('data'));
     }
+    public function admprodiIndex()
+    {
+        $data = TenagaKependidikan::paginate('20');
+
+        // dd($data);
+        return view('admprodi.page.kependidikan.index', compact('data'));
+    }
     public function kaprodiIndex()
     {
         $data = TenagaKependidikan::paginate('20');
@@ -35,7 +42,7 @@ class TenagaKependidikanController extends Controller
     public function create()
     {
         return view(
-            'admin.page.kependidikan.form',
+            'admprodi.page.kependidikan.form',
             [
                 'url' => 'simpan-kependidikan',
             ]
@@ -61,7 +68,7 @@ class TenagaKependidikanController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.kependidikan.index';
+            window.location = '/admprodi.page.kependidikan.index';
             </script>";
         }
     }
@@ -86,7 +93,7 @@ class TenagaKependidikanController extends Controller
     public function edit($id)
     {
         $data['editData'] = TenagaKependidikan::find($id);
-        return view('admin.page.kependidikan.form_edit', $data);
+        return view('admprodi.page.kependidikan.form_edit', $data);
     }
 
     /**
@@ -110,7 +117,7 @@ class TenagaKependidikanController extends Controller
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.kependidikan.index';
+                window.location = '/admprodi.page.kependidikan.index';
                 </script>";
         }
     }

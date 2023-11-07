@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('admprodi.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -52,10 +52,7 @@
 
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-                                <div class="row">
-                                    <a href="{{ route('mhs-download') }}">
-                                        <button class="btn btn-success">Download</button></a>
-                                </div>
+
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">

@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                        <p class="m-b-0">Data Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</p>
+                        <h5 class="m-b-10">Daftar Pengguna</h5>
+                        <p class="m-b-0">Data Daftar Pengguna</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">PPKM DTPR</a>
+                        <li class="breadcrumb-item"><a href="#!">Daftar Pengguna</a>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
+                            <h5>Daftar Pengguna</h5>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -48,9 +48,10 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 {{-- <div class="row">
-                                    <a href="{{ route('ppkm_dtpr-download') }}">
+                                    <a href="{{ route('sumberdana-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div> --}}
+
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
@@ -58,22 +59,16 @@
                                                 No
                                             </th>
                                             <th scope="col">
-                                                Nama DTPRs
+                                                Username
                                             </th>
                                             <th scope="col">
-                                                Jumlah Publikasi bertema INFOKOM
+                                                Email
                                             </th>
                                             <th scope="col">
-                                                Jumlah Penelitian bertema INFOKOM
+                                                Password
                                             </th>
                                             <th scope="col">
-                                                Jumlah penelitian bertema INFOKOM yang mendapat HKI Pengabdian Pada Masy
-                                            </th>
-                                            <th scope="col">
-                                                Jumlah PkM bertema INFOKOM yang diadopsi masyarakat
-                                            </th>
-                                            <th scope="col">
-                                                Jumlah PkM bertema INFOKOM yang mendapat HKI
+                                                Role
                                             </th>
                                             <th scope="col">
                                                 Id PT_Unit
@@ -82,21 +77,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        <?php $no = 1;
+                                        // dd($data);
+                                        ?>
                                         @foreach ($data as $no => $item)
-                                            <tr align="center">
+                                            <tr>
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->nama_dtpr }}</td>
-                                                <td>{{ $item->publikasi_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom_hki }}</td>
-                                                <td>{{ $item->pkm_infokom_adobsi }}</td>
-                                                <td>{{ $item->pkm_infokom_hki }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->email }}</td>
+                                                <td>{{ $item->password }}</td>
+                                                <td>{{ $item->role }}</td>
 
                                             </tr>
                                         @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

@@ -20,6 +20,12 @@ class PendanaanController extends Controller
         // dd($data);
         return view('admin.page.pendanaan.index', compact('data'));
     }
+    public function admprodiIndex()
+    {
+        $data = Pendanaan::paginate('20');
+        // dd($data);
+        return view('admprodi.page.pendanaan.index', compact('data'));
+    }
     public function kaprodiIndex()
     {
         $data = Pendanaan::paginate('20');
@@ -34,7 +40,7 @@ class PendanaanController extends Controller
     public function create()
     {
         return view(
-            'admin.page.pendanaan.form',
+            'admprodi.page.pendanaan.form',
             [
                 'url' => 'simpan-pendanaan',
             ]
@@ -64,7 +70,7 @@ class PendanaanController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.pendanaan.index';
+            window.location = '/admprodi.page.pendanaan.index';
             </script>";
         }
     }
@@ -89,7 +95,7 @@ class PendanaanController extends Controller
     public function edit($id)
     {
         $data['editData'] = Pendanaan::find($id);
-        return view('admin.page.pendanaan.form_edit', $data);
+        return view('admprodi.page.pendanaan.form_edit', $data);
     }
 
     /**
@@ -114,7 +120,7 @@ class PendanaanController extends Controller
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.pendanaan.index';
+                window.location = '/admprodi.page.pendanaan.index';
                 </script>";
         }
     }

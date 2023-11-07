@@ -34,9 +34,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Rata-rata beban DTPR</h5>
-                            <a href="{{ route('tambah-bebandtpr') }}">
-                                <span>Tambah data <code>disini</code> </span>
-                            </a>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -50,9 +47,10 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-
-                                {{-- <a href="{{ route('list.provinsi') }}" type="submit" class="btn btn-primary"
-                                    style="margin-bottom:10px ">Tambah</a> --}}
+                                {{-- <div class="row">
+                                    <a href="{{ route('bebandtpr-download') }}">
+                                        <button class="btn btn-success">Download</button></a>
+                                </div> --}}
                                 <table class="table table-bordered" style="align-content: center">
                                     <thead>
                                         <tr>
@@ -77,9 +75,7 @@
                                             <th scope="col" rowspan="2">
                                                 Id PT Unit
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Keterangan
-                                            </th>
+
                                         </tr>
                                         <tr>
                                             <th>
@@ -113,23 +109,7 @@
                                                 <td>{{ $item->manajemen_pt_sendiri }}</td>
                                                 <td>{{ $item->manajemen_pt_lain }}</td>
                                                 <td>{{ $item->id_pt_unit }}</td>
-                                                <td>
-                                                    <a href="{{ route('edit-bebandtpr', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('hapus-bebandtpr', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-bebandtpr', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
 
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

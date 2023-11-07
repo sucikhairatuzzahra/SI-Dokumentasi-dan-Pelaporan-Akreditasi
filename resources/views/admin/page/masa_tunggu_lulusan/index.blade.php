@@ -35,9 +35,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Rata-rata Masa tunggu Lulusan untuk Bekerja Pertama Kali</h5>
-                            <a href="{{ route('tambah-masatunggu') }}">
-                                <span>Tambah data <code>disini</code> </span>
-                            </a>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -51,6 +48,10 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
+                                {{-- <div class="row">
+                                    <a href="{{ route('masatunggu-download') }}">
+                                        <button class="btn btn-success">Download</button></a>
+                                </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
@@ -69,9 +70,7 @@
                                             <th scope="col">
                                                 Id PT_Unit
                                             </th>
-                                            <th scope="col">
-                                                Keterangan
-                                            </th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,26 +87,7 @@
                                                 <td>{{ $item->bidang?->lulusan_terlacak }}</td>
                                                 <td>{{ $item->waktu_tunggu }}</td>
                                                 <td>{{ $item->id_pt_unit }}</td>
-                                                <td>
-                                                    {{-- <a href="{{ route('edittraining', ['thn_akademik' => $item->tahun-akademik]) }}"
-                                                class="btn btn-warning">Edit</a> --}}
-                                                    <a href="{{ route('edit-masatunggu', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
 
-                                                    <a href="{{ route('hapus-masatunggu', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-masatunggu', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -2,28 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexAdmin()
+    public function index()
     {
-        return view('admin.page.dashboard.index');
-    }
-    
-    public function admprodiIndex()
-    {
-        return view('admprodi.page.dashboard.index');
+        $user = User::all();
+        return view('admin.page.users.index', compact('data'));
+        // $data = Pendanaan::paginate('20');
+        // // dd($data);
+        // return view('admin.page.pendanaan.index', compact('data'));
     }
 
     /**
@@ -31,9 +26,9 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJurusan()
+    public function create()
     {
-        return view('jurusan.page.dashboard.index');
+        //
     }
 
     /**
@@ -42,18 +37,18 @@ class DashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function indexKaprodi()
+    public function store(Request $request)
     {
-        return view('kaprodi.page.dashboard.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
     }
@@ -61,10 +56,10 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
     }
@@ -73,10 +68,10 @@ class DashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -84,20 +79,11 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //
-    }
-    function aksi_logout(Request $request)
-    {
-        $request->session()->forget('nama');
-        $request->session()->forget('username');
-        $request->session()->forget('password');
-        $request->session()->forget('id');
-
-        return redirect()->route('login')->with("pesan", "Anda Sudah Logout");
     }
 }

@@ -20,6 +20,13 @@ class BidangKerjaLulusanController extends Controller
         // dd($data);
         return view('admin.page.bidang_kerja_lulusan.index', compact('data'));
     }
+    public function admprodiIndex()
+    {
+        $data = BidangKerjaLulusan::paginate('20');
+        // dd($data);
+        return view('admprodi.page.bidang_kerja_lulusan.index', compact('data'));
+    }
+
     public function kaprodiIndex()
     {
         $data = BidangKerjaLulusan::paginate('20');

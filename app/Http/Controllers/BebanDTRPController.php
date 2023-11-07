@@ -20,6 +20,12 @@ class BebanDTRPController extends Controller
         // dd($data);
         return view('admin.page.beban_dtpr.index', compact('data'));
     }
+    public function admprodiIndex()
+    {
+        $data = BebanDTPR::paginate('20');
+        // dd($data);
+        return view('admprodi.page.beban_dtpr.index', compact('data'));
+    }
     public function kaprodiIndex()
     {
         $data = BebanDTPR::paginate('20');
@@ -34,7 +40,7 @@ class BebanDTRPController extends Controller
     public function create()
     {
         return view(
-            'admin.page.beban_dtpr.form',
+            'admprodi.page.beban_dtpr.form',
             [
                 'url' => 'simpan-bebandtpr',
             ]
@@ -67,7 +73,7 @@ class BebanDTRPController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.beban_dtpr.index';
+            window.location = '/admprodi.page.beban_dtpr.index';
             </script>";
         }
     }

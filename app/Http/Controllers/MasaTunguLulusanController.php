@@ -22,13 +22,21 @@ class MasaTunguLulusanController extends Controller
         foreach ($data as $key => $tahun) {
             $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
         }
+        return view('admin.page.masa_tunggu_lulusan.index', compact('data'));
+    }
+    public function admprodiIndex()
+    {
+        $data = MasaTungguLulusan::paginate(20);
+        foreach ($data as $key => $tahun) {
+            $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
+        }
 
         // $data = BidangKerjaLulusan::paginate('20');
         // foreach ($data as $key => $tahun) {
         //     $data[$key]['waktu_tunggu'] = MasaTungguLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
         // }
         // dd($data);
-        return view('admin.page.masa_tunggu_lulusan.index', compact('data'));
+        return view('admprodi.page.masa_tunggu_lulusan.index', compact('data'));
     }
     public function kaprodiIndex()
     {
@@ -47,7 +55,7 @@ class MasaTunguLulusanController extends Controller
     public function create()
     {
         return view(
-            'admin.page.masa_tunggu_lulusan.form',
+            'admprodi.page.masa_tunggu_lulusan.form',
             [
                 'url' => 'simpan-masatunggu',
             ]
@@ -73,7 +81,7 @@ class MasaTunguLulusanController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.masa_tunggu_lulusan.index';
+            window.location = '/admprodi.page.masa_tunggu_lulusan.index';
             </script>";
         }
     }
@@ -100,7 +108,7 @@ class MasaTunguLulusanController extends Controller
         $data['editData'] = DB::table('masa_tunggu_lulusan')
             ->where('id', $id)
             ->first();
-        return view('admin.page.masa_tunggu_lulusan.form_edit', $data);
+        return view('admprodi.page.masa_tunggu_lulusan.form_edit', $data);
     }
 
     /**
@@ -123,7 +131,7 @@ class MasaTunguLulusanController extends Controller
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.masa_tunggu_lulusan.index';
+                window.location = '/admprodi.page.masa_tunggu_lulusan.index';
                 </script>";
         }
         // $update = DB::table('masa_tunggu_lulusan')

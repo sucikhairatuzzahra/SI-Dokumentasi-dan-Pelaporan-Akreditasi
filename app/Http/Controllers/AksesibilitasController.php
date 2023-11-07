@@ -21,6 +21,12 @@ class AksesibilitasController extends Controller
         // dd($data);
         return view('admin.page.aksesibilitas.index', compact('data'));
     }
+    public function admprodiIndex()
+    {
+        $data = Aksesibilitas::paginate('20');
+        // dd($data);
+        return view('admprodi.page.aksesibilitas.index', compact('data'));
+    }
     public function kaprodiIndex()
     {
         $data = Aksesibilitas::paginate('20');
@@ -35,7 +41,7 @@ class AksesibilitasController extends Controller
     public function create()
     {
         return view(
-            'admin.page.aksesibilitas.form',
+            'admprodi.page.aksesibilitas.form',
             [
                 'url' => 'simpan-aksesibilitas',
             ]
@@ -65,7 +71,7 @@ class AksesibilitasController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.aksesibilitas.index';
+            window.location = '/admprodi.page.aksesibilitas.index';
             </script>";
         }
     }

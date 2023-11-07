@@ -34,7 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                            <a href="{{ route('tambah-ppkmdtpr') }}">
+                            <a href="{{ route('tambah-ppkm_dtpr') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>
 

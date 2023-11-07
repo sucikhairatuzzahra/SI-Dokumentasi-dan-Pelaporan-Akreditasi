@@ -21,6 +21,13 @@ class KelulusanTepatWaktuController extends Controller
         // dd($data);
         return view('admin.page.kelulusan_tepat_waktu.index', compact('data'));
     }
+    public function admprodiIndex()
+    {
+        $data = KelulusanTepatWaktu::paginate('20');
+
+        // dd($data);
+        return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data'));
+    }
     public function kaprodiIndex()
     {
         $data = KelulusanTepatWaktu::paginate('20');
@@ -35,7 +42,7 @@ class KelulusanTepatWaktuController extends Controller
     public function create()
     {
         return view(
-            'admin.page.kelulusan_tepat_waktu.form',
+            'admprodi.page.kelulusan_tepat_waktu.form',
             [
                 'url' => 'simpan-kelulusan_tepatwaktu',
             ]
@@ -65,7 +72,7 @@ class KelulusanTepatWaktuController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.kelulusan_tepat_waktu.index';
+            window.location = '/admprodi.page.kelulusan_tepat_waktu.index';
             </script>";
         }
     }
@@ -90,7 +97,7 @@ class KelulusanTepatWaktuController extends Controller
     public function edit($id)
     {
         $data['editData'] = KelulusanTepatWaktu::find($id);
-        return view('admin.page.kelulusan_tepat_waktu.form_edit', $data);
+        return view('admprodi.page.kelulusan_tepat_waktu.form_edit', $data);
     }
 
     /**
@@ -116,7 +123,7 @@ class KelulusanTepatWaktuController extends Controller
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.kelulusan_tepat_waktu.index';
+                window.location = '/admprodi.page.kelulusan_tepat_waktu.index';
                 </script>";
         }
     }

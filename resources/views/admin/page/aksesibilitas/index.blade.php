@@ -34,9 +34,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Aksesibilitas Data Dalam Sistem Informasi</h5>
-                            <a href="{{ route('tambah-aksesibilitas') }}">
-                                <span>Tambah data <code>disini</code> </span>
-                            </a>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -50,9 +47,10 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-
-                                {{-- <a href="{{ route('list.provinsi') }}" type="submit" class="btn btn-primary"
-                                    style="margin-bottom:10px ">Tambah</a> --}}
+                                {{-- <div class="row">
+                                    <a href="{{ route('aksesibilitas-download') }}">
+                                        <button class="btn btn-success">Download</button></a>
+                                </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
@@ -68,9 +66,7 @@
                                             <th scope="col" rowspan="2">
                                                 Id PT_Unit
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Keterangan
-                                            </th>
+
                                         </tr>
                                         <tr align="center">
                                             <th>
@@ -98,23 +94,7 @@
                                                 <td>{{ $item->lan }}</td>
                                                 <td><a href="{{ $item->wan }}">{{ $item->wan }}</a></td>
                                                 <td>{{ $item->id_pt_unit }}</td>
-                                                <td>
-                                                    <a href="{{ route('edit-aksesibilitas', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('hapus-aksesibilitas', $item->id) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-aksesibilitas', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
 
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

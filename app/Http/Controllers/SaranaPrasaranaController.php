@@ -20,6 +20,12 @@ class SaranaPrasaranaController extends Controller
         // dd($data);
         return view('admin.page.saranaprasarana.index', compact('data'));
     }
+    public function admprodiIndex()
+    {
+        $data = SaranaPrasarana::paginate('20');
+
+        return view('admprodi.page.saranaprasarana.index', compact('data'));
+    }
     public function kaprodiIndex()
     {
         $data = SaranaPrasarana::paginate('20');
@@ -34,7 +40,7 @@ class SaranaPrasaranaController extends Controller
     public function create()
     {
         return view(
-            'admin.page.saranaprasarana.form',
+            'admprodi.page.saranaprasarana.form',
             [
                 'url' => 'simpan-sarana',
             ]
@@ -65,7 +71,7 @@ class SaranaPrasaranaController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.saranaprasarana.index';
+            window.location = '/admprodi.page.saranaprasarana.index';
             </script>";
         }
     }
@@ -90,7 +96,7 @@ class SaranaPrasaranaController extends Controller
     public function edit($id)
     {
         $data['editData'] = SaranaPrasarana::find($id);
-        return view('admin.page.saranaprasarana.form_edit', $data);
+        return view('admprodi.page.saranaprasarana.form_edit', $data);
     }
 
     /**
@@ -117,7 +123,7 @@ class SaranaPrasaranaController extends Controller
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.saranaprasarana.index';
+                window.location = '/admprodi.page.saranaprasarana.index';
                 </script>";
         }
     }

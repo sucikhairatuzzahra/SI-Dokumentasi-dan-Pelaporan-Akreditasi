@@ -17,7 +17,7 @@
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Dashboard</a>
                         </li>
-                        {{-- <li class="breadcrumb-item"><a href="#!">Kesesuaian Bidang Kerja Lulusan</a> --}}
+                        {{-- <li class="breadcrumb-item"><a href="#!">Provinsi</a> --}}
                         </li>
                     </ul>
                 </div>
@@ -35,22 +35,22 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Kriteria</h5>
-                            <a href="{{ route('dashboard') }}">
-                                <span>Tambah data <code>disini</code> </span>
-                            </a>
-
+                            <span>use class <code>table</code> inside table element</span>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li><i class="fa fa fa-wrench open-card-option"></i></li>
                                     <li><i class="fa fa-window-maximize full-card"></i></li>
                                     <li><i class="fa fa-minus minimize-card"></i></li>
                                     <li><i class="fa fa-refresh reload-card"></i></li>
-
+                                    <li><i class="fa fa-trash close-card"></i></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
+
+                                {{-- <a href="{{ route('list.provinsi') }}" type="submit" class="btn btn-primary"
+                                    style="margin-bottom:10px ">Tambah</a> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -77,21 +77,16 @@
                                         </tr>
                                         <tr>
                                             <td>Kriteria 3</td>
-                                            <td><a href="{{ route('mhs-baru') }}">Mahasiswa</a></td>
+                                            <td><a href="{{ route('kaprodi-mahasiswa') }}">Mahasiswa</a></td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 4</td>
-                                            <td><a href="{{ route('bebandtpr') }}">Sumber Daya Manusia</a> </td>
-                                            {{-- <td><a href="{{ route('bebandtpr') }}">Rata-rata beban
-                                                        DTPR </a> </td>
-                                            <tr>
-                                                <td><a href="{{ route('kependidikan') }}">Kualifikasi
-                                                        Tenaga Kependidikan</a></td>
-                                            </tr> --}}
+                                            <td><a href="{{ route('kaprodi-kependidikan') }}">Sumber Daya Manusia</a> </td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 5</td>
-                                            <td><a href="{{ route('pendanaan') }}">Keuangan, Sarana dan Prasarana</a></td>
+                                            <td><a href="{{ route('kaprodi-sumberdana') }}">Keuangan, Sarana dan
+                                                    Prasarana</a></td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 6</td>
@@ -107,7 +102,8 @@
                                         </tr>
                                         <tr>
                                             <td>Kriteria 9</td>
-                                            <td><a href="{{ route('ipklulusan') }}">Luaran dan Capaian Tridarma</a></td>
+                                            <td><a href="{{ route('kaprodi-ipklulusan') }}">Luaran dan Capaian Tridarma</a>
+                                            </td>
                                         </tr>
                                     </tbody>
 

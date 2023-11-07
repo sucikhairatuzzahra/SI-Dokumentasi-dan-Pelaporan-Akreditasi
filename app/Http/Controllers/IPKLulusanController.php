@@ -20,6 +20,13 @@ class IPKLulusanController extends Controller
         // dd($data);
         return view('admin.page.ipk_lulusan.index', compact('data'));
     }
+    public function admprodiIndex()
+    {
+        $data = IPKLulusan::paginate('20');
+        // dd($data);
+        return view('admprodi.page.ipk_lulusan.index', compact('data'));
+    }
+
     public function kaprodiIndex()
     {
         $data = IPKLulusan::paginate('20');
@@ -34,7 +41,7 @@ class IPKLulusanController extends Controller
     public function create()
     {
         return view(
-            'admin.page.ipk_lulusan.form',
+            'admprodi.page.ipk_lulusan.form',
             [
                 'url' => 'simpan-ipklulusan',
             ]
@@ -63,7 +70,7 @@ class IPKLulusanController extends Controller
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.ipk_lulusan.index';
+            window.location = '/admprodi.page.ipk_lulusan.index';
             </script>";
         }
     }
