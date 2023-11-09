@@ -42,18 +42,23 @@
                                     <form action="/simpan-kelulusan_tepatwaktu" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <label for="tahun_masuk">Tahun Masuk</label>
-                                            <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk">
-                                        </div>
-                                        <div class="form-group">
                                             <label for="id_pt_unit">Id PT Unit</label>
                                             <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tahun_masuk">Tahun Masuk</label>
+                                            <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk">
                                         </div>
                                         <div class="form-group">
                                             <label for="jml_mhs">Jumlah Mahasiswa Diterima</label>
                                             <input type="text" class="form-control" id="jml_mhs" name="jml_mhs">
                                         </div>
                                         <div class="form-group">
+                                            <label for="tahun_lulus">Tahun Lulus</label>
+                                            <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus">
+                                        </div>
+
+                                        {{-- <div class="form-group">
                                             <label for="ts_6">Akhir TS-6</label>
                                             <input type="text" class="form-control" id="ts_6" name="ts_6">
                                         </div>
@@ -80,10 +85,14 @@
                                         <div class="form-group">
                                             <label for="ts">Akhir TS</label>
                                             <input type="text" class="form-control" id="ts" name="ts">
+                                        </div> --}}
+                                        <div class="form-group">
+                                            <label for="jml_lulusan">Jumlah Lulusan</label>
+                                            <input type="text" class="form-control" id="jml_lulusan" name="jml_lulusan">
                                         </div>
                                         <div class="form-group">
-                                            <label for="jml_lulusan">Jumlah Lulusan s.d Akhir TS</label>
-                                            <input type="text" class="form-control" id="jml_lulusan" name="jml_lulusan">
+                                            <label for="wisuda_ke">Wisuda Ke-</label>
+                                            <input type="text" class="form-control" id="wisuda_ke" name="wisuda_ke">
                                         </div>
                                         <div class="form-group">
                                             <label for="masa_studi">Rata-rata Masa Studi</label>

@@ -48,16 +48,16 @@
                                             <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus"
                                                 value="{{ $editData->tahun_lulus }}">
                                         </div>
-                                        {{-- <div class="form-group">
+                                        <div class="form-group">
                                             <label for="jumlah_lulusan">Jumlah Lulusan</label>
-                                            <input type="text" class="form-control" id="jumlah_lulusan" name="jumlah_lulusan"
-                                                value="{{ $editData->jumlah_lulusan }}">
+                                            <input type="text" class="form-control" id="jumlah_lulusan"
+                                                name="jumlah_lulusan" value="{{ $editData->jumlah_lulusan }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="lulusan_terlacak">Jumlah Lulusan Yang Terlacak</label>
-                                            <input type="text" class="form-control" id="lulusan_terlacak" name="lulusan_terlacak"
-                                                value="{{ $editData->lulusan_terlacak }}">
-                                        </div> --}}
+                                            <input type="text" class="form-control" id="lulusan_terlacak"
+                                                name="lulusan_terlacak" value="{{ $editData->lulusan_terlacak }}">
+                                        </div>
                                         <div class="form-group">
                                             <label for="waktu_tunggu">Rata-rata Waktu Tunggu (Bulan)</label>
                                             <input type="text" class="form-control" id="waktu_tunggu" name="waktu_tunggu"
@@ -65,8 +65,20 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="id_pt_unit">Id PT Unit</label>
-                                            <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit"
-                                                value="{{ $editData->id_pt_unit }}">
+                                            {{-- <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit"
+                                                value="{{ $editData->id_pt_unit }}"> --}}
+                                            <select name="id_pt_unit" class="form-control">
+                                                <option value="7">P3M</option>
+                                                <option value="6">AKT</option>
+                                                <option value="5">D3 MI</option>
+                                                <option value="4">D4 TRPL</option>
+                                                <option value="3">JUR.TI</option>
+                                                <option value="2">SPM</option>
+                                                <option value="1">PNP</option>
+                                                {{-- <script>
+                                                    document.getElementById('id_pt_unit').value = "{{ $editData->id_pt_unit }}";
+                                                </script> --}}
+                                            </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Exports\KelulusanTepatWaktuExport;
 use App\Models\KelulusanTepatWaktu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Facades\Excel;
 
 class KelulusanTepatWaktuController extends Controller
@@ -23,10 +25,40 @@ class KelulusanTepatWaktuController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = KelulusanTepatWaktu::paginate('20');
+        // $data = KelulusanTepatWaktu::paginate('20');
+        // Buat variabel untuk tahun sekarang
+        $tahun_sekarang = date("Y");
 
-        // dd($data);
-        return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data'));
+        // Ambil data mahasiswa berdasarkan tahun masuk
+        $data = KelulusanTepatWaktu::select([
+                "tahun_masuk", "jml_mhs","tahun_lulus","jml_lulusan","wisuda_ke","masa_studi","jml_mhs_aktif","id_pt_unit",
+                "year(now()) - year(tahun_masuk) AS selisih_tahun",
+            ])
+            ->where("tahun_masuk", '=', request("tahun_masuk"))
+            ->get()
+            ->map(function ($item) use ($tahun_sekarang) {
+                return $item['selisih_tahun'] <= $tahun_sekarang ? 1 : 0;
+            })
+            ->toArray();
+
+        // Hitung jumlah lulusan untuk setiap tahun
+        $jumlah_lulusan_pertahun = array_reduce($data, function ($carry, $item) {
+            $tahun = $item ? $item : $tahun_sekarang;
+
+            if (isset($carry[$tahun])) {
+                $carry[$tahun]++;
+            } else {
+                $carry[$tahun] = 1;
+            }
+
+            return $carry;
+        }, []);
+
+        // Kembalikan data ke view
+        // return view("kelulusan.index", compact("data", "jumlah_lulusan_pertahun"));
+
+   
+        return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data', 'jumlah_lulusan_pertahun'));
     }
     public function kaprodiIndex()
     {
@@ -62,7 +94,9 @@ class KelulusanTepatWaktuController extends Controller
             'tahun_masuk' => $request->tahun_masuk,
             'id_pt_unit' => $request->id_pt_unit,
             'jml_mhs' => $request->jml_mhs,
+            'tahun_lulus' => $request->tahun_lulus,
             'jml_lulusan' => $request->jml_lulusan,
+            'wisuda_ke' => $request->wisuda_ke,
             'masa_studi' => $request->masa_studi,
             'jml_mhs_aktif' => $request->jml_mhs_aktif,
 
@@ -114,7 +148,9 @@ class KelulusanTepatWaktuController extends Controller
             'tahun_masuk' => $request->tahun_masuk,
             'id_pt_unit' => $request->id_pt_unit,
             'jml_mhs' => $request->jml_mhs,
+            'tahun_lulus' => $request->tahun_lulus,
             'jml_lulusan' => $request->jml_lulusan,
+            'wisuda_ke' => $request->wisuda_ke,
             'masa_studi' => $request->masa_studi,
             'jml_mhs_aktif' => $request->jml_mhs_aktif,
         ]);

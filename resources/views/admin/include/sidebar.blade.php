@@ -50,6 +50,13 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            <li class="">
+                <a href="{{ route('tahun-akademik') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Tahun Akademik</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
 
 
         </ul>

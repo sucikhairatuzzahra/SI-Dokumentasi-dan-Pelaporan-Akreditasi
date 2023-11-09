@@ -12,8 +12,7 @@ class KelulusanTepatWaktu extends Model
     protected $table = "kelulusan_tepat_waktu";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'tahun_masuk', 'jml_mhs', 'ts_6', 'ts_5', 'ts_4', 'ts_3', 'ts_2', 'ts_1', 'ts',
-        'jml_lulusan', 'masa_studi', 'jml_mhs_aktif'
+        'tahun_masuk', 'jml_mhs', 'tahun_lulus', 'jml_lulusan', 'wisuda_ke', 'masa_studi', 'jml_mhs_aktif', 'id_pt_unit'
     ];
 
     /**

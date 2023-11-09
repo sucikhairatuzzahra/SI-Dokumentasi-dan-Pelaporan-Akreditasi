@@ -19,31 +19,24 @@ class MasaTunguLulusanController extends Controller
     public function index()
     {
         $data = MasaTungguLulusan::paginate(20);
-        foreach ($data as $key => $tahun) {
-            $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
-        }
+        
         return view('admin.page.masa_tunggu_lulusan.index', compact('data'));
     }
     public function admprodiIndex()
     {
         $data = MasaTungguLulusan::paginate(20);
-        foreach ($data as $key => $tahun) {
-            $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
-        }
-
-        // $data = BidangKerjaLulusan::paginate('20');
         // foreach ($data as $key => $tahun) {
-        //     $data[$key]['waktu_tunggu'] = MasaTungguLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
+        //     $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
         // }
-        // dd($data);
+
         return view('admprodi.page.masa_tunggu_lulusan.index', compact('data'));
     }
     public function kaprodiIndex()
     {
         $data = MasaTungguLulusan::paginate(20);
-        foreach ($data as $key => $tahun) {
-            $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
-        }
+        // foreach ($data as $key => $tahun) {
+        //     $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
+        // }
         return view('kaprodi.page.masa_tunggu_lulusan.index', compact('data'));
     }
 
@@ -73,6 +66,8 @@ class MasaTunguLulusanController extends Controller
         $input = MasaTungguLulusan::insert([
             'id' => $request->id,
             'tahun_lulus' => $request->tahun_lulus,
+            'jumlah_lulusan' => $request->jumlah_lulusan,
+            'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
             'id_pt_unit' => $request->id_pt_unit,
         ]);
@@ -123,6 +118,8 @@ class MasaTunguLulusanController extends Controller
         $masatunggu = MasaTungguLulusan::find($id);
         $update = $masatunggu->update([
             'tahun_lulus' => $request->tahun_lulus,
+            'jumlah_lulusan' => $request->jumlah_lulusan,
+            'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
             'id_pt_unit' => $request->id_pt_unit,
         ]);

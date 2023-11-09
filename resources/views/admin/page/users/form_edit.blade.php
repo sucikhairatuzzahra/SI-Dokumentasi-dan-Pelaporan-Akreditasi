@@ -36,7 +36,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Pengguna</h5>
-                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+                                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
                                     <form action="{{ route('update-users', $editData->id) }}" method="POST">
@@ -59,8 +59,13 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="role">Role</label>
-                                            <input type="text" class="form-control" id="role" name="role"
-                                                value="{{ $editData->role }}">
+
+                                            <select name="role" class="form-control">
+                                                <option value="3">Admin</option>
+                                                <option value="2">Adm Prodi</option>
+                                                <option value="1">Kaprodi</option>
+                                                <option value="0">Jurusan</option>
+                                            </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

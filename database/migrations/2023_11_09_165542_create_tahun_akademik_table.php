@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tahun_akademik', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password'); 
-            $table->tinyInteger('role')->default(0);
-            // 0=jurusan 1=kaprodi 2=admprodi 3=admin
-            $table->rememberToken();
+            $table->string('tahun_akademik');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tahun_akademik');
     }
 };

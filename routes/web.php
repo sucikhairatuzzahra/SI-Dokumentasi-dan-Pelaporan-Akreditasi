@@ -17,6 +17,7 @@ use App\Http\Controllers\PPKMDariDTPRController;
 use App\Http\Controllers\SaranaPrasaranaController;
 use App\Http\Controllers\TenagaKependidikanController;
 use App\Http\Controllers\JumlahTenagaKependidikanController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -162,6 +163,12 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::put('/update-users/{id}', [DashboardController::class, 'update'])->name('update-users');
     Route::delete('/hapus-users/{id}', [DashboardController::class, 'destroy'])->name('hapus-users'); //destroy
 
+
+    //tahun akademik
+    Route::get('/tahun-akademik', [AdminController::class, 'index'])->name('tahun-akademik'); //index
+    Route::get('/tambah-tahun_akademik', [AdminController::class, 'create'])->name('tambah-tahun_akademik'); //create
+    Route::post('/simpan-tahun_akademik', [AdminController::class, 'store'])->name('simpan-tahun_akademik'); //store
+    Route::delete('/hapus-tahun_akademik/{id}', [AdminController::class, 'destroy'])->name('hapus-tahun_akademik'); //destroy
 
     //route Calon Mahasiswa Baru
     Route::get('/admin-mahasiswa', [CalonMhsBaruController::class, 'index'])->name('admin-mahasiswa'); //index

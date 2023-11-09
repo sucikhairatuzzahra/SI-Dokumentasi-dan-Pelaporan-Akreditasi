@@ -45,7 +45,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
+    ]; 
 
     protected function role(): CastsAttribute
     {
@@ -54,10 +54,5 @@ class User extends Authenticatable
         );
         // jurusan =0, kaprodi=1, admprodi=2, admin=3
     }
-    // protected function role(): Attribute
-    // {
-    //     return new Attribute(
-    //         get: fn ($value) => ["user", "kaprodi", "admin"][$value],
-    //     );
-    // }
+   
 }

@@ -68,7 +68,7 @@ class CalonMhsBaruController extends Controller
     public function edit($id)
     {
         $data['editData'] = Mhsbaru::find($id);
-        return view('admin.page.mhsbaru.form_edit', $data);
+        return view('admprodi.page.mhsbaru.form_edit', $data);
     }
     public function update(Request $request, $id)
     {

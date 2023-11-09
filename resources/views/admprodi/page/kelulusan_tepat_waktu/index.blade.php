@@ -57,9 +57,6 @@
                                                 Tahun Masuk
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT_Unit
-                                            </th>
-                                            <th scope="col" rowspan="2">
                                                 Jumlah Mahasiswa Diterima
                                             </th>
                                             <th scope="col" colspan="7">
@@ -73,6 +70,9 @@
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Jumlah Mhs, Yang Masih Aktif
+                                            </th>
+                                            <th scope="col" rowspan="2">
+                                                Id PT_Unit
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Keterangan
@@ -108,7 +108,6 @@
                                             <tr align="center">
                                                 {{-- <td>{{ $no + 1 }}</td>  --}}
                                                 <td>{{ $item->tahun_masuk }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
                                                 <td>{{ $item->jml_mhs }}</td>
                                                 <td>{{ $item->ts_6 }}</td>
                                                 <td>{{ $item->ts_5 }}</td>
@@ -120,6 +119,7 @@
                                                 <td>{{ $item->jml_lulusan }}</td>
                                                 <td>{{ $item->masa_studi }}</td>
                                                 <td>{{ $item->jml_mhs_aktif }}</td>
+                                                <td>{{ $item->id_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

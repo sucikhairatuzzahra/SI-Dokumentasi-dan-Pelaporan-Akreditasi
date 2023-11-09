@@ -1,4 +1,4 @@
-@extends('admprodi.layout.app')
+@extends('admin.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Rata-rata Masa Tunggu Lulusan untuk Bekerja Pertama Kali</h5>
-                        <p class="m-b-0">Data Rata-rata Masa tunggu Lulusan untuk Bekerja Pertama Kali</p>
+                        <h5 class="m-b-10">Daftar Tahun Akademik</h5>
+                        <p class="m-b-0">Data Tahun Akademik</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,8 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Rata-rata Masa tunggu Lulusan untuk Bekerja Pertama
-                                Kali</a>
+                        <li class="breadcrumb-item"><a href="#!">Daftar Tahun Akademik</a>
                         </li>
                     </ul>
                 </div>
@@ -34,11 +33,10 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Rata-rata Masa tunggu Lulusan untuk Bekerja Pertama Kali</h5>
-                            <a href="{{ route('tambah-masatunggu') }}">
+                            <h5>Daftar Tahun Akademik</h5>
+                            <a href="{{ route('tambah-tahun_akademik') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>
-
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -55,49 +53,35 @@
                                     <thead>
                                         <tr style="text-align-last: center">
                                             <th scope="col">
-                                                Tahun Lulus
+                                                No
                                             </th>
                                             <th scope="col">
-                                                Jumlah Lulusan
+                                                Tahun Akademik
                                             </th>
                                             <th scope="col">
-                                                Jumlah Lulusan Yang Terlacak
-                                            </th>
-                                            <th scope="col">
-                                                Rata-rata Waktu Tunggu (Bulan)
-                                            </th>
-                                            <th scope="col">
-                                                Id PT_Unit
-                                            </th>
-                                            <th scope="col">
-                                                Keterangan
+                                                Aksi
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        <?php $no = 1;
+                                        // dd($data);
+                                        ?>
                                         @foreach ($data as $no => $item)
-                                            <tr align="center">
-                                                {{-- <td>{{ $no + 1 }}</td> --}}
-                                                <td>{{ $item->tahun_lulus }}</td>
-                                                <td>{{ $item->jumlah_lulusan }}</td>
-                                                <td>{{ $item->lulusan_terlacak }}</td>
-                                                <td>{{ $item->waktu_tunggu }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
-
+                                            <tr>
+                                                <td>{{ $no + 1 }}</td>
+                                                <td>{{ $item->tahun_akademik }}</td>
                                                 <td>
-
-                                                    <a href="{{ route('edit-masatunggu', ['id' => $item->id]) }}"
+                                                    {{-- <a href="{{ route('edit-users', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">
                                                         Edit
-                                                    </a>
-
-                                                    <a href="{{ route('hapus-masatunggu', ['id' => $item->id]) }}"
+                                                    </a> --}}
+                                                    <a href="{{ route('hapus-tahun_akademik', $item->id) }}"
                                                         onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
                                                         Hapus
                                                     </a>
                                                     <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-masatunggu', ['id' => $item->id]) }}"
+                                                        action="{{ route('hapus-tahun_akademik', ['id' => $item->id]) }}"
                                                         method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')

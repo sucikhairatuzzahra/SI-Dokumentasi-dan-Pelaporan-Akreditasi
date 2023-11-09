@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('masa_tunggu_lulusan', function (Blueprint $table) {
             $table->id();
             $table->integer('tahun_lulus');
+            $table->integer('jumlah_lulusan');
+            $table->integer('lulusan_terlacak');
             $table->integer('waktu_tunggu');
             $table->unsignedBigInteger('id_pt_unit');
             $table->foreign('id_pt_unit')->references('pk_id_pt_unit')->on('pt_unit')->onDelete('restrict');
