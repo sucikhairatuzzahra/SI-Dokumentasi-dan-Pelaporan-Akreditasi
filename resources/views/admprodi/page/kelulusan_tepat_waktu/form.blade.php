@@ -57,35 +57,6 @@
                                             <label for="tahun_lulus">Tahun Lulus</label>
                                             <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus">
                                         </div>
-
-                                        {{-- <div class="form-group">
-                                            <label for="ts_6">Akhir TS-6</label>
-                                            <input type="text" class="form-control" id="ts_6" name="ts_6">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ts_5">Akhir TS-5</label>
-                                            <input type="text" class="form-control" id="ts_5" name="ts_5">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ts_4">Akhir TS-4</label>
-                                            <input type="text" class="form-control" id="ts_4" name="ts_4">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ts_3">Akhir TS-3</label>
-                                            <input type="text" class="form-control" id="ts_3" name="ts_3">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ts_2">Akhir TS-2</label>
-                                            <input type="text" class="form-control" id="ts_2" name="ts_2">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ts_1">Akhir TS-1</label>
-                                            <input type="text" class="form-control" id="ts_1" name="ts_1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ts">Akhir TS</label>
-                                            <input type="text" class="form-control" id="ts" name="ts">
-                                        </div> --}}
                                         <div class="form-group">
                                             <label for="jml_lulusan">Jumlah Lulusan</label>
                                             <input type="text" class="form-control" id="jml_lulusan" name="jml_lulusan">

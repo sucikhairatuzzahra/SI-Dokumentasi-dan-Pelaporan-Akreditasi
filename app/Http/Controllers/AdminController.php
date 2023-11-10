@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TahunAkademik;
 
 class AdminController extends Controller
 {
@@ -26,7 +27,7 @@ class AdminController extends Controller
     public function create()
     {
         return view(
-            'admprodi.page.tahun_akademik.form',
+            'admin.page.tahun_akademik.form',
             [
                 'url' => 'simpan-tahun-akademik',
             ]

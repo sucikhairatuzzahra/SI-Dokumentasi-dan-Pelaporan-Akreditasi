@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreign('id_pt_unit')->references('pk_id_pt_unit')->on('pt_unit')->onDelete('restrict');
             $table->integer('jml_mhs');
             $table->year('tahun_lulus');
-            $table->integer("selisih_tahun")->unsigned()->nullable();
             $table->integer('wisuda_ke');
             $table->integer('jml_lulusan');
             $table->string('masa_studi');

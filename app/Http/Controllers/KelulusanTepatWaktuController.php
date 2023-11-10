@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class KelulusanTepatWaktuController extends Controller
 {
@@ -18,47 +19,57 @@ class KelulusanTepatWaktuController extends Controller
      */
     public function index()
     {
-        $data = KelulusanTepatWaktu::paginate('20');
+        $data = KelulusanTepatWaktu::all();
 
         // dd($data);
         return view('admin.page.kelulusan_tepat_waktu.index', compact('data'));
     }
-    public function admprodiIndex()
+    public function admprodiIndex(Request $request)
     {
-        // $data = KelulusanTepatWaktu::paginate('20');
-        // Buat variabel untuk tahun sekarang
-        $tahun_sekarang = date("Y");
+        $data = KelulusanTepatWaktu::all();
 
-        // Ambil data mahasiswa berdasarkan tahun masuk
-        $data = KelulusanTepatWaktu::select([
-                "tahun_masuk", "jml_mhs","tahun_lulus","jml_lulusan","wisuda_ke","masa_studi","jml_mhs_aktif","id_pt_unit",
-                "year(now()) - year(tahun_masuk) AS selisih_tahun",
-            ])
-            ->where("tahun_masuk", '=', request("tahun_masuk"))
-            ->get()
-            ->map(function ($item) use ($tahun_sekarang) {
-                return $item['selisih_tahun'] <= $tahun_sekarang ? 1 : 0;
-            })
-            ->toArray();
+        $akhir_ts = KelulusanTepatWaktu::where('tahun_lulus', Carbon::now()->format('Y'))
+        ->sum('jml_lulusan');
+        return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data','akhir_ts'));
 
-        // Hitung jumlah lulusan untuk setiap tahun
-        $jumlah_lulusan_pertahun = array_reduce($data, function ($carry, $item) {
-            $tahun = $item ? $item : $tahun_sekarang;
 
-            if (isset($carry[$tahun])) {
-                $carry[$tahun]++;
-            } else {
-                $carry[$tahun] = 1;
-            }
+    
+        // $tahun_masuk = $request->get('tahun_masuk');
+        // $id_pt_unit = $request->get('id_pt_unit');
 
-            return $carry;
-        }, []);
+        // // Buat array untuk menyimpan data lulusan
+        // $data_lulusan = [];
 
-        // Kembalikan data ke view
-        // return view("kelulusan.index", compact("data", "jumlah_lulusan_pertahun"));
+        // // Ambil data lulusan dari tabel mahasiswa
+        // $data = KelulusanTepatWaktu::where('tahun_masuk', $tahun_masuk)
+        //     ->where('id_pt_unit', $id_pt_unit)
+        //     ->get();
 
-   
-        return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data', 'jumlah_lulusan_pertahun'));
+        // // Hitung jumlah lulusan sampai dengan akhir TS
+        // foreach ($data as $item) {
+        //     // Jika id PT Unit belum ada di array, maka tambahkan datanya
+        //     if (!isset($data_lulusan[$item->id_pt_unit])) {
+        //         $data_lulusan[$item->id_pt_unit] = [
+        //             'tahun_masuk' => $item->tahun_masuk,
+        //             'tahun_lulus' => $item->tahun_lulus,
+        //             'jumlah_lulusan' => 0,
+        //             'jumlah_lulusan_sampai_akhir_ts' => 0,
+        //         ];
+        //     }
+
+        //     // Tambahkan jumlah lulusan pada tahun masuk yang sama
+        //     $data_lulusan[$item->id_pt_unit]['jumlah_lulusan'] += $item->jumlah_lulusan;
+
+        //     // Hitung jumlah lulusan sampai dengan akhir TS
+        //     for ($i = 0; $i <= 6; $i++) {
+        //         $data_lulusan[$item->id_pt_unit]['jumlah_lulusan_sampai_akhir_ts'] += $item->akhir_ts - $i;
+        //     }
+        // }
+
+        // return view('admprodi.page.kelulusan_tepat_waktu.index', [
+        //     'data' => $data_lulusan,
+        // ]);
+        
     }
     public function kaprodiIndex()
     {

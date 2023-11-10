@@ -59,6 +59,9 @@
                                             <th scope="col" rowspan="2">
                                                 Jumlah Mahasiswa Diterima
                                             </th>
+                                            <th scope="col" rowspan="2">
+                                                Tahun Lulus
+                                            </th>
                                             <th scope="col" colspan="7">
                                                 Jumlah Mahasiswa Yang Lulus Pada
                                             </th>
@@ -103,41 +106,49 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @if ($data)
+                                            @foreach ($data as $no => $item)
+                                                <tr align="center">
+                                                    {{-- <td>{{ $no + 1 }}</td>  --}}
+                                                    <td>{{ $item->tahun_masuk }}</td>
+                                                    <td>{{ $item->jml_mhs }}</td>
+                                                    <td>{{ $item->tahun_lulus }}</td>
+                                                    {{-- <td>{{ $item->jml_lulusan }}</td> --}}
+                                                    <td>{{ $item->akhir_ts_6 }}</td>
+                                                    <td>{{ $item->akhir_ts_5 }}</td>
+                                                    <td>{{ $item->akhir_ts_4 }}</td>
+                                                    <td>{{ $item->akhir_ts_3 }}</td>
+                                                    <td>{{ $item->akhir_ts_2 }}</td>
+                                                    <td>{{ $item->akhir_ts_1 }}</td>
 
-                                        @foreach ($data as $no => $item)
-                                            <tr align="center">
-                                                {{-- <td>{{ $no + 1 }}</td>  --}}
-                                                <td>{{ $item->tahun_masuk }}</td>
-                                                <td>{{ $item->jml_mhs }}</td>
-                                                <td>{{ $item->ts_6 }}</td>
-                                                <td>{{ $item->ts_5 }}</td>
-                                                <td>{{ $item->ts_4 }}</td>
-                                                <td>{{ $item->ts_3 }}</td>
-                                                <td>{{ $item->ts_2 }}</td>
-                                                <td>{{ $item->ts_1 }}</td>
-                                                <td>{{ $item->ts }}</td>
-                                                <td>{{ $item->jml_lulusan }}</td>
-                                                <td>{{ $item->masa_studi }}</td>
-                                                <td>{{ $item->jml_mhs_aktif }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
-                                                <td>
-                                                    <a href="{{ route('edit-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('hapus-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                </td>
+                                                    <td>{{ $akhir_ts }}</td>
+                                                    <td>{{ $item->jumlah_lulusan_sampai_akhir_ts }}</td>
+                                                    <td>{{ $item->masa_studi }}</td>
+                                                    <td>{{ $item->jml_mhs_aktif }}</td>
+                                                    <td>{{ $item->id_pt_unit }}</td>
+                                                    <td>
+                                                        <a href="{{ route('edit-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
+                                                            style="margin-right: 7px">
+                                                            Edit
+                                                        </a>
+                                                        <a href="{{ route('hapus-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
+                                                            onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
+                                                            Hapus
+                                                        </a>
+                                                        <form id="delete-form-{{ $item->id }}"
+                                                            action="{{ route('hapus-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
+                                                            method="POST" style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="12">Data tidak ditemukan</td>
                                             </tr>
-                                        @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
