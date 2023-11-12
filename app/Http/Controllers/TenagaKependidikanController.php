@@ -80,6 +80,7 @@ class TenagaKependidikanController extends Controller
             'jenis_tng_kpddkn' => $request->jenis_tng_kpddkn,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
         if ($input) {
             return redirect('kependidikan')->with('pesan', 'Data berhasil disimpan');
@@ -129,6 +130,7 @@ class TenagaKependidikanController extends Controller
             'jenis_tng_kpddkn' => $request->jenis_tng_kpddkn,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
+            'id_pt_unit' => $request->id_pt_unit,
 
         ]);
         if ($update) {

@@ -107,6 +107,7 @@
                                                 <td>{{ $item->d2 }}</td>
                                                 <td>{{ $item->d1 }}</td>
                                                 <td>{{ $item->sma }}</td>
+                                                <td>{{ $item->id_pt_unit }}</td>
                                                 <td>{{ $item->unit_kerja }}</td>
                                                 <td>
                                                     {{-- <a href="{{ route('edit-kependidikan', ['id' => $item->id]) }}"

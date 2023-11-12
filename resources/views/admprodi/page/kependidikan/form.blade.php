@@ -68,6 +68,19 @@
                                             <label for="unit_kerja"> Unit Kerja</label>
                                             <input type="text" class="form-control" id="unit_kerja" name="unit_kerja">
                                         </div>
+                                        <div class="form-group">
+                                            <label for="id_pt_unit">PT Unit</label>
+                                            {{-- <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit"> --}}
+                                            <select name="id_pt_unit" class="form-control">
+                                                <option value="7">P3M</option>
+                                                <option value="6">AKT</option>
+                                                <option value="5">D3 MI</option>
+                                                <option value="4">D4 TRPL</option>
+                                                <option value="3">JUR.TI</option>
+                                                <option value="2">SPM</option>
+                                                <option value="1">PNP</option>
+                                            </select>
+                                        </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                     </form>

@@ -21,8 +21,7 @@ return new class extends Migration
             $table->integer('jml_mhs');
             $table->string('jam_lyn');
             $table->text('perangkat');
-            $table->unsignedBigInteger('id_pt_unit');
-            $table->foreign('id_pt_unit')->references('pk_id_pt_unit')->on('pt_unit')->onDelete('restrict');
+            $table->integer('id_pt_unit');
             $table->timestamps();
         });
     }

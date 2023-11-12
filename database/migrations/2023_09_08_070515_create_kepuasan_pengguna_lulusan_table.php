@@ -21,8 +21,7 @@ return new class extends Migration
             $table->integer('cukup');
             $table->integer('kurang');
             $table->string('rencana_tindak_lanjut');
-            $table->unsignedBigInteger('id_pt_unit');
-            $table->foreign('id_pt_unit')->references('pk_id_pt_unit')->on('pt_unit')->onDelete('restrict');
+            $table->integer('id_pt_unit');
             $table->timestamps();
         });
     }

@@ -19,8 +19,7 @@ return new class extends Migration
             $table->integer('jumlah_lulusan');
             $table->integer('lulusan_terlacak');
             $table->integer('waktu_tunggu');
-            $table->unsignedBigInteger('id_pt_unit');
-            $table->foreign('id_pt_unit')->references('pk_id_pt_unit')->on('pt_unit')->onDelete('restrict');
+            $table->integer('id_pt_unit');
             $table->timestamps();
         });
     }

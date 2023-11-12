@@ -20,8 +20,7 @@ return new class extends Migration
             $table->double('ipk_min');
             $table->double('ipk_rata_rata');
             $table->double('ipk_max');
-            $table->unsignedBigInteger('id_pt_unit');
-            $table->foreign('id_pt_unit')->references('pk_id_pt_unit')->on('pt_unit')->onDelete('restrict');
+            $table->integer('id_pt_unit');
             $table->timestamps();
         });
     }

@@ -11,6 +11,6 @@ class JumlahTenagaKependidikan extends Model
     protected $table = "jml_tng_kpddkn";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'sma', 'd1', 'd2', 'd3', 'd4', '21', 's2', 's3'
+        'nama','jenis_tng_kpddkn','jenjang_pendidikan','unit_kerja'
     ];
 }
