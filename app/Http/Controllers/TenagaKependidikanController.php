@@ -24,12 +24,26 @@ class TenagaKependidikanController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = TenagaKependidikan::select('jenis_tng_kpddkn', 'jenjang_pendidikan', 'unit_kerja', DB::raw('count(*) as jumlah'))
-        ->groupBy('jenis_tng_kpddkn', 'jenjang_pendidikan', 'unit_kerja')
-        ->get();
+        // $data = TenagaKependidikan::all();
+        $tenaga_kependidikan = TenagaKependidikan::all();
 
-    // return view('kualifikasi-tenaga-kependidikan-program-studi.index', compact('jenisTenagaKependidikan'));
-     return view('admprodi.page.kependidikan.index', compact('data'));
+        $data = [];
+        foreach ($tenaga_kependidikan->groupBy('jenis_tng_kpddkn', 'jenjang_pendidikan') as $key => $value) {
+            $data[$key] = [
+                'jenis_tng_kpddkn' => $key[0],
+                'nama' => $value->first()->nama,
+                'unit_kerja' => $value->first()->unit_kerja,
+                'sma_smk' => $value->pluck('jenjang_pendidikan')->contains('SMA/SMK') ? $value->count() : 0,
+                'd1' => $value->pluck('jenjang_pendidikan')->contains('D1') ? $value->count() : 0,
+                'd2' => $value->pluck('jenjang_pendidikan')->contains('D2') ? $value->count() : 0,
+                'd3' => $value->pluck('jenjang_pendidikan')->contains('D3') ? $value->count() : 0,
+                's1' => $value->pluck('jenjang_pendidikan')->contains('S1') ? $value->count() : 0,
+                's2' => $value->pluck('jenjang_pendidikan')->contains('S2') ? $value->count() : 0,
+                's3' => $value->pluck('jenjang_pendidikan')->contains('S3') ? $value->count() : 0,
+            ];
+        }
+        
+        return view('admprodi.page.kependidikan.index', compact('data'));
     }
     public function kaprodiIndex()
     {
