@@ -6,6 +6,7 @@ use App\Exports\TenagaKependidikanExport;
 use App\Models\TenagaKependidikan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class TenagaKependidikanController extends Controller
 {
@@ -23,10 +24,12 @@ class TenagaKependidikanController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = TenagaKependidikan::paginate('20');
+        $data = TenagaKependidikan::select('jenis_tng_kpddkn', 'jenjang_pendidikan', 'unit_kerja', DB::raw('count(*) as jumlah'))
+        ->groupBy('jenis_tng_kpddkn', 'jenjang_pendidikan', 'unit_kerja')
+        ->get();
 
-        // dd($data);
-        return view('admprodi.page.kependidikan.index', compact('data'));
+    // return view('kualifikasi-tenaga-kependidikan-program-studi.index', compact('jenisTenagaKependidikan'));
+     return view('admprodi.page.kependidikan.index', compact('data'));
     }
     public function kaprodiIndex()
     {
@@ -59,8 +62,9 @@ class TenagaKependidikanController extends Controller
     {
         $input = TenagaKependidikan::insert([
             'id' => $request->id,
+            'nama' => $request->nama,
             'jenis_tng_kpddkn' => $request->jenis_tng_kpddkn,
-            // 'jenjang_pendidikan' => $request->jenjang_pendidikan,
+            'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
         ]);
         if ($input) {
@@ -107,8 +111,9 @@ class TenagaKependidikanController extends Controller
     {
         $kpddkn = TenagaKependidikan::find($id);
         $update = $kpddkn->update([
+            'nama' => $request->nama,
             'jenis_tng_kpddkn' => $request->jenis_tng_kpddkn,
-            // 'jenjang_pendidikan' => $request->jenjang_pendidikan,
+            'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
 
         ]);

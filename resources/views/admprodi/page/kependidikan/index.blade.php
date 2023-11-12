@@ -99,14 +99,14 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $item->jenis_tng_kpddkn }}</td>
-                                                <td>{{ $item->lulusan?->s3 }}</td>
-                                                <td>{{ $item->lulusan?->s2 }}</td>
-                                                <td>{{ $item->lulusan?->s1 }}</td>
-                                                <td>{{ $item->lulusan?->d4 }}</td>
-                                                <td>{{ $item->lulusan?->d3 }}</td>
-                                                <td>{{ $item->lulusan?->d2 }}</td>
-                                                <td>{{ $item->lulusan?->d1 }}</td>
-                                                <td>{{ $item->lulusan?->sma }}</td>
+                                                <td>{{ $item->s3 }}</td>
+                                                <td>{{ $item->s2 }}</td>
+                                                <td>{{ $item->s1 }}</td>
+                                                <td>{{ $item->d4 }}</td>
+                                                <td>{{ $item->d3 }}</td>
+                                                <td>{{ $item->d2 }}</td>
+                                                <td>{{ $item->d1 }}</td>
+                                                <td>{{ $item->sma }}</td>
                                                 <td>{{ $item->unit_kerja }}</td>
                                                 <td>
                                                     {{-- <a href="{{ route('edit-kependidikan', ['id' => $item->id]) }}"

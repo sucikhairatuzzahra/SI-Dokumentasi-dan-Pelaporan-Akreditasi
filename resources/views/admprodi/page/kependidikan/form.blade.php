@@ -42,9 +42,27 @@
                                     <form action="/simpan-kependidikan" method="POST">
                                         @csrf
                                         <div class="form-group">
+                                            <label for="nama">Nama</label>
+                                            <input type="text" class="form-control" id="nama" name="nama">
+                                        </div>
+                                        <div class="form-group">
                                             <label for="jenis_tng_kpddkn">Jenis Tenaga Kependidikan</label>
                                             <input type="text" class="form-control" id="jenis_tng_kpddkn"
                                                 name="jenis_tng_kpddkn">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="jenjang_pendidikan">Jenjang Pendidikan</label>
+                                            <select name="jenjang_pendidikan" class="form-control">
+                                                <option value="sma/smk">SMA/SMK</option>
+                                                <option value="d1">D1</option>
+                                                <option value="d2">D2</option>
+                                                <option value="d3">D3</option>
+                                                <option value="d4">D4</option>
+                                                <option value="s1">S1</option>
+                                                <option value="s2">S2</option>
+                                                <option value="s2">S3</option>
+                                            </select>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="unit_kerja"> Unit Kerja</label>
