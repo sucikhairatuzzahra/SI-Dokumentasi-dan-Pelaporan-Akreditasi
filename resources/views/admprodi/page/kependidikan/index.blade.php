@@ -64,6 +64,9 @@
                                                 Unit Kerja
                                             </th>
                                             <th scope="col" rowspan="2">
+                                                PT Unit
+                                            </th>
+                                            <th scope="col" rowspan="2">
                                                 Keterangan
                                             </th>
                                         </tr>
@@ -98,11 +101,10 @@
 
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
-                                                <td>{{ $item->jenis_tng_kpddkn }}</td>
+                                                <td>{{ $item->jenis_tenaga_kependidikan }}</td>
                                                 <td>{{ $item->s3 }}</td>
                                                 <td>{{ $item->s2 }}</td>
                                                 <td>{{ $item->s1 }}</td>
-                                                <td>{{ $item->d4 }}</td>
                                                 <td>{{ $item->d3 }}</td>
                                                 <td>{{ $item->d2 }}</td>
                                                 <td>{{ $item->d1 }}</td>
@@ -110,10 +112,7 @@
                                                 <td>{{ $item->id_pt_unit }}</td>
                                                 <td>{{ $item->unit_kerja }}</td>
                                                 <td>
-                                                    {{-- <a href="{{ route('edit-kependidikan', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Tambah Data
-                                                    </a> --}}
+
                                                     <a href="{{ route('edit-kependidikan', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">
                                                         Edit

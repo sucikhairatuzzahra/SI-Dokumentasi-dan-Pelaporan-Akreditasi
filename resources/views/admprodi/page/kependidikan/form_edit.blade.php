@@ -43,9 +43,10 @@
                                         @csrf
                                         @method('put')
                                         <div class="form-group">
-                                            <label for="jenis_tng_kpddkn">Jenis Tenaga Kependidikan</label>
-                                            <input type="text" class="form-control" id="jenis_tng_kpddkn"
-                                                name="jenis_tng_kpddkn" value="{{ $editData->jenis_tng_kpddkn }}">
+                                            <label for="jenis_tenaga_kependidikan">Jenis Tenaga Kependidikan</label>
+                                            <input type="text" class="form-control" id="jenis_tenaga_kependidikan"
+                                                name="jenis_tenaga_kependidikan"
+                                                value="{{ $editData->jenis_tenaga_kependidikan }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="unit_kerja">Unit Kerja</label>

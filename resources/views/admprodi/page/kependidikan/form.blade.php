@@ -46,14 +46,14 @@
                                             <input type="text" class="form-control" id="nama" name="nama">
                                         </div>
                                         <div class="form-group">
-                                            <label for="jenis_tng_kpddkn">Jenis Tenaga Kependidikan</label>
-                                            <input type="text" class="form-control" id="jenis_tng_kpddkn"
-                                                name="jenis_tng_kpddkn">
+                                            <label for="jenis_tenaga_kependidikan">Jenis Tenaga Kependidikan</label>
+                                            <input type="text" class="form-control" id="jenis_tenaga_kependidikan"
+                                                name="jenis_tenaga_kependidikan">
                                         </div>
                                         <div class="form-group">
                                             <label for="jenjang_pendidikan">Jenjang Pendidikan</label>
                                             <select name="jenjang_pendidikan" class="form-control">
-                                                <option value="sma/smk">SMA/SMK</option>
+                                                <option value="sma">SMA/SMK</option>
                                                 <option value="d1">D1</option>
                                                 <option value="d2">D2</option>
                                                 <option value="d3">D3</option>

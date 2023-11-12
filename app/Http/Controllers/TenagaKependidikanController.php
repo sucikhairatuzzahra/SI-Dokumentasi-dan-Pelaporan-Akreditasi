@@ -28,10 +28,10 @@ class TenagaKependidikanController extends Controller
         $tenaga_kependidikan = TenagaKependidikan::all();
 
         $data = [];
-        foreach ($tenaga_kependidikan->groupBy('jenis_tng_kpddkn', 'jenjang_pendidikan') as $key => $value) {
+        foreach ($tenaga_kependidikan->groupBy('jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
             $data[$key] = [
-                'jenis_tng_kpddkn' => $key[0],
-                'nama' => $value->first()->nama,
+                'jenis_tenaga_kependidikan' => $key[0],
+                'nama' => $value->firstOrFail()->nama,
                 'unit_kerja' => $value->first()->unit_kerja,
                 'sma_smk' => $value->pluck('jenjang_pendidikan')->contains('SMA/SMK') ? $value->count() : 0,
                 'd1' => $value->pluck('jenjang_pendidikan')->contains('D1') ? $value->count() : 0,
@@ -77,7 +77,7 @@ class TenagaKependidikanController extends Controller
         $input = TenagaKependidikan::insert([
             'id' => $request->id,
             'nama' => $request->nama,
-            'jenis_tng_kpddkn' => $request->jenis_tng_kpddkn,
+            'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
             'id_pt_unit' => $request->id_pt_unit,
@@ -127,7 +127,7 @@ class TenagaKependidikanController extends Controller
         $kpddkn = TenagaKependidikan::find($id);
         $update = $kpddkn->update([
             'nama' => $request->nama,
-            'jenis_tng_kpddkn' => $request->jenis_tng_kpddkn,
+            'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
             'id_pt_unit' => $request->id_pt_unit,
@@ -161,3 +161,20 @@ class TenagaKependidikanController extends Controller
         return Excel::download(new TenagaKependidikanExport, 'Kualifikasi Tenaga Kependidikan.xlsx');
     }
 }
+
+// foreach ($tenaga_kependidikan->groupBy('jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
+//     if ($value->has($key[0])) {
+//         $data[$key] = [
+//             'jenis_tenaga_kependidikan' => $key[0],
+//             'nama' => $value->firstOrFail()->nama,
+//             'unit_kerja' => $value->first()->unit_kerja,
+//             'sma_smk' => $value->pluck('jenjang_pendidikan')->contains('SMA/SMK') ? $value->count() : 0,
+//             'd1' => $value->pluck('jenjang_pendidikan')->contains('D1') ? $value->count() : 0,
+//             'd2' => $value->pluck('jenjang_pendidikan')->contains('D2') ? $value->count() : 0,
+//             'd3' => $value->pluck('jenjang_pendidikan')->contains('D3') ? $value->count() : 0,
+//             's1' => $value->pluck('jenjang_pendidikan')->contains('S1') ? $value->count() : 0,
+//             's2' => $value->pluck('jenjang_pendidikan')->contains('S2') ? $value->count() : 0,
+//             's3' => $value->pluck('jenjang_pendidikan')->contains('S3') ? $value->count() : 0,
+//         ];
+//     }
+// }
