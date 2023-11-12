@@ -120,8 +120,8 @@
                                                     <td>{{ $item->akhir_ts_3 }}</td>
                                                     <td>{{ $item->akhir_ts_2 }}</td>
                                                     <td>{{ $item->akhir_ts_1 }}</td>
-                                                    <td>{{ $akhir_ts }}</td>
-                                                    <td>{{ $item->jumlah_lulusan_sampai_akhir_ts }}</td>
+                                                    <td>{{ $item->akhir_ts }}</td>
+                                                    <td>{{ $item->jumlah_lulusan_sampai_ts }}</td>
                                                     <td>{{ $item->masa_studi }}</td>
                                                     <td>{{ $item->jml_mhs_aktif }}</td>
                                                     <td>{{ $item->id_pt_unit }}</td>

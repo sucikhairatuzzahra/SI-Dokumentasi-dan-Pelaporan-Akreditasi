@@ -69,11 +69,11 @@
                                             <label for="masa_studi">Rata-rata Masa Studi</label>
                                             <input type="text" class="form-control" id="masa_studi" name="masa_studi">
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="jml_mhs_aktif">Jumlah Mhs, Yang Masih Aktif</label>
                                             <input type="text" class="form-control" id="jml_mhs_aktif"
                                                 name="jml_mhs_aktif">
-                                        </div>
+                                        </div> --}}
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                     </form>

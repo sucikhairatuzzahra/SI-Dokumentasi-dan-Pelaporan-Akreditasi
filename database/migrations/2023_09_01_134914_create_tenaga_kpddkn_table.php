@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('tenaga_kpddkn', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->string('jenis_tng_kpddkn');
-            // $table->enum('jenjang_pendidikan', ['sma/smk', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3']);
+            $table->enum('jenjang_pendidikan', ['sma/smk', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3']);
             $table->string('unit_kerja');
             $table->timestamps();
         });

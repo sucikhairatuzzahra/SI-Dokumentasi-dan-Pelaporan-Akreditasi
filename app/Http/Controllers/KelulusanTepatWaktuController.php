@@ -28,9 +28,9 @@ class KelulusanTepatWaktuController extends Controller
     {
         $data = KelulusanTepatWaktu::all();
 
-        $akhir_ts = KelulusanTepatWaktu::where('tahun_lulus', Carbon::now()->format('Y'))
-        ->sum('jml_lulusan');
-        return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data','akhir_ts'));
+        // $akhir_ts = KelulusanTepatWaktu::where('tahun_lulus', Carbon::now()->format('Y'))
+        // ->sum('jml_lulusan');
+        // return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data','akhir_ts'));
         foreach ($data as $i => $data1) {
             // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]
             $akhir_ts = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
@@ -74,6 +74,20 @@ class KelulusanTepatWaktuController extends Controller
             ->where('tahun_lulus', Carbon::now()->subYear(6)->format('Y'))
             ->sum('jml_lulusan');
             $data[$i]['akhir_ts_6'] = $akhir_ts_6;
+
+            // Jumlah mahasiswa yang lulus sampai dengan ts
+            $data[$i]['jumlah_lulusan_sampai_ts'] = collect([$akhir_ts_6, $akhir_ts_5, $akhir_ts_4, $akhir_ts_3, $akhir_ts_2, $akhir_ts_1, $akhir_ts])->sum();
+
+            // // Jumlah mahasiswa yang masih aktif
+            // $data[$i]['jml_mhs_aktif'] = collect([$data1['jml_mhs'], $akhir_ts_6, $akhir_ts_5, $akhir_ts_4, $akhir_ts_3, $akhir_ts_2, $akhir_ts_1, $akhir_ts])->sum() - $data[$i]['jumlah_lulusan_sampai_ts'];
+
+            // Jumlah mahasiswa yang masih aktif
+            if ($data1['jml_mhs'] > 0) {
+                $data[$i]['jml_mhs_aktif'] = collect([$data1['jml_mhs']])->sum() - $data[$i]['jumlah_lulusan_sampai_ts'];
+            } else {
+                $data[$i]['jml_mhs_aktif'] = 0;
+            }
+        
         }
 
         return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data'));
@@ -117,7 +131,7 @@ class KelulusanTepatWaktuController extends Controller
             'jml_lulusan' => $request->jml_lulusan,
             'wisuda_ke' => $request->wisuda_ke,
             'masa_studi' => $request->masa_studi,
-            'jml_mhs_aktif' => $request->jml_mhs_aktif,
+            // 'jml_mhs_aktif' => $request->jml_mhs_aktif,
 
         ]);
         if ($input) {
@@ -171,7 +185,7 @@ class KelulusanTepatWaktuController extends Controller
             'jml_lulusan' => $request->jml_lulusan,
             'wisuda_ke' => $request->wisuda_ke,
             'masa_studi' => $request->masa_studi,
-            'jml_mhs_aktif' => $request->jml_mhs_aktif,
+            // 'jml_mhs_aktif' => $request->jml_mhs_aktif,
         ]);
         if ($update) {
             return redirect('kelulusan_tepatwaktu')->with('pesan', 'Data berhasil disimpan');

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('wisuda_ke');
             $table->integer('jml_lulusan');
             $table->string('masa_studi');
-            $table->integer('jml_mhs_aktif');
+            // $table->integer('jml_mhs_aktif');
             $table->timestamps();
         });
     }
