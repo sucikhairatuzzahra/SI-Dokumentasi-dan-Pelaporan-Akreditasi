@@ -32,43 +32,6 @@ class KelulusanTepatWaktuController extends Controller
         ->sum('jml_lulusan');
         return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data','akhir_ts'));
 
-
-    
-        // $tahun_masuk = $request->get('tahun_masuk');
-        // $id_pt_unit = $request->get('id_pt_unit');
-
-        // // Buat array untuk menyimpan data lulusan
-        // $data_lulusan = [];
-
-        // // Ambil data lulusan dari tabel mahasiswa
-        // $data = KelulusanTepatWaktu::where('tahun_masuk', $tahun_masuk)
-        //     ->where('id_pt_unit', $id_pt_unit)
-        //     ->get();
-
-        // // Hitung jumlah lulusan sampai dengan akhir TS
-        // foreach ($data as $item) {
-        //     // Jika id PT Unit belum ada di array, maka tambahkan datanya
-        //     if (!isset($data_lulusan[$item->id_pt_unit])) {
-        //         $data_lulusan[$item->id_pt_unit] = [
-        //             'tahun_masuk' => $item->tahun_masuk,
-        //             'tahun_lulus' => $item->tahun_lulus,
-        //             'jumlah_lulusan' => 0,
-        //             'jumlah_lulusan_sampai_akhir_ts' => 0,
-        //         ];
-        //     }
-
-        //     // Tambahkan jumlah lulusan pada tahun masuk yang sama
-        //     $data_lulusan[$item->id_pt_unit]['jumlah_lulusan'] += $item->jumlah_lulusan;
-
-        //     // Hitung jumlah lulusan sampai dengan akhir TS
-        //     for ($i = 0; $i <= 6; $i++) {
-        //         $data_lulusan[$item->id_pt_unit]['jumlah_lulusan_sampai_akhir_ts'] += $item->akhir_ts - $i;
-        //     }
-        // }
-
-        // return view('admprodi.page.kelulusan_tepat_waktu.index', [
-        //     'data' => $data_lulusan,
-        // ]);
         
     }
     public function kaprodiIndex()
