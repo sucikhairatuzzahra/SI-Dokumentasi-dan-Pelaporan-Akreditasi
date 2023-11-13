@@ -30,16 +30,20 @@ class TenagaKependidikanController extends Controller
         $data = [];
         foreach ($tenaga_kependidikan->groupBy('jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
             $data[$key] = [
-                'jenis_tenaga_kependidikan' => $key[0],
-                'nama' => $value->firstOrFail()->nama,
+                'id' => $value->first()->id,
+                'jenis_tenaga_kependidikan' => $value->first()->jenis_tenaga_kependidikan,
+                'nama' => $value->first()->nama,
+                'id_pt_unit' => $value->first()->id_pt_unit,
                 'unit_kerja' => $value->first()->unit_kerja,
-                'sma_smk' => $value->pluck('jenjang_pendidikan')->contains('SMA/SMK') ? $value->count() : 0,
-                'd1' => $value->pluck('jenjang_pendidikan')->contains('D1') ? $value->count() : 0,
-                'd2' => $value->pluck('jenjang_pendidikan')->contains('D2') ? $value->count() : 0,
-                'd3' => $value->pluck('jenjang_pendidikan')->contains('D3') ? $value->count() : 0,
-                's1' => $value->pluck('jenjang_pendidikan')->contains('S1') ? $value->count() : 0,
-                's2' => $value->pluck('jenjang_pendidikan')->contains('S2') ? $value->count() : 0,
-                's3' => $value->pluck('jenjang_pendidikan')->contains('S3') ? $value->count() : 0,
+                'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
+                'sma' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'SMA')->count(),
+                'd1' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'D1')->count(),
+                'd2' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'D2')->count(),
+                'd3' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'D3')->count(),
+                'd4' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'D4')->count(),
+                's1' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'S1')->count(),
+                's2' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'S2')->count(),
+                's3' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'S3')->count(),
             ];
         }
         

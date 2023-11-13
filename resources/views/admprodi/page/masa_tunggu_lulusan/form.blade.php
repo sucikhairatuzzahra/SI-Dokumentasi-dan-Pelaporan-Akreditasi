@@ -63,7 +63,6 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="id_pt_unit">PT Unit</label>
-                                            {{-- <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit"> --}}
                                             <select name="id_pt_unit" class="form-control">
                                                 <option value="7">P3M</option>
                                                 <option value="6">AKT</option>

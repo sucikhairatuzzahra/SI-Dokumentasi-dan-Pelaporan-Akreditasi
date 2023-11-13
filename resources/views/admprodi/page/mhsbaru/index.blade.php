@@ -59,9 +59,7 @@
                                             <th scope="col" rowspan="2">
                                                 Tahun Akademik
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Id PT_Unit
-                                            </th>
+
                                             <th scope="col" rowspan="2">
                                                 Daya Tampung
                                             </th>
@@ -73,6 +71,9 @@
                                             </th>
                                             <th scope="col" colspan="2">
                                                 Jumlah Mahasiswa Aktif
+                                            </th>
+                                            <th scope="col" rowspan="2">
+                                                Id PT_Unit
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Keterangan
@@ -105,7 +106,6 @@
                                             <tr align="center">
                                                 {{-- <td>{{ $no + 1 }}</td> --}}
                                                 <td>{{ $item->thn_akademik }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
                                                 <td>{{ $item->daya_tampung }}</td>
                                                 <td>{{ $item->pendaftar }}</td>
                                                 <td>{{ $item->lulus_seleksi }}</td>
@@ -113,6 +113,7 @@
                                                 <td>{{ $item->maba_transfer }}</td>
                                                 <td>{{ $item->mhs_aktif_reguler }}</td>
                                                 <td>{{ $item->mhs_aktif_transfer }}</td>
+                                                <td>{{ $item->id_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-cmb', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

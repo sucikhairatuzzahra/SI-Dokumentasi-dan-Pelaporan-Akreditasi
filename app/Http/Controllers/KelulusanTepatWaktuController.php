@@ -28,9 +28,7 @@ class KelulusanTepatWaktuController extends Controller
     {
         $data = KelulusanTepatWaktu::all();
 
-        // $akhir_ts = KelulusanTepatWaktu::where('tahun_lulus', Carbon::now()->format('Y'))
-        // ->sum('jml_lulusan');
-        // return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data','akhir_ts'));
+        
         foreach ($data as $i => $data1) {
             // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]
             $akhir_ts = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])

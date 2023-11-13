@@ -41,10 +41,7 @@
                                 <div class="card-block">
                                     <form action="/simpan-kelulusan_tepatwaktu" method="POST">
                                         @csrf
-                                        <div class="form-group">
-                                            <label for="id_pt_unit">Id PT Unit</label>
-                                            <input type="text" class="form-control" id="id_pt_unit" name="id_pt_unit">
-                                        </div>
+
                                         <div class="form-group">
                                             <label for="tahun_masuk">Tahun Masuk</label>
                                             <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk">
@@ -69,11 +66,18 @@
                                             <label for="masa_studi">Rata-rata Masa Studi</label>
                                             <input type="text" class="form-control" id="masa_studi" name="masa_studi">
                                         </div>
-                                        {{-- <div class="form-group">
-                                            <label for="jml_mhs_aktif">Jumlah Mhs, Yang Masih Aktif</label>
-                                            <input type="text" class="form-control" id="jml_mhs_aktif"
-                                                name="jml_mhs_aktif">
-                                        </div> --}}
+                                        <div class="form-group">
+                                            <label for="id_pt_unit">PT Unit</label>
+                                            <select name="id_pt_unit" class="form-control">
+                                                <option value="7">P3M</option>
+                                                <option value="6">AKT</option>
+                                                <option value="5">D3 MI</option>
+                                                <option value="4">D4 TRPL</option>
+                                                <option value="3">JUR.TI</option>
+                                                <option value="2">SPM</option>
+                                                <option value="1">PNP</option>
+                                            </select>
+                                        </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                     </form>
