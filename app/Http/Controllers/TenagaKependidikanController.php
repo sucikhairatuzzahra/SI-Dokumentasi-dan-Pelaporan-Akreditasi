@@ -28,7 +28,9 @@ class TenagaKependidikanController extends Controller
         $tenaga_kependidikan = TenagaKependidikan::all();
 
         $data = [];
+        $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
         foreach ($tenaga_kependidikan->groupBy('jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
+            $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
             $data[$key] = [
                 'id' => $value->first()->id,
                 'jenis_tenaga_kependidikan' => $value->first()->jenis_tenaga_kependidikan,
@@ -36,14 +38,9 @@ class TenagaKependidikanController extends Controller
                 'id_pt_unit' => $value->first()->id_pt_unit,
                 'unit_kerja' => $value->first()->unit_kerja,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
-                'sma' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'SMA')->count(),
-                'd1' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'D1')->count(),
-                'd2' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'D2')->count(),
-                'd3' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'D3')->count(),
-                'd4' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'D4')->count(),
-                's1' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'S1')->count(),
-                's2' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'S2')->count(),
-                's3' => $value->whereNotNull('jenjang_pendidikan')->where('jenjang_pendidikan', 'S3')->count(),
+                'jenjang_counts' => $value->groupBy('jenjang_pendidikan')->each(function ($item, $key) use (&$jenjangCounts) {
+                 $jenjangCounts[$key] = $item->count();
+            })
             ];
         }
         

@@ -102,28 +102,17 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $item['jenis_tenaga_kependidikan'] }}</td>
-                                                <td>{{ $item['s3'] }}</td>
-                                                <td>{{ $item['s2'] }}</td>
-                                                <td>{{ $item['s1'] }}</td>
-                                                <td>{{ $item['d4'] }}</td>
-                                                <td>{{ $item['d3'] }}</td>
-                                                <td>{{ $item['d2'] }}</td>
-                                                <td>{{ $item['d1'] }}</td>
-                                                <td>{{ $item['sma'] }}</td>
+                                                <td>{{ $item['jenjang_counts']['d3'] ?? 0 }}</td>
+                                                <td>{{ $item['jenjang_counts']['d2'] ?? 0 }}</td>
+                                                <td>{{ $item['jenjang_counts']['d1'] ?? 0 }}</td>
+                                                <td>{{ $item['jenjang_counts']['sma'] ?? 0 }}</td>
+                                                <td>{{ $item['jenjang_counts']['s1'] ?? 0 }}</td>
+                                                <td>{{ $item['jenjang_counts']['s2'] ?? 0 }}</td>
+                                                <td>{{ $item['jenjang_counts']['s3'] ?? 0 }}</td>
                                                 <td>{{ $item['unit_kerja'] }}</td>
                                                 <td>{{ $item['id_pt_unit'] }}</td>
 
-                                                {{-- <td>{{ $item->jenis_tenaga_kependidikan }}</td>
-                                                <td>{{ $item->s3 }}</td>
-                                                <td>{{ $item->s2 }}</td>
-                                                <td>{{ $item->s1 }}</td>
-                                                <td>{{ $item->d4 }}</td>
-                                                <td>{{ $item->d3 }}</td>
-                                                <td>{{ $item->d2 }}</td>
-                                                <td>{{ $item->d1 }}</td>
-                                                <td>{{ $item->sma }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
-                                                <td>{{ $item->unit_kerja }}</td> --}}
+
                                                 {{-- <td>
 
                                                     <a href="{{ route('edit-kependidikan', ['id' => $item->id]) }}"
