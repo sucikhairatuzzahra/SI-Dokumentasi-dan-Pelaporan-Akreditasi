@@ -42,30 +42,41 @@
                                 <div class="card-block">
                                     <form action="/simpan-cmb" method="POST">
                                         @csrf
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="thn_akademik">Tahun Akademik</label>
                                             <input type="text" class="form-control" id="thn_akademik"
                                                 name="thn_akademik">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="daya_tampung">Daya Tampung</label>
-                                            <input type="text" class="form-control" id="daya_tampung"
-                                                name="daya_tampung">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pendaftar">Pendaftar</label>
-                                            <input type="text" class="form-control" id="pendaftar" name="pendaftar">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="lulus_seleksi">Lulus Seleksi</label>
-                                            <input type="text" class="form-control" id="lulus_seleksi"
+                                        </div> --}}
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <label for="thn_akademik">Tahun Akademik</label>
+                                                <select name="tahun_akademik" id="tahun_akademik" class="form-control">
+                                                    @foreach ($tahunAkademiks as $tahunAkademik)
+                                                        <option value="{{ $tahunAkademik->id }}" {{-- {{ $data->thn_akademik == $tahunAkademik->id ? 'selected' : '' }} --}}>
+                                                            {{ $tahunAkademik->tahun_akademik }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="daya_tampung">Daya Tampung</label>
+                                                <input type="text" class="form-control" id="daya_tampung"
+                                                    name="daya_tampung">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="pendaftar">Pendaftar</label>
+                                                <input type="text" class="form-control" id="pendaftar" name="pendaftar">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="lulus_seleksi">Lulus Seleksi</label>
+                                                <input type="text" class="form-control" id="lulus_seleksi"
                                                 name="lulus_seleksi">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="maba_reguler">Mahasiswa Baru Reguler</label>
-                                            <input type="text" class="form-control" id="maba_reguler"
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="maba_reguler">Mahasiswa Baru Reguler</label>
+                                                <input type="text" class="form-control" id="maba_reguler"
                                                 name="maba_reguler">
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="maba_transfer">Mahasiswa Baru Transfer</label>

@@ -34,7 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Pendayagunaan Sarana dan Prasarana Utama</h5>
-                            <a href="{{ route('tambah-kerjalulusan') }}">
+                            <a href="{{ route('tambah-sarana') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>
 
@@ -95,7 +95,7 @@
                                                 <td>{{ $item->jml_mhs }}</td>
                                                 <td>{{ $item->jam_lyn }}</td>
                                                 <td>{{ $item->perangkat }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item['id_pt_unit'] }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-sarana', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

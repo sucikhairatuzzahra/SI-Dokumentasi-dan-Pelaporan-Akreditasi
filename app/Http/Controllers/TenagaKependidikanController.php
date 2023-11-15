@@ -29,7 +29,7 @@ class TenagaKependidikanController extends Controller
 
         $data = [];
         $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
-        foreach ($tenaga_kependidikan->groupBy('jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
+        foreach ($tenaga_kependidikan->groupBy('id_pt_unit', 'unit_kerja', 'jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
             $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
             $data[$key] = [
                 'id' => $value->first()->id,
@@ -39,11 +39,11 @@ class TenagaKependidikanController extends Controller
                 'unit_kerja' => $value->first()->unit_kerja,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
                 'jenjang_counts' => $value->groupBy('jenjang_pendidikan')->each(function ($item, $key) use (&$jenjangCounts) {
-                 $jenjangCounts[$key] = $item->count();
+                 $jenjangCounts[$key] = $item->count();  // ko yo ndk paham abg , baris iko, wkwkwk
             })
             ];
         }
-        
+        // dd(TenagaKependidikan::groupBy('id_pt_unit', 'unit_kerja', 'jenis_tenaga_kependidikan', 'jenjang_pendidikan')->get());
         return view('admprodi.page.kependidikan.index', compact('data'));
     }
     public function kaprodiIndex()
@@ -161,6 +161,16 @@ class TenagaKependidikanController extends Controller
     {
         return Excel::download(new TenagaKependidikanExport, 'Kualifikasi Tenaga Kependidikan.xlsx');
     }
+
+    public function byPtUnit($ptunitid)
+    {
+        $where = [
+            'id_pt_unit' => $ptunitid, // D4 TRPL
+        ];
+        $data = TenagaKependidikan::where($where)->get();
+        dd($data);
+        // return view
+    }
 }
 
 // foreach ($tenaga_kependidikan->groupBy('jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
@@ -178,4 +188,4 @@ class TenagaKependidikanController extends Controller
 //             's3' => $value->pluck('jenjang_pendidikan')->contains('S3') ? $value->count() : 0,
 //         ];
 //     }
-// }
+// } wait

@@ -102,35 +102,45 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $item['jenis_tenaga_kependidikan'] }}</td>
-                                                <td>{{ $item['jenjang_counts']['d3'] ?? 0 }}</td>
-                                                <td>{{ $item['jenjang_counts']['d2'] ?? 0 }}</td>
-                                                <td>{{ $item['jenjang_counts']['d1'] ?? 0 }}</td>
-                                                <td>{{ $item['jenjang_counts']['sma'] ?? 0 }}</td>
-                                                <td>{{ $item['jenjang_counts']['s1'] ?? 0 }}</td>
-                                                <td>{{ $item['jenjang_counts']['s2'] ?? 0 }}</td>
-                                                <td>{{ $item['jenjang_counts']['s3'] ?? 0 }}</td>
+                                                <td>{{ $item['jenjang_counts']['s3'] ?? 0 ? count($item['jenjang_counts']['s3']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['s2'] ?? 0 ? count($item['jenjang_counts']['s2']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['s1'] ?? 0 ? count($item['jenjang_counts']['s1']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['d4'] ?? 0 ? count($item['jenjang_counts']['d4']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['d3'] ?? 0 ? count($item['jenjang_counts']['d3']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['d2'] ?? 0 ? count($item['jenjang_counts']['d2']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['d1'] ?? 0 ? count($item['jenjang_counts']['d1']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['sma'] ?? 0 ? count($item['jenjang_counts']['sma']) : 0 }}
+                                                </td>
                                                 <td>{{ $item['unit_kerja'] }}</td>
                                                 <td>{{ $item['id_pt_unit'] }}</td>
 
 
-                                                {{-- <td>
+                                                <td>
 
-                                                    <a href="{{ route('edit-kependidikan', ['id' => $item->id]) }}"
+                                                    <a
+                                                        href="{{ route('kependidikanbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}">Lihat</a>
+                                                    <a href="{{ route('edit-kependidikan', ['id' => $item['id']]) }}"
                                                         style="margin-right: 7px">
                                                         Edit
                                                     </a>
-                                                    <a href="{{ route('hapus-kependidikan', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
+                                                    <a href="{{ route('hapus-kependidikan', ['id' => $item['id']]) }}"
+                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item['id'] }}').submit();">
                                                         Hapus
                                                     </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-kependidikan', ['id' => $item->id]) }}"
+                                                    <form id="delete-form-{{ $item['id'] }}"
+                                                        action="{{ route('hapus-kependidikan', ['id' => $item['id']]) }}"
                                                         method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
                                                     </form>
-
-                                                </td> --}}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

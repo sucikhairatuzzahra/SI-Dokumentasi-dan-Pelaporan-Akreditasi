@@ -259,6 +259,7 @@ Route::middleware(['auth', 'user-role:admprodi'])->group(function () {
     Route::get('/edit-kependidikan/{id}', [TenagaKependidikanController::class, 'edit'])->name('edit-kependidikan');
     Route::put('/update-kependidikan/{id}', [TenagaKependidikanController::class, 'update'])->name('update-kependidikan');
     Route::delete('/hapus-kependidikan/{id}', [TenagaKependidikanController::class, 'destroy'])->name('hapus-kependidikan'); //destroy
+    Route::get('/kependidikan/ptunit/{ptunitid}', [TenagaKependidikanController::class, 'byPtUnit'])->name('kependidikanbyptunit');
 
 
     Route::get('/kependidikan/{id}/tambah', [JumlahTenagaKependidikanController::class, 'create'])->name('tambahjmlkependidikan'); //create

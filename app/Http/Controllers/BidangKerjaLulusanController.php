@@ -41,7 +41,7 @@ class BidangKerjaLulusanController extends Controller
     public function create()
     {
         return view(
-            'admin.page.bidang_kerja_lulusan.form',
+            'admprodi.page.bidang_kerja_lulusan.form',
             [
                 'url' => 'simpan-kerjalulusan',
             ]

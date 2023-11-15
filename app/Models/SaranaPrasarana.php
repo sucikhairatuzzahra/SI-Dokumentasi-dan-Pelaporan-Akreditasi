@@ -14,10 +14,10 @@ class SaranaPrasarana extends Model
     protected $fillable = [
         'sarana', 'daya_tampung', 'luas_ruang', 'jml_mhs', 'jam_lyn', 'perangkat','id_pt_unit'
     ];
-    protected function id_pt_unit (): CastsAttribute
+    protected function idPtUnit (): CastsAttribute
     {
         return new CastsAttribute(
-            get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
+            get: fn ($value) => ['','PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
         );
     }
 }

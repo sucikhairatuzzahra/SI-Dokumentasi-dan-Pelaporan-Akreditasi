@@ -16,10 +16,23 @@ class Mhsbaru extends Model
         'thn_akademik', 'daya_tampung', 'pendaftar', 'lulus_seleksi', 'maba_reguler',
         'maba_transfer', 'mhs_aktif_reguler', 'mhs_aktif_transfer','id_pt_unit'
     ];
-    protected function id_pt_unit (): CastsAttribute
+    protected function idPtUnit (): CastsAttribute
     {
         return new CastsAttribute(
-            get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
+            get: fn ($value) => ['','PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
         );
     }
+
+     // Relationship dengan model TahunAkademik
+     public function tahunAkademik()
+     {
+         return $this->belongsTo(TahunAkademik::class, 'thn_akademik');
+     }
+
+
+
+    // public function tahunAkademik()
+    // {
+    //     return $this->belongsTo(TahunAkademik::class);
+    // }
 }

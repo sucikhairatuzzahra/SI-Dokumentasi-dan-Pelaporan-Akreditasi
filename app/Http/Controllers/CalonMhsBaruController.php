@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\MahasiswaExport;
 use App\Models\Mhsbaru;
+use App\Models\TahunAkademik;
 use Illuminate\Http\Request;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,16 +30,21 @@ class CalonMhsBaruController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = Mhsbaru::paginate('20');
+        $data = Mhsbaru::with('tahunAkademik')->get();
+        $tahunAkademiks = TahunAkademik::all();
 
-        return view('admprodi.page.mhsbaru.index', compact('data'));
+        return view('admprodi.page.mhsbaru.index', compact('data', 'tahunAkademiks'));
+
+        // return view('admprodi.page.mhsbaru.index', compact('data'));
     }
     public function create()
     {
+        $tahunAkademiks = TahunAkademik::all();
         return view(
             'admprodi.page.mhsbaru.form',
             [
                 'url' => 'simpan-cmb',
+                'tahunAkademiks' => $tahunAkademiks,
             ]
         );
     }
@@ -46,7 +52,7 @@ class CalonMhsBaruController extends Controller
     {
         $input = Mhsbaru::insert([
             'id' => $request->id,
-            'thn_akademik' => $request->thn_akademik,
+            'thn_akademik' => $request->tahun_akademik,
             'id_pt_unit' => $request->id_pt_unit,
             'daya_tampung' => $request->daya_tampung,
             'pendaftar' => $request->pendaftar,
