@@ -76,10 +76,10 @@
                                                 <td>{{ $item->kode_pt_unit }}</td>
                                                 <td>{{ $item->nama_pt_unit }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit-ptunit', ['id' => $item->id]) }}"
+                                                    {{-- <a href="{{ route('edit-ptunit', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">
                                                         Edit
-                                                    </a>
+                                                    </a> --}}
                                                     <a href="{{ route('hapus-ptunit', $item->id) }}"
                                                         onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
                                                         Hapus

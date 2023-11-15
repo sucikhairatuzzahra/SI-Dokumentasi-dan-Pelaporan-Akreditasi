@@ -100,8 +100,8 @@ class PTUnitController extends Controller
      */
     public function destroy($id)
     {
-        $dana = PTUnit::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
-        $dana->delete();
+        $data = PTUnit::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $data->delete();
 
         return redirect()->route('ptunit')->with('success', 'Data PT Unit berhasil dihapus');
     }
