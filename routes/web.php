@@ -170,6 +170,13 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::post('/simpan-tahun_akademik', [AdminController::class, 'store'])->name('simpan-tahun_akademik'); //store
     Route::delete('/hapus-tahun_akademik/{id}', [AdminController::class, 'destroy'])->name('hapus-tahun_akademik'); //destroy
 
+    //PT Unit
+    Route::get('/ptunit', [PTUnitController::class, 'index'])->name('ptunit'); //index
+    Route::get('/tambah-ptunit', [PTUnitController::class, 'create'])->name('tambah-ptunit'); //create
+    Route::post('/simpan-ptunit', [PTUnitController::class, 'store'])->name('simpan-ptunit'); //store
+    Route::delete('/hapus-ptunit/{id}', [PTUnitController::class, 'destroy'])->name('hapus-ptunit'); //destroy
+
+
     //route Calon Mahasiswa Baru
     Route::get('/admin-mahasiswa', [CalonMhsBaruController::class, 'index'])->name('admin-mahasiswa'); //index
     
