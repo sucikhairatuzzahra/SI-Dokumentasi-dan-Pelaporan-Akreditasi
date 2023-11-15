@@ -25,45 +25,33 @@ class CreatePTUnitSeeder extends Seeder
             ],
             [
                 'kode_pt_unit' => 'SPM',
-                'nama_pt_unit' => 'Satuan Penjamin Mutu',
-                'induk_pt_unit' => '1',
-                'id_level_pt_unit' => '4',
-                'id_jenjang_program' => '5'
+                'nama_pt_unit' => 'Satuan Penjamin Mutu'
+                
             ],
             [
                 'kode_pt_unit' => 'JUR.TI',
-                'nama_pt_unit' => 'Jurusan Teknologi Informasi',
-                'induk_pt_unit' => '1',
-                'id_level_pt_unit' => '3',
-                'id_jenjang_program' => '1'
+                'nama_pt_unit' => 'Jurusan Teknologi Informasi'
+                
             ],
             [
                 'kode_pt_unit' => 'D4 TRPL',
-                'nama_pt_unit' => 'D4 teknologi Rekayasa Perangkat Lunak',
-                'induk_pt_unit' => '2',
-                'id_level_pt_unit' => '2',
-                'id_jenjang_program' => '5'
+                'nama_pt_unit' => 'D4 teknologi Rekayasa Perangkat Lunak'
+           
             ],
             [
                 'kode_pt_unit' => 'D3 MI',
-                'nama_pt_unit' => 'D3 Manajemen Informatika',
-                'induk_pt_unit' => '2',
-                'id_level_pt_unit' => '2',
-                'id_jenjang_program' => '4'
+                'nama_pt_unit' => 'D3 Manajemen Informatika'
+               
             ],
             [
                 'kode_pt_unit' => 'AKT',
-                'nama_pt_unit' => 'Akuntansi',
-                'induk_pt_unit' => '0',
-                'id_level_pt_unit' => '3',
-                'id_jenjang_program' => '2'
+                'nama_pt_unit' => 'Akuntansi'
+                
             ],
             [
                 'kode_pt_unit' => 'P3M',
-                'nama_pt_unit' => 'Pusat Penelitian Pengabdian kepada Masyarakt',
-                'induk_pt_unit' => '0',
-                'id_level_pt_unit' => '5',
-                'id_jenjang_program' => '1'
+                'nama_pt_unit' => 'Pusat Penelitian Pengabdian kepada Masyarakt'
+              
             ],
         ];
         foreach ($ptunits as $ptunit) {

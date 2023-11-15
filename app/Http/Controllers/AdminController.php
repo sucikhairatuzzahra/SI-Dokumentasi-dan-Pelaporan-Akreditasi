@@ -14,7 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $data = TahunAkademik::paginate('20');
+        $data = TahunAkademik::all();
         
         return view('admin.page.tahun_akademik.index', compact('data'));
     }

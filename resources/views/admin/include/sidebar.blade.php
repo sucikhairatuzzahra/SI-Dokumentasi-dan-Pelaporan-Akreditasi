@@ -57,7 +57,13 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-
+            <li class="">
+                <a href="{{ route('ptunit') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">PT Unit</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
 
         </ul>
         <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Mahasiswa</div>

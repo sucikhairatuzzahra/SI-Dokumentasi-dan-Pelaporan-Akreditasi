@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PTUnit;
 
 class PTUnitController extends Controller
 {
@@ -13,7 +14,9 @@ class PTUnitController extends Controller
      */
     public function index()
     {
-        //
+        $data = PTUnit::all();
+        
+        return view('admin.page.ptunit.index', compact('data'));
     }
 
     /**
@@ -23,7 +26,12 @@ class PTUnitController extends Controller
      */
     public function create()
     {
-        //
+        return view(
+            'admin.page.ptunit.form',
+            [
+                'url' => 'simpan-ptunit',
+            ]
+        );
     }
 
     /**
@@ -34,7 +42,20 @@ class PTUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = PTUnit::insert([
+            'id' => $request->id,
+            'kode_pt_unit' => $request->kode_pt_unit,
+            'nama_pt_unit' => $request->nama_pt_unit,
+        ]);
+
+        if ($input) {
+            return redirect('ptunit')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+            alert('Data gagal diinput, masukkan kebali data dengan benar');
+            window.location = '/admin.page.ptunit.index';
+            </script>";
+        }
     }
 
     /**
@@ -79,6 +100,9 @@ class PTUnitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dana = PTUnit::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $dana->delete();
+
+        return redirect()->route('ptunit')->with('success', 'Data PT Unit berhasil dihapus');
     }
 }
