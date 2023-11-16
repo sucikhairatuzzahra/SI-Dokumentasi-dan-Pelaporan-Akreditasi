@@ -73,7 +73,7 @@
                                                 Jumlah Mahasiswa Aktif
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                PT_Unit
+                                                PT Unit
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Keterangan

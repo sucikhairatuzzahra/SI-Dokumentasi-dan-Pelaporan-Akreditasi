@@ -75,7 +75,7 @@
                                                 Perangkat Yang Dimiliki
                                             </th>
                                             <th scope="col">
-                                                Id PT_Unit
+                                                PT_Unit
                                             </th>
                                             <th scope="col">
                                                 Aksi

@@ -66,7 +66,7 @@
                                                 Sistem Pengolahan Data Ditangani
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                PT Unit
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Keterangan

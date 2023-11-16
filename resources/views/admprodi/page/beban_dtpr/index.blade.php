@@ -75,7 +75,7 @@
                                                 SKS Manajemen
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT Unit
+                                                PT Unit
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Keterangan

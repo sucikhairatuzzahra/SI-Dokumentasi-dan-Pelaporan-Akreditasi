@@ -75,7 +75,7 @@
                                                 Jumlah PkM bertema INFOKOM yang mendapat HKI
                                             </th>
                                             <th scope="col">
-                                                Id PT_Unit
+                                                PT_Unit
                                             </th>
                                             <th scope="col">
                                                 Keterangan

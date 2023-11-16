@@ -67,7 +67,7 @@
                                                 Rata-rata Waktu Tunggu (Bulan)
                                             </th>
                                             <th scope="col">
-                                                Id PT_Unit
+                                                PT Unit
                                             </th>
                                             <th scope="col">
                                                 Keterangan
