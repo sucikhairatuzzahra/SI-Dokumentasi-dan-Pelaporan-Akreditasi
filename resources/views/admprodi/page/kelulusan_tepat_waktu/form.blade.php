@@ -67,15 +67,13 @@
                                             <input type="text" class="form-control" id="masa_studi" name="masa_studi">
                                         </div>
                                         <div class="form-group">
-                                            <label for="id_pt_unit">PT Unit</label>
-                                            <select name="id_pt_unit" class="form-control">
-                                                <option value="7">P3M</option>
-                                                <option value="6">AKT</option>
-                                                <option value="5">D3 MI</option>
-                                                <option value="4">D4 TRPL</option>
-                                                <option value="3">JUR.TI</option>
-                                                <option value="2">SPM</option>
-                                                <option value="1">PNP</option>
+                                            <label for="kode_pt_unit">PT Unit</label>
+                                            <select name="kode_pt_unit" id="kode_pt_unit" class="form-control">
+                                                @foreach ($ptUnits as $idPtUnit)
+                                                    <option value="{{ $idPtUnit->id }}">
+                                                        {{ $idPtUnit->kode_pt_unit }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>

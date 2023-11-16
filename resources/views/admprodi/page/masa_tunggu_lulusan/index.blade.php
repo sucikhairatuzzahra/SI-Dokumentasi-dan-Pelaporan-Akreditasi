@@ -83,7 +83,7 @@
                                                 <td>{{ $item->jumlah_lulusan }}</td>
                                                 <td>{{ $item->lulusan_terlacak }}</td>
                                                 <td>{{ $item->waktu_tunggu }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
                                                 <td>
 

@@ -87,7 +87,7 @@
                                                 <td>{{ $item->jumlah }}</td>
                                                 <td>{{ $item->bukti }}</td>
                                                 <td>{{ $item->keterangan }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-pendanaan', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

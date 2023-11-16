@@ -124,7 +124,7 @@
                                                     <td>{{ $item->jumlah_lulusan_sampai_ts }}</td>
                                                     <td>{{ $item->masa_studi }}</td>
                                                     <td>{{ $item->jml_mhs_aktif }}</td>
-                                                    <td>{{ $item->id_pt_unit }}</td>
+                                                    <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
                                                     <td>
                                                         <a href="{{ route('edit-kelulusan_tepatwaktu', ['id' => $item->id]) }}"
                                                             style="margin-right: 7px">

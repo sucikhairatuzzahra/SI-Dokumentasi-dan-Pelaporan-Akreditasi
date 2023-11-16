@@ -93,7 +93,7 @@
                                                 <td>{{ $item->penelitian_infokom_hki }}</td>
                                                 <td>{{ $item->pkm_infokom_adobsi }}</td>
                                                 <td>{{ $item->pkm_infokom_hki }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-ppkm_dtpr', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

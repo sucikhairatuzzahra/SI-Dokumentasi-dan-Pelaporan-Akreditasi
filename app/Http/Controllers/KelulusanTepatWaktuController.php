@@ -28,7 +28,7 @@ class KelulusanTepatWaktuController extends Controller
     public function admprodiIndex(Request $request)
     {
         $data = KelulusanTepatWaktu::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();all();
+        $ptUnits = PTUnit::all();
 
         
         foreach ($data as $i => $data1) {

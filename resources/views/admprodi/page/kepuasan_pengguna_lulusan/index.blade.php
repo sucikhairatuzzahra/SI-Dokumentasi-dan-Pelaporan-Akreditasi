@@ -98,7 +98,7 @@
                                                 <td>{{ $item->cukup }}</td>
                                                 <td>{{ $item->kurang }}</td>
                                                 <td>{{ $item->rencana_tindak_lanjut }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-kepuasan_pengguna', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">
