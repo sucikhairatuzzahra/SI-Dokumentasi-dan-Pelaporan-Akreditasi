@@ -30,9 +30,10 @@ class PPKMDariDTPRController extends Controller
     }
     public function kaprodiIndex()
     {
-        $data = PPKMDariDTPR::paginate('20');
+        $data = PPKMDariDTPR::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('kaprodi.page.ppkm_dtpr.index', compact('data'));
+        return view('kaprodi.page.ppkm_dtpr.index', compact('data','ptUnits'));
     }
 
     /**

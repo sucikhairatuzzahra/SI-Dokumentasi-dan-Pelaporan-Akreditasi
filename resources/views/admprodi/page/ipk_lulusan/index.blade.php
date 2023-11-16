@@ -34,7 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Kesesuaian Bidang Kerja Lulusan</h5>
-                            <a href="{{ route('tambah-kerjalulusan') }}">
+                            <a href="{{ route('tambah-ipklulusan') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>
 

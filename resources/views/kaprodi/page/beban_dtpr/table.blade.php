@@ -55,7 +55,7 @@
                 <td>{{ $item->sks_pengabdian }}</td>
                 <td>{{ $item->manajemen_pt_sendiri }}</td>
                 <td>{{ $item->manajemen_pt_lain }}</td>
-                <td>{{ $item->id_pt_unit }}</td>
+                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
             </tr>
         @endforeach

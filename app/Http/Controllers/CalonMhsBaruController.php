@@ -25,9 +25,11 @@ class CalonMhsBaruController extends Controller
     }
     public function kaprodiIndex()
     {
-        $data = Mhsbaru::paginate('20');
+        $data = Mhsbaru::with('tahunAkademik','idPtUnit')->get();
+        $tahunAkademiks = TahunAkademik::all();
+        $ptUnits = PTUnit::all();
 
-        return view('kaprodi.page.mhsbaru.index', compact('data'));
+        return view('kaprodi.page.mhsbaru.index', compact('data','tahunAkademiks','ptUnits'));
     }
     public function admprodiIndex()
     {

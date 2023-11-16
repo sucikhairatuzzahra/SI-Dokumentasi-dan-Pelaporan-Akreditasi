@@ -30,9 +30,10 @@ class BebanDTRPController extends Controller
     }
     public function kaprodiIndex()
     {
-        $data = BebanDTPR::paginate('20');
+        $data = BebanDTPR::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
 
-        return view('kaprodi.page.beban_dtpr.index', compact('data'));
+        return view('kaprodi.page.beban_dtpr.index', compact('data','ptUnits'));
     }
     /**
      * Show the form for creating a new resource.

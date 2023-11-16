@@ -30,9 +30,10 @@ class SaranaPrasaranaController extends Controller
     }
     public function kaprodiIndex()
     {
-        $data = SaranaPrasarana::paginate('20');
+        $data = SaranaPrasarana::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
 
-        return view('kaprodi.page.saranaprasarana.index', compact('data'));
+        return view('kaprodi.page.saranaprasarana.index', compact('data','ptUnits'));
     }
     /**
      * Show the form for creating a new resource.

@@ -23,9 +23,10 @@ class BidangKerjaLulusanController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = BidangKerjaLulusan::paginate('20');
+        $data = BidangKerjaLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admprodi.page.bidang_kerja_lulusan.index', compact('data'));
+        return view('admprodi.page.bidang_kerja_lulusan.index', compact('data','ptUnits'));
     }
 
     public function kaprodiIndex()
@@ -41,10 +42,12 @@ class BidangKerjaLulusanController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.bidang_kerja_lulusan.form',
             [
                 'url' => 'simpan-kerjalulusan',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -67,7 +70,7 @@ class BidangKerjaLulusanController extends Controller
             'internasional' => $request->internasional,
             'nasional' => $request->nasional,
             'wirausaha' => $request->wirausaha,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('kerjalulusan')->with('pesan', 'Data berhasil disimpan');
@@ -121,7 +124,7 @@ class BidangKerjaLulusanController extends Controller
             'internasional' => $request->internasional,
             'nasional' => $request->nasional,
             'wirausaha' => $request->wirausaha,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('kerjalulusan')->with('pesan', 'Data berhasil disimpan');

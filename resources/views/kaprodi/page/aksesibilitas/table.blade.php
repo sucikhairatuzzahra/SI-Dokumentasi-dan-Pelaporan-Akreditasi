@@ -40,7 +40,7 @@
                 <td>{{ $item->tanpa_jrg }}</td>
                 <td>{{ $item->lan }}</td>
                 <td><a href="{{ $item->wan }}">{{ $item->wan }}</a></td>
-                <td>{{ $item->id_pt_unit }}</td>
+                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
             </tr>
         @endforeach

@@ -54,7 +54,6 @@
             <tr align="center">
                 {{-- <td>{{ $no + 1 }}</td>  --}}
                 <td>{{ $item->tahun_masuk }}</td>
-                <td>{{ $item->id_pt_unit }}</td>
                 <td>{{ $item->jml_mhs }}</td>
                 <td>{{ $item->ts_6 }}</td>
                 <td>{{ $item->ts_5 }}</td>
@@ -66,7 +65,7 @@
                 <td>{{ $item->jml_lulusan }}</td>
                 <td>{{ $item->masa_studi }}</td>
                 <td>{{ $item->jml_mhs_aktif }}</td>
-
+                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
             </tr>
         @endforeach
     </tbody>

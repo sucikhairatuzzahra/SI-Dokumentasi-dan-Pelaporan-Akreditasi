@@ -31,9 +31,10 @@ class IPKLulusanController extends Controller
 
     public function kaprodiIndex()
     {
-        $data = IPKLulusan::paginate('20');
+        $data = IPKLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
 
-        return view('kaprodi.page.ipk_lulusan.index', compact('data'));
+        return view('kaprodi.page.ipk_lulusan.index', compact('data','ptUnits'));
     }
     /**
      * Show the form for creating a new resource.

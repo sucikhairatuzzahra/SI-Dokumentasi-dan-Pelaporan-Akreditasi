@@ -32,11 +32,12 @@ class MasaTunguLulusanController extends Controller
     }
     public function kaprodiIndex()
     {
-        $data = MasaTungguLulusan::paginate(20);
+        $data = MasaTungguLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // foreach ($data as $key => $tahun) {
         //     $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
         // }
-        return view('kaprodi.page.masa_tunggu_lulusan.index', compact('data'));
+        return view('kaprodi.page.masa_tunggu_lulusan.index', compact('data','ptUnits'));
     }
 
     /**

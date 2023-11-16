@@ -38,9 +38,10 @@ class KepuasanPenggunaLulusanController extends Controller
     }
     public function kaprodiIndex()
     {
-        $data = KepuasanPenggunaLulusan::paginate('20');
+        $data = KepuasanPenggunaLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
 
-        return view('kaprodi.page.kepuasan_pengguna_lulusan.index', compact('data'));
+        return view('kaprodi.page.kepuasan_pengguna_lulusan.index', compact('data','ptUnits'));
     }
     /**
      * Show the form for creating a new resource.

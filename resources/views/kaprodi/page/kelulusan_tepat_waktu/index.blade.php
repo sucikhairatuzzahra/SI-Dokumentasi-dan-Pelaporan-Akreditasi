@@ -58,10 +58,10 @@
                                                 Tahun Masuk
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                Jumlah Mahasiswa Diterima
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Jumlah Mahasiswa Diterima
+                                                Tahun Lulus
                                             </th>
                                             <th scope="col" colspan="7">
                                                 Jumlah Mahasiswa Yang Lulus Pada
@@ -74,6 +74,9 @@
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Jumlah Mhs, Yang Masih Aktif
+                                            </th>
+                                            <th scope="col" rowspan="2">
+                                                PT Unit
                                             </th>
 
                                         </tr>
@@ -102,26 +105,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @if ($data)
+                                            @foreach ($data as $no => $item)
+                                                <tr align="center">
+                                                    {{-- <td>{{ $no + 1 }}</td>  --}}
+                                                    <td>{{ $item->tahun_masuk }}</td>
+                                                    <td>{{ $item->jml_mhs }}</td>
+                                                    <td>{{ $item->tahun_lulus }}</td>
+                                                    {{-- <td>{{ $item->jml_lulusan }}</td> --}}
+                                                    <td>{{ $item->akhir_ts_6 }}</td>
+                                                    <td>{{ $item->akhir_ts_5 }}</td>
+                                                    <td>{{ $item->akhir_ts_4 }}</td>
+                                                    <td>{{ $item->akhir_ts_3 }}</td>
+                                                    <td>{{ $item->akhir_ts_2 }}</td>
+                                                    <td>{{ $item->akhir_ts_1 }}</td>
+                                                    <td>{{ $item->akhir_ts }}</td>
+                                                    <td>{{ $item->jumlah_lulusan_sampai_ts }}</td>
+                                                    <td>{{ $item->masa_studi }}</td>
+                                                    <td>{{ $item->jml_mhs_aktif }}</td>
+                                                    <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
-                                        @foreach ($data as $no => $item)
-                                            <tr align="center">
-                                                {{-- <td>{{ $no + 1 }}</td>  --}}
-                                                <td>{{ $item->tahun_masuk }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
-                                                <td>{{ $item->jml_mhs }}</td>
-                                                <td>{{ $item->ts_6 }}</td>
-                                                <td>{{ $item->ts_5 }}</td>
-                                                <td>{{ $item->ts_4 }}</td>
-                                                <td>{{ $item->ts_3 }}</td>
-                                                <td>{{ $item->ts_2 }}</td>
-                                                <td>{{ $item->ts_1 }}</td>
-                                                <td>{{ $item->ts }}</td>
-                                                <td>{{ $item->jml_lulusan }}</td>
-                                                <td>{{ $item->masa_studi }}</td>
-                                                <td>{{ $item->jml_mhs_aktif }}</td>
-
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="12">Data tidak ditemukan</td>
                                             </tr>
-                                        @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

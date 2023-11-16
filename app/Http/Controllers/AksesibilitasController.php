@@ -18,9 +18,10 @@ class AksesibilitasController extends Controller
      */
     public function index()
     {
-        $data = Aksesibilitas::paginate('20');
+        $data = Aksesibilitas::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admin.page.aksesibilitas.index', compact('data'));
+        return view('admin.page.aksesibilitas.index', compact('data','ptUnits'));
     }
     public function admprodiIndex()
     {
@@ -31,9 +32,10 @@ class AksesibilitasController extends Controller
     }
     public function kaprodiIndex()
     {
-        $data = Aksesibilitas::paginate('20');
+        $data = Aksesibilitas::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
 
-        return view('kaprodi.page.aksesibilitas.index', compact('data'));
+        return view('kaprodi.page.aksesibilitas.index', compact('data','ptUnits'));
     }
     /**
      * Show the form for creating a new resource.

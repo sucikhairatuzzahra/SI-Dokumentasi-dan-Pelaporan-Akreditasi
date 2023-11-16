@@ -48,7 +48,6 @@
             <tr align="center">
                 {{-- <td>{{ $no + 1 }}</td> --}}
                 <td>{{ $item->thn_akademik }}</td>
-                <td>{{ $item->id_pt_unit }}</td>
                 <td>{{ $item->daya_tampung }}</td>
                 <td>{{ $item->pendaftar }}</td>
                 <td>{{ $item->lulus_seleksi }}</td>
@@ -56,7 +55,7 @@
                 <td>{{ $item->maba_transfer }}</td>
                 <td>{{ $item->mhs_aktif_reguler }}</td>
                 <td>{{ $item->mhs_aktif_transfer }}</td>
-
+                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
             </tr>
         @endforeach
     </tbody>

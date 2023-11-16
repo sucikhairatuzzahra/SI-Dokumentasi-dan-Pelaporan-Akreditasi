@@ -30,9 +30,10 @@ class PendanaanController extends Controller
     }
     public function kaprodiIndex()
     {
-        $data = Pendanaan::paginate('20');
+        $data = Pendanaan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
 
-        return view('kaprodi.page.pendanaan.index', compact('data'));
+        return view('kaprodi.page.pendanaan.index', compact('data','ptUnits'));
     }
     /**
      * Show the form for creating a new resource.

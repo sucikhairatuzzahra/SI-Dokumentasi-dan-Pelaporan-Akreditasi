@@ -49,7 +49,7 @@
                 <td>{{ $item->internasional }}</td>
                 <td>{{ $item->nasional }}</td>
                 <td>{{ $item->wirausaha }}</td>
-                <td>{{ $item->id_pt_unit }}</td>
+                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
             </tr>
         @endforeach

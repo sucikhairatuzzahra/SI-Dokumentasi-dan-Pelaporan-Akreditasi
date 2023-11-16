@@ -67,7 +67,7 @@
                                                 Indeks Prestasi Kumulatif
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                PT Unit
                                             </th>
 
 
@@ -94,7 +94,7 @@
                                                 <td>{{ $item->ipk_min }}</td>
                                                 <td>{{ $item->ipk_rata_rata }}</td>
                                                 <td>{{ $item->ipk_max }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach

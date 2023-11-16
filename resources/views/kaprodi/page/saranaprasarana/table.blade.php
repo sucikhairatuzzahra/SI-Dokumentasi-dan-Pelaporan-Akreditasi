@@ -41,7 +41,7 @@
                 <td>{{ $item->jml_mhs }}</td>
                 <td>{{ $item->jam_lyn }}</td>
                 <td>{{ $item->perangkat }}</td>
-                <td>{{ $item->id_pt_unit }}</td>
+                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
             </tr>
         @endforeach
