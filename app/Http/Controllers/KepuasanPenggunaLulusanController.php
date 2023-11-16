@@ -6,6 +6,7 @@ use App\Exports\KepuasanPenggunaLulusanExport;
 use App\Models\KepuasanPenggunaLulusan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\PTUnit;
 
 class KepuasanPenggunaLulusanController extends Controller
 {

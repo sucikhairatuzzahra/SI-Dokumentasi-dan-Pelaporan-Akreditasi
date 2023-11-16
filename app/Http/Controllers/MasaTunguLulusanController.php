@@ -8,6 +8,7 @@ use App\Models\MasaTungguLulusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\PTUnit;
 
 class MasaTunguLulusanController extends Controller
 {

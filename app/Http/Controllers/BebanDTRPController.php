@@ -6,6 +6,7 @@ use App\Exports\BebanDTPRExport;
 use App\Models\BebanDTPR;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\PTUnit;
 
 class BebanDTRPController extends Controller
 {

@@ -6,6 +6,7 @@ use App\Exports\BidangKerjaLulusanExport;
 use App\Models\BidangKerjaLulusan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\PTUnit;
 
 class BidangKerjaLulusanController extends Controller
 {
