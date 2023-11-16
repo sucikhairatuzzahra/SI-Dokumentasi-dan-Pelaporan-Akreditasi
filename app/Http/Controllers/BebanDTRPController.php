@@ -22,9 +22,10 @@ class BebanDTRPController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = BebanDTPR::paginate('20');
+        $data = BebanDTPR::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admprodi.page.beban_dtpr.index', compact('data'));
+        return view('admprodi.page.beban_dtpr.index', compact('data','ptUnits'));
     }
     public function kaprodiIndex()
     {
@@ -39,10 +40,12 @@ class BebanDTRPController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.beban_dtpr.form',
             [
                 'url' => 'simpan-bebandtpr',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -66,7 +69,7 @@ class BebanDTRPController extends Controller
             'sks_pengabdian' => $request->sks_pengabdian,
             'manajemen_pt_sendiri' => $request->manajemen_pt_sendiri,
             'manajemen_pt_lain' => $request->manajemen_pt_lain,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('bebandtpr')->with('pesan', 'Data berhasil disimpan');
@@ -120,7 +123,7 @@ class BebanDTRPController extends Controller
             'sks_pengabdian' => $request->sks_pengabdian,
             'manajemen_pt_sendiri' => $request->manajemen_pt_sendiri,
             'manajemen_pt_lain' => $request->manajemen_pt_lain,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('bebandtpr')->with('pesan', 'Data berhasil disimpan');

@@ -12,13 +12,9 @@ class IPKLulusan extends Model
     protected $table = "ipk_lulusan";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'tahun_lulus', 'jumlah_lulusan', 'ipk_min', 'ipk_rata_rata', 'ipk_max', 'id_pt_unit'
+        'tahun_lulus', 'jumlah_lulusan', 'ipk_min', 'ipk_rata_rata', 'ipk_max', 'pt_unit'
     ];
-
-    protected function id_pt_unit (): CastsAttribute
-    {
-        return new CastsAttribute(
-            get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
-        );
+    public function idPtUnit(){
+        return $this->belongsTo(PTUnit::class, 'pt_unit');
     }
 }

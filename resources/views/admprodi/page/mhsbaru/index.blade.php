@@ -73,7 +73,7 @@
                                                 Jumlah Mahasiswa Aktif
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                PT_Unit
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Keterangan
@@ -113,7 +113,7 @@
                                                 <td>{{ $item->maba_transfer }}</td>
                                                 <td>{{ $item->mhs_aktif_reguler }}</td>
                                                 <td>{{ $item->mhs_aktif_transfer }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-cmb', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

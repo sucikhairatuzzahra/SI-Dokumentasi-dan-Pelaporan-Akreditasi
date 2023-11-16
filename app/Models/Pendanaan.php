@@ -12,12 +12,10 @@ class Pendanaan extends Model
     protected $table = "pendanaan";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'sumber_dana', 'jumlah', 'bukti', 'keterangan','id_pt_unit'
+        'sumber_dana', 'jumlah', 'bukti', 'keterangan','pt_unit'
     ];
-    protected function id_pt_unit (): CastsAttribute
-    {
-        return new CastsAttribute(
-            get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
-        );
+  
+    public function idPtUnit(){
+        return $this->belongsTo(PTUnit::class, 'pt_unit');
     }
 }

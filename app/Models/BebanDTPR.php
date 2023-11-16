@@ -13,13 +13,11 @@ class BebanDTPR extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'nama_dosen', 'pgjrn_ps_sendiri', 'pgjrn_ps_lain_pt_sendiri', 'pgjrn_pt_lain', 'sks_penelitian',
-        'sks_penelitian', 'manajemen_pt_sendiri', 'manajemen_pt_lain','id_pt_unit'
+        'sks_penelitian', 'manajemen_pt_sendiri', 'manajemen_pt_lain','pt_unit'
     ];
 
-    protected function id_pt_unit (): CastsAttribute
+    public function idPtUnit()
     {
-        return new CastsAttribute(
-            get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
-        );
+        return $this->belongsTo(PTUnit::class, 'pt_unit');
     }
 }

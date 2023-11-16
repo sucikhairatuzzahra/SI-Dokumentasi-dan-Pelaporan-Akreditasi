@@ -12,13 +12,17 @@ class Aksesibilitas extends Model
     protected $table = "aksesibilitas";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'jenis_data', 'secara_manual', 'tanpa_jrg', 'lan', 'wan', 'id_pt_unit'
+        'jenis_data', 'secara_manual', 'tanpa_jrg', 'lan', 'wan', 'pt_unit'
     ];
 
-    protected function id_pt_unit (): CastsAttribute
-    {
-        return new CastsAttribute(
-            get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
-        );
+    public function idPtUnit(){
+        return $this->belongsTo(PTUnit::class, 'pt_unit');
     }
+    
+    // protected function id_pt_unit (): CastsAttribute
+    // {
+    //     return new CastsAttribute(
+    //         get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
+    //     );
+    // }
 }

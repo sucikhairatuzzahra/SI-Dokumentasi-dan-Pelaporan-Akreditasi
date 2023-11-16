@@ -97,7 +97,7 @@
                                                 <td>{{ $item->tanpa_jrg }}</td>
                                                 <td>{{ $item->lan }}</td>
                                                 <td><a href="{{ $item->wan }}">{{ $item->wan }}</a></td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-aksesibilitas', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

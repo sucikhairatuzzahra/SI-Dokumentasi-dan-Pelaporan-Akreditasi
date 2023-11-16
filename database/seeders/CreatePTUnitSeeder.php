@@ -17,37 +17,37 @@ class CreatePTUnitSeeder extends Seeder
     {
         $ptunits = [
             [
-                'id' => 'PNP',
+                'kode_pt_unit' => 'PNP',
                 'nama_pt_unit' => 'Politeknik Negeri Padang'
                
             ],
             [
-                'id' => 'SPM',
+                'kode_pt_unit' => 'SPM',
                 'nama_pt_unit' => 'Satuan Penjamin Mutu'
                 
             ],
             [
-                'id' => 'JUR.TI',
+                'kode_pt_unit' => 'JUR.TI',
                 'nama_pt_unit' => 'Jurusan Teknologi Informasi'
                 
             ],
             [
-                'id' => 'D4 TRPL',
+                'kode_pt_unit' => 'D4 TRPL',
                 'nama_pt_unit' => 'D4 teknologi Rekayasa Perangkat Lunak'
            
             ],
             [
-                'id' => 'D3 MI',
+                'kode_pt_unit' => 'D3 MI',
                 'nama_pt_unit' => 'D3 Manajemen Informatika'
                
             ],
             [
-                'id' => 'AKT',
+                'kode_pt_unit' => 'AKT',
                 'nama_pt_unit' => 'Akuntansi'
                 
             ],
             [
-                'id' => 'P3M',
+                'kode_pt_unit' => 'P3M',
                 'nama_pt_unit' => 'Pusat Penelitian Pengabdian kepada Masyarakt'
               
             ],

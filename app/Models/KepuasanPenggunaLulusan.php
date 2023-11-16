@@ -12,12 +12,11 @@ class KepuasanPenggunaLulusan extends Model
     protected $table = "kepuasan_pengguna_lulusan";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'jenis_kemampuan', 'sangat_baik', 'baik', 'cukup', 'kurang', 'rencana_tindak_lanjut','id_pt_unit'
+        'jenis_kemampuan', 'sangat_baik', 'baik', 'cukup', 'kurang', 'rencana_tindak_lanjut','pt_unit'
     ];
-    protected function id_pt_unit (): CastsAttribute
-    {
-        return new CastsAttribute(
-            get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
-        );
+   
+    
+    public function idPtUnit(){
+        return $this->belongsTo(PTUnit::class, 'pt_unit');
     }
 }

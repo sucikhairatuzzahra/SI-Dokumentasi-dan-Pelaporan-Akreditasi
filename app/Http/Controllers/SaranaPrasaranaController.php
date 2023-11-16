@@ -22,9 +22,10 @@ class SaranaPrasaranaController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = SaranaPrasarana::paginate('20');
+        $data = SaranaPrasarana::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
 
-        return view('admprodi.page.saranaprasarana.index', compact('data'));
+        return view('admprodi.page.saranaprasarana.index', compact('data','ptUnits'));
     }
     public function kaprodiIndex()
     {
@@ -39,10 +40,12 @@ class SaranaPrasaranaController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.saranaprasarana.form',
             [
                 'url' => 'simpan-sarana',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -63,7 +66,7 @@ class SaranaPrasaranaController extends Controller
             'jml_mhs' => $request->jml_mhs,
             'jam_lyn' => $request->jam_lyn,
             'perangkat' => $request->perangkat,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
 
         ]);
         if ($input) {
@@ -116,7 +119,7 @@ class SaranaPrasaranaController extends Controller
             'jml_mhs' => $request->jml_mhs,
             'jam_lyn' => $request->jam_lyn,
             'perangkat' => $request->perangkat,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('sarana')->with('pesan', 'Data berhasil disimpan');

@@ -22,9 +22,10 @@ class IPKLulusanController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = IPKLulusan::paginate('20');
+        $data = IPKLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admprodi.page.ipk_lulusan.index', compact('data'));
+        return view('admprodi.page.ipk_lulusan.index', compact('data','ptUnits'));
     }
 
     public function kaprodiIndex()
@@ -40,10 +41,12 @@ class IPKLulusanController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.ipk_lulusan.form',
             [
                 'url' => 'simpan-ipklulusan',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -63,7 +66,7 @@ class IPKLulusanController extends Controller
             'ipk_min' => $request->ipk_min,
             'ipk_rata_rata' => $request->ipk_rata_rata,
             'ipk_max' => $request->ipk_max,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('ipklulusan')->with('pesan', 'Data berhasil disimpan');
@@ -114,7 +117,7 @@ class IPKLulusanController extends Controller
             'ipk_min' => $request->ipk_min,
             'ipk_rata_rata' => $request->ipk_rata_rata,
             'ipk_max' => $request->ipk_max,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
 
         ]);
         if ($update) {

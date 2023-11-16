@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('cukup');
             $table->integer('kurang');
             $table->string('rencana_tindak_lanjut');
-            $table->integer('id_pt_unit');
+            $table->string('pt_unit');
             $table->timestamps();
         });
     }

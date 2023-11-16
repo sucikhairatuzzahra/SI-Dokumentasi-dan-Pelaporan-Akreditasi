@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('penelitian_infokom_hki');
             $table->integer('pkm_infokom_adobsi');
             $table->integer('pkm_infokom_hki');
-            $table->integer('id_pt_unit'); 
+            $table->string('pt_unit');
             $table->timestamps();
         });
     }

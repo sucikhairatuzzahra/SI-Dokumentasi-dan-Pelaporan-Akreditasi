@@ -24,12 +24,10 @@ class MasaTunguLulusanController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = MasaTungguLulusan::paginate(20);
-        // foreach ($data as $key => $tahun) {
-        //     $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
-        // }
-
-        return view('admprodi.page.masa_tunggu_lulusan.index', compact('data'));
+        $data = MasaTungguLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
+     
+        return view('admprodi.page.masa_tunggu_lulusan.index', compact('data','ptUnits'));
     }
     public function kaprodiIndex()
     {
@@ -47,10 +45,12 @@ class MasaTunguLulusanController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.masa_tunggu_lulusan.form',
             [
                 'url' => 'simpan-masatunggu',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -69,7 +69,7 @@ class MasaTunguLulusanController extends Controller
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('masatunggu')->with('pesan', 'Data berhasil disimpan');
@@ -121,7 +121,7 @@ class MasaTunguLulusanController extends Controller
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('masatunggu')->with('pesan', 'Data berhasil disimpan');

@@ -119,7 +119,7 @@
                                                 <td>{{ $item['jenjang_counts']['sma'] ?? 0 ? count($item['jenjang_counts']['sma']) : 0 }}
                                                 </td>
                                                 <td>{{ $item['unit_kerja'] }}</td>
-                                                <td>{{ $item['pt_unit'] }}</td>
+                                                <td>{{ $item['idPtUnit']['kode_pt_unit'] }}</td>
 
 
                                                 <td>

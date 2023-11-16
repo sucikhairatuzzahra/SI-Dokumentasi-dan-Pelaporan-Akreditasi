@@ -47,37 +47,37 @@
                                             <input type="text" class="form-control" id="thn_akademik"
                                                 name="thn_akademik">
                                         </div> --}}
-                                        <div class="row">
-                                            <div class="form-group col-6">
-                                                <label for="thn_akademik">Tahun Akademik</label>
-                                                <select name="tahun_akademik" id="tahun_akademik" class="form-control">
-                                                    @foreach ($tahunAkademiks as $tahunAkademik)
-                                                        <option value="{{ $tahunAkademik->id }}" {{-- {{ $data->thn_akademik == $tahunAkademik->id ? 'selected' : '' }} --}}>
-                                                            {{ $tahunAkademik->tahun_akademik }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-6">
-                                                <label for="daya_tampung">Daya Tampung</label>
-                                                <input type="text" class="form-control" id="daya_tampung"
-                                                    name="daya_tampung">
-                                            </div>
-                                            <div class="form-group col-6">
-                                                <label for="pendaftar">Pendaftar</label>
-                                                <input type="text" class="form-control" id="pendaftar" name="pendaftar">
-                                            </div>
-                                            <div class="form-group col-6">
-                                                <label for="lulus_seleksi">Lulus Seleksi</label>
-                                                <input type="text" class="form-control" id="lulus_seleksi"
-                                                name="lulus_seleksi">
-                                            </div>
-                                            <div class="form-group col-6">
-                                                <label for="maba_reguler">Mahasiswa Baru Reguler</label>
-                                                <input type="text" class="form-control" id="maba_reguler"
-                                                name="maba_reguler">
-                                            </div>
+
+                                        <div class="form-group">
+                                            <label for="thn_akademik">Tahun Akademik</label>
+                                            <select name="tahun_akademik" id="tahun_akademik" class="form-control">
+                                                @foreach ($tahunAkademiks as $tahunAkademik)
+                                                    <option value="{{ $tahunAkademik->id }}" {{-- {{ $data->thn_akademik == $tahunAkademik->id ? 'selected' : '' }} --}}>
+                                                        {{ $tahunAkademik->tahun_akademik }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="daya_tampung">Daya Tampung</label>
+                                            <input type="text" class="form-control" id="daya_tampung"
+                                                name="daya_tampung">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pendaftar">Pendaftar</label>
+                                            <input type="text" class="form-control" id="pendaftar" name="pendaftar">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lulus_seleksi">Lulus Seleksi</label>
+                                            <input type="text" class="form-control" id="lulus_seleksi"
+                                                name="lulus_seleksi">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="maba_reguler">Mahasiswa Baru Reguler</label>
+                                            <input type="text" class="form-control" id="maba_reguler"
+                                                name="maba_reguler">
+                                        </div>
+
                                         <div class="form-group">
                                             <label for="maba_transfer">Mahasiswa Baru Transfer</label>
                                             <input type="text" class="form-control" id="maba_transfer"
@@ -94,21 +94,20 @@
                                                 name="mhs_aktif_transfer">
                                         </div>
                                         <div class="form-group">
-                                            <label for="id_pt_unit">PT Unit</label>
-                                            <select name="id_pt_unit" class="form-control">
-                                                <option value="7">P3M</option>
-                                                <option value="6">AKT</option>
-                                                <option value="5">D3 MI</option>
-                                                <option value="4">D4 TRPL</option>
-                                                <option value="3">JUR.TI</option>
-                                                <option value="2">SPM</option>
-                                                <option value="1">PNP</option>
+                                            <label for="pt_unit">PT Unit</label>
+                                            <select name="kode_pt_unit" id="kode_pt_unit" class="form-control">
+                                                @foreach ($ptUnits as $idPtUnit)
+                                                    <option value="{{ $idPtUnit->id }}">
+                                                        {{ $idPtUnit->kode_pt_unit }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                     </form>
                                 </div>
+
 
                             </div>
                         </div>

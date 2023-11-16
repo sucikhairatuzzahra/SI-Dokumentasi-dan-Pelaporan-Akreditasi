@@ -30,9 +30,10 @@ class KepuasanPenggunaLulusanController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = KepuasanPenggunaLulusan::paginate('20');
+        $data = KepuasanPenggunaLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admprodi.page.kepuasan_pengguna_lulusan.index', compact('data'));
+        return view('admprodi.page.kepuasan_pengguna_lulusan.index', compact('data','ptUnits'));
     }
     public function kaprodiIndex()
     {
@@ -47,10 +48,12 @@ class KepuasanPenggunaLulusanController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.kepuasan_pengguna_lulusan.form',
             [
                 'url' => 'simpan-kepuasan_pengguna',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -71,7 +74,7 @@ class KepuasanPenggunaLulusanController extends Controller
             'cukup' => $request->cukup,
             'kurang' => $request->kurang,
             'rencana_tindak_lanjut' => $request->rencana_tindak_lanjut,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('kepuasan_pengguna')->with('pesan', 'Data berhasil disimpan');
@@ -123,7 +126,7 @@ class KepuasanPenggunaLulusanController extends Controller
             'cukup' => $request->cukup,
             'kurang' => $request->kurang,
             'rencana_tindak_lanjut' => $request->rencana_tindak_lanjut,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('kepuasan_pengguna')->with('pesan', 'Data berhasil disimpan');

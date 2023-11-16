@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('jml_mhs');
             $table->string('jam_lyn');
             $table->text('perangkat');
-            $table->integer('id_pt_unit');
+            $table->string('pt_unit');
             $table->timestamps();
         });
     }

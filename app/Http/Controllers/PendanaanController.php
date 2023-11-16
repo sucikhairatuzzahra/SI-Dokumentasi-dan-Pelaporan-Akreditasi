@@ -22,9 +22,10 @@ class PendanaanController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = Pendanaan::paginate('20');
+        $data = Pendanaan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admprodi.page.pendanaan.index', compact('data'));
+        return view('admprodi.page.pendanaan.index', compact('data','ptUnits'));
     }
     public function kaprodiIndex()
     {
@@ -39,10 +40,12 @@ class PendanaanController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.pendanaan.form',
             [
                 'url' => 'simpan-pendanaan',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -61,7 +64,7 @@ class PendanaanController extends Controller
             'jumlah' => $request->jumlah,
             'bukti' => $request->bukti,
             'keterangan' => $request->keterangan,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
 
         ]);
 
@@ -113,7 +116,7 @@ class PendanaanController extends Controller
             'jumlah' => $request->jumlah,
             'bukti' => $request->bukti,
             'keterangan' => $request->keterangan,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('pendanaan')->with('pesan', 'Data berhasil disimpan');

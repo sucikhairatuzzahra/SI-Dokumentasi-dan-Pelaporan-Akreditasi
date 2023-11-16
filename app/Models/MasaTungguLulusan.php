@@ -13,12 +13,9 @@ class MasaTungguLulusan extends Model
     protected $table = "masa_tunggu_lulusan";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'tahun_lulus', 'waktu_tunggu', 'id_pt_unit'
+        'tahun_lulus', 'waktu_tunggu', 'pt_unit'
     ];
-    protected function id_pt_unit (): CastsAttribute
-    {
-        return new CastsAttribute(
-            get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
-        );
+    public function idPtUnit(){
+        return $this->belongsTo(PTUnit::class, 'pt_unit');
     }
 }

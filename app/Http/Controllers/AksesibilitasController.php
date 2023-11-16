@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\AksesibilitasExport;
 use App\Models\Aksesibilitas;
+use App\Models\PTUnit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -23,9 +24,10 @@ class AksesibilitasController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = Aksesibilitas::paginate('20');
+        $data = Aksesibilitas::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admprodi.page.aksesibilitas.index', compact('data'));
+        return view('admprodi.page.aksesibilitas.index', compact('data','ptUnits'));
     }
     public function kaprodiIndex()
     {
@@ -40,10 +42,12 @@ class AksesibilitasController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.aksesibilitas.form',
             [
                 'url' => 'simpan-aksesibilitas',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -63,7 +67,7 @@ class AksesibilitasController extends Controller
             'tanpa_jrg' => $request->tanpa_jrg,
             'lan' => $request->lan,
             'wan' => $request->wan,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
 
         ]);
         if ($input) {

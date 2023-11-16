@@ -22,9 +22,10 @@ class PPKMDariDTPRController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = PPKMDariDTPR::paginate('20');
+        $data = PPKMDariDTPR::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admprodi.page.ppkm_dtpr.index', compact('data'));
+        return view('admprodi.page.ppkm_dtpr.index', compact('data','ptUnits'));
     }
     public function kaprodiIndex()
     {
@@ -40,10 +41,12 @@ class PPKMDariDTPRController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.ppkm_dtpr.form',
             [
                 'url' => 'simpan-kependidikan',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -64,7 +67,7 @@ class PPKMDariDTPRController extends Controller
             'penelitian_infokom_hki' => $request->penelitian_infokom_hki,
             'pkm_infokom_adobsi' => $request->pkm_infokom_adobsi,
             'pkm_infokom_hki' => $request->pkm_infokom_hki,
-            'id_pt_unit' => $request->id_pt_unit,
+               'pt_unit' => $request->kode_pt_unit,
 
         ]);
         if ($input) {
@@ -117,7 +120,7 @@ class PPKMDariDTPRController extends Controller
             'penelitian_infokom_hki' => $request->penelitian_infokom_hki,
             'pkm_infokom_adobsi' => $request->pkm_infokom_adobsi,
             'pkm_infokom_hki' => $request->pkm_infokom_hki,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('ppkm_dtpr')->with('pesan', 'Data berhasil disimpan');

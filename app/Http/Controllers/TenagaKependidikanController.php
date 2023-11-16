@@ -7,6 +7,7 @@ use App\Models\TenagaKependidikan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
+use App\Models\PTUnit;
 
 class TenagaKependidikanController extends Controller
 {
@@ -25,8 +26,8 @@ class TenagaKependidikanController extends Controller
     public function admprodiIndex()
     {
         // $data = TenagaKependidikan::all();
-        $tenaga_kependidikan = TenagaKependidikan::all();
-
+        $tenaga_kependidikan = TenagaKependidikan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         $data = [];
         $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
         foreach ($tenaga_kependidikan->groupBy('id_pt_unit', 'unit_kerja', 'jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
@@ -35,7 +36,7 @@ class TenagaKependidikanController extends Controller
                 'id' => $value->first()->id,
                 'jenis_tenaga_kependidikan' => $value->first()->jenis_tenaga_kependidikan,
                 'nama' => $value->first()->nama,
-                'id_pt_unit' => $value->first()->id_pt_unit,
+                'pt_unit' => $value->first()->kode_pt_unit,
                 'unit_kerja' => $value->first()->unit_kerja,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
                 'jenjang_counts' => $value->groupBy('jenjang_pendidikan')->each(function ($item, $key) use (&$jenjangCounts) {
@@ -44,7 +45,7 @@ class TenagaKependidikanController extends Controller
             ];
         }
         // dd(TenagaKependidikan::groupBy('id_pt_unit', 'unit_kerja', 'jenis_tenaga_kependidikan', 'jenjang_pendidikan')->get());
-        return view('admprodi.page.kependidikan.index', compact('data'));
+        return view('admprodi.page.kependidikan.index', compact('data','ptUnits'));
     }
     public function kaprodiIndex()
     {
@@ -59,10 +60,12 @@ class TenagaKependidikanController extends Controller
      */
     public function create()
     {
+        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.kependidikan.form',
             [
                 'url' => 'simpan-kependidikan',
+                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -81,7 +84,7 @@ class TenagaKependidikanController extends Controller
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('kependidikan')->with('pesan', 'Data berhasil disimpan');
@@ -131,7 +134,7 @@ class TenagaKependidikanController extends Controller
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
-            'id_pt_unit' => $request->id_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
 
         ]);
         if ($update) {
@@ -154,7 +157,7 @@ class TenagaKependidikanController extends Controller
     {
         $kpddkn = TenagaKependidikan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kpddkn->delete();
-        return redirect()->route('sarana')->with('success', 'Data Kualifikasi Tenaga Kependidikan berhasil dihapus');
+        return redirect()->route('kependidikan')->with('success', 'Data Kualifikasi Tenaga Kependidikan berhasil dihapus');
     }
 
     public function download()
@@ -165,7 +168,7 @@ class TenagaKependidikanController extends Controller
     public function byPtUnit($ptunitid)
     {
         $where = [
-            'id_pt_unit' => $ptunitid, // D4 TRPL
+            'pt_unit' => $ptunitid, // D4 TRPL
         ];
         $data = TenagaKependidikan::where($where)->get();
         dd($data);
@@ -173,19 +176,4 @@ class TenagaKependidikanController extends Controller
     }
 }
 
-// foreach ($tenaga_kependidikan->groupBy('jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
-//     if ($value->has($key[0])) {
-//         $data[$key] = [
-//             'jenis_tenaga_kependidikan' => $key[0],
-//             'nama' => $value->firstOrFail()->nama,
-//             'unit_kerja' => $value->first()->unit_kerja,
-//             'sma_smk' => $value->pluck('jenjang_pendidikan')->contains('SMA/SMK') ? $value->count() : 0,
-//             'd1' => $value->pluck('jenjang_pendidikan')->contains('D1') ? $value->count() : 0,
-//             'd2' => $value->pluck('jenjang_pendidikan')->contains('D2') ? $value->count() : 0,
-//             'd3' => $value->pluck('jenjang_pendidikan')->contains('D3') ? $value->count() : 0,
-//             's1' => $value->pluck('jenjang_pendidikan')->contains('S1') ? $value->count() : 0,
-//             's2' => $value->pluck('jenjang_pendidikan')->contains('S2') ? $value->count() : 0,
-//             's3' => $value->pluck('jenjang_pendidikan')->contains('S3') ? $value->count() : 0,
-//         ];
-//     }
-// } wait
+
