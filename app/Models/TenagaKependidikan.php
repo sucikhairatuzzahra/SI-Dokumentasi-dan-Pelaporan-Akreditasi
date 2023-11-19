@@ -27,5 +27,6 @@ class TenagaKependidikan extends Model
     {
         return $this->belongsTo(PTUnit::class, 'pt_unit');
     }
-    
+ 
 }
+    

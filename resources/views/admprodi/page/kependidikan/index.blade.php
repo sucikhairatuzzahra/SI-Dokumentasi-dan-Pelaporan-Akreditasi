@@ -101,6 +101,7 @@
 
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
+
                                                 <td>{{ $item['jenis_tenaga_kependidikan'] }}</td>
                                                 <td>{{ $item['jenjang_counts']['s3'] ?? 0 ? count($item['jenjang_counts']['s3']) : 0 }}
                                                 </td>
@@ -119,15 +120,16 @@
                                                 <td>{{ $item['jenjang_counts']['sma'] ?? 0 ? count($item['jenjang_counts']['sma']) : 0 }}
                                                 </td>
                                                 <td>{{ $item['unit_kerja'] }}</td>
-                                                <td>{{ $item['idPtUnit']['kode_pt_unit'] }}</td>
+                                                {{-- <td>{{ $item['pt_unit'] }}</td> --}}
+                                                <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td>
 
 
                                                 <td>
 
-                                                    <a href="{{ route('kependidikanbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
+                                                    {{-- <a href="{{ route('kependidikanbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
                                                         style="margin-right: 7px">
                                                         Lihat
-                                                    </a>
+                                                    </a> --}}
 
                                                     {{-- <a href="{{ route('edit-kependidikan', ['id' => $item['id']]) }}"
                                                         style="margin-right: 7px">

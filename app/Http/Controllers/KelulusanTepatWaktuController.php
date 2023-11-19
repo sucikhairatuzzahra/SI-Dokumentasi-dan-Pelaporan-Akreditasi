@@ -30,7 +30,7 @@ class KelulusanTepatWaktuController extends Controller
         $data = KelulusanTepatWaktu::with('idPtUnit')->get();
         $ptUnits = PTUnit::all();
 
-        
+    
         foreach ($data as $i => $data1) {
             // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]
             $akhir_ts = KelulusanTepatWaktu::where('pt_unit', $data1['pt_unit'])
@@ -86,13 +86,14 @@ class KelulusanTepatWaktuController extends Controller
             }
         
         }
-
+        dd($data);
         return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data','ptUnits'));
 
     }
     public function kaprodiIndex()
     {
         $data = KelulusanTepatWaktu::with('idPtUnit')->get();
+       
         $ptUnits = PTUnit::all();
 
         foreach ($data as $i => $data1) {
@@ -150,7 +151,7 @@ class KelulusanTepatWaktuController extends Controller
             }
         
         }
-
+      
         return view('kaprodi.page.kelulusan_tepat_waktu.index', compact('data','ptUnits'));
     }
     /**

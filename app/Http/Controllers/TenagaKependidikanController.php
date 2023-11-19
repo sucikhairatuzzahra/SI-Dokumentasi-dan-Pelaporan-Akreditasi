@@ -25,27 +25,37 @@ class TenagaKependidikanController extends Controller
     }
     public function admprodiIndex()
     {
-        // $data = TenagaKependidikan::all();
+       
         $tenaga_kependidikan = TenagaKependidikan::with('idPtUnit')->get();
+
+        // dd($tenaga_kependidikan2);
+
         $ptUnits = PTUnit::all();
         $data = [];
         $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
-        foreach ($tenaga_kependidikan->groupBy('id_pt_unit', 'unit_kerja', 'jenis_tenaga_kependidikan', 'jenjang_pendidikan') as $key => $value) {
+        foreach ($tenaga_kependidikan->groupBy('jenis_tenaga_kependidikan','pt_unit','jenjang_pendidikan') as $key => $value) {
+            dd($value);
             $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
+            $idPtUnit = PTUnit::where('id',$value->first()->pt_unit)->get();
             $data[$key] = [
+                'idPtunit' => $idPtUnit,
                 'id' => $value->first()->id,
+                // 'jenis_tenaga_kependidikan' => $value->first()->jenis_tenaga_kependidikan,
                 'jenis_tenaga_kependidikan' => $value->first()->jenis_tenaga_kependidikan,
                 'nama' => $value->first()->nama,
-                'pt_unit' => $value->first()->kode_pt_unit,
+                'pt_unit' => $value->first()->pt_unit,
                 'unit_kerja' => $value->first()->unit_kerja,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
                 'jenjang_counts' => $value->groupBy('jenjang_pendidikan')->each(function ($item, $key) use (&$jenjangCounts) {
-                 $jenjangCounts[$key] = $item->count();  // ko yo ndk paham abg , baris iko, wkwkwk
+                 $jenjangCounts[$key] = $item->count();
+                 
             })
             ];
         }
-        // dd(TenagaKependidikan::groupBy('id_pt_unit', 'unit_kerja', 'jenis_tenaga_kependidikan', 'jenjang_pendidikan')->get());
-        return view('admprodi.page.kependidikan.index', compact('data','ptUnits'));
+
+
+        // dd($data);
+        return view('admprodi.page.kependidikan.index', compact('data','ptUnits','tenaga_kependidikan'));
     }
     public function kaprodiIndex()
     {
