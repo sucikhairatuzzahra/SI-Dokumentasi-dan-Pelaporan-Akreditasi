@@ -26,35 +26,38 @@ class TenagaKependidikanController extends Controller
     public function admprodiIndex()
     {
        
-        $tenaga_kependidikan = TenagaKependidikan::with('idPtUnit')->get();
-
-        // dd($tenaga_kependidikan2);
+        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')
+        ->orderBy('jenis_tenaga_kependidikan')->get();
+        $tenaga_kependidikan2 = TenagaKependidikan::all();
+        // dd($tenaga_kependidikan);
 
         $ptUnits = PTUnit::all();
         $data = [];
         $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
-        foreach ($tenaga_kependidikan->groupBy('jenis_tenaga_kependidikan','pt_unit','jenjang_pendidikan') as $key => $value) {
-            dd($value);
+        foreach ($tenaga_kependidikan as $key => $value) {
+           
             $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
-            $idPtUnit = PTUnit::where('id',$value->first()->pt_unit)->get();
+            $idPtUnit = PTUnit::where('id',$value->pt_unit)->get();
             $data[$key] = [
                 'idPtunit' => $idPtUnit,
-                'id' => $value->first()->id,
-                // 'jenis_tenaga_kependidikan' => $value->first()->jenis_tenaga_kependidikan,
-                'jenis_tenaga_kependidikan' => $value->first()->jenis_tenaga_kependidikan,
-                'nama' => $value->first()->nama,
-                'pt_unit' => $value->first()->pt_unit,
-                'unit_kerja' => $value->first()->unit_kerja,
+                'id' => $value->id,
+                // 'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
+                'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
+                'nama' => $value->nama,
+                'pt_unit' => $value->pt_unit,
+                'unit_kerja' => $value->unit_kerja,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
-                'jenjang_counts' => $value->groupBy('jenjang_pendidikan')->each(function ($item, $key) use (&$jenjangCounts) {
-                 $jenjangCounts[$key] = $item->count();
+                'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan',$value->jenis_tenaga_kependidikan)
+                ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
+                 $jenjangCounts[$keyjp] = $item->count();
                  
             })
             ];
+            
         }
 
-
         // dd($data);
+        // dd($data,$tenaga_kependidikan);
         return view('admprodi.page.kependidikan.index', compact('data','ptUnits','tenaga_kependidikan'));
     }
     public function kaprodiIndex()
