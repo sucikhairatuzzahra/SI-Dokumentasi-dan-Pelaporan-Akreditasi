@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('jurusan.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Kelulusan Tepat Waktu</h5>
-                        <p class="m-b-0">Data Kelulusan Tepat Waktu</p>
+                        <h5 class="m-b-10">Indeks Prestasi Kumulatif Lulusan</h5>
+                        <p class="m-b-0">Data Bidang Kerja Lulusan</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Kelulusan Tepat Waktu</a>
+                        <li class="breadcrumb-item"><a href="#!">Indeks Prestasi Kumulatif Lulusan</a>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Kelulusan Tepat Waktu</h5>
+                            <h5>Indeks Prestasi Kumulatif Lulusan</h5>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -48,56 +48,39 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 {{-- <div class="row">
-                                    <a href="{{ route('kelulusan_tepatwaktu-download') }}">
+                                    <a href="{{ route('ipklulusan-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
-                                        <tr align="center">
+                                        <tr style="text-align-last: center">
                                             <th scope="col" rowspan="2">
-                                                Tahun Masuk
-                                            </th>
-                                            <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                No
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Jumlah Mahasiswa Diterima
-                                            </th>
-                                            <th scope="col" colspan="7">
-                                                Jumlah Mahasiswa Yang Lulus Pada
+                                                Tahun Lulus
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Jumlah Lulusan s.d Akhir TS
+                                                Jumlah Lulusan
+                                            </th>
+                                            <th scope="col" colspan="3">
+                                                Indeks Prestasi Kumulatif
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Rata-rata Masa Studi
+                                                PT Unit
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Jumlah Mhs, Yang Masih Aktif
-                                            </th>
+
 
                                         </tr>
                                         <tr align="center">
                                             <th>
-                                                Akhir TS-6
+                                                Min
                                             </th>
                                             <th>
-                                                Akhir TS-5
+                                                Rata-Rata
                                             </th>
                                             <th>
-                                                Akhir TS-4
-                                            </th>
-                                            <th>
-                                                Akhir TS-3
-                                            </th>
-                                            <th>
-                                                Akhir TS-2
-                                            </th>
-                                            <th>
-                                                Akhir TS-1
-                                            </th>
-                                            <th>
-                                                Akhir TS
+                                                Max
                                             </th>
                                         </tr>
                                     </thead>
@@ -105,24 +88,18 @@
 
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
-                                                {{-- <td>{{ $no + 1 }}</td>  --}}
-                                                <td>{{ $item->tahun_masuk }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
-                                                <td>{{ $item->jml_mhs }}</td>
-                                                <td>{{ $item->ts_6 }}</td>
-                                                <td>{{ $item->ts_5 }}</td>
-                                                <td>{{ $item->ts_4 }}</td>
-                                                <td>{{ $item->ts_3 }}</td>
-                                                <td>{{ $item->ts_2 }}</td>
-                                                <td>{{ $item->ts_1 }}</td>
-                                                <td>{{ $item->ts }}</td>
-                                                <td>{{ $item->jml_lulusan }}</td>
-                                                <td>{{ $item->masa_studi }}</td>
-                                                <td>{{ $item->jml_mhs_aktif }}</td>
+                                                <td>{{ $no + 1 }}</td>
+                                                <td>{{ $item->tahun_lulus }}</td>
+                                                <td>{{ $item->jumlah_lulusan }}</td>
+                                                <td>{{ $item->ipk_min }}</td>
+                                                <td>{{ $item->ipk_rata_rata }}</td>
+                                                <td>{{ $item->ipk_max }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

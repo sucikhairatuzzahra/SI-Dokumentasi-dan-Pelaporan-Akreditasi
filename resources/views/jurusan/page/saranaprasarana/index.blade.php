@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('jurusan.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                        <p class="m-b-0">Data Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</p>
+                        <h5 class="m-b-10">Pendayagunaan Sarana dan Prasarana Utama</h5>
+                        <p class="m-b-0">Data Pendayagunaan Sarana dan Prasarana Utama</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">PPKM DTPR</a>
+                        <li class="breadcrumb-item"><a href="#!">Pendayagunaan Sarana dan Prasarana Utama</a>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
+                            <h5>Pendayagunaan Sarana dan Prasarana Utama</h5>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -48,7 +48,7 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 {{-- <div class="row">
-                                    <a href="{{ route('ppkm_dtpr-download') }}">
+                                    <a href="{{ route('saranaprasarana-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div> --}}
                                 <table class="table table-bordered">
@@ -58,22 +58,22 @@
                                                 No
                                             </th>
                                             <th scope="col">
-                                                Nama DTPRs
+                                                Sarana/ Prasarana
                                             </th>
                                             <th scope="col">
-                                                Jumlah Publikasi bertema INFOKOM
+                                                Daya Tampung
                                             </th>
                                             <th scope="col">
-                                                Jumlah Penelitian bertema INFOKOM
+                                                Luas Ruang (m2)
                                             </th>
                                             <th scope="col">
-                                                Jumlah penelitian bertema INFOKOM yang mendapat HKI Pengabdian Pada Masy
+                                                Jumlah Mhs Yang Dilayani
                                             </th>
                                             <th scope="col">
-                                                Jumlah PkM bertema INFOKOM yang diadopsi masyarakat
+                                                Jam Layanan
                                             </th>
                                             <th scope="col">
-                                                Jumlah PkM bertema INFOKOM yang mendapat HKI
+                                                Perangkat Yang Dimiliki
                                             </th>
                                             <th scope="col">
                                                 Id PT_Unit
@@ -82,21 +82,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        <?php $no = 1;
+                                        // dd($data);
+                                        ?>
                                         @foreach ($data as $no => $item)
-                                            <tr align="center">
+                                            <tr>
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->nama_dtpr }}</td>
-                                                <td>{{ $item->publikasi_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom_hki }}</td>
-                                                <td>{{ $item->pkm_infokom_adobsi }}</td>
-                                                <td>{{ $item->pkm_infokom_hki }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->sarana }}</td>
+                                                <td>{{ $item->daya_tampung }}</td>
+                                                <td>{{ $item->luas_ruang }}</td>
+                                                <td>{{ $item->jml_mhs }}</td>
+                                                <td>{{ $item->jam_lyn }}</td>
+                                                <td>{{ $item->perangkat }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

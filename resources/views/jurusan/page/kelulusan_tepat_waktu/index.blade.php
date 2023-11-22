@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('jurusan.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,18 +6,17 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Mahasiswa</h5>
-                        <p class="m-b-0">Data Mahasiswa</p>
+                        <h5 class="m-b-10">Kelulusan Tepat Waktu</h5>
+                        <p class="m-b-0">Data Kelulusan Tepat Waktu</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <ul class="breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="#"> <i class="fa fa-home"></i> </a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#!">Mahasiswa</a>
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
+                        <li class="breadcrumb-item"><a href="#!">Kelulusan Tepat Waktu</a>
                         </li>
                     </ul>
                 </div>
@@ -34,7 +33,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Jumlah Calon Mahasiswa</h5>
+                            <h5>Kelulusan Tepat Waktu</h5>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -42,57 +41,63 @@
                                     <li><i class="fa fa-window-maximize full-card"></i></li>
                                     <li><i class="fa fa-minus minimize-card"></i></li>
                                     <li><i class="fa fa-refresh reload-card"></i></li>
-                                    <li><i class="fa fa-trash close-card"></i></li>
+
                                 </ul>
                             </div>
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 {{-- <div class="row">
-                                    <a href="{{ route('mahasiswa-download') }}">
+                                    <a href="{{ route('kelulusan_tepatwaktu-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr align="center">
                                             <th scope="col" rowspan="2">
-                                                Tahun Akademik
+                                                Tahun Masuk
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                Jumlah Mahasiswa Diterima
+                                            </th>
+                                            <th scope="col" colspan="7">
+                                                Jumlah Mahasiswa Yang Lulus Pada
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Daya Tampung
+                                                Jumlah Lulusan s.d Akhir TS
                                             </th>
-                                            <th scope="col" colspan="2">
-                                                Jumlah Calon Mahasiswa
+                                            <th scope="col" rowspan="2">
+                                                Rata-rata Masa Studi
                                             </th>
-                                            <th scope="col" colspan="2">
-                                                Jumlah Mahasiswa Baru
+                                            <th scope="col" rowspan="2">
+                                                Jumlah Mhs, Yang Masih Aktif
                                             </th>
-                                            <th scope="col" colspan="2">
-                                                Jumlah Mahasiswa Aktif
+                                            <th scope="col" rowspan="2">
+                                                PT Unit
                                             </th>
 
                                         </tr>
                                         <tr align="center">
                                             <th>
-                                                Pendaftar
+                                                Akhir TS-6
                                             </th>
                                             <th>
-                                                Lulus Seleksi
+                                                Akhir TS-5
                                             </th>
                                             <th>
-                                                Reguler
+                                                Akhir TS-4
                                             </th>
                                             <th>
-                                                Transfer
+                                                Akhir TS-3
                                             </th>
                                             <th>
-                                                Reguler
+                                                Akhir TS-2
                                             </th>
                                             <th>
-                                                Transfer
+                                                Akhir TS-1
+                                            </th>
+                                            <th>
+                                                Akhir TS
                                             </th>
                                         </tr>
                                     </thead>
@@ -100,21 +105,24 @@
 
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
-                                                {{-- <td>{{ $no + 1 }}</td> --}}
-                                                <td>{{ $item->thn_akademik }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
-                                                <td>{{ $item->daya_tampung }}</td>
-                                                <td>{{ $item->pendaftar }}</td>
-                                                <td>{{ $item->lulus_seleksi }}</td>
-                                                <td>{{ $item->maba_reguler }}</td>
-                                                <td>{{ $item->maba_transfer }}</td>
-                                                <td>{{ $item->mhs_aktif_reguler }}</td>
-                                                <td>{{ $item->mhs_aktif_transfer }}</td>
+                                                <td>{{ $item->tahun_masuk }}</td>
+                                                <td>{{ $item->jml_mhs }}</td>
+                                                <td>{{ $item->tahun_lulus }}</td>
+                                                <td>{{ $item->akhir_ts_6 }}</td>
+                                                <td>{{ $item->akhir_ts_5 }}</td>
+                                                <td>{{ $item->akhir_ts_4 }}</td>
+                                                <td>{{ $item->akhir_ts_3 }}</td>
+                                                <td>{{ $item->akhir_ts_2 }}</td>
+                                                <td>{{ $item->akhir_ts_1 }}</td>
+                                                <td>{{ $item->akhir_ts }}</td>
+                                                <td>{{ $item->jumlah_lulusan_sampai_ts }}</td>
+                                                <td>{{ $item->masa_studi }}</td>
+                                                <td>{{ $item->jml_mhs_aktif }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>

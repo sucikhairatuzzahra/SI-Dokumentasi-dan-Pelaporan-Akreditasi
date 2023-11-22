@@ -15,11 +15,12 @@ class BidangKerjaLulusanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //index  untuk jurusan
     public function index()
     {
-        $data = BidangKerjaLulusan::paginate('20');
-        // dd($data);
-        return view('admin.page.bidang_kerja_lulusan.index', compact('data'));
+        $data = BidangKerjaLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
+        return view('jurusan.page.bidang_kerja_lulusan.index', compact('data','ptUnits'));
     }
     public function admprodiIndex()
     {

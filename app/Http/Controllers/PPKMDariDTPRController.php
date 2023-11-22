@@ -17,9 +17,9 @@ class PPKMDariDTPRController extends Controller
      */
     public function index()
     {
-        $data = PPKMDariDTPR::paginate('20');
-        // dd($data);
-        return view('admin.page.ppkm_dtpr.index', compact('data'));
+        $data = PPKMDariDTPR::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
+        return view('jurusan.page.ppkm_dtpr.index', compact('data','ptUnits'));
     }
     public function admprodiIndex()
     {

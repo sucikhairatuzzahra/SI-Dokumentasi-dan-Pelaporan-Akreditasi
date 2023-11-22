@@ -17,9 +17,10 @@ class IPKLulusanController extends Controller
      */
     public function index()
     {
-        $data = IPKLulusan::paginate('20');
+        $data = IPKLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admin.page.ipk_lulusan.index', compact('data'));
+        return view('jurusan.page.ipk_lulusan.index', compact('data','ptUnits'));
     }
     public function admprodiIndex()
     {

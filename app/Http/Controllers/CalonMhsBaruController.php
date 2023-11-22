@@ -17,10 +17,11 @@ class CalonMhsBaruController extends Controller
 
     public function index()
     {
-        $data = Mhsbaru::paginate('20');
-        // dd($data);
+        $data = Mhsbaru::with('tahunAkademik','idPtUnit')->get();
+        $tahunAkademiks = TahunAkademik::all();
+        $ptUnits = PTUnit::all();
 
-        return view('admin.page.mhsbaru.index', compact('data'));
+        return view('jurusan.page.mhsbaru.index', compact('data'));
         
     }
     public function kaprodiIndex()

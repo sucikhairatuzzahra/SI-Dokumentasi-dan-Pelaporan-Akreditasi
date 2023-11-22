@@ -21,7 +21,7 @@ class AksesibilitasController extends Controller
         $data = Aksesibilitas::with('idPtUnit')->get();
         $ptUnits = PTUnit::all();
         // dd($data);
-        return view('admin.page.aksesibilitas.index', compact('data','ptUnits'));
+        return view('jurusan.page.aksesibilitas.index', compact('data','ptUnits'));
     }
     public function admprodiIndex()
     {

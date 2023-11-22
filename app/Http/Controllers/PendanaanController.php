@@ -17,9 +17,9 @@ class PendanaanController extends Controller
      */
     public function index()
     {
-        $data = Pendanaan::paginate('20');
-        // dd($data);
-        return view('admin.page.pendanaan.index', compact('data'));
+        $data = Pendanaan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
+        return view('jurusan.page.pendanaan.index', compact('data','ptUnits'));
     }
     public function admprodiIndex()
     {

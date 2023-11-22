@@ -19,9 +19,10 @@ class MasaTunguLulusanController extends Controller
      */
     public function index()
     {
-        $data = MasaTungguLulusan::paginate(20);
+        $data = MasaTungguLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
         
-        return view('admin.page.masa_tunggu_lulusan.index', compact('data'));
+        return view('jurusan.page.masa_tunggu_lulusan.index', compact('data','ptUnits'));
     }
     public function admprodiIndex()
     {

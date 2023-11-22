@@ -108,12 +108,10 @@
                                     <tbody>
                                         @if ($data)
                                             @foreach ($data as $no => $item)
-                                                <tr align="center">
-                                                    {{-- <td>{{ $no + 1 }}</td>  --}}
+                                                <tr align="center">            
                                                     <td>{{ $item->tahun_masuk }}</td>
                                                     <td>{{ $item->jml_mhs }}</td>
                                                     <td>{{ $item->tahun_lulus }}</td>
-                                                    {{-- <td>{{ $item->jml_lulusan }}</td> --}}
                                                     <td>{{ $item->akhir_ts_6 }}</td>
                                                     <td>{{ $item->akhir_ts_5 }}</td>
                                                     <td>{{ $item->akhir_ts_4 }}</td>

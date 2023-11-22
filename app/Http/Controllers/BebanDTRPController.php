@@ -17,9 +17,9 @@ class BebanDTRPController extends Controller
      */
     public function index()
     {
-        $data = BebanDTPR::paginate('20');
-        // dd($data);
-        return view('admin.page.beban_dtpr.index', compact('data'));
+        $data = BebanDTPR::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
+        return view('jurusan.page.beban_dtpr.index', compact('data','ptUnits'));
     }
     public function admprodiIndex()
     {

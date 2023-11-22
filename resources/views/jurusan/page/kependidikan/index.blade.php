@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('jurusan.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Aksesibilitas Data Dalam Sistem Informasi</h5>
-                        <p class="m-b-0">Data Aksesibilitas</p>
+                        <h5 class="m-b-10">Kualifikasi Tenaga Kependidikan</h5>
+                        <p class="m-b-0">Data Kualifikasi Tenaga Kependidikan</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -15,8 +15,9 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
-
-                        <li class="breadcrumb-item"><a href="#!">Aksesibilitas</a>
+                        <li class="breadcrumb-item"><a href="#!">Sumber Daya Manusia</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Kualifikasi Tenaga Kependidikan</a>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +34,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Aksesibilitas Data Dalam Sistem Informasi</h5>
+                            <h5>Kualifikasi Tenaga Kependidikan</h5>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -48,56 +49,78 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 {{-- <div class="row">
-                                    <a href="{{ route('aksesibilitas-download') }}">
+                                    <a href="{{ route('kependidikan-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
                                             <th scope="col" rowspan="2">
-                                                No
+                                                Jenis Tenaga Kependidikan
+                                            </th>
+                                            <th scope="col" colspan="8">
+                                                Jumlah Tenaga Kependidikan
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Jenis Data
-                                            </th>
-                                            <th scope="col" colspan="4">
-                                                Sistem Pengolahan Data Ditangani
-                                            </th>
-                                            <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                Unit Kerja
                                             </th>
 
                                         </tr>
                                         <tr align="center">
                                             <th>
-                                                Secara Manual
+                                                S3
                                             </th>
                                             <th>
-                                                Dengan Komputer Tanpa Jaringan
+                                                S2
                                             </th>
                                             <th>
-                                                Dengan Komputer Serta Dapat Diakses Melalui Jaringan Lokal (LAN)
+                                                S1
                                             </th>
                                             <th>
-                                                Dengan Komputer Serta Dapat Diakses Melalui jaringan Luas (WAN)
+                                                D4
+                                            </th>
+                                            <th>
+                                                D3
+                                            </th>
+                                            <th>
+                                                D2
+                                            </th>
+                                            <th>
+                                                D1
+                                            </th>
+                                            <th>
+                                                SMA/SMK
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         @foreach ($data as $no => $item)
-                                            <tr>
-                                                <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->jenis_data }}</td>
-                                                <td>{{ $item->secara_manual }}</td>
-                                                <td>{{ $item->tanpa_jrg }}</td>
-                                                <td>{{ $item->lan }}</td>
-                                                <td><a href="{{ $item->wan }}">{{ $item->wan }}</a></td>
-                                                <td>{{ $item->id_pt_unit }}</td>
-
+                                            <tr align="center">
+                                                <td>{{ $item['jenis_tenaga_kependidikan'] }}</td>
+                                                <td>{{ $item['jenjang_counts']['s3'] ?? 0 ? count($item['jenjang_counts']['s3']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['s2'] ?? 0 ? count($item['jenjang_counts']['s2']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['s1'] ?? 0 ? count($item['jenjang_counts']['s1']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['d4'] ?? 0 ? count($item['jenjang_counts']['d4']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['d3'] ?? 0 ? count($item['jenjang_counts']['d3']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['d2'] ?? 0 ? count($item['jenjang_counts']['d2']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['d1'] ?? 0 ? count($item['jenjang_counts']['d1']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['jenjang_counts']['sma'] ?? 0 ? count($item['jenjang_counts']['sma']) : 0 }}
+                                                </td>
+                                                <td>{{ $item['unit_kerja'] }}</td>
+                                                {{-- <td>{{ $item['pt_unit'] }}</td> --}}
+                                                <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

@@ -19,6 +19,7 @@ use App\Http\Controllers\TenagaKependidikanController;
 use App\Http\Controllers\JumlahTenagaKependidikanController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PTUnitController;
+use App\Http\Controllers\DosenController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -52,52 +53,43 @@ Route::middleware(['auth', 'user-role:jurusan'])->group(function () {
     Route::get('/home', [HomeController::class, 'jurusanHome'])->name('home');
 
     //route Calon Mahasiswa Baru
-    Route::get('/kaprodi-mahasiswa', [CalonMhsBaruController::class, 'kaprodiIndex'])->name('kaprodi-mahasiswa'); //index
-    
+    Route::get('/jurusan-mahasiswa', [CalonMhsBaruController::class, 'index'])->name('jurusan-mahasiswa'); //index
+        
     //Aksesibilitas
-    Route::get('/kaprodi-aksesibilitas', [AksesibilitasController::class, 'kaprodiIndex'])->name('kaprodi-aksesibilitas'); //index
-    Route::get('/aksesibilitas-download', [AksesibilitasController::class, 'download'])->name('aksesibilitas-download');
+    Route::get('/jurusan-aksesibilitas', [AksesibilitasController::class, 'index'])->name('jurusan-aksesibilitas'); //index
 
     //Pendanaan
-    Route::get('/kaprodi-sumberdana', [PendanaanController::class, 'kaprodiIndex'])->name('kaprodi-sumberdana'); //index
-    Route::get('/sumberdana-download', [PendanaanController::class, 'download'])->name('sumberdana-download');
+    Route::get('/jurusan-sumberdana', [PendanaanController::class, 'index'])->name('jurusan-sumberdana'); //index
 
     //Sarana Prasaranaki
-    Route::get('/kaprodi-saranaprasarana', [SaranaPrasaranaController::class, 'kaprodiIndex'])->name('kaprodi-saranaprasarana'); //index
-    Route::get('/saranaprasarana-download', [SaranaPrasaranaController::class, 'download'])->name('saranaprasarana-download');
+    Route::get('/jurusan-saranaprasarana', [SaranaPrasaranaController::class, 'index'])->name('jurusan-saranaprasarana'); //index
 
     //Tenaga Kependidikan
-    Route::get('/kaprodi-kependidikan', [TenagaKependidikanController::class, 'kaprodiIndex'])->name('kaprodi-kependidikan'); //index
-    Route::get('/kependidikan-download', [TenagaKependidikanController::class, 'download'])->name('kependidikan-download');
+    Route::get('/jurusan-kependidikan', [TenagaKependidikanController::class, 'index'])->name('jurusan-kependidikan'); //index
 
     //IPK Lulusan
-    Route::get('/kaprodi-ipklulusan', [IPKLulusanController::class, 'kaprodiIndex'])->name('kaprodi-ipklulusan'); //index
-    Route::get('/ipklulusan-download', [IPKLulusanController::class, 'download'])->name('ipklulusan-download');
+    Route::get('/jurusan-ipklulusan', [IPKLulusanController::class, 'index'])->name('jurusan-ipklulusan'); //index
 
     //Masa Tunggu Lulusan Bekerja
-    Route::get('/kaprodi-masatunggu', [MasaTunguLulusanController::class, 'kaprodiIndex'])->name('kaprodi-masatunggu'); //index
-    Route::get('/masatunggu-download', [MasaTunguLulusanController::class, 'download'])->name('masatunggu-download');
+    Route::get('/jurusan-masatunggu', [MasaTunguLulusanController::class, 'index'])->name('jurusan-masatunggu'); //index
 
     //Kesesuaian bidang kerja lulusan 
-    Route::get('/kaprodi-kerjalulusan', [BidangKerjaLulusanController::class, 'kaprodiIndex'])->name('kaprodi-kerjalulusan'); //index
-    Route::get('/kerjalulusan-download', [BidangKerjaLulusanController::class, 'download'])->name('kerjalulusan-download');
+    Route::get('/jurusan-kerjalulusan', [BidangKerjaLulusanController::class, 'index'])->name('jurusan-kerjalulusan'); //index
 
     //Rata-Rata Beban DTPR Per Semester
-    Route::get('/kaprodi-bebandtpr', [BebanDTRPController::class, 'kaprodiIndex'])->name('kaprodi-bebandtpr'); //index
-    Route::get('/bebandtpr-download', [BebanDTRPController::class, 'download'])->name('bebandtpr-download');
+    Route::get('/jurusan-bebandtpr', [BebanDTRPController::class, 'index'])->name('jurusan-bebandtpr'); //index
 
     //Kepuasan Pengguna Lulusan
-    Route::get('/kaprodi-kepuasan_pengguna', [KepuasanPenggunaLulusanController::class, 'kaprodiIndex'])->name('kaprodi-kepuasan_pengguna'); //index
-    Route::get('/kepuasan_pengguna-download', [KepuasanPenggunaLulusanController::class, 'download'])->name('kepuasan_pengguna-download');
+    Route::get('/jurusan-kepuasan_pengguna', [KepuasanPenggunaLulusanController::class, 'index'])->name('jurusan-kepuasan_pengguna'); //index
 
     //Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR
-    Route::get('/kaprodi-ppkm_dtpr', [PPKMDariDTPRController::class, 'kaprodiIndex'])->name('kaprodi-ppkm_dtpr'); //index
-    Route::get('/ppkm_dtpr-download', [PPKMDariDTPRController::class, 'download'])->name('ppkm_dtpr-download');
+    Route::get('/jurusan-ppkm_dtpr', [PPKMDariDTPRController::class, 'index'])->name('jurusan-ppkm_dtpr'); //index
 
     //Kelulusan Tepat Waktu
-    Route::get('/kaprodi-kelulusan_tepatwaktu', [KelulusanTepatWaktuController::class, 'kaprodiIndex'])->name('kaprodi-kelulusan_tepatwaktu'); //index
-    Route::get('/kelulusan_tepatwaktu-download', [KelulusanTepatWaktuController::class, 'download'])->name('kelulusan_tepatwaktu-download');
+    Route::get('/jurusan-kelulusan_tepatwaktu', [KelulusanTepatWaktuController::class, 'index'])->name('jurusan-kelulusan_tepatwaktu'); //index
 
+
+   
 });
 // Kaprodi Route
 Route::middleware(['auth', 'user-role:kaprodi'])->group(function () {
@@ -176,6 +168,12 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::get('/tambah-ptunit', [PTUnitController::class, 'create'])->name('tambah-ptunit'); //create
     Route::post('/simpan-ptunit', [PTUnitController::class, 'store'])->name('simpan-ptunit'); //store
     Route::delete('/hapus-ptunit/{id}', [PTUnitController::class, 'destroy'])->name('hapus-ptunit'); //destroy
+
+    //dosen
+    Route::get('/dosen', [DosenController::class, 'index'])->name('dosen'); //index
+    Route::get('/tambah-dosen', [DosenController::class, 'create'])->name('tambah-dosen'); //create
+    Route::post('/simpan-dosen', [DosenController::class, 'store'])->name('simpan-dosen'); //store
+    Route::delete('/hapus-dosen/{id}', [DosenController::class, 'destroy'])->name('hapus-dosen'); //destroy
 
 
     //route Calon Mahasiswa Baru

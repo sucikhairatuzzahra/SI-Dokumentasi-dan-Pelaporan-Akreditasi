@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('jurusan.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Kepuasan Pengguna Lulusan</h5>
-                        <p class="m-b-0">Data Kepuasan Pengguna Lulusan</p>
+                        <h5 class="m-b-10">Rata-rata beban DTPR per semester, pada TS</h5>
+                        <p class="m-b-0">Data Rata-rata beban DTPR</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Kepuasan Pengguna Lulusan</a>
+                        <li class="breadcrumb-item"><a href="#!">Rata-rata beban DTPR</a>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Kepuasan Pengguna Lulusan</h5>
+                            <h5>Rata-rata beban DTPR</h5>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -48,41 +48,50 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 {{-- <div class="row">
-                                    <a href="{{ route('kepuasan_pengguna-download') }}">
+                                    <a href="{{ route('bebandtpr-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div> --}}
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" style="align-content: center">
                                     <thead>
-                                        <tr style="text-align-last: center">
+                                        <tr>
                                             <th scope="col" rowspan="2">
                                                 No
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Jenis Kemampuan
+                                                Nama Dosen
                                             </th>
-                                            <th scope="col" colspan="4">
-                                                Tingkat Kepuasan Pengguna (%)
-                                            </th>
-                                            <th scope="col" rowspan="2">
-                                                Rencana Tindak Lanjut Oleh UPPS/PS
+                                            <th scope="col" colspan="3" style="align-content: center">
+                                                SKS Pengajaran Pada
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                SKS Penelitian
+                                            </th>
+                                            <th scope="col" rowspan="2">
+                                                SKS Pengabdian Pada Masy
+                                            </th>
+                                            <th scope="col" colspan="2">
+                                                SKS Manajemen
+                                            </th>
+                                            <th scope="col" rowspan="2">
+                                                PT Unit
                                             </th>
 
                                         </tr>
-                                        <tr align="center">
+                                        <tr>
                                             <th>
-                                                Sangat Baik
+                                                PS Sendiri
                                             </th>
                                             <th>
-                                                Baik
+                                                PS Lain, PT Sendiri
                                             </th>
                                             <th>
-                                                Cukup
+                                                PT Lain
                                             </th>
                                             <th>
-                                                Kurang
+                                                PT Sendiri
+                                            </th>
+                                            <th>
+                                                PT Lain
                                             </th>
                                         </tr>
                                     </thead>
@@ -91,13 +100,15 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->jenis_kemampuan }}</td>
-                                                <td>{{ $item->sangat_baik }}</td>
-                                                <td>{{ $item->baik }}</td>
-                                                <td>{{ $item->cukup }}</td>
-                                                <td>{{ $item->kurang }}</td>
-                                                <td>{{ $item->rencana_tindak_lanjut }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->nama_dosen }}</td>
+                                                <td>{{ $item->pgjrn_ps_sendiri }}</td>
+                                                <td>{{ $item->pgjrn_ps_lain_pt_sendiri }}</td>
+                                                <td>{{ $item->pgjrn_pt_lain }}</td>
+                                                <td>{{ $item->sks_penelitian }}</td>
+                                                <td>{{ $item->sks_pengabdian }}</td>
+                                                <td>{{ $item->manajemen_pt_sendiri }}</td>
+                                                <td>{{ $item->manajemen_pt_lain }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach

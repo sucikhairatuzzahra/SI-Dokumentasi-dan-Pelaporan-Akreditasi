@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('jurusan.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Pendayagunaan Sarana dan Prasarana Utama</h5>
-                        <p class="m-b-0">Data Pendayagunaan Sarana dan Prasarana Utama</p>
+                        <h5 class="m-b-10">Kesesuaian Bidang Kerja Lulusan</h5>
+                        <p class="m-b-0">Data Bidang Kerja Lulusan</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Pendayagunaan Sarana dan Prasarana Utama</a>
+                        <li class="breadcrumb-item"><a href="#!">Kesesuaian Bidang Kerja Lulusan</a>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Pendayagunaan Sarana dan Prasarana Utama</h5>
+                            <h5>Kesesuaian Bidang Kerja Lulusan</h5>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -48,58 +48,64 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 {{-- <div class="row">
-                                    <a href="{{ route('saranaprasarana-download') }}">
+                                    <a href="{{ route('kerjalulusan-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
-                                            <th scope="col">
-                                                No
+                                            <th scope="col" rowspan="2">
+                                                Tahun Lulus
                                             </th>
-                                            <th scope="col">
-                                                Sarana/ Prasarana
+                                            <th scope="col" rowspan="2">
+                                                Jumlah Lulusan
                                             </th>
-                                            <th scope="col">
-                                                Daya Tampung
+                                            <th scope="col" rowspan="2">
+                                                Jumlah Lulusan Yang Terlacak
                                             </th>
-                                            <th scope="col">
-                                                Luas Ruang (m2)
+                                            <th scope="col" rowspan="2">
+                                                Jumlah Kerja Bidang Infokom
                                             </th>
-                                            <th scope="col">
-                                                Jumlah Mhs Yang Dilayani
+                                            <th scope="col" rowspan="2">
+                                                Jumlah Kerja Bidang Non Infokom
                                             </th>
-                                            <th scope="col">
-                                                Jam Layanan
+                                            <th scope="col" colspan="3">
+                                                Lingkup Tempat Kerja
                                             </th>
-                                            <th scope="col">
-                                                Perangkat Yang Dimiliki
-                                            </th>
-                                            <th scope="col">
+                                            <th scope="col" rowspan="2">
                                                 Id PT_Unit
                                             </th>
 
                                         </tr>
+                                        <tr align="center">
+                                            <th>
+                                                Internasional
+                                            </th>
+                                            <th>
+                                                Nasional
+                                            </th>
+                                            <th>
+                                                Wirausaha
+                                            </th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $no = 1;
-                                        // dd($data);
-                                        ?>
+
                                         @foreach ($data as $no => $item)
-                                            <tr>
-                                                <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->sarana }}</td>
-                                                <td>{{ $item->daya_tampung }}</td>
-                                                <td>{{ $item->luas_ruang }}</td>
-                                                <td>{{ $item->jml_mhs }}</td>
-                                                <td>{{ $item->jam_lyn }}</td>
-                                                <td>{{ $item->perangkat }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                            <tr align="center">
+                                                <td>{{ $item->tahun_lulus }}</td>
+                                                <td>{{ $item->jumlah_lulusan }}</td>
+                                                <td>{{ $item->lulusan_terlacak }}</td>
+                                                <td>{{ $item->bidang_infokom }}</td>
+                                                <td>{{ $item->bidang_noninfokom }}</td>
+                                                <td>{{ $item->internasional }}</td>
+                                                <td>{{ $item->nasional }}</td>
+                                                <td>{{ $item->wirausaha }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>

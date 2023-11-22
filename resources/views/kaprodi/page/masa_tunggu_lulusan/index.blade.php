@@ -77,14 +77,10 @@
 
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
-                                                {{-- <td>{{ $no + 1 }}</td> --}}
-                                                {{-- <td>{{ $item->tahun_lulus }}</td>
+
+                                                <td>{{ $item->tahun_lulus }}</td>
                                                 <td>{{ $item->jumlah_lulusan }}</td>
                                                 <td>{{ $item->lulusan_terlacak }}</td>
-                                                <td>{{ $item->waktu_tunggu?->waktu_tunggu }}</td> --}}
-                                                <td>{{ $item->tahun_lulus }}</td>
-                                                <td>{{ $item->bidang?->jumlah_lulusan }}</td>
-                                                <td>{{ $item->bidang?->lulusan_terlacak }}</td>
                                                 <td>{{ $item->waktu_tunggu }}</td>
                                                 <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 

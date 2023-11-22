@@ -17,9 +17,9 @@ class KepuasanPenggunaLulusanController extends Controller
      */
     public function index()
     {
-        $data = KepuasanPenggunaLulusan::paginate('20');
-        // dd($data);
-        return view('admin.page.kepuasan_pengguna_lulusan.index', compact('data'));
+        $data = KepuasanPenggunaLulusan::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
+        return view('jurusan.page.kepuasan_pengguna_lulusan.index', compact('data','ptUnits'));
 
         // $program = DB::table('tb_program')->get();
         // return view(

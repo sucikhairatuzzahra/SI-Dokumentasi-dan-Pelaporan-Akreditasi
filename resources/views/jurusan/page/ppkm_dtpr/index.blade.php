@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('jurusan.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Rata-rata beban DTPR per semester, pada TS</h5>
-                        <p class="m-b-0">Data Rata-rata beban DTPR</p>
+                        <h5 class="m-b-10">Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
+                        <p class="m-b-0">Data Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Rata-rata beban DTPR</a>
+                        <li class="breadcrumb-item"><a href="#!">PPKM DTPR</a>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Rata-rata beban DTPR</h5>
+                            <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -48,51 +48,37 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 {{-- <div class="row">
-                                    <a href="{{ route('bebandtpr-download') }}">
+                                    <a href="{{ route('ppkm_dtpr-download') }}">
                                         <button class="btn btn-success">Download</button></a>
                                 </div> --}}
-                                <table class="table table-bordered" style="align-content: center">
+                                <table class="table table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th scope="col" rowspan="2">
+                                        <tr style="text-align-last: center">
+                                            <th scope="col">
                                                 No
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Nama Dosen
+                                            <th scope="col">
+                                                Nama DTPRs
                                             </th>
-                                            <th scope="col" colspan="3" style="align-content: center">
-                                                SKS Pengajaran Pada
+                                            <th scope="col">
+                                                Jumlah Publikasi bertema INFOKOM
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                SKS Penelitian
+                                            <th scope="col">
+                                                Jumlah Penelitian bertema INFOKOM
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                SKS Pengabdian Pada Masy
+                                            <th scope="col">
+                                                Jumlah penelitian bertema INFOKOM yang mendapat HKI Pengabdian Pada Masy
                                             </th>
-                                            <th scope="col" colspan="2">
-                                                SKS Manajemen
+                                            <th scope="col">
+                                                Jumlah PkM bertema INFOKOM yang diadopsi masyarakat
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Id PT Unit
+                                            <th scope="col">
+                                                Jumlah PkM bertema INFOKOM yang mendapat HKI
+                                            </th>
+                                            <th scope="col">
+                                                PT Unit
                                             </th>
 
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                PS Sendiri
-                                            </th>
-                                            <th>
-                                                PS Lain, PT Sendiri
-                                            </th>
-                                            <th>
-                                                PT Lain
-                                            </th>
-                                            <th>
-                                                PT Sendiri
-                                            </th>
-                                            <th>
-                                                PT Lain
-                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -100,15 +86,13 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->nama_dosen }}</td>
-                                                <td>{{ $item->pgjrn_ps_sendiri }}</td>
-                                                <td>{{ $item->pgjrn_ps_lain_pt_sendiri }}</td>
-                                                <td>{{ $item->pgjrn_pt_lain }}</td>
-                                                <td>{{ $item->sks_penelitian }}</td>
-                                                <td>{{ $item->sks_pengabdian }}</td>
-                                                <td>{{ $item->manajemen_pt_sendiri }}</td>
-                                                <td>{{ $item->manajemen_pt_lain }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->nama_dtpr }}</td>
+                                                <td>{{ $item->publikasi_infokom }}</td>
+                                                <td>{{ $item->penelitian_infokom }}</td>
+                                                <td>{{ $item->penelitian_infokom_hki }}</td>
+                                                <td>{{ $item->pkm_infokom_adobsi }}</td>
+                                                <td>{{ $item->pkm_infokom_hki }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach

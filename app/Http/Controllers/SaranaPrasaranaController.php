@@ -17,9 +17,9 @@ class SaranaPrasaranaController extends Controller
      */
     public function index()
     {
-        $data = SaranaPrasarana::paginate('20');
-        // dd($data);
-        return view('admin.page.saranaprasarana.index', compact('data'));
+        $data = SaranaPrasarana::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
+        return view('jurusan.page.saranaprasarana.index', compact('data','ptUnits'));
     }
     public function admprodiIndex()
     {
