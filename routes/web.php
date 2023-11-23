@@ -20,6 +20,8 @@ use App\Http\Controllers\JumlahTenagaKependidikanController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PTUnitController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\LuaranController;
+use App\Http\Controllers\LuaranLainController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -173,44 +175,22 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::get('/dosen', [DosenController::class, 'index'])->name('dosen'); //index
     Route::get('/tambah-dosen', [DosenController::class, 'create'])->name('tambah-dosen'); //create
     Route::post('/simpan-dosen', [DosenController::class, 'store'])->name('simpan-dosen'); //store
+    Route::get('/edit-dosen/{id}', [DosenController::class, 'edit'])->name('edit-dosen');
+    Route::put('/update-dosen/{id}', [DosenController::class, 'update'])->name('update-dosen');
     Route::delete('/hapus-dosen/{id}', [DosenController::class, 'destroy'])->name('hapus-dosen'); //destroy
 
+    //Luaran
+    Route::get('/luaran', [LuaranController::class, 'index'])->name('luaran'); //index
+    Route::get('/tambah-luaran', [LuaranController::class, 'create'])->name('tambah-luaran'); //create
+    Route::post('/simpan-luaran', [LuaranController::class, 'store'])->name('simpan-luaran'); //store
+    Route::delete('/hapus-luaran/{id}', [LuaranController::class, 'destroy'])->name('hapus-luaran'); //destroy
 
-    //route Calon Mahasiswa Baru
-    Route::get('/admin-mahasiswa', [CalonMhsBaruController::class, 'index'])->name('admin-mahasiswa'); //index
-    
-    //Aksesibilitas
-    Route::get('/admin-aksesibilitas', [AksesibilitasController::class, 'index'])->name('admin-aksesibilitas'); //index
-   
-    //Pendanaan
-    Route::get('/admin-sumberdana', [PendanaanController::class, 'index'])->name('admin-sumberdana'); //index
 
-    //Sarana Prasaranaki
-    Route::get('/admin-saranaprasarana', [SaranaPrasaranaController::class, 'index'])->name('admin-saranaprasarana'); //index
-
-    //Tenaga Kependidikan
-    Route::get('/admin-kependidikan', [TenagaKependidikanController::class, 'index'])->name('admin-kependidikan'); //index
-
-    //IPK Lulusan
-    Route::get('/admin-ipklulusan', [IPKLulusanController::class, 'index'])->name('admin-ipklulusan'); //index
-
-    //Masa Tunggu Lulusan Bekerja
-    Route::get('/admin-masatunggu', [MasaTunguLulusanController::class, 'index'])->name('admin-masatunggu'); //index
-
-    //Kesesuaian bidang kerja lulusan 
-    Route::get('/admin-kerjalulusan', [BidangKerjaLulusanController::class, 'index'])->name('admin-kerjalulusan'); //index
-
-    //Rata-Rata Beban DTPR Per Semester
-    Route::get('/admin-bebandtpr', [BebanDTRPController::class, 'index'])->name('admin-bebandtpr'); //index
-
-    //Kepuasan Pengguna Lulusan
-    Route::get('/admin-kepuasan_pengguna', [KepuasanPenggunaLulusanController::class, 'index'])->name('admin-kepuasan_pengguna'); //index
-
-    //Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR
-    Route::get('/admin-ppkm_dtpr', [PPKMDariDTPRController::class, 'index'])->name('admin-ppkm_dtpr'); //index
-
-    //Kelulusan Tepat Waktu
-    Route::get('/admin-kelulusan_tepatwaktu', [KelulusanTepatWaktuController::class, 'index'])->name('admin-kelulusan_tepatwaktu'); //index
+    //LuaranLain
+    Route::get('/luaranlain', [LuaranLainController::class, 'index'])->name('luaranlain'); //index
+    Route::get('/tambah-luaranlain', [LuaranLainController::class, 'create'])->name('tambah-luaranlain'); //create
+    Route::post('/simpan-luaranlain', [LuaranLainController::class, 'store'])->name('simpan-luaranlain'); //store
+    Route::delete('/hapus-luaranlain/{id}', [LuaranLainController::class, 'destroy'])->name('hapus-luaranlain'); //destroy
 
 
 });

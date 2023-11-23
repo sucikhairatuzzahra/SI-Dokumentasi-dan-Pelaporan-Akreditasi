@@ -7,15 +7,16 @@
                 <div class="col-md-8">
                     <div class="page-header-title">
                         <h5 class="m-b-10">Dosen</h5>
-                        <p class="m-b-0">Form Tambah Dosen</p>
+                        <p class="m-b-0">Form Dosen</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <ul class="breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                            <a href="#"> <i class="fa fa-home"></i> </a>
                         </li>
-
+                        {{-- <li class="breadcrumb-item"><a href="#!">Luaran dan Capaian Tridarma</a>
+                        </li> --}}
                         <li class="breadcrumb-item"><a href="#!">Dosen</a>
                         </li>
                     </ul>
@@ -35,59 +36,63 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Form Tambah Dosen</h5>
-
+                                    <h5>Form Dosen</h5>
+                                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
-                                    <form action="/simpan-dosen" method="POST">
+                                    <form action="{{ route('update-dosen', $editData->id) }}" method="POST">
                                         @csrf
-
+                                        @method('put')
                                         <div class="form-group">
                                             <label for="nama_dosen">Nama Dosen</label>
-                                            <input type="text" class="form-control" id="nama_dosen" name="nama_dosen">
+                                            <input type="text" class="form-control" id="nama_dosen" name="nama_dosen"
+                                                value="{{ $editData->nama_dosen }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="nomor_induk_dosen">Nomor Induk Dosen</label>
                                             <input type="text" class="form-control" id="nomor_induk_dosen"
-                                                name="nomor_induk_dosen">
+                                                name="nomor_induk_dosen" value="{{ $editData->nomor_induk_dosen }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="jenis_nomor_induk_dosen">Jenis Nomor Induk Dosen</label>
                                             <input type="text" class="form-control" id="jenis_nomor_induk_dosen"
-                                                name="jenis_nomor_induk_dosen">
+                                                name="jenis_nomor_induk_dosen"
+                                                value="{{ $editData->jenis_nomor_induk_dosen }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="pendidikan_magister"> Pendidikan Magister</label>
                                             <input type="text" class="form-control" id="pendidikan_magister"
-                                                name="pendidikan_magister">
+                                                name="pendidikan_magister" value="{{ $editData->pendidikan_magister }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="pendidikan_doktor">Pendidikan Doktor</label>
                                             <input type="text" class="form-control" id="pendidikan_doktor"
-                                                name="pendidikan_doktor">
+                                                name="pendidikan_doktor" value="{{ $editData->pendidikan_doktor }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="bidang_keahlian">Bidang Keahlian</label>
                                             <input type="text" class="form-control" id="bidang_keahlian"
-                                                name="bidang_keahlian">
+                                                name="bidang_keahlian" value="{{ $editData->bidang_keahlian }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="jabatan_akademik"> Jabatan Akademik</label>
                                             <input type="text" class="form-control" id="jabatan_akademik"
-                                                name="jabatan_akademik">
+                                                name="jabatan_akademik" value="{{ $editData->jabatan_akademik }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="sertifikat_pendidik_profesional">Sertifikat Pendidik
                                                 Profesional</label>
                                             <input type="text" class="form-control" id="sertifikat_pendidik_profesional"
-                                                name="sertifikat_pendidik_profesional">
+                                                name="sertifikat_pendidik_profesional"
+                                                value="{{ $editData->sertifikat_pendidik_profesional }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="sertifikat_kompetensi_profesi_industri">Sertifikat Kompetensi
                                                 Profesi Industri</label>
                                             <input type="text" class="form-control"
                                                 id="sertifikat_kompetensi_profesi_industri"
-                                                name="sertifikat_kompetensi_profesi_industri">
+                                                name="sertifikat_kompetensi_profesi_industri"
+                                                value="{{ $editData->sertifikat_kompetensi_profesi_industri }}">
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Simpan</button>

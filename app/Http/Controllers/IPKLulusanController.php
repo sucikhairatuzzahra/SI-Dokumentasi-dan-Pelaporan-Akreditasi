@@ -101,7 +101,7 @@ class IPKLulusanController extends Controller
     public function edit($id)
     {
         $data['editData'] = IPKLulusan::find($id);
-        return view('admin.page.ipk_lulusan.form_edit', $data);
+        return view('admprodi.page.ipk_lulusan.form_edit', $data);
     }
 
     /**
@@ -128,7 +128,7 @@ class IPKLulusanController extends Controller
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.kependidikan.index';
+                window.location = '/admprodi.page.kependidikan.index';
                 </script>";
         }
     }

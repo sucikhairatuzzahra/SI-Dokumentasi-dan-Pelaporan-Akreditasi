@@ -66,7 +66,7 @@
                                                 Jumlah Penelitian bertema INFOKOM
                                             </th>
                                             <th scope="col">
-                                                Jumlah penelitian bertema INFOKOM yang mendapat HKI Pengabdian Pada Masy
+                                                Jumlah penelitian bertema INFOKOM yang mendapat HKI
                                             </th>
                                             <th scope="col">
                                                 Jumlah PkM bertema INFOKOM yang diadopsi masyarakat

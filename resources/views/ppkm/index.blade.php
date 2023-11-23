@@ -20,7 +20,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">
-                                                Id PPKM
+                                                Nama Dosen
                                             </th>
                                             <th scope="col">
                                                 Tahun

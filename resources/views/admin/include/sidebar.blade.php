@@ -60,7 +60,7 @@
         <ul class="pcoded-item pcoded-left-item">
             <li class="">
                 <a href="{{ route('dosen') }}" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="ti-calendar"></i><b>D</b></span>
+                    <span class="pcoded-micon"><i class="ti-layout"></i><b>D</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Dosen</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -84,6 +84,26 @@
                 <a href="{{ route('ptunit') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.dash.main">PT Unit</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Luaran &amp; Luaran lain</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="">
+                <a href="{{ route('luaran') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Luaran</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="">
+                <a href="{{ route('luaranlain') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Luaran Lain</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

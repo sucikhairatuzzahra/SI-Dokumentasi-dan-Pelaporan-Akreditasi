@@ -84,7 +84,8 @@ class DosenController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['editData'] = Dosen::find($id);
+        return view('admin.page.dosen.form_edit', $data);
     }
 
     /**
@@ -96,7 +97,27 @@ class DosenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dosen = Dosen::find($id);
+        $update = $dosen->update([
+            'nama_dosen' => $request->nama_dosen,
+            'nomor_induk_dosen' => $request->nomor_induk_dosen,
+            'jenis_nomor_induk_dosen' => $request->jenis_nomor_induk_dosen,
+            'pendidikan_magister' => $request->pendidikan_magister,
+            'pendidikan_doktor' => $request->pendidikan_doktor,
+            'bidang_keahlian' => $request->bidang_keahlian,  
+            'jabatan_akademik' => $request->jabatan_akademik,
+            'sertifikat_pendidik_profesional' => $request->sertifikat_pendidik_profesional,
+            'sertifikat_kompetensi_profesi_industri' => $request->sertifikat_kompetensi_profesi_industri,
+
+        ]);
+        if ($update) {
+            return redirect('dosen')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+                alert('Data gagal diinput, masukkan kembali data dengan benar');
+                window.location = '/admin.page.dosen.index';
+                </script>";
+        }
     }
 
     /**
