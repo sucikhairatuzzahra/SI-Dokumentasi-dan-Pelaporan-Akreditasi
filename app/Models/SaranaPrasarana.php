@@ -14,6 +14,7 @@ class SaranaPrasarana extends Model
     protected $fillable = [
         'sarana', 'daya_tampung', 'luas_ruang', 'jml_mhs', 'jam_lyn', 'perangkat','pt_unit'
     ];
+    
     public function idPtUnit(){
         return $this->belongsTo(PTUnit::class, 'pt_unit');
     }

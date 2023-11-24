@@ -14,13 +14,18 @@ class Mhsbaru extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'thn_akademik', 'daya_tampung', 'pendaftar', 'lulus_seleksi', 'maba_reguler',
-        'maba_transfer', 'mhs_aktif_reguler', 'mhs_aktif_transfer','pt_unit'
+        'maba_transfer', 'mhs_aktif_reguler', 'mhs_aktif_transfer','id_pt_unit'
     ];
-
-    public function idPtUnit()
+    
+    public function user()
     {
-        return $this->belongsTo(PTUnit::class, 'pt_unit');
+        return $this->belongsTo(User::class, 'id_pt_unit');
     }
+
+    // public function idPtUnit()
+    // {
+    //     return $this->belongsTo(PTUnit::class, 'pt_unit');
+    // }
    
 
      // Relationship dengan model TahunAkademik
@@ -29,10 +34,8 @@ class Mhsbaru extends Model
          return $this->belongsTo(TahunAkademik::class, 'thn_akademik');
      }
 
+     //
 
 
-    // public function tahunAkademik()
-    // {
-    //     return $this->belongsTo(TahunAkademik::class);
-    // }
+
 }

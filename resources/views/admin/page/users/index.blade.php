@@ -60,11 +60,14 @@
                                             <th scope="col">
                                                 Email
                                             </th>
-                                            <th scope="col">
+                                            {{-- <th scope="col">
                                                 Password
-                                            </th>
+                                            </th> --}}
                                             <th scope="col">
                                                 Role
+                                            </th>
+                                            <th scope="col">
+                                                Unit Kerja
                                             </th>
                                             <th scope="col">
                                                 Aksi
@@ -80,8 +83,9 @@
                                                 <td>{{ $no + 1 }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
-                                                <td>{{ $item->password }}</td>
+                                                {{-- <td>{{ $item->password }}</td> --}}
                                                 <td>{{ $item->role }}</td>
+                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-users', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

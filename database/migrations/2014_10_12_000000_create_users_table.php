@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password'); 
             $table->tinyInteger('role')->default(0);
             // 0=jurusan 1=kaprodi 2=admprodi 3=admin
+            $table->integer('id_pt_unit')->default(3);
             $table->rememberToken();
             $table->timestamps();
         });

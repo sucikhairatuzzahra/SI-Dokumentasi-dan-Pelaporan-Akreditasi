@@ -154,6 +154,8 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
 
     //user
     Route::get('/admin-users', [DashboardController::class,'index'])->name('admin-users');
+    Route::get('/tambah-users', [DashboardController::class, 'create'])->name('tambah-users'); //create
+    Route::post('/simpan-users', [DashboardController::class, 'store'])->name('simpan-users'); //store
     Route::get('/edit-users/{id}', [DashboardController::class, 'edit'])->name('edit-users');
     Route::put('/update-users/{id}', [DashboardController::class, 'update'])->name('update-users');
     Route::delete('/hapus-users/{id}', [DashboardController::class, 'destroy'])->name('hapus-users'); //destroy

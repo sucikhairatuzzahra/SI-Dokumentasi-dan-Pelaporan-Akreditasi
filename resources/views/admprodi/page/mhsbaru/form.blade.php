@@ -42,11 +42,6 @@
                                 <div class="card-block">
                                     <form action="/simpan-cmb" method="POST">
                                         @csrf
-                                        {{-- <div class="form-group">
-                                            <label for="thn_akademik">Tahun Akademik</label>
-                                            <input type="text" class="form-control" id="thn_akademik"
-                                                name="thn_akademik">
-                                        </div> --}}
 
                                         <div class="form-group">
                                             <label for="thn_akademik">Tahun Akademik</label>
@@ -94,6 +89,12 @@
                                                 name="mhs_aktif_transfer">
                                         </div>
                                         <div class="form-group">
+                                            <label for="id_pt_unit">Unit Kerja</label>
+                                            <!-- Tambahkan hidden field untuk pt_unit -->
+                                            <input type="hidden" name="id_pt_unit" value="{{ Auth::user()->id_pt_unit }}">
+
+                                        </div>
+                                        {{-- <div class="form-group">
                                             <label for="pt_unit">PT Unit</label>
                                             <select name="kode_pt_unit" id="kode_pt_unit" class="form-control">
                                                 @foreach ($ptUnits as $idPtUnit)
@@ -102,7 +103,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                     </form>

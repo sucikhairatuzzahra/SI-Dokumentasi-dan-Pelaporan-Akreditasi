@@ -15,5 +15,9 @@ class PTUnit extends Model
         'kode_pt_unit', 'nama_pt_unit'
     ];
     
+    public function users()
+{
+    return $this->hasMany(User::class, 'id_pt_unit');
+}
    
 }

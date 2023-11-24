@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\PTUnit;
 
 class DashboardController extends Controller
 {
@@ -18,9 +19,11 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $data = User::all();
-      
-        return view('admin.page.users.index', compact('data'));
+        // $data = User::all();
+        $data = User::with('idPtUnit')->get();
+        $ptUnits = PTUnit::all();
+        
+        return view('admin.page.users.index', compact('data','ptUnits'));
     }
 
     public function indexAdmin()
@@ -65,6 +68,39 @@ class DashboardController extends Controller
         //
     }
 
+    public function create()
+    {
+        $ptUnits = PTUnit::all();
+        return view(
+            'admin.page.users.form',
+            [
+                'url' => 'simpan-users',
+                'ptUnits' =>  $ptUnits,
+            ]
+        );
+    }
+
+    public function store(Request $request)
+    {
+        $input = User::insert([
+            'id' => $request->id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'role' => $request->role,
+            'id_pt_unit' => $request->kode_pt_unit,
+        ]);
+        if ($input) {
+            return redirect('users')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+            alert('Data gagal diinput, masukkan kebali data dengan benar');
+            window.location = '/admin.page.users.index';
+            </script>";
+        }
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -74,7 +110,8 @@ class DashboardController extends Controller
     public function edit($id)
     {
         $data['editData'] = User::find($id);
-        return view('admin.page.users.form_edit', $data);
+        $ptUnits = PTUnit::all();
+        return view('admin.page.users.form_edit', $data, compact('ptUnits'));
     }
 
     /**
@@ -92,6 +129,7 @@ class DashboardController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'role' => $request->role,
+            'id_pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('admin-users')->with('pesan', 'Data berhasil disimpan');
