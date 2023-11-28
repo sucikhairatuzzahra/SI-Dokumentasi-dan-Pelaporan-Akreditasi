@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('thn_akademik');
             $table->integer('id_pt_unit');
             $table->string('kode_pt_unit');
-            // $table->foreign('id_pt_unit')->references('pk_id_pt_unit')->on('pt_unit')->onDelete('restrict');
             $table->integer('daya_tampung');
             $table->integer('pendaftar');
             $table->integer('lulus_seleksi');

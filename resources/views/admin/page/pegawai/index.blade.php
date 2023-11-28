@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Daftar Dosen</h5>
-                        <p class="m-b-0">Data Dosen</p>
+                        <h5 class="m-b-10">Daftar Pegawai</h5>
+                        <p class="m-b-0">Data Pegawai</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Daftar Dosen</a>
+                        <li class="breadcrumb-item"><a href="#!">Daftar Pegawai</a>
                         </li>
                     </ul>
                 </div>
@@ -33,8 +33,8 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Daftar Dosen</h5>
-                            <a href="{{ route('tambah-dosen') }}">
+                            <h5>Daftar Pegawai</h5>
+                            <a href="{{ route('tambah-pegawai') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>
                             <div class="card-header-right">
@@ -56,38 +56,18 @@
                                                 No
                                             </th>
                                             <th scope="col">
-                                                Nama Dosen
+                                                Nama Pegawai
                                             </th>
                                             <th scope="col">
-                                                Nomor Induk Dosen
-                                            </th>
-                                            <th scope="col">
-                                                Jenis Nomor Induk Dosen
-                                            </th>
-                                            <th scope="col">
-                                                Pendidikan Tertinggi
-                                            </th>
-                                            <th scope="col">
-                                                Pendidikan Magister
-                                            </th>
-                                            <th scope="col">
-                                                Pendidikan Doktor
-                                            </th>
-                                            <th scope="col">
-                                                Bidang Keahlian
-                                            </th>
-                                            <th scope="col">
-                                                Jabatan Akademik
+                                                Tanggal lahir
                                             </th>
                                             <th scope="col">
                                                 NIP
                                             </th>
                                             <th scope="col">
-                                                Unit Kerja
+                                                Aktif
                                             </th>
-                                            <th scope="col">
-                                                Kategori Dosen
-                                            </th>
+
                                             <th scope="col">
                                                 Aksi
                                             </th>
@@ -100,28 +80,22 @@
                                         @foreach ($data as $no => $item)
                                             <tr>
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->nama_dosen }}</td>
-                                                <td>{{ $item->nomor_induk_dosen }}</td>
-                                                <td>{{ $item->jenis_nomor_induk_dosen }}</td>
-                                                <td>{{ $item->idLevelPddkn->nama_level_pendidikan }}</td>
-                                                <td>{{ $item->pendidikan_magister }}</td>
-                                                <td>{{ $item->pendidikan_doktor }}</td>
-                                                <td>{{ $item->bidang_keahlian }}</td>
-                                                <td>{{ $item->jabatan_akademik }}</td>
-                                                <td>{{ $item->idPegawai->nip }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
-                                                <td>{{ $item->idKatDosen->kode_kategori_dosen }}</td>
+                                                <td>{{ $item->nama_pegawai }}</td>
+                                                <td>{{ $item->tanggal_lahir }}</td>
+                                                <td>{{ $item->nip }}</td>
+                                                <td>{{ $item->aktif }}</td>
+
                                                 <td>
-                                                    <a href="{{ route('edit-dosen', ['id' => $item->id]) }}"
+                                                    <a href="{{ route('edit-pegawai', ['pk_id_pegawai' => $item->pk_id_pegawai]) }}"
                                                         style="margin-right: 7px">
                                                         Edit
                                                     </a>
-                                                    <a href="{{ route('hapus-dosen', $item->id) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
+                                                    <a href="{{ route('hapus-pegawai', $item->pk_id_pegawai) }}"
+                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->pk_id_pegawai }}').submit();">
                                                         Hapus
                                                     </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-dosen', ['id' => $item->id]) }}"
+                                                    <form id="delete-form-{{ $item->pk_id_pegawai }}"
+                                                        action="{{ route('hapus-pegawai', ['pk_id_pegawai' => $item->pk_id_pegawai]) }}"
                                                         method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')

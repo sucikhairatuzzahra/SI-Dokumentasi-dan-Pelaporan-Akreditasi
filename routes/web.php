@@ -21,6 +21,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PTUnitController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LuaranController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\LuaranLainController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -171,6 +172,14 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::get('/edit-users/{id}', [DashboardController::class, 'edit'])->name('edit-users');
     Route::put('/update-users/{id}', [DashboardController::class, 'update'])->name('update-users');
     Route::delete('/hapus-users/{id}', [DashboardController::class, 'destroy'])->name('hapus-users'); //destroy
+
+   //Pegawai
+   Route::get('/pegawai', [PegawaiController::class,'index'])->name('pegawai');
+   Route::get('/tambah-pegawai', [PegawaiController::class, 'create'])->name('tambah-pegawai'); //create
+   Route::post('/simpan-pegawai', [PegawaiController::class, 'store'])->name('simpan-pegawai'); //store
+   Route::get('/edit-pegawai/{pk_id_pegawai}', [PegawaiController::class, 'edit'])->name('edit-pegawai');
+   Route::put('/update-pegawai/{pk_id_pegawai}', [PegawaiController::class, 'update'])->name('update-pegawai');
+   Route::delete('/hapus-pegawai/{pk_id_pegawai}', [PegawaiController::class, 'destroy'])->name('hapus-pegawai'); //destroy
 
 
     //tahun akademik

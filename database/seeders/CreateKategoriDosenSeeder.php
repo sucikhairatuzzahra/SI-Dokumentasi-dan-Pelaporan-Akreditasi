@@ -18,15 +18,15 @@ class CreateKategoriDosenSeeder extends Seeder
         $kategori = [
             [
                 'nama_kategori_dosen' => 'Dosen Tetap Perguruan Tinggi',
-                'kode_kategori' => 'DT'
+                'kode_kategori_dosen' => 'DT'
             ],
             [
                 'nama_kategori_dosen' => 'Dosen Tidak Tetap Perguruan Tinggi',
-                'kode_kategori' => 'DTT'
+                'kode_kategori_dosen' => 'DTT'
             ],
             [
                 'nama_kategori_dosen' => 'Dosen Industri/Praktisi',
-                'kode_kategori' => 'DI/P'
+                'kode_kategori_dosen' => 'DI/P'
             ],
         ];
         foreach ($kategori as $kategoridosen) {
