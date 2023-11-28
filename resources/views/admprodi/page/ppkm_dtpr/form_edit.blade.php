@@ -49,49 +49,65 @@
                                                 value="{{ $editData->nama_dtpr }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="publikasi_infokom">Jumlah Publikasi bertema INFOKOM</label>
-                                            <input type="text" class="form-control" id="publikasi_infokom"
-                                                name="publikasi_infokom" value="{{ $editData->publikasi_infokom }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="penelitian_infokom">Jumlah Penelitian bertema INFOKOM</label>
-                                            <input type="text" class="form-control" id="penelitian_infokom"
-                                                name="penelitian_infokom" value="{{ $editData->penelitian_infokom }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="penelitian_infokom_hki">Jumlah penelitian bertema INFOKOM yang
-                                                mendapat HKI
-                                                Pengabdian Pada Masy</label>
-                                            <input type="text" class="form-control" id="penelitian_infokom_hki"
-                                                name="penelitian_infokom_hki"
-                                                value="{{ $editData->penelitian_infokom_hki }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pkm_infokom_adobsi">Jumlah PkM bertema INFOKOM yang diadopsi
-                                                masyarakat</label>
-                                            <input type="text" class="form-control" id="pkm_infokom_adobsi"
-                                                name="pkm_infokom_adobsi" value="{{ $editData->pkm_infokom_adobsi }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pkm_infokom_hki">Jumlah PkM bertema INFOKOM yang mendapat
-                                                HKI</label>
-                                            <input type="text" class="form-control" id="pkm_infokom_hki"
-                                                name="pkm_infokom_hki" value="{{ $editData->pkm_infokom_hki }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="id_pt_unit">Id PT Unit</label>
-                                            <select name="id_pt_unit" class="form-control">
-                                                <option value="7">P3M</option>
-                                                <option value="6">AKT</option>
-                                                <option value="5">D3 MI</option>
-                                                <option value="4">D4 TRPL</option>
-                                                <option value="3">JUR.TI</option>
-                                                <option value="2">SPM</option>
-                                                <option value="1">PNP</option>
-                                                <script>
-                                                    document.getElementById('id_pt_unit').value = "{{ $editData->id_pt_unit }}";
-                                                </script>
+                                            <label for="jenis_penelitian_pengabdian">Jenis Penelitian Pengabdian</label>
+                                            <select name="jenis_penelitian_pengabdian" class="form-control">
+                                                <option value="penelitian">penelitian</option>
+                                                <option value="pengabdian">pengabdian</option>
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="judul">Judul</label>
+                                            <input type="text" class="form-control" id="judul" name="judul"
+                                                value="{{ $editData->judul }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ketua">Ketua</label>
+                                            <select name="ketua" class="form-control">
+                                                <option value="ya">ya</option>
+                                                <option value="tidak">tidak</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="jenis_luaran">Jenis Luaran</label>
+                                            <select name="jenis_luaran" id="jenis_luaran" class="form-control">
+                                                @foreach ($luarans as $luaran)
+                                                    <option value="{{ $luaran->id }}">
+                                                        {{ $luaran->jenis_luaran }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="jenis_luaran_lain">Jenis Luaran Lain</label>
+                                            <select name="jenis_luaran_lain" id="jenis_luaran_lain" class="form-control">
+                                                @foreach ($luaranlains as $luaranLain)
+                                                    <option value="{{ $luaranLain->id }}">
+                                                        {{ $luaranLain->jenis_luaran_lain }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tahun">Tahun</label>
+                                            <input type="text" class="form-control" id="tahun" name="tahun"
+                                                value="{{ $editData->tahun }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dana">Dana</label>
+                                            <input type="text" class="form-control" id="dana" name="dana"
+                                                value="{{ $editData->dana }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bukti">Bukti</label>
+                                            <input type="file" name="bukti" id="bukti" class="form-control">
+                                            @if ($editData->bukti)
+                                                <a href="{{ asset('storage/bukti_dtpr/' . $editData->bukti) }}">Lihat</a>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_pt_unit">Unit Kerja</label>
+                                            <input type="hidden" name="id_pt_unit"
+                                                value="{{ Auth::user()->kode_pt_unit }}">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

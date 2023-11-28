@@ -23,7 +23,8 @@ return new class extends Migration
             $table->integer('internasional');
             $table->integer('nasional');
             $table->integer('wirausaha');
-            $table->string('pt_unit');
+            $table->integer('id_pt_unit');
+            $table->string('kode_pt_unit');
             $table->timestamps();
         });
     }

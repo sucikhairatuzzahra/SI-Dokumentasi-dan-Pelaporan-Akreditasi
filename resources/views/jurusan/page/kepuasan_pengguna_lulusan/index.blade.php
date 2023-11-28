@@ -67,7 +67,7 @@
                                                 Rencana Tindak Lanjut Oleh UPPS/PS
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                Unit Kerja
                                             </th>
 
                                         </tr>
@@ -97,7 +97,7 @@
                                                 <td>{{ $item->cukup }}</td>
                                                 <td>{{ $item->kurang }}</td>
                                                 <td>{{ $item->rencana_tindak_lanjut }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach

@@ -71,7 +71,7 @@
                                                 Jumlah Mahasiswa Aktif
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                PT Unit
+                                                Unit Kerja
                                             </th>
 
                                         </tr>
@@ -109,7 +109,7 @@
                                                 <td>{{ $item->maba_transfer }}</td>
                                                 <td>{{ $item->mhs_aktif_reguler }}</td>
                                                 <td>{{ $item->mhs_aktif_transfer }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

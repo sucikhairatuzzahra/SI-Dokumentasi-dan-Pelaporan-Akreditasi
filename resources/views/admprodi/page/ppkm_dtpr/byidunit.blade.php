@@ -1,4 +1,4 @@
-@extends('kaprodi.layout.app')
+@extends('admprodi.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -34,6 +34,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
+                            <a href="{{ route('tambah-ppkm_dtpr') }}">
+                                <span>Tambah data <code>disini</code> </span>
+                            </a>
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -47,10 +50,6 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-                                <div class="row">
-                                    <a href="{{ route('ppkm_dtpr-download') }}">
-                                        <button class="btn btn-success">Download</button></a>
-                                </div>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
@@ -61,24 +60,35 @@
                                                 Nama DTPRs
                                             </th>
                                             <th scope="col">
-                                                Jumlah Publikasi bertema INFOKOM
+                                                Jenis Penelitian Pengabdian
                                             </th>
                                             <th scope="col">
-                                                Jumlah Penelitian bertema INFOKOM
+                                                Judul Penelitian Pengabdian
                                             </th>
                                             <th scope="col">
-                                                Jumlah penelitian bertema INFOKOM yang mendapat HKI Pengabdian Pada Masy
+                                                Ketua
                                             </th>
                                             <th scope="col">
-                                                Jumlah PkM bertema INFOKOM yang diadopsi masyarakat
+                                                Jenis Luaran
                                             </th>
                                             <th scope="col">
-                                                Jumlah PkM bertema INFOKOM yang mendapat HKI
+                                                Jenis Luaran Lain
+                                            </th>
+                                            <th scope="col">
+                                                Tahun
+                                            </th>
+                                            <th scope="col">
+                                                Dana
+                                            </th>
+                                            <th scope="col">
+                                                Bukti
                                             </th>
                                             <th scope="col">
                                                 Unit Kerja
                                             </th>
-
+                                            <th scope="col">
+                                                Aksi
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -87,13 +97,39 @@
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
                                                 <td>{{ $item->nama_dtpr }}</td>
-                                                <td>{{ $item->publikasi_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom_hki }}</td>
-                                                <td>{{ $item->pkm_infokom_adobsi }}</td>
-                                                <td>{{ $item->pkm_infokom_hki }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
+                                                <td>{{ $item->jenis_penelitian_pengabdian }}</td>
+                                                <td>{{ $item->judul }}</td>
+                                                <td>{{ $item->ketua }}</td>
+                                                <td>{{ $item->luaran->jenis_luaran }}</td>
+                                                <td>{{ $item->luaranLain->jenis_luaran_lain }}</td>
+                                                <td>{{ $item->tahun }}</td>
+                                                <td>{{ $item->dana }}</td>
+                                                <td>
+                                                    @if ($item->bukti)
+                                                        <a
+                                                            href="{{ asset('storage/bukti_dtpr/' . $item->bukti) }}">Lihat</a>
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>
+                                                    <a href="{{ route('edit-ppkm_dtpr', ['id' => $item->id]) }}"
+                                                        style="margin-right: 7px">
+                                                        Edit
+                                                    </a>
+                                                    <a href="{{ route('hapus-ppkm_dtpr', ['id' => $item->id]) }}"
+                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
+                                                        Hapus
+                                                    </a>
+                                                    <form id="delete-form-{{ $item->id }}"
+                                                        action="{{ route('hapus-ppkm_dtpr', ['id' => $item->id]) }}"
+                                                        method="POST" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
 
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

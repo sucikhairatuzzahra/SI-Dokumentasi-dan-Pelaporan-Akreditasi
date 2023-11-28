@@ -91,7 +91,8 @@
                                         <div class="form-group">
                                             <label for="id_pt_unit">Unit Kerja</label>
                                             <!-- Tambahkan hidden field untuk pt_unit -->
-                                            <input type="hidden" name="id_pt_unit" value="{{ Auth::user()->id_pt_unit }}">
+                                            <input type="hidden" name="id_pt_unit"
+                                                value="{{ Auth::user()->kode_pt_unit }}">
 
                                         </div>
                                         {{-- <div class="form-group">

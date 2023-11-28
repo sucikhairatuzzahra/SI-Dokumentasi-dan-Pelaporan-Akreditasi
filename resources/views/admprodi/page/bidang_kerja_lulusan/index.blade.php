@@ -75,7 +75,7 @@
                                                 PT Unit
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Keterangan
+                                                Aksi
                                             </th>
                                         </tr>
                                         <tr align="center">
@@ -103,7 +103,7 @@
                                                 <td>{{ $item->internasional }}</td>
                                                 <td>{{ $item->nasional }}</td>
                                                 <td>{{ $item->wirausaha }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-kerjalulusan', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

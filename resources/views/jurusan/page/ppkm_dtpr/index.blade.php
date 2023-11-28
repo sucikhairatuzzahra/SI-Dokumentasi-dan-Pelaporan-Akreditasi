@@ -76,7 +76,7 @@
                                                 Jumlah PkM bertema INFOKOM yang mendapat HKI
                                             </th>
                                             <th scope="col">
-                                                PT Unit
+                                                Unit Kerja
                                             </th>
 
                                         </tr>
@@ -92,7 +92,7 @@
                                                 <td>{{ $item->penelitian_infokom_hki }}</td>
                                                 <td>{{ $item->pkm_infokom_adobsi }}</td>
                                                 <td>{{ $item->pkm_infokom_hki }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach

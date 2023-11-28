@@ -62,14 +62,9 @@
                                                 name="waktu_tunggu">
                                         </div>
                                         <div class="form-group">
-                                            <label for="kode_pt_unit">PT Unit</label>
-                                            <select name="kode_pt_unit" id="kode_pt_unit" class="form-control">
-                                                @foreach ($ptUnits as $idPtUnit)
-                                                    <option value="{{ $idPtUnit->id }}">
-                                                        {{ $idPtUnit->kode_pt_unit }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <label for="id_pt_unit">Unit Kerja</label>
+                                            <input type="hidden" name="id_pt_unit"
+                                                value="{{ Auth::user()->kode_pt_unit }}">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

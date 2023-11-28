@@ -19,8 +19,8 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        // $data = User::all();
-        $data = User::with('idPtUnit')->get();
+        $data = User::all();
+        // $data = User::with('idPtUnit')->get();
         $ptUnits = PTUnit::all();
         
         return view('admin.page.users.index', compact('data','ptUnits'));
@@ -88,7 +88,8 @@ class DashboardController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'role' => $request->role,
-            'id_pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
+            'kode_pt_unit' => $request->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('users')->with('pesan', 'Data berhasil disimpan');
@@ -129,7 +130,8 @@ class DashboardController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'role' => $request->role,
-            'id_pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
+            'kode_pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('admin-users')->with('pesan', 'Data berhasil disimpan');

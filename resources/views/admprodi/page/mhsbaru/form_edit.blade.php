@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="pt_unit">Unit Kerja</label>
-                                            <input type="hidden" name="pt_unit" value="{{ Auth::user()->id_pt_unit }}">
+                                            <input type="hidden" name="pt_unit" value="{{ Auth::user()->kode_pt_unit }}">
 
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>

@@ -76,7 +76,7 @@
                                                 Perangkat Yang Dimiliki
                                             </th>
                                             <th scope="col">
-                                                Id PT_Unit
+                                                Unit Kerja
                                             </th>
 
                                         </tr>
@@ -94,7 +94,7 @@
                                                 <td>{{ $item->jml_mhs }}</td>
                                                 <td>{{ $item->jam_lyn }}</td>
                                                 <td>{{ $item->perangkat }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach

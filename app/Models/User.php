@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password',
         'role',
         'id_pt_unit',
+        'kode_pt_unit',
     ];
 
     /**
@@ -60,7 +61,7 @@ class User extends Authenticatable
     //merelasikan ke tabel pt unit
     public function idPtUnit()
     {
-        return $this->belongsTo(PTUnit::class, 'id_pt_unit');
+        return $this->belongsTo(PTUnit::class, 'id_pt_unit','kode_pt_unit');
     }
    
 }

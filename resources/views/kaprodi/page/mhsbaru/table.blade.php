@@ -5,9 +5,6 @@
                 Tahun Akademik
             </th>
             <th scope="col" rowspan="2">
-                Id PT_Unit
-            </th>
-            <th scope="col" rowspan="2">
                 Daya Tampung
             </th>
             <th scope="col" colspan="2">
@@ -18,6 +15,9 @@
             </th>
             <th scope="col" colspan="2">
                 Jumlah Mahasiswa Aktif
+            </th>
+            <th scope="col" rowspan="2">
+                Unit Kerja
             </th>
 
         </tr>
@@ -55,7 +55,7 @@
                 <td>{{ $item->maba_transfer }}</td>
                 <td>{{ $item->mhs_aktif_reguler }}</td>
                 <td>{{ $item->mhs_aktif_transfer }}</td>
-                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                <td>{{ $item->kode_pt_unit }}</td>
             </tr>
         @endforeach
     </tbody>

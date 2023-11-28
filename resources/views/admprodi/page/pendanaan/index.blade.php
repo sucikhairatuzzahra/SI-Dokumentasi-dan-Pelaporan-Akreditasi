@@ -69,7 +69,7 @@
                                                 Keterangan
                                             </th>
                                             <th scope="col">
-                                                PT_Unit
+                                                Unit Kerja
                                             </th>
                                             <th scope="col">
                                                 Aksi
@@ -87,7 +87,7 @@
                                                 <td>{{ $item->jumlah }}</td>
                                                 <td>{{ $item->bukti }}</td>
                                                 <td>{{ $item->keterangan }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-pendanaan', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

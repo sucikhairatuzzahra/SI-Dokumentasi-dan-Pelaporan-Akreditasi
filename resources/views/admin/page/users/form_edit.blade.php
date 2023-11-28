@@ -68,10 +68,20 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="id_pt_unit">Pt Unit</label>
-                                            <select name="kode_pt_unit" id="kode_pt_unit" class="form-control">
+                                            <label for="id_pt_unit">Id Pt Unit</label>
+                                            <select name="id_pt_unit" id="id_pt_unit" class="form-control">
                                                 @foreach ($ptUnits as $idPtUnit)
                                                     <option value="{{ $idPtUnit->id }}">
+                                                        {{ $idPtUnit->id }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="kode_pt_unit">Kode Pt Unit</label>
+                                            <select name="kode_pt_unit" id="kode_pt_unit" class="form-control">
+                                                @foreach ($ptUnits as $idPtUnit)
+                                                    <option value="{{ $idPtUnit->kode_pt_unit }}">
                                                         {{ $idPtUnit->kode_pt_unit }}
                                                     </option>
                                                 @endforeach

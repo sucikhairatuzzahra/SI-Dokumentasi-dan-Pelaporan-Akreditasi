@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_pt_unit');
             $table->string('nama_pt_unit');
+            $table->integer('induk_pt_unit');
             $table->timestamps();
         });
     }

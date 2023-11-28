@@ -73,7 +73,7 @@
                                                 Lingkup Tempat Kerja
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Id PT_Unit
+                                                Unit Kerja
                                             </th>
 
                                         </tr>
@@ -101,7 +101,7 @@
                                                 <td>{{ $item->internasional }}</td>
                                                 <td>{{ $item->nasional }}</td>
                                                 <td>{{ $item->wirausaha }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach

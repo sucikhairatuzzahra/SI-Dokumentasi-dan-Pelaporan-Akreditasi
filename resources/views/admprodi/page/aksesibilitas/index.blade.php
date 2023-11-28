@@ -66,10 +66,10 @@
                                                 Sistem Pengolahan Data Ditangani
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                PT Unit
+                                                Unit Kerja
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Keterangan
+                                                Aksi
                                             </th>
                                         </tr>
                                         <tr align="center">
@@ -97,7 +97,7 @@
                                                 <td>{{ $item->tanpa_jrg }}</td>
                                                 <td>{{ $item->lan }}</td>
                                                 <td><a href="{{ $item->wan }}">{{ $item->wan }}</a></td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-aksesibilitas', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

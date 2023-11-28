@@ -76,7 +76,7 @@
                                                 Jumlah Mhs, Yang Masih Aktif
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                PT Unit
+                                                Unit Kerja
                                             </th>
 
                                         </tr>
@@ -123,7 +123,7 @@
                                                     <td>{{ $item->jumlah_lulusan_sampai_ts }}</td>
                                                     <td>{{ $item->masa_studi }}</td>
                                                     <td>{{ $item->jml_mhs_aktif }}</td>
-                                                    <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                    <td>{{ $item->kode_pt_unit }}</td>
 
                                                 </tr>
                                             @endforeach

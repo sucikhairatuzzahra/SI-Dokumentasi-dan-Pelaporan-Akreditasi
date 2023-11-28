@@ -63,11 +63,9 @@
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
+
                                             <th scope="col" rowspan="2">
-                                                PT Unit
-                                            </th>
-                                            <th scope="col" rowspan="2">
-                                                Keterangan
+                                                Aksi
                                             </th>
                                         </tr>
                                         <tr align="center">
@@ -119,17 +117,17 @@
                                                 </td>
                                                 <td>{{ $item['jenjang_counts']['sma'] ?? 0 ? count($item['jenjang_counts']['sma']) : 0 }}
                                                 </td>
-                                                <td>{{ $item['unit_kerja'] }}</td>
-                                                {{-- <td>{{ $item['pt_unit'] }}</td> --}}
-                                                <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td>
+                                                {{-- <td>{{ $item['unit_kerja'] }}</td> --}}
+                                                <td>{{ $item['kode_pt_unit'] }}</td>
+                                                {{-- <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td> --}}
 
 
                                                 <td>
 
-                                                    {{-- <a href="{{ route('kependidikanbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
+                                                    <a href="{{ route('kependidikanbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
                                                         style="margin-right: 7px">
                                                         Lihat
-                                                    </a> --}}
+                                                    </a>
 
                                                     {{-- <a href="{{ route('edit-kependidikan', ['id' => $item['id']]) }}"
                                                         style="margin-right: 7px">

@@ -116,7 +116,7 @@
                                                 </td>
                                                 <td>{{ $item['unit_kerja'] }}</td>
                                                 {{-- <td>{{ $item['pt_unit'] }}</td> --}}
-                                                <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td>
+                                                <td>{{ $item['kode_pt_unit'] }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

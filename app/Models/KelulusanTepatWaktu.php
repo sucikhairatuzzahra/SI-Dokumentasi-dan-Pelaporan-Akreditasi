@@ -14,11 +14,12 @@ class KelulusanTepatWaktu extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'tahun_masuk', 'jml_mhs', 'tahun_lulus', 'jml_lulusan', 'wisuda_ke', 'masa_studi', 
-        'jml_mhs_aktif', 'pt_unit'
+        'jml_mhs_aktif', 'id_pt_unit','kode_pt_unit'
     ];
 
-    public function idPtUnit()
+    public function user()
     {
-        return $this->belongsTo(PTUnit::class, 'pt_unit');
+        return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
     }
+
 }

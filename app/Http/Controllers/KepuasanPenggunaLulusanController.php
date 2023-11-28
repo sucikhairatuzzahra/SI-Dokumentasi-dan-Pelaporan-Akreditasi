@@ -6,6 +6,7 @@ use App\Exports\KepuasanPenggunaLulusanExport;
 use App\Models\KepuasanPenggunaLulusan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Auth;
 use App\Models\PTUnit;
 
 class KepuasanPenggunaLulusanController extends Controller
@@ -17,9 +18,8 @@ class KepuasanPenggunaLulusanController extends Controller
      */
     public function index()
     {
-        $data = KepuasanPenggunaLulusan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-        return view('jurusan.page.kepuasan_pengguna_lulusan.index', compact('data','ptUnits'));
+        $data = KepuasanPenggunaLulusan::all();
+        return view('jurusan.page.kepuasan_pengguna_lulusan.index', compact('data'));
 
         // $program = DB::table('tb_program')->get();
         // return view(
@@ -31,17 +31,14 @@ class KepuasanPenggunaLulusanController extends Controller
     }
     public function admprodiIndex()
     {
-        $data = KepuasanPenggunaLulusan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-        // dd($data);
-        return view('admprodi.page.kepuasan_pengguna_lulusan.index', compact('data','ptUnits'));
+        $data = KepuasanPenggunaLulusan::all();
+        return view('admprodi.page.kepuasan_pengguna_lulusan.index', compact('data'));
     }
     public function kaprodiIndex()
     {
-        $data = KepuasanPenggunaLulusan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
+        $data = KepuasanPenggunaLulusan::all();
 
-        return view('kaprodi.page.kepuasan_pengguna_lulusan.index', compact('data','ptUnits'));
+        return view('kaprodi.page.kepuasan_pengguna_lulusan.index', compact('data'));
     }
     /**
      * Show the form for creating a new resource.
@@ -68,6 +65,7 @@ class KepuasanPenggunaLulusanController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $input = KepuasanPenggunaLulusan::insert([
             'id' => $request->id,
             'jenis_kemampuan' => $request->jenis_kemampuan,
@@ -76,7 +74,8 @@ class KepuasanPenggunaLulusanController extends Controller
             'cukup' => $request->cukup,
             'kurang' => $request->kurang,
             'rencana_tindak_lanjut' => $request->rencana_tindak_lanjut,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('kepuasan_pengguna')->with('pesan', 'Data berhasil disimpan');
@@ -108,7 +107,7 @@ class KepuasanPenggunaLulusanController extends Controller
     public function edit($id)
     {
         $data['editData'] = KepuasanPenggunaLulusan::find($id);
-        return view('admin.page.kepuasan_pengguna_lulusan.form_edit', $data);
+        return view('admprodi.page.kepuasan_pengguna_lulusan.form_edit', $data);
     }
 
     /**
@@ -120,6 +119,7 @@ class KepuasanPenggunaLulusanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
         $kepuasan = KepuasanPenggunaLulusan::find($id);
         $update = $kepuasan->update([
             'jenis_kemampuan' => $request->jenis_kemampuan,
@@ -128,14 +128,15 @@ class KepuasanPenggunaLulusanController extends Controller
             'cukup' => $request->cukup,
             'kurang' => $request->kurang,
             'rencana_tindak_lanjut' => $request->rencana_tindak_lanjut,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('kepuasan_pengguna')->with('pesan', 'Data berhasil disimpan');
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.kepuasan_pengguna_lulusan.index';
+                window.location = '/admprodi.page.kepuasan_pengguna_lulusan.index';
                 </script>";
         }
     }

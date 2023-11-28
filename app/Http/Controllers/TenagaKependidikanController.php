@@ -6,8 +6,9 @@ use App\Exports\TenagaKependidikanExport;
 use App\Models\TenagaKependidikan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Models\PTUnit;
+use App\Models\User;
 
 class TenagaKependidikanController extends Controller
 {
@@ -18,104 +19,115 @@ class TenagaKependidikanController extends Controller
      */
     public function index()
     {
-        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')
+        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','id_pt_unit')
         ->orderBy('jenis_tenaga_kependidikan')->get();
         $tenaga_kependidikan2 = TenagaKependidikan::all();
-        // dd($tenaga_kependidikan);
-
-        $ptUnits = PTUnit::all();
+        $user = Auth::user();
         $data = [];
         $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
         foreach ($tenaga_kependidikan as $key => $value) {
-           
             $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
-            $idPtUnit = PTUnit::where('id',$value->pt_unit)->get();
+            $user = User::where('id_pt_unit',$value->id_pt_unit)->get();
             $data[$key] = [
-                'idPtunit' => $idPtUnit,
+                'user' => $user,
                 'id' => $value->id,
-                // 'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
                 'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
                 'nama' => $value->nama,
-                'pt_unit' => $value->pt_unit,
-                'unit_kerja' => $value->unit_kerja,
+                'id_pt_unit' => $value->id_pt_unit,
+                'kode_pt_unit' => $value->kode_pt_unit,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
                 'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan',$value->jenis_tenaga_kependidikan)
-                ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
-                 $jenjangCounts[$keyjp] = $item->count();
-                 
+                ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','id_pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
+                 $jenjangCounts[$keyjp] = $item->count(); 
             })
-            ];
-            
+            ];      
         }
-        return view('jurusan.page.kependidikan.index', compact('data','ptUnits','tenaga_kependidikan'));
+        return view('jurusan.page.kependidikan.index', compact('data','user','tenaga_kependidikan'));
     }
     public function admprodiIndex()
     {
-       
-        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')
+        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','id_pt_unit')
         ->orderBy('jenis_tenaga_kependidikan')->get();
         $tenaga_kependidikan2 = TenagaKependidikan::all();
-        // dd($tenaga_kependidikan);
-
-        $ptUnits = PTUnit::all();
+        $user = Auth::user();
         $data = [];
         $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
         foreach ($tenaga_kependidikan as $key => $value) {
-           
             $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
-            $idPtUnit = PTUnit::where('id',$value->pt_unit)->get();
+            $user = User::where('id_pt_unit',$value->id_pt_unit)->get();
             $data[$key] = [
-                'idPtunit' => $idPtUnit,
+                'user' => $user,
                 'id' => $value->id,
-                // 'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
                 'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
                 'nama' => $value->nama,
-                'pt_unit' => $value->pt_unit,
-                'unit_kerja' => $value->unit_kerja,
+                'id_pt_unit' => $value->id_pt_unit,
+                'kode_pt_unit' => $value->kode_pt_unit,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
                 'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan',$value->jenis_tenaga_kependidikan)
-                ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
-                 $jenjangCounts[$keyjp] = $item->count();
-                 
+                ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','id_pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
+                 $jenjangCounts[$keyjp] = $item->count(); 
             })
             ];      
         }
 
-        return view('admprodi.page.kependidikan.index', compact('data','ptUnits','tenaga_kependidikan'));
+        return view('admprodi.page.kependidikan.index', compact('data','user','tenaga_kependidikan'));
     }
     public function kaprodiIndex()
     {
-        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')
+        // // $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')
+        // // ->orderBy('jenis_tenaga_kependidikan')->get();
+        // // $tenaga_kependidikan2 = TenagaKependidikan::all();
+        // // // dd($tenaga_kependidikan);
+
+        // // $ptUnits = PTUnit::all();
+        // // $data = [];
+        // // $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
+        // // foreach ($tenaga_kependidikan as $key => $value) {
+           
+        // //     $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
+        // //     $idPtUnit = PTUnit::where('id',$value->pt_unit)->get();
+        // //     $data[$key] = [
+        // //         'idPtunit' => $idPtUnit,
+        // //         'id' => $value->id,
+        // //         // 'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
+        // //         'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
+        // //         'nama' => $value->nama,
+        // //         'pt_unit' => $value->pt_unit,
+        // //         'unit_kerja' => $value->unit_kerja,
+        // //         'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
+        // //         'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan',$value->jenis_tenaga_kependidikan)
+        // //         ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
+        // //          $jenjangCounts[$keyjp] = $item->count();
+                 
+        // //     })
+        // //     ];
+            
+        // }
+        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','id_pt_unit')
         ->orderBy('jenis_tenaga_kependidikan')->get();
         $tenaga_kependidikan2 = TenagaKependidikan::all();
-        // dd($tenaga_kependidikan);
-
-        $ptUnits = PTUnit::all();
+        $user = Auth::user();
         $data = [];
         $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
         foreach ($tenaga_kependidikan as $key => $value) {
-           
             $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
-            $idPtUnit = PTUnit::where('id',$value->pt_unit)->get();
+            $user = User::where('id_pt_unit',$value->id_pt_unit)->get();
             $data[$key] = [
-                'idPtunit' => $idPtUnit,
+                'user' => $user,
                 'id' => $value->id,
-                // 'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
                 'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
                 'nama' => $value->nama,
-                'pt_unit' => $value->pt_unit,
-                'unit_kerja' => $value->unit_kerja,
+                'id_pt_unit' => $value->id_pt_unit,
+                'kode_pt_unit' => $value->kode_pt_unit,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
                 'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan',$value->jenis_tenaga_kependidikan)
-                ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
-                 $jenjangCounts[$keyjp] = $item->count();
-                 
+                ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','id_pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
+                 $jenjangCounts[$keyjp] = $item->count(); 
             })
-            ];
-            
+            ];      
         }
 
-        return view('kaprodi.page.kependidikan.index', compact('data','ptUnits','tenaga_kependidikan'));
+        return view('kaprodi.page.kependidikan.index', compact('data','user','tenaga_kependidikan'));
     }
     /**
      * Show the form for creating a new resource.
@@ -124,12 +136,12 @@ class TenagaKependidikanController extends Controller
      */
     public function create()
     {
-        $ptUnits = PTUnit::all();
+     
         return view(
             'admprodi.page.kependidikan.form',
             [
                 'url' => 'simpan-kependidikan',
-                'ptUnits' =>  $ptUnits,
+           
             ]
         );
     }
@@ -142,13 +154,14 @@ class TenagaKependidikanController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $input = TenagaKependidikan::insert([
             'id' => $request->id,
             'nama' => $request->nama,
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
-            'unit_kerja' => $request->unit_kerja,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('kependidikan')->with('pesan', 'Data berhasil disimpan');
@@ -192,13 +205,14 @@ class TenagaKependidikanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
         $kpddkn = TenagaKependidikan::find($id);
         $update = $kpddkn->update([
             'nama' => $request->nama,
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
-            'unit_kerja' => $request->unit_kerja,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
 
         ]);
         if ($update) {
@@ -232,11 +246,11 @@ class TenagaKependidikanController extends Controller
     public function byPtUnit($ptunitid)
     {
         $where = [
-            'pt_unit' => $ptunitid, // D4 TRPL
+            'id_pt_unit' => $ptunitid, // D4 TRPL
         ];
         $data = TenagaKependidikan::where($where)->get();
-        dd($data);
-        // return view
+        // dd($data);
+        return view('admprodi.page.kependidikan.byidunit', compact('data'));
     }
 }
 

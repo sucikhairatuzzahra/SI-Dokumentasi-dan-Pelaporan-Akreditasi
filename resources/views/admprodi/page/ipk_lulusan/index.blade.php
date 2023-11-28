@@ -6,7 +6,7 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Kesesuaian Bidang Kerja Lulusan</h5>
+                        <h5 class="m-b-10">IPK Lulusan</h5>
                         <p class="m-b-0">Data Bidang Kerja Lulusan</p>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Kesesuaian Bidang Kerja Lulusan</a>
+                        <li class="breadcrumb-item"><a href="#!">IPK Lulusan</a>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Kesesuaian Bidang Kerja Lulusan</h5>
+                            <h5>IPK Lulusan</h5>
                             <a href="{{ route('tambah-ipklulusan') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>
@@ -66,10 +66,10 @@
                                                 Indeks Prestasi Kumulatif
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                PT Unit
+                                                Unit Kerja
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Keterangan
+                                                Aksi
                                             </th>
 
                                         </tr>
@@ -95,7 +95,7 @@
                                                 <td>{{ $item->ipk_min }}</td>
                                                 <td>{{ $item->ipk_rata_rata }}</td>
                                                 <td>{{ $item->ipk_max }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-ipklulusan', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

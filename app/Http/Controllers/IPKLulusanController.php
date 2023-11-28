@@ -7,6 +7,7 @@ use App\Models\IPKLulusan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\PTUnit;
+use Illuminate\Support\Facades\Auth;
 
 class IPKLulusanController extends Controller
 {
@@ -17,25 +18,23 @@ class IPKLulusanController extends Controller
      */
     public function index()
     {
-        $data = IPKLulusan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
+        $data = IPKLulusan::all();
         // dd($data);
-        return view('jurusan.page.ipk_lulusan.index', compact('data','ptUnits'));
+        return view('jurusan.page.ipk_lulusan.index', compact('data'));
     }
     public function admprodiIndex()
     {
-        $data = IPKLulusan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
+        $data = IPKLulusan::all();
+    
         // dd($data);
-        return view('admprodi.page.ipk_lulusan.index', compact('data','ptUnits'));
+        return view('admprodi.page.ipk_lulusan.index', compact('data'));
     }
 
     public function kaprodiIndex()
     {
-        $data = IPKLulusan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
+        $data = IPKLulusan::all();
 
-        return view('kaprodi.page.ipk_lulusan.index', compact('data','ptUnits'));
+        return view('kaprodi.page.ipk_lulusan.index', compact('data'));
     }
     /**
      * Show the form for creating a new resource.
@@ -43,13 +42,11 @@ class IPKLulusanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $ptUnits = PTUnit::all();
+    { 
         return view(
             'admprodi.page.ipk_lulusan.form',
             [
                 'url' => 'simpan-ipklulusan',
-                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -62,6 +59,7 @@ class IPKLulusanController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $input = IPKLulusan::insert([
             'id' => $request->id,
             'tahun_lulus' => $request->tahun_lulus,
@@ -69,7 +67,8 @@ class IPKLulusanController extends Controller
             'ipk_min' => $request->ipk_min,
             'ipk_rata_rata' => $request->ipk_rata_rata,
             'ipk_max' => $request->ipk_max,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
         ]);
         if ($input) {
             return redirect('ipklulusan')->with('pesan', 'Data berhasil disimpan');
@@ -113,6 +112,7 @@ class IPKLulusanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
         $ipk = IPKLulusan::find($id);
         $update = $ipk->update([
             'tahun_lulus' => $request->tahun_lulus,
@@ -120,7 +120,8 @@ class IPKLulusanController extends Controller
             'ipk_min' => $request->ipk_min,
             'ipk_rata_rata' => $request->ipk_rata_rata,
             'ipk_max' => $request->ipk_max,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
 
         ]);
         if ($update) {

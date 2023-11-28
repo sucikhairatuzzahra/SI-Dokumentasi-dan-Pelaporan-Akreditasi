@@ -12,11 +12,12 @@ class Aksesibilitas extends Model
     protected $table = "aksesibilitas";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'jenis_data', 'secara_manual', 'tanpa_jrg', 'lan', 'wan', 'pt_unit'
+        'jenis_data', 'secara_manual', 'tanpa_jrg', 'lan', 'wan', 'id_pt_unit','kode_pt_unit'
     ];
 
-    public function idPtUnit(){
-        return $this->belongsTo(PTUnit::class, 'pt_unit');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_pt_unit');
     }
     
     // protected function id_pt_unit (): CastsAttribute

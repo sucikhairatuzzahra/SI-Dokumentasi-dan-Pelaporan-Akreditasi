@@ -63,9 +63,9 @@
                                                 name="bidang_infokom" value="{{ $editData->bidang_infokom }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="non_infokom">Jumlah Kerja Bidang Non Infokom</label>
-                                            <input type="text" class="form-control" id="non_infokom" name="non_infokom"
-                                                value="{{ $editData->non_infokom }}">
+                                            <label for="bidang_noninfokom">Jumlah Kerja Bidang Non Infokom</label>
+                                            <input type="text" class="form-control" id="bidang_noninfokom"
+                                                name="bidang_noninfokom" value="{{ $editData->bidang_noninfokom }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="internasional">Internasional</label>
@@ -83,19 +83,9 @@
                                                 value="{{ $editData->wirausaha }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="id_pt_unit">Id PT Unit</label>
-                                            <select name="id_pt_unit" class="form-control">
-                                                <option value="7">P3M</option>
-                                                <option value="6">AKT</option>
-                                                <option value="5">D3 MI</option>
-                                                <option value="4">D4 TRPL</option>
-                                                <option value="3">JUR.TI</option>
-                                                <option value="2">SPM</option>
-                                                <option value="1">PNP</option>
-                                                <script>
-                                                    document.getElementById('id_pt_unit').value = "{{ $editData->id_pt_unit }}";
-                                                </script>
-                                            </select>
+                                            <label for="id_pt_unit">Unit Kerja</label>
+                                            <input type="hidden" name="id_pt_unit"
+                                                value="{{ Auth::user()->kode_pt_unit }}">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

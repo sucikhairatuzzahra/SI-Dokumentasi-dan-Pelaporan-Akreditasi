@@ -67,10 +67,7 @@
                                                 Unit Kerja
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                PT Unit
-                                            </th>
-                                            <th scope="col" rowspan="2">
-                                                Keterangan
+                                                Aksi
                                             </th>
                                         </tr>
 
@@ -82,13 +79,11 @@
                                                 <td>{{ $item['nama'] }}</td>
                                                 <td>{{ $item['jenis_tenaga_kependidikan'] }}</td>
                                                 <td>{{ $item['jenjang_pendidikan'] }} </td>
-                                                <td>{{ $item['unit_kerja'] }}</td>
-                                                <td>{{ $item['id_pt_unit'] }}</td>
+                                                <td>{{ $item['kode_pt_unit'] }}</td>
                                                 <td>
 
-                                                    <a
-                                                        href="{{ route('kependidikanbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}">Lihat</a>
-                                                    <a href="{{ route('edit-kependidikan', ['id' => $item['id']]) }}"
+                                                    <a {{-- href="{{ route('kependidikanbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}">Lihat</a> --}} <a
+                                                        href="{{ route('edit-kependidikan', ['id' => $item['id']]) }}"
                                                         style="margin-right: 7px">
                                                         Edit
                                                     </a>

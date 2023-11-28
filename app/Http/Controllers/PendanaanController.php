@@ -7,6 +7,7 @@ use App\Models\Pendanaan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\PTUnit;
+use Illuminate\Support\Facades\Auth;
 
 class PendanaanController extends Controller
 {
@@ -17,23 +18,20 @@ class PendanaanController extends Controller
      */
     public function index()
     {
-        $data = Pendanaan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-        return view('jurusan.page.pendanaan.index', compact('data','ptUnits'));
+        $data = Pendanaan::all();
+        return view('jurusan.page.pendanaan.index', compact('data'));
     }
     public function admprodiIndex()
     {
-        $data = Pendanaan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
+        $data = Pendanaan::all();
         // dd($data);
-        return view('admprodi.page.pendanaan.index', compact('data','ptUnits'));
+        return view('admprodi.page.pendanaan.index', compact('data'));
     }
     public function kaprodiIndex()
     {
-        $data = Pendanaan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
+        $data = Pendanaan::all();
 
-        return view('kaprodi.page.pendanaan.index', compact('data','ptUnits'));
+        return view('kaprodi.page.pendanaan.index', compact('data'));
     }
     /**
      * Show the form for creating a new resource.
@@ -42,12 +40,10 @@ class PendanaanController extends Controller
      */
     public function create()
     {
-        $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.pendanaan.form',
             [
                 'url' => 'simpan-pendanaan',
-                'ptUnits' =>  $ptUnits,
             ]
         );
     }
@@ -60,15 +56,25 @@ class PendanaanController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $input = Pendanaan::insert([
             'id' => $request->id,
             'sumber_dana' => $request->sumber_dana,
             'jumlah' => $request->jumlah,
             'bukti' => $request->bukti,
             'keterangan' => $request->keterangan,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
 
         ]);
+        if ($request->hasFile('bukti')) {
+            $file = $request->file('bukti');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('storage/bukti_dtpr', $filename);
+
+            $input->bukti = $filename;
+            $input->save();
+        }
 
         if ($input) {
             return redirect('pendanaan')->with('pesan', 'Data berhasil disimpan');
@@ -111,15 +117,24 @@ class PendanaanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    { $user = Auth::user();
         $dana = Pendanaan::find($id);
         $update = $dana->update([
             'sumber_dana' => $request->sumber_dana,
             'jumlah' => $request->jumlah,
             'bukti' => $request->bukti,
             'keterangan' => $request->keterangan,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
         ]);
+        if ($request->hasFile('bukti')) {
+            $file = $request->file('bukti');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('storage/bukti_dtpr', $filename);
+
+            $input->bukti = $filename;
+            $input->save();
+        }
         if ($update) {
             return redirect('pendanaan')->with('pesan', 'Data berhasil disimpan');
         } else {

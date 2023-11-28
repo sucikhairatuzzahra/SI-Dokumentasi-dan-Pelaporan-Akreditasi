@@ -76,7 +76,7 @@
                                                 Unit Kerja
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Keterangan
+                                                Aksi
                                             </th>
                                         </tr>
                                         <tr align="center">
@@ -113,9 +113,9 @@
                                                 <td>{{ $item->maba_transfer }}</td>
                                                 <td>{{ $item->mhs_aktif_reguler }}</td>
                                                 <td>{{ $item->mhs_aktif_transfer }}</td>
-                                                {{-- <td>{{ optional($item->user)->id_pt_unit }}</td> --}}
-                                                <td>{{ $item->id_pt_unit }}</td>
-                                                {{-- <td>{{ $item->idPtUnit->kode_pt_unit }}</td> --}}
+                                                {{-- <td>{{ $item->id_pt_unit }}</td> --}}
+                                                <td>{{ $item->kode_pt_unit }}</td>
+
                                                 <td>
                                                     <a href="{{ route('edit-cmb', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

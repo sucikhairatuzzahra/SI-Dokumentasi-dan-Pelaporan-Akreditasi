@@ -75,10 +75,10 @@
                                                 Jumlah PkM bertema INFOKOM yang mendapat HKI
                                             </th>
                                             <th scope="col">
-                                                PT_Unit
+                                                Unit Kerja
                                             </th>
                                             <th scope="col">
-                                                Keterangan
+                                                Aksi
                                             </th>
                                         </tr>
                                     </thead>
@@ -88,28 +88,17 @@
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
                                                 <td>{{ $item->nama_dtpr }}</td>
-                                                <td>{{ $item->publikasi_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom_hki }}</td>
-                                                <td>{{ $item->pkm_infokom_adobsi }}</td>
-                                                <td>{{ $item->pkm_infokom_hki }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->jumlah_publikasi_infokom }}</td>
+                                                <td>{{ $item->jumlah_penelitian_infokom }}</td>
+                                                <td>{{ $item->jumlah_penelitian_infokom_hki }}</td>
+                                                <td>{{ $item->jumlah_pkm_diadopsi_masyarakat }}</td>
+                                                <td>{{ $item->jumlah_pkm_hki }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit-ppkm_dtpr', ['id' => $item->id]) }}"
+                                                    <a href="{{ route('ppkmdtprbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
                                                         style="margin-right: 7px">
-                                                        Edit
+                                                        Lihat
                                                     </a>
-                                                    <a href="{{ route('hapus-ppkm_dtpr', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-ppkm_dtpr', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-
                                                 </td>
                                             </tr>
                                         @endforeach

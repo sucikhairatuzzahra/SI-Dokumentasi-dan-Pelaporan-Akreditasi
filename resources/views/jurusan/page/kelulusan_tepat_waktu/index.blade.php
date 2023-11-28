@@ -33,6 +33,23 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
+                            <div class="card-header-left">
+                                <h5>Pilih Program Studi </h5>
+                            </div>
+                        </div>
+                        <div class="card-block">
+                            <select id="selectProdi">
+                                <option value="0">--Pilih Program Studi--</option>
+                                <option value="5">D3 MI</option>
+                                <option value="6">D3 TK</option>
+                                <option value="4">D4 TRPL</option>
+                            </select>
+                        </div>
+                        {{-- tabel  --}}
+                        <br>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
                             <h5>Kelulusan Tepat Waktu</h5>
 
                             <div class="card-header-right">
@@ -47,10 +64,7 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-                                {{-- <div class="row">
-                                    <a href="{{ route('kelulusan_tepatwaktu-download') }}">
-                                        <button class="btn btn-success">Download</button></a>
-                                </div> --}}
+
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr align="center">
@@ -73,7 +87,7 @@
                                                 Jumlah Mhs, Yang Masih Aktif
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                PT Unit
+                                                Unit Kerja
                                             </th>
 
                                         </tr>
@@ -107,7 +121,7 @@
                                             <tr align="center">
                                                 <td>{{ $item->tahun_masuk }}</td>
                                                 <td>{{ $item->jml_mhs }}</td>
-                                                <td>{{ $item->tahun_lulus }}</td>
+                                                {{-- <td>{{ $item->tahun_lulus }}</td> --}}
                                                 <td>{{ $item->akhir_ts_6 }}</td>
                                                 <td>{{ $item->akhir_ts_5 }}</td>
                                                 <td>{{ $item->akhir_ts_4 }}</td>
@@ -118,7 +132,7 @@
                                                 <td>{{ $item->jumlah_lulusan_sampai_ts }}</td>
                                                 <td>{{ $item->masa_studi }}</td>
                                                 <td>{{ $item->jml_mhs_aktif }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
 
                                             </tr>
                                         @endforeach
@@ -138,4 +152,49 @@
 
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Isi dropdown dengan opsi prodi
+            // ...
+            const idProdiID = window.location.pathname?.split('/')?.pop()
+            if (Number(idProdiID) > 0) {
+                $('#selectProdi option[value="' + Number(idProdiID) + '"]').attr('selected', 'selected');
+
+            } else {
+                $('#selectProdi option[value="' + 0 + '"]').attr('selected', 'selected');
+
+            }
+            // Tangani perubahan dropdown
+            $('#selectProdi').change(function() {
+                var prodiId = $(this).val();
+
+
+                // Kirim permintaan AJAX
+                $.ajax({
+                    type: 'GET',
+                    url: '/jurusan-kelulusan_tepatwaktu/' + prodiId,
+                    success: function(data) {
+                        // data?.forEach((d, idx) => {
+                        //     $(`.tahun_akademik_${idx}`)?.text(d?.tahun_akademik)
+
+                        // })
+                        if (prodiId > 0) {
+                            history.pushState(null, null, '/jurusan-kelulusan_tepatwaktu/' +
+                                prodiId);
+
+                        } else {
+                            history.pushState(null, null, '/jurusan-kelulusan_tepatwaktu/');
+
+                        }
+                        window.location.reload()
+                        console.log(data)
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

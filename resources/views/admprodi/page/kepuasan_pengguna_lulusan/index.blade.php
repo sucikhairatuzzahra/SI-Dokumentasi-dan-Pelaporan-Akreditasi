@@ -66,10 +66,10 @@
                                                 Rencana Tindak Lanjut Oleh UPPS/PS
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                PT Unit
+                                                Unit Kerja
                                             </th>
                                             <th scope="col" rowspan="2">
-                                                Keterangan
+                                                Aksi
                                             </th>
                                         </tr>
                                         <tr align="center">
@@ -98,7 +98,7 @@
                                                 <td>{{ $item->cukup }}</td>
                                                 <td>{{ $item->kurang }}</td>
                                                 <td>{{ $item->rencana_tindak_lanjut }}</td>
-                                                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-kepuasan_pengguna', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

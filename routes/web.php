@@ -55,40 +55,52 @@ Route::middleware(['auth', 'user-role:jurusan'])->group(function () {
     Route::get('/home', [HomeController::class, 'jurusanHome'])->name('home');
 
     //route Calon Mahasiswa Baru
-    Route::get('/jurusan-mahasiswa', [CalonMhsBaruController::class, 'index'])->name('jurusan-mahasiswa'); //index
-        
-    //Aksesibilitas
-    Route::get('/jurusan-aksesibilitas', [AksesibilitasController::class, 'index'])->name('jurusan-aksesibilitas'); //index
+    Route::get('/jurusan-mahasiswa/{id_pt_unit?}', [CalonMhsBaruController::class, 'index'])->name('jurusan-mahasiswa'); //index
+    Route::get('/databyprodi/{id_pt_unit}', [CalonMhsBaruController::class, 'getDataByProdi'])->name('databyprodi');
 
-    //Pendanaan
+    //Aksesibilitas
+    Route::get('/jurusan-aksesibilitas/{id_pt_unit?}', [AksesibilitasController::class, 'index'])->name('jurusan-aksesibilitas'); //index
+    Route::get('/databyprodi/{id_pt_unit}', [AksesibilitasController::class, 'getDataByProdi'])->name('databyprodi');
+
+    // Pendanaan
     Route::get('/jurusan-sumberdana', [PendanaanController::class, 'index'])->name('jurusan-sumberdana'); //index
+    Route::get('/databyprodi/{id_pt_unit}', [PendanaanController::class, 'getDataByProdi'])->name('databyprodi');
 
     //Sarana Prasaranaki
     Route::get('/jurusan-saranaprasarana', [SaranaPrasaranaController::class, 'index'])->name('jurusan-saranaprasarana'); //index
+    Route::get('/databyprodi/{id_pt_unit}', [SaranaPrasaranaController::class, 'getDataByProdi'])->name('databyprodi');
 
     //Tenaga Kependidikan
     Route::get('/jurusan-kependidikan', [TenagaKependidikanController::class, 'index'])->name('jurusan-kependidikan'); //index
+       Route::get('/databyprodi/{id_pt_unit}', [TenagaKependidikanController::class, 'getDataByProdi'])->name('databyprodi');
 
     //IPK Lulusan
     Route::get('/jurusan-ipklulusan', [IPKLulusanController::class, 'index'])->name('jurusan-ipklulusan'); //index
+       Route::get('/databyprodi/{id_pt_unit}', [IPKLulusanController::class, 'getDataByProdi'])->name('databyprodi');
 
     //Masa Tunggu Lulusan Bekerja
     Route::get('/jurusan-masatunggu', [MasaTunguLulusanController::class, 'index'])->name('jurusan-masatunggu'); //index
+       Route::get('/databyprodi/{id_pt_unit}', [MasaTunguLulusanController::class, 'getDataByProdi'])->name('databyprodi');
 
     //Kesesuaian bidang kerja lulusan 
     Route::get('/jurusan-kerjalulusan', [BidangKerjaLulusanController::class, 'index'])->name('jurusan-kerjalulusan'); //index
+       Route::get('/databyprodi/{id_pt_unit}', [BidangKerjaLulusanController::class, 'getDataByProdi'])->name('databyprodi');
 
     //Rata-Rata Beban DTPR Per Semester
-    Route::get('/jurusan-bebandtpr', [BebanDTRPController::class, 'index'])->name('jurusan-bebandtpr'); //index
+    Route::get('/jurusan-bebandtpr/{id_pt_unit?}', [BebanDTRPController::class, 'index'])->name('jurusan-bebandtpr'); //index
+    Route::get('/databyprodi/{id_pt_unit}', [BebanDTRPController::class, 'getDataByProdi'])->name('databyprodi');
 
     //Kepuasan Pengguna Lulusan
     Route::get('/jurusan-kepuasan_pengguna', [KepuasanPenggunaLulusanController::class, 'index'])->name('jurusan-kepuasan_pengguna'); //index
+       Route::get('/databyprodi/{id_pt_unit}', [KepuasanPenggunaLulusanController::class, 'getDataByProdi'])->name('databyprodi');
 
     //Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR
     Route::get('/jurusan-ppkm_dtpr', [PPKMDariDTPRController::class, 'index'])->name('jurusan-ppkm_dtpr'); //index
+       Route::get('/databyprodi/{id_pt_unit}', [PPKMDariDTPRController::class, 'getDataByProdi'])->name('databyprodi');
 
     //Kelulusan Tepat Waktu
     Route::get('/jurusan-kelulusan_tepatwaktu', [KelulusanTepatWaktuController::class, 'index'])->name('jurusan-kelulusan_tepatwaktu'); //index
+       Route::get('/databyprodi/{id_pt_unit}', [KelulusanTepatWaktuController::class, 'getDataByProdi'])->name('databyprodi');
 
 
    
@@ -249,13 +261,6 @@ Route::middleware(['auth', 'user-role:admprodi'])->group(function () {
     Route::delete('/hapus-kependidikan/{id}', [TenagaKependidikanController::class, 'destroy'])->name('hapus-kependidikan'); //destroy
     Route::get('/kependidikan/ptunit/{ptunitid}', [TenagaKependidikanController::class, 'byPtUnit'])->name('kependidikanbyptunit');
 
-
-    Route::get('/kependidikan/{id}/tambah', [JumlahTenagaKependidikanController::class, 'create'])->name('tambahjmlkependidikan'); //create
-    Route::post('/kependidikan/{id}/simpan', [JumlahTenagaKependidikanController::class, 'store'])->name('simpanjmlkependidikan'); //store
-    Route::get('/kependidikan/{id}/edit', [JumlahTenagaKependidikanController::class, 'edit'])->name('editjmlkependidikan');
-    Route::put('/kependidikan/{id}/update', [JumlahTenagaKependidikanController::class, 'update'])->name('updatejmlkependidikan');
-    Route::delete('/kependidikan/{id}/hapus', [JumlahTenagaKependidikanController::class, 'destroy'])->name('hapusjmlkependidikan'); //destroy
-
     //IPK Lulusan
     Route::get('/ipklulusan', [IPKLulusanController::class, 'admprodiIndex'])->name('ipklulusan'); //index
     Route::get('/tambah-ipklulusan', [IPKLulusanController::class, 'create'])->name('tambah-ipklulusan'); //create
@@ -303,6 +308,7 @@ Route::middleware(['auth', 'user-role:admprodi'])->group(function () {
     Route::get('/edit-ppkm_dtpr/{id}', [PPKMDariDTPRController::class, 'edit'])->name('edit-ppkm_dtpr');
     Route::put('/update-ppkm_dtpr/{id}', [PPKMDariDTPRController::class, 'update'])->name('update-ppkm_dtpr');
     Route::delete('/hapus-ppkm_dtpr/{id}', [PPKMDariDTPRController::class, 'destroy'])->name('hapus-ppkm_dtpr'); //destroy
+    Route::get('/ppkmdtpr/ptunit/{ptunitid}', [PPKMDariDTPRController::class, 'byPtUnit'])->name('ppkmdtprbyptunit');
 
     //Kelulusan Tepat Waktu
     Route::get('/kelulusan_tepatwaktu', [KelulusanTepatWaktuController::class, 'admprodiIndex'])->name('kelulusan_tepatwaktu'); //index

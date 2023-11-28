@@ -16,12 +16,16 @@ return new class extends Migration
         Schema::create('ppkm_dtpr', function (Blueprint $table) {
             $table->id();
             $table->string('nama_dtpr');
-            $table->integer('publikasi_infokom');
-            $table->integer('penelitian_infokom');
-            $table->integer('penelitian_infokom_hki');
-            $table->integer('pkm_infokom_adobsi');
-            $table->integer('pkm_infokom_hki');
-            $table->string('pt_unit');
+            $table->enum('jenis_penelitian_pengabdian', ['penelitian', 'pengabdian']);
+            $table->string('judul');
+            $table->enum('ketua',['ya','tidak']);
+            $table->string('jenis_luaran');
+            $table->string('jenis_luaran_lain');
+            $table->string('tahun');
+            $table->string('dana');
+            $table->string('bukti')->nullable();
+            $table->integer('id_pt_unit');
+            $table->string('kode_pt_unit');
             $table->timestamps();
         });
     }

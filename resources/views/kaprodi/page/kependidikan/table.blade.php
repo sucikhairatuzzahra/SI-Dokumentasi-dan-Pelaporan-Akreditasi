@@ -43,17 +43,26 @@
 
         @foreach ($data as $no => $item)
             <tr align="center">
-                <td>{{ $item->jenis_tng_kpddkn }}</td>
-                <td>{{ $item->lulusan?->s3 }}</td>
-                <td>{{ $item->lulusan?->s2 }}</td>
-                <td>{{ $item->lulusan?->s1 }}</td>
-                <td>{{ $item->lulusan?->d4 }}</td>
-                <td>{{ $item->lulusan?->d3 }}</td>
-                <td>{{ $item->lulusan?->d2 }}</td>
-                <td>{{ $item->lulusan?->d1 }}</td>
-                <td>{{ $item->lulusan?->sma }}</td>
-                <td>{{ $item->unit_kerja }}</td>
-
+                <td>{{ $item['jenis_tenaga_kependidikan'] }}</td>
+                <td>{{ $item['jenjang_counts']['s3'] ?? 0 ? count($item['jenjang_counts']['s3']) : 0 }}
+                </td>
+                <td>{{ $item['jenjang_counts']['s2'] ?? 0 ? count($item['jenjang_counts']['s2']) : 0 }}
+                </td>
+                <td>{{ $item['jenjang_counts']['s1'] ?? 0 ? count($item['jenjang_counts']['s1']) : 0 }}
+                </td>
+                <td>{{ $item['jenjang_counts']['d4'] ?? 0 ? count($item['jenjang_counts']['d4']) : 0 }}
+                </td>
+                <td>{{ $item['jenjang_counts']['d3'] ?? 0 ? count($item['jenjang_counts']['d3']) : 0 }}
+                </td>
+                <td>{{ $item['jenjang_counts']['d2'] ?? 0 ? count($item['jenjang_counts']['d2']) : 0 }}
+                </td>
+                <td>{{ $item['jenjang_counts']['d1'] ?? 0 ? count($item['jenjang_counts']['d1']) : 0 }}
+                </td>
+                <td>{{ $item['jenjang_counts']['sma'] ?? 0 ? count($item['jenjang_counts']['sma']) : 0 }}
+                </td>
+                <td>{{ $item['unit_kerja'] }}</td>
+                {{-- <td>{{ $item['pt_unit'] }}</td> --}}
+                <td>{{ $item['kode_pt_unit'] }}</td>
             </tr>
         @endforeach
     </tbody>

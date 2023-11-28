@@ -20,7 +20,7 @@
                 SKS Manajemen
             </th>
             <th scope="col" rowspan="2">
-                Id PT Unit
+                Unit Kerja
             </th>
 
         </tr>
@@ -55,7 +55,7 @@
                 <td>{{ $item->sks_pengabdian }}</td>
                 <td>{{ $item->manajemen_pt_sendiri }}</td>
                 <td>{{ $item->manajemen_pt_lain }}</td>
-                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                <td>{{ $item->kode_pt_unit }}</td>
 
             </tr>
         @endforeach

@@ -17,7 +17,7 @@
                 Keterangan
             </th>
             <th scope="col">
-                Id PT_Unit
+                Unit Kerja
             </th>
 
         </tr>
@@ -33,7 +33,7 @@
                 <td>{{ $item->jumlah }}</td>
                 <td>{{ $item->bukti }}</td>
                 <td>{{ $item->keterangan }}</td>
-                <td>{{ $item->idPtUnit->kode_pt_unit }}</td>
+                <td>{{ $item->kode_pt_unit }}</td>
 
             </tr>
         @endforeach

@@ -19,7 +19,8 @@ return new class extends Migration
             $table->integer('jumlah_lulusan');
             $table->integer('lulusan_terlacak');
             $table->integer('waktu_tunggu');
-            $table->string('pt_unit');
+            $table->integer('id_pt_unit');
+            $table->string('kode_pt_unit');
             $table->timestamps();
         });
     }

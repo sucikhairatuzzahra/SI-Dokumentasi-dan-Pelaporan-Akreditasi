@@ -6,6 +6,7 @@ use App\Exports\AksesibilitasExport;
 use App\Models\Aksesibilitas;
 use App\Models\PTUnit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -16,26 +17,36 @@ class AksesibilitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id_pt_unit='')
     {
-        $data = Aksesibilitas::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-        // dd($data);
-        return view('jurusan.page.aksesibilitas.index', compact('data','ptUnits'));
+        if($id_pt_unit){
+            $data = Aksesibilitas::where('id_pt_unit', $id_pt_unit)->get();
+        return view('jurusan.page.aksesibilitas.index', compact('data'));
+
+        }else{
+            $data = Aksesibilitas::all();
+         return view('jurusan.page.aksesibilitas.index', compact('data'));
+        }
+
+        // $data = Aksesibilitas::all();
+        
     }
+    public function getDataByProdi($id_pt_unit)
+    {
+        $data = Aksesibilitas::where('id_pt_unit', $id_pt_unit)->get();
+        // return response()->json($data);
+        return view('jurusan.page.aksesibilitas.index', compact('data'));
+    }
+
     public function admprodiIndex()
     {
-        $data = Aksesibilitas::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-        // dd($data);
-        return view('admprodi.page.aksesibilitas.index', compact('data','ptUnits'));
+        $data = Aksesibilitas::all();
+        return view('admprodi.page.aksesibilitas.index', compact('data'));
     }
     public function kaprodiIndex()
     {
-        $data = Aksesibilitas::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-
-        return view('kaprodi.page.aksesibilitas.index', compact('data','ptUnits'));
+        $data = Aksesibilitas::all();
+        return view('kaprodi.page.aksesibilitas.index', compact('data'));
     }
     /**
      * Show the form for creating a new resource.
@@ -44,12 +55,12 @@ class AksesibilitasController extends Controller
      */
     public function create()
     {
-        $ptUnits = PTUnit::all();
+       
         return view(
             'admprodi.page.aksesibilitas.form',
             [
                 'url' => 'simpan-aksesibilitas',
-                'ptUnits' =>  $ptUnits,
+              
             ]
         );
     }
@@ -62,6 +73,7 @@ class AksesibilitasController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $input = Aksesibilitas::insert([
             'id' => $request->id,
             'jenis_data' => $request->jenis_data,
@@ -69,7 +81,8 @@ class AksesibilitasController extends Controller
             'tanpa_jrg' => $request->tanpa_jrg,
             'lan' => $request->lan,
             'wan' => $request->wan,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
 
         ]);
         if ($input) {
@@ -107,7 +120,7 @@ class AksesibilitasController extends Controller
 
         $data['editData'] = Aksesibilitas::find($id);
 
-        return view('admin.page.aksesibilitas.form_edit', $data);
+        return view('admprodi.page.aksesibilitas.form_edit', $data);
     }
 
     /**
@@ -127,13 +140,14 @@ class AksesibilitasController extends Controller
             'lan' => $request->lan,
             'wan' => $request->wan,
             'id_pt_unit' => $request->id_pt_unit,
+            'kode_pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('aksesibilitas')->with('pesan', 'Data berhasil disimpan');
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.aksesibilitas.index';
+                window.location = '/admprodi.page.aksesibilitas.index';
                 </script>";
         }
     }

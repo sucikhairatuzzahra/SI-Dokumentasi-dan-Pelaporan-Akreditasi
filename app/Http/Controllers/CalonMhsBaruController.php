@@ -15,44 +15,56 @@ class CalonMhsBaruController extends Controller
 
 {
 
-    public function index()
+    public function index($id_pt_unit='')
     {
-        $data = Mhsbaru::with('tahunAkademik','idPtUnit')->get();
         $tahunAkademiks = TahunAkademik::all();
-        $ptUnits = PTUnit::all();
+        if($id_pt_unit){
+            $data = MhsBaru::where('id_pt_unit', $id_pt_unit)->get();
+            return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks'));
 
-        return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks','ptUnits'));
+        }else{
+            $data = Mhsbaru::with('tahunAkademik')->get();
+    
+            return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks'));
+
+        }
         
     }
+    public function getDataByProdi($id_pt_unit)
+    {
+        $data = MhsBaru::where('id_pt_unit', $id_pt_unit)->get();
+        $tahunAkademiks = TahunAkademik::all();
+
+        // return response()->json($data);
+        return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks'));
+    }
+    
     public function kaprodiIndex()
     {
-        $data = Mhsbaru::with('tahunAkademik','idPtUnit')->get();
+        $data = Mhsbaru::with('tahunAkademik')->get();
         $tahunAkademiks = TahunAkademik::all();
-        $ptUnits = PTUnit::all();
 
-        return view('kaprodi.page.mhsbaru.index', compact('data','tahunAkademiks','ptUnits'));
+        return view('kaprodi.page.mhsbaru.index', compact('data','tahunAkademiks'));
     }
+
     public function admprodiIndex()
     {
         $data = Mhsbaru::with('tahunAkademik')->get();
         $tahunAkademiks = TahunAkademik::all();
-      
-        // dd($data);
         return view('admprodi.page.mhsbaru.index', compact('data', 'tahunAkademiks'));
     }
     public function create()
     {
         $tahunAkademiks = TahunAkademik::all();
-        // $ptUnits = PTUnit::all();
         return view(
             'admprodi.page.mhsbaru.form',
             [
                 'url' => 'simpan-cmb',
                 'tahunAkademiks' => $tahunAkademiks,
-                // 'ptUnits' =>  $ptUnits,
+             
             ]
         );
-    }
+    } 
     public function store(Request $request)
     {
         
@@ -61,6 +73,7 @@ class CalonMhsBaruController extends Controller
             'id' => $request->id,
             'thn_akademik' => $request->tahun_akademik,
             'id_pt_unit' => $user->id_pt_unit,
+            'kode_pt_unit' => $user->kode_pt_unit,
             // 'id_pt_unit' => Auth::user()->id_pt_unit,
             'daya_tampung' => $request->daya_tampung,
             'pendaftar' => $request->pendaftar,
@@ -90,6 +103,7 @@ class CalonMhsBaruController extends Controller
         $update = $mhs->update([
             'thn_akademik' => $request->thn_akademik,
             'id_pt_unit' => Auth::user()->id_pt_unit,
+            'kode_pt_unit' => Auth::user()->kode_pt_unit,
             'daya_tampung' => $request->daya_tampung,
             'pendaftar' => $request->pendaftar,
             'lulus_seleksi' => $request->lulus_seleksi,
