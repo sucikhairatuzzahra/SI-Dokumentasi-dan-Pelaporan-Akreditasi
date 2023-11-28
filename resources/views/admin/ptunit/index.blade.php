@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Daftar PT Unit</a>
+                        <li class="breadcrumb-item active"><a href="#!">Daftar PT Unit</a>
                         </li>
                     </ul>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Daftar PT Unit</h5>
-                            <a href="{{ route('tambah-ptunit') }}">
+                            <a href="{{ route('ptunit.create') }}">
                                 <span>Tambah data <code>disini</code> </span>
                             </a>
                             <div class="card-header-right">
@@ -43,9 +43,15 @@
                                     <li><i class="fa fa-window-maximize full-card"></i></li>
                                     <li><i class="fa fa-minus minimize-card"></i></li>
                                     <li><i class="fa fa-refresh reload-card"></i></li>
-
                                 </ul>
                             </div>
+                            @if (session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            @if (session('error'))
+                                <div class="alert alert-danger">{{ session('error') }}</div>
+                            @endif
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
@@ -76,21 +82,12 @@
                                                 <td>{{ $item->kode_pt_unit }}</td>
                                                 <td>{{ $item->nama_pt_unit }}</td>
                                                 <td>
-                                                    {{-- <a href="{{ route('edit-ptunit', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a> --}}
-                                                    <a href="{{ route('hapus-ptunit', $item->id) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-ptunit', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
+                                                    <form action="{{ route('ptunit.destroy', ['id' => $item->id]) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
+                                                        <button type="submit" class="btn btn-link">Hapus</button>
                                                     </form>
-
                                                 </td>
                                             </tr>
                                         @endforeach

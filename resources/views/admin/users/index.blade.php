@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -87,16 +87,16 @@
                                                 <td>{{ $item->password }}</td>
                                                 <td>{{ $item->role }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit-users', ['id' => $item->id]) }}"
+                                                    <a href="{{ route('users.edit', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">
                                                         Edit
                                                     </a>
-                                                    <a href="{{ route('hapus-users', $item->id) }}"
+                                                    <a href="{{ route('users.destroy', $item->id) }}"
                                                         onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
                                                         Hapus
                                                     </a>
                                                     <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-users', ['id' => $item->id]) }}"
+                                                        action="{{ route('users.destroy', ['id' => $item->id]) }}"
                                                         method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')

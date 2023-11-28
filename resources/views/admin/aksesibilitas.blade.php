@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">

@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Daftar Tahun Akademik</h5>
-                        <p class="m-b-0">Data Tahun Akademik</p>
+                        <h5 class="m-b-10">Pendayagunaan Sarana dan Prasarana Utama</h5>
+                        <p class="m-b-0">Data Pendayagunaan Sarana dan Prasarana Utama</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Daftar Tahun Akademik</a>
+                        <li class="breadcrumb-item"><a href="#!">Pendayagunaan Sarana dan Prasarana Utama</a>
                         </li>
                     </ul>
                 </div>
@@ -33,10 +33,8 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Daftar Tahun Akademik</h5>
-                            <a href="{{ route('tambah-tahun_akademik') }}">
-                                <span>Tambah data <code>disini</code> </span>
-                            </a>
+                            <h5>Pendayagunaan Sarana dan Prasarana Utama</h5>
+
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -49,6 +47,10 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
+                                {{-- <div class="row">
+                                    <a href="{{ route('saranaprasarana-download') }}">
+                                        <button class="btn btn-success">Download</button></a>
+                                </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
@@ -56,11 +58,27 @@
                                                 No
                                             </th>
                                             <th scope="col">
-                                                Tahun Akademik
+                                                Sarana/ Prasarana
                                             </th>
                                             <th scope="col">
-                                                Aksi
+                                                Daya Tampung
                                             </th>
+                                            <th scope="col">
+                                                Luas Ruang (m2)
+                                            </th>
+                                            <th scope="col">
+                                                Jumlah Mhs Yang Dilayani
+                                            </th>
+                                            <th scope="col">
+                                                Jam Layanan
+                                            </th>
+                                            <th scope="col">
+                                                Perangkat Yang Dimiliki
+                                            </th>
+                                            <th scope="col">
+                                                Id PT_Unit
+                                            </th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -70,24 +88,14 @@
                                         @foreach ($data as $no => $item)
                                             <tr>
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->tahun_akademik }}</td>
-                                                <td>
-                                                    {{-- <a href="{{ route('edit-users', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a> --}}
-                                                    <a href="{{ route('hapus-tahun_akademik', $item->id) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-tahun_akademik', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
+                                                <td>{{ $item->sarana }}</td>
+                                                <td>{{ $item->daya_tampung }}</td>
+                                                <td>{{ $item->luas_ruang }}</td>
+                                                <td>{{ $item->jml_mhs }}</td>
+                                                <td>{{ $item->jam_lyn }}</td>
+                                                <td>{{ $item->perangkat }}</td>
+                                                <td>{{ $item->id_pt_unit }}</td>
 
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -9,7 +9,7 @@ class Dosen extends Model
 {
     use HasFactory;
     protected $table = "dosen";
-    protected $primaryKey = 'pk_id_dosen';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'nama_dosen', 'nomor_induk_dosen', 'jenis_nomor_induk_dosen', 'id_level_pendidikan_tertinggi', 'pendidikan_magister',
         'pendidikan_doktor', 'bidang_keahlian', 'jabatan_akademik', 'sertifikat_pendidik_profesional',

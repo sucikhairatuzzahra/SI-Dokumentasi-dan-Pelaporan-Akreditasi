@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -17,17 +19,22 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index()
+    {
         $data = User::all();
-      
-        return view('admin.page.users.index', compact('data'));
+        $role = Auth::user()->role;
+        if (Gate::allows('isAdmin', $role)) {
+            return view('admin.users.index', compact('data'));
+        } else {
+            return view('dashboard.index');
+        }
     }
 
     public function indexAdmin()
     {
         return view('admin.page.dashboard.index');
     }
-    
+
     public function admprodiIndex()
     {
         return view('admprodi.page.dashboard.index');
@@ -55,17 +62,6 @@ class DashboardController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -74,7 +70,7 @@ class DashboardController extends Controller
     public function edit($id)
     {
         $data['editData'] = User::find($id);
-        return view('admin.page.users.form_edit', $data);
+        return view('admin.users.form_edit', $data);
     }
 
     /**

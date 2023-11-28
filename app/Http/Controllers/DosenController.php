@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 
 class DosenController extends Controller
@@ -11,9 +12,10 @@ class DosenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data = Dosen::all();
+        return view('admin.dosen.index', compact('data'));
     }
 
     /**
@@ -23,7 +25,7 @@ class DosenController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.dosen.create');
     }
 
     /**
@@ -34,7 +36,27 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = Dosen::insert([
+            'id' => $request->id,
+            'nama_dosen' => $request->nama_dosen,
+            'nomor_induk_dosen' => $request->nomor_induk_dosen,
+            'jenis_nomor_induk_dosen' => $request->jenis_nomor_induk_dosen,
+            'pendidikan_magister' => $request->pendidikan_magister,
+            'pendidikan_doktor' => $request->pendidikan_doktor,
+            'bidang_keahlian' => $request->bidang_keahlian,  
+            'jabatan_akademik' => $request->jabatan_akademik,
+            'sertifikat_pendidik_profesional' => $request->sertifikat_pendidik_profesional,
+            'sertifikat_kompetensi_profesi_industri' => $request->sertifikat_kompetensi_profesi_industri,
+        ]);
+
+        if ($input) {
+            return redirect('dosen')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+            alert('Data gagal diinput, masukkan kebali data dengan benar');
+            window.location = '/admin.page.dosen.index';
+            </script>";
+        } 
     }
 
     /**
@@ -45,7 +67,8 @@ class DosenController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['editData'] = Dosen::find($id);
+        return view('admin.dosen.show', $data);
     }
 
     /**
@@ -56,7 +79,8 @@ class DosenController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['editData'] = Dosen::find($id);
+        return view('admin.dosen.edit', $data);
     }
 
     /**
@@ -79,6 +103,8 @@ class DosenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Dosen::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $data->delete();
+        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil dihapus');
     }
 }

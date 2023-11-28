@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -39,7 +39,7 @@
 
                                 </div>
                                 <div class="card-block">
-                                    <form action="/simpan-ptunit" method="POST">
+                                    <form action="{{ route('ptunit.store') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <label for="kode_pt_unit">Kode PT Unit</label>
@@ -52,8 +52,8 @@
                                                 name="nama_pt_unit">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                     </form>
+                                    <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                 </div>
 
                             </div>

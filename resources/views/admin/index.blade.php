@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -77,15 +77,15 @@
                                         </tr>
                                         <tr>
                                             <td>Kriteria 3</td>
-                                            <td><a href="{{ route('kaprodi-mahasiswa') }}">Mahasiswa</a></td>
+                                            <td><a href="">Mahasiswa</a></td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 4</td>
-                                            <td><a href="{{ route('kaprodi-kependidikan') }}">Sumber Daya Manusia</a> </td>
+                                            <td><a href="">Sumber Daya Manusia</a> </td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 5</td>
-                                            <td><a href="{{ route('kaprodi-sumberdana') }}">Keuangan, Sarana dan
+                                            <td><a href="">Keuangan, Sarana dan
                                                     Prasarana</a></td>
                                         </tr>
                                         <tr>
@@ -102,7 +102,7 @@
                                         </tr>
                                         <tr>
                                             <td>Kriteria 9</td>
-                                            <td><a href="{{ route('kaprodi-ipklulusan') }}">Luaran dan Capaian Tridarma</a>
+                                            <td><a href="">Luaran dan Capaian Tridarma</a>
                                             </td>
                                         </tr>
                                     </tbody>

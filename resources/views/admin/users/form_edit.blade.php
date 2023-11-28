@@ -1,4 +1,4 @@
-@extends('admprodi.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -39,23 +39,18 @@
                                     {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
-                                    <form action="{{ route('update-users', $editData->id) }}" method="POST">
+                                    <form action="{{ route('users.update', $editData->id) }}" method="POST">
                                         @csrf
                                         @method('put')
                                         <div class="form-group">
                                             <label for="name">Username</label>
                                             <input type="text" class="form-control" id="name" name="name"
-                                                value="{{ $editData->name }}">
+                                                value="{{ $editData->name }}" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             <input type="email" class="form-control" id="email" name="email"
-                                                value="{{ $editData->email }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password">Password</label>
-                                            <input type="text" class="form-control" id="password" name="password"
-                                                value="{{ $editData->password }}">
+                                                value="{{ $editData->email }}" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="role">Role</label>

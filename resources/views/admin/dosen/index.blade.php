@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                        <p class="m-b-0">Data Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</p>
+                        <h5 class="m-b-10">Daftar Dosen</h5>
+                        <p class="m-b-0">Data Dosen</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">PPKM DTPR</a>
+                        <li class="breadcrumb-item"><a href="#!">Daftar Dosen</a>
                         </li>
                     </ul>
                 </div>
@@ -33,8 +33,10 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-
+                            <h5>Daftar Dosen</h5>
+                            <a href="{{ route('dosen.create') }}">
+                                <span>Tambah data <code>disini</code> </span>
+                            </a>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -47,10 +49,6 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-                                {{-- <div class="row">
-                                    <a href="{{ route('ppkm_dtpr-download') }}">
-                                        <button class="btn btn-success">Download</button></a>
-                                </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
@@ -58,45 +56,70 @@
                                                 No
                                             </th>
                                             <th scope="col">
-                                                Nama DTPRs
+                                                Nama Dosen
                                             </th>
                                             <th scope="col">
-                                                Jumlah Publikasi bertema INFOKOM
+                                                Nomor Induk Dosen
                                             </th>
                                             <th scope="col">
-                                                Jumlah Penelitian bertema INFOKOM
+                                                Jenis Nomor Induk Dosen
                                             </th>
                                             <th scope="col">
-                                                Jumlah penelitian bertema INFOKOM yang mendapat HKI Pengabdian Pada Masy
+                                                Pendidikan Magister
                                             </th>
                                             <th scope="col">
-                                                Jumlah PkM bertema INFOKOM yang diadopsi masyarakat
+                                                Pendidikan Doktor
                                             </th>
                                             <th scope="col">
-                                                Jumlah PkM bertema INFOKOM yang mendapat HKI
+                                                Bidang Keahlian
                                             </th>
                                             <th scope="col">
-                                                Id PT_Unit
+                                                Jabatan Akademik
                                             </th>
-
+                                            <th scope="col">
+                                                Sertifikat Pendidik Profesional
+                                            </th>
+                                            <th scope="col">
+                                                Sertifikat Kompetensi Profesi Industri
+                                            </th>
+                                            <th scope="col">
+                                                Aksi
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        <?php $no = 1;
+                                        // dd($data);
+                                        ?>
                                         @foreach ($data as $no => $item)
-                                            <tr align="center">
+                                            <tr>
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->nama_dtpr }}</td>
-                                                <td>{{ $item->publikasi_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom }}</td>
-                                                <td>{{ $item->penelitian_infokom_hki }}</td>
-                                                <td>{{ $item->pkm_infokom_adobsi }}</td>
-                                                <td>{{ $item->pkm_infokom_hki }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
+                                                <td>{{ $item->nama_dosen }}</td>
+                                                <td>{{ $item->nomor_induk_dosen }}</td>
+                                                <td>{{ $item->jenis_nomor_induk_dosen }}</td>
+                                                <td>{{ $item->pendidikan_magister }}</td>
+                                                <td>{{ $item->pendidikan_doktor }}</td>
+                                                <td>{{ $item->bidang_keahlian }}</td>
+                                                <td>{{ $item->jabatan_akademik }}</td>
+                                                <td>{{ $item->sertifikat_pendidik_profesional }}</td>
+                                                <td>{{ $item->sertifikat_kompetensi_profesi_industri }}</td>
+                                                <td>
+                                                    <form
+                                                        action="{{ route('dosen.destroy', ['id' => $item->id]) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a href="{{ route('dosen.edit', ['id' => $item->id]) }}"
+                                                            style="margin-right: 7px">
+                                                            Edit
+                                                        </a>
+                                                        <button type="submit" class="btn btn-link">Hapus</button>
+                                                    </form>
 
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

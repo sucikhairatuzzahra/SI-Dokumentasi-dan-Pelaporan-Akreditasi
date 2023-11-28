@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Pendayagunaan Sarana dan Prasarana Utama</h5>
-                        <p class="m-b-0">Data Pendayagunaan Sarana dan Prasarana Utama</p>
+                        <h5 class="m-b-10">Daftar Tahun Akademik</h5>
+                        <p class="m-b-0">Data Tahun Akademik</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Pendayagunaan Sarana dan Prasarana Utama</a>
+                        <li class="breadcrumb-item"><a href="#!">Daftar Tahun Akademik</a>
                         </li>
                     </ul>
                 </div>
@@ -33,8 +33,10 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Pendayagunaan Sarana dan Prasarana Utama</h5>
-
+                            <h5>Daftar Tahun Akademik</h5>
+                            <a href="{{ route('ta.create') }}">
+                                <span>Tambah data <code>disini</code> </span>
+                            </a>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -47,10 +49,6 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-                                {{-- <div class="row">
-                                    <a href="{{ route('saranaprasarana-download') }}">
-                                        <button class="btn btn-success">Download</button></a>
-                                </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
@@ -58,27 +56,11 @@
                                                 No
                                             </th>
                                             <th scope="col">
-                                                Sarana/ Prasarana
+                                                Tahun Akademik
                                             </th>
                                             <th scope="col">
-                                                Daya Tampung
+                                                Aksi
                                             </th>
-                                            <th scope="col">
-                                                Luas Ruang (m2)
-                                            </th>
-                                            <th scope="col">
-                                                Jumlah Mhs Yang Dilayani
-                                            </th>
-                                            <th scope="col">
-                                                Jam Layanan
-                                            </th>
-                                            <th scope="col">
-                                                Perangkat Yang Dimiliki
-                                            </th>
-                                            <th scope="col">
-                                                Id PT_Unit
-                                            </th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,14 +70,15 @@
                                         @foreach ($data as $no => $item)
                                             <tr>
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->sarana }}</td>
-                                                <td>{{ $item->daya_tampung }}</td>
-                                                <td>{{ $item->luas_ruang }}</td>
-                                                <td>{{ $item->jml_mhs }}</td>
-                                                <td>{{ $item->jam_lyn }}</td>
-                                                <td>{{ $item->perangkat }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
-
+                                                <td>{{ $item->tahun_akademik }}</td>
+                                                <td>
+                                                    <form action="{{ route('ta.destroy', ['id' => $item->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-link">Hapus</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
