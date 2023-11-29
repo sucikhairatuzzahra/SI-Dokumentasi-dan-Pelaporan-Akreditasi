@@ -20,6 +20,7 @@ use App\Http\Controllers\JumlahTenagaKependidikanController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LuaranController;
+use App\Http\Controllers\LuaranLainController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PTUnitController;
 use App\Http\Controllers\XHomeController;
@@ -55,10 +56,19 @@ Auth::routes();
 
 
 Route::middleware(['auth', 'user-role:admin'])->group(function () {
-    Route::resource('users', DashboardController::class)->except(['show'])->parameters(['users' => 'id']);
-    Route::resource('dosen', DosenController::class)->parameters(['dosen' => 'id']);
-    Route::resource('ptunit', PTUnitController::class)->except(['show', 'edit', 'update'])->parameters(['ptunit' => 'id']);
-    Route::resource('ta', AdminController::class)->except(['show', 'edit', 'update'])->parameters(['ta' => 'id']);
-    Route::resource('pegawai', PegawaiController::class)->except('show')->parameters(['pegawai' => 'id']);
-    Route::resource('luaran', LuaranController::class)->except(['show', 'edit', 'update'])->parameters(['luaran' => 'id']);
+    Route::prefix('admin')->group(function () {
+        Route::resource('users', DashboardController::class)->except(['show'])->parameters(['users' => 'id']);
+        Route::resource('dosen', DosenController::class)->parameters(['dosen' => 'id']);
+        Route::resource('ptunit', PTUnitController::class)->except(['show', 'edit', 'update'])->parameters(['ptunit' => 'id']);
+        Route::resource('ta', AdminController::class)->except(['show', 'edit', 'update'])->parameters(['ta' => 'id']);
+        Route::resource('pegawai', PegawaiController::class)->except('show')->parameters(['pegawai' => 'id']);
+        Route::resource('luaran', LuaranController::class)->except(['show', 'edit', 'update'])->parameters(['luaran' => 'id']);
+        Route::resource('luaran-lain', LuaranLainController::class)->except(['show', 'edit', 'update'])->parameters(['luaran-lain' => 'id']);
+    });
+});
+
+Route::middleware(['auth', 'user-role:jurusan'])->group(function () {
+    Route::prefix('jurusan')->group(function () {
+        
+    });
 });

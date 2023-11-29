@@ -33,6 +33,10 @@
                 </ul>
             </div>
         </div>
-        @include('layouts.include.sidebar.admin')
+        @can('isAdmin')
+            @include('layouts.include.sidebar.admin')
+        @else
+            @include('layouts.include.sidebar.main')
+        @endcan
     </div>
 </nav>

@@ -71,7 +71,7 @@
 </ul>
 <ul class="pcoded-item pcoded-left-item">
     <li class="">
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{ route('luaran-lain.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
             <span class="pcoded-mtext" data-i18n="nav.dash.main">Luaran Lain</span>
             <span class="pcoded-mcaret"></span>

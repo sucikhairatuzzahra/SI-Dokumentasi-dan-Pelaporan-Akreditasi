@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LuaranLain;
 use Illuminate\Http\Request;
 
 class LuaranLainController extends Controller
@@ -13,7 +14,8 @@ class LuaranLainController extends Controller
      */
     public function index()
     {
-        //
+        $data = LuaranLain::all();
+        return view('admin.luaran_lain.index', compact('data'));
     }
 
     /**
@@ -23,7 +25,7 @@ class LuaranLainController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.luaran_lain.create');
     }
 
     /**
@@ -34,41 +36,19 @@ class LuaranLainController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $input = LuaranLain::insert([
+            'id' => $request->id,
+            'jenis_luaran_lain' => $request->jenis_luaran_lain,
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        if ($input) {
+            return redirect('luaranlain')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+            alert('Data gagal diinput, masukkan kebali data dengan benar');
+            window.location = '/admin.page.luaran_lain.index';
+            </script>";
+        }
     }
 
     /**
@@ -79,6 +59,9 @@ class LuaranLainController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = LuaranLain::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $data->delete();
+
+        return redirect()->route('luaranlain')->with('success', 'Luaran Lain berhasil dihapus');
     }
 }
