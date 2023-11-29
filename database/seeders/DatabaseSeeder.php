@@ -14,6 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            CreateJenisLuaranLainSeeder::class,
+            CreateJenisLuaranSeeder::class,
+            CreateJenjangProgramSeeder::class,
+            CreateKategoriDosenSeeder::class,
+            CreateLevelPTUnitSeeder::class,
+            CreateLevelPendidikanTertinggiSeeder::class,
+            CreatePTUnitSeeder::class,
+            CreateTahunAkademikSeeder::class,
+            CreateUserSeeder::class
+        ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
