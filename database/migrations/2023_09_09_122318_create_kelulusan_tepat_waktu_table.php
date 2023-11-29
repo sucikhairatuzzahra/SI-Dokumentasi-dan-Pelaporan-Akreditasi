@@ -21,7 +21,8 @@ return new class extends Migration
             $table->integer('wisuda_ke');
             $table->integer('jml_lulusan');
             $table->string('masa_studi');
-            $table->string('pt_unit');
+            $table->integer('id_pt_unit');
+            $table->string('kode_pt_unit');
             $table->timestamps();
         });
     }

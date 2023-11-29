@@ -19,6 +19,8 @@ use App\Http\Controllers\TenagaKependidikanController;
 use App\Http\Controllers\JumlahTenagaKependidikanController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\LuaranController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PTUnitController;
 use App\Http\Controllers\XHomeController;
 use Illuminate\Support\Facades\Auth;
@@ -54,43 +56,9 @@ Auth::routes();
 
 Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::resource('users', DashboardController::class)->except(['show'])->parameters(['users' => 'id']);
-    Route::resource('dosen', DosenController::class)->parameters(['dosen' => 'id']); 
+    Route::resource('dosen', DosenController::class)->parameters(['dosen' => 'id']);
     Route::resource('ptunit', PTUnitController::class)->except(['show', 'edit', 'update'])->parameters(['ptunit' => 'id']);
     Route::resource('ta', AdminController::class)->except(['show', 'edit', 'update'])->parameters(['ta' => 'id']);
-    
-    //route Calon Mahasiswa Baru
-    Route::get('/admin-mahasiswa', [CalonMhsBaruController::class, 'index'])->name('admin-mahasiswa'); //index
-
-    //Aksesibilitas
-    Route::get('/admin-aksesibilitas', [AksesibilitasController::class, 'index'])->name('admin-aksesibilitas'); //index
-
-    //Pendanaan
-    Route::get('/admin-sumberdana', [PendanaanController::class, 'index'])->name('admin-sumberdana'); //index
-
-    //Sarana Prasaranaki
-    Route::get('/admin-saranaprasarana', [SaranaPrasaranaController::class, 'index'])->name('admin-saranaprasarana'); //index
-
-    //Tenaga Kependidikan
-    Route::get('/admin-kependidikan', [TenagaKependidikanController::class, 'index'])->name('admin-kependidikan'); //index
-
-    //IPK Lulusan
-    Route::get('/admin-ipklulusan', [IPKLulusanController::class, 'index'])->name('admin-ipklulusan'); //index
-
-    //Masa Tunggu Lulusan Bekerja
-    Route::get('/admin-masatunggu', [MasaTunguLulusanController::class, 'index'])->name('admin-masatunggu'); //index
-
-    //Kesesuaian bidang kerja lulusan 
-    Route::get('/admin-kerjalulusan', [BidangKerjaLulusanController::class, 'index'])->name('admin-kerjalulusan'); //index
-
-    //Rata-Rata Beban DTPR Per Semester
-    Route::get('/admin-bebandtpr', [BebanDTRPController::class, 'index'])->name('admin-bebandtpr'); //index
-
-    //Kepuasan Pengguna Lulusan
-    Route::get('/admin-kepuasan_pengguna', [KepuasanPenggunaLulusanController::class, 'index'])->name('admin-kepuasan_pengguna'); //index
-
-    //Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR
-    Route::get('/admin-ppkm_dtpr', [PPKMDariDTPRController::class, 'index'])->name('admin-ppkm_dtpr'); //index
-
-    //Kelulusan Tepat Waktu
-    Route::get('/admin-kelulusan_tepatwaktu', [KelulusanTepatWaktuController::class, 'index'])->name('admin-kelulusan_tepatwaktu'); //index
+    Route::resource('pegawai', PegawaiController::class)->except('show')->parameters(['pegawai' => 'id']);
+    Route::resource('luaran', LuaranController::class)->except(['show', 'edit', 'update'])->parameters(['luaran' => 'id']);
 });

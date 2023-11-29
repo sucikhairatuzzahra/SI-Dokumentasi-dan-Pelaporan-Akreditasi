@@ -12,10 +12,29 @@ class PPKMDariDTPR extends Model
     protected $table = "ppkm_dtpr";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'nama_dtpr', 'publikasi_infokom', 'penelitian_infokom', 'penelitian_infokom_hki', 
-        'pkm_infokom_adobsi', 'pkm_infokom_hki','pt_unit'
+        'nama_dtpr', 'jenis_penelitian_pengabdian', 'judul', 'ketua', 
+        'jenis_luaran', 'jenis_luaran_lain','tahun','dana', 'bukti','id_pt_unit','kode_pt_unit'
     ];
-    public function idPtUnit(){
-        return $this->belongsTo(PTUnit::class, 'pt_unit');
+    // public function idPtUnit(){
+    //     return $this->belongsTo(PTUnit::class, 'pt_unit');
+    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
     }
+
+    public function luaran()
+    {
+        return $this->belongsTo(Luaran::class, 'jenis_luaran');
+    }
+
+    public function luaranLain()
+    {
+        return $this->belongsTo(LuaranLain::class, 'jenis_luaran_lain');
+    }
+
+    // public function users()
+    // {
+    //     return $this->hasMany(User::class, 'id_pt_unit');
+    // }
 }

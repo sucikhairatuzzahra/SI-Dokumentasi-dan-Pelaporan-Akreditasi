@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ipk_lulusan', function (Blueprint $table) {
+        Schema::create('level_pt_unit', function (Blueprint $table) {
             $table->id();
-            $table->integer('tahun_lulus');
-            $table->double('jumlah_lulusan');
-            $table->double('ipk_min');
-            $table->double('ipk_rata_rata');
-            $table->double('ipk_max');
-            $table->integer('id_pt_unit');
-            $table->string('kode_pt_unit');
+            $table->string('kode_level_pt_unit');
+            $table->string('nama_level_pt_unit');
+            $table->integer('induk_level_pt_unit');
+            $table->string('jenis_level_pt_unit');
+            $table->enum('aktif',['y','t']);
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ipk_lulusan');
+        Schema::dropIfExists('level_pt_unit');
     }
 };

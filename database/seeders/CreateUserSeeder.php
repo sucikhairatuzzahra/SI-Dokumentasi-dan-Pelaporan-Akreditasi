@@ -20,25 +20,56 @@ class CreateUserSeeder extends Seeder
                 'name' => 'Jurusan',
                 'email' => 'user@gmail.com',
                 'password' => bcrypt('12345678'),
-                'role' => 0
+                'role' => 0,
+                'id_pt_unit' => 3,
             ],
             [
-                'name' => 'Kaprodi',
-                'email' => 'kaprodi@gmail.com',
+                'name' => 'Kaprodi trpl',
+                'email' => 'kaproditrpl@gmail.com',
                 'password' => bcrypt('12345678'),
-                'role' => 1
+                'role' => 1,
+                'id_pt_unit' => 4,
             ],
             [
-                'name' => 'AdmProdi',
-                'email' => 'admprodi@gmail.com',
+                'name' => 'Kaprodi mi',
+                'email' => 'kaprodimi@gmail.com',
+                'password' => bcrypt('12345678'),
+                'role' => 1,
+                'id_pt_unit' => 5,
+            ],
+            [
+                'name' => 'Kaprodi tk',
+                'email' => 'kaproditk@gmail.com',
+                'password' => bcrypt('12345678'),
+                'role' => 1,
+                'id_pt_unit' => 6,
+            ],
+            [
+                'name' => 'Adm Prodi trpl',
+                'email' => 'admproditrpl@gmail.com',
+                'password' => bcrypt('12345678'),
+                'role' => 2,
+                'id_pt_unit' => 4,
+            ],
+            [
+                'name' => 'Adm Prodi mi',
+                'email' => 'admprodimi@gmail.com',
                 'password' => bcrypt('12345678'),
                 'role' => 2
+            ],
+            [
+                'name' => 'Adm Prodi tk',
+                'email' => 'admproditk@gmail.com',
+                'password' => bcrypt('12345678'),
+                'role' => 2,
+                'id_pt_unit' => 6,
             ],
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('12345678'),
-                'role' => 3
+                'role' => 3,
+                'id_pt_unit' => 3,
             ]
         ];
         foreach ($users as $user) {

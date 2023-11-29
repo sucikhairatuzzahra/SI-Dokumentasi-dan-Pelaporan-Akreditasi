@@ -17,16 +17,35 @@ class CreateLevelPendidikanTertinggiSeeder extends Seeder
     {
         $level = [
             [
-                'nama_kategori_dosen' => 'Dosen Tetap Perguruan Tinggi',
-                'kode_kategori' => 'DT'
+                'nama_level_pendidikan' => 'Sarjana',
+                'kode_level_pendidikan' => 'S1',
+                'dosen' => 't'
             ],
             [
-                'nama_kategori_dosen' => 'Dosen Tidak Tetap Perguruan Tinggi',
-                'kode_kategori' => 'DTT'
+                'nama_level_pendidikan' => 'Sarjana Terapan',
+                'kode_level_pendidikan' => 'D4',
+                'dosen' => 't'
             ],
             [
-                'nama_kategori_dosen' => 'Dosen Industri/Praktisi',
-                'kode_kategori' => 'DI/P'
+                'nama_level_pendidikan' => 'Magister',
+                'kode_level_pendidikan' => 'S2',
+                'dosen' => 'y'
+            ],
+            [
+                'nama_level_pendidikan' => 'Magister Terapan',
+                'kode_level_pendidikan' => 'S2 Terapan',
+                'dosen' => 'y'
+
+            ],
+            [
+                'nama_level_pendidikan' => 'Doktor',
+                'kode_level_pendidikan' => 'S3',
+                'dosen' => 'y'
+            ],
+            [
+                'nama_level_pendidikan' => 'Doktor Terapan',
+                'kode_level_pendidikan' => 'S3 Terapan',
+                'dosen' => 'y'
             ],
         ];
         foreach ($level as $kategoridosen) {

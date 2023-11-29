@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('jumlah');
             $table->string('bukti')->nullable();
             $table->string('keterangan');
-            $table->string('pt_unit');
+            $table->integer('id_pt_unit');
+            $table->string('kode_pt_unit');
             $table->timestamps();
         });
     }

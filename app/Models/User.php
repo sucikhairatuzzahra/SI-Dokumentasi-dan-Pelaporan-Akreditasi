@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 // use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
@@ -26,6 +27,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'id_pt_unit',
+        'kode_pt_unit',
     ];
 
     /**
@@ -53,6 +56,12 @@ class User extends Authenticatable
             get: fn ($value) => ['jurusan', 'kaprodi', 'admprodi', 'admin'][$value],
         );
         // jurusan =0, kaprodi=1, admprodi=2, admin=3
+    }
+
+    //merelasikan ke tabel pt unit
+    public function idPtUnit()
+    {
+        return $this->belongsTo(PTUnit::class, 'id_pt_unit','kode_pt_unit');
     }
    
 }

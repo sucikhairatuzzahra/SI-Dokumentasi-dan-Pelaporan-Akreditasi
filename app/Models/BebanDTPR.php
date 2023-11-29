@@ -13,11 +13,12 @@ class BebanDTPR extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'nama_dosen', 'pgjrn_ps_sendiri', 'pgjrn_ps_lain_pt_sendiri', 'pgjrn_pt_lain', 'sks_penelitian',
-        'sks_penelitian', 'manajemen_pt_sendiri', 'manajemen_pt_lain','pt_unit'
+        'sks_penelitian', 'manajemen_pt_sendiri', 'manajemen_pt_lain','id_pt_unit','kode_pt_unit'
     ];
 
-    public function idPtUnit()
+    public function user()
     {
-        return $this->belongsTo(PTUnit::class, 'pt_unit');
+        return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
     }
+
 }

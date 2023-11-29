@@ -13,10 +13,11 @@ class BidangKerjaLulusan extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'tahun_lulus', 'jumlah_lulusan', 'lulusan_terlacak', 'bidang_infokom', 'non_infokom',
-        'internasional', 'nasional', 'wirausaha','pt_unit'
+        'internasional', 'nasional', 'wirausaha','id_pt_unit','kode_pt_unit'
     ];
-
-    public function idPtUnit(){
-        return $this->belongsTo(PTUnit::class, 'pt_unit');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
     }
+
 }

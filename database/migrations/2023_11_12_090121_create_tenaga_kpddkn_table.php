@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('nama');
             $table->string('jenis_tenaga_kependidikan');
             $table->enum('jenjang_pendidikan', ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3']);
-            $table->string('unit_kerja');
-            $table->string('pt_unit');
+            $table->integer('id_pt_unit');
+            $table->string('kode_pt_unit');
             $table->timestamps();
         });
     }

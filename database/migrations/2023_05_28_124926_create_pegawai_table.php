@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ipk_lulusan', function (Blueprint $table) {
-            $table->id();
-            $table->integer('tahun_lulus');
-            $table->double('jumlah_lulusan');
-            $table->double('ipk_min');
-            $table->double('ipk_rata_rata');
-            $table->double('ipk_max');
-            $table->integer('id_pt_unit');
-            $table->string('kode_pt_unit');
+        Schema::create('pegawai', function (Blueprint $table) {
+            $table->id('pk_id_pegawai');
+            $table->string('nama_pegawai');
+            $table->date('tanggal_lahir');
+            $table->string('nip')->unique();
+            $table->enum('aktif',['ya','tidak']);
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ipk_lulusan');
+        Schema::dropIfExists('pegawai');
     }
 };

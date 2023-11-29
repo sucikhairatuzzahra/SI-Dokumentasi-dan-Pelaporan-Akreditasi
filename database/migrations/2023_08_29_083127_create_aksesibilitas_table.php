@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('tanpa_jrg')->nullable();
             $table->string('lan')->nullable();
             $table->string('wan');
-            $table->string('pt_unit');
+            $table->integer('id_pt_unit');
+            $table->string('kode_pt_unit');
             $table->timestamps();
         });
     }

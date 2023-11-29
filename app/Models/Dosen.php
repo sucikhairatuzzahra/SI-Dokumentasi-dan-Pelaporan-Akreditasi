@@ -11,8 +11,8 @@ class Dosen extends Model
     protected $table = "dosen";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'nama_dosen', 'nomor_induk_dosen', 'jenis_nomor_induk_dosen', 'id_level_pendidikan_tertinggi', 'pendidikan_magister',
+        'nama_dosen', 'nomor_induk_dosen', 'jenis_nomor_induk_dosen', 'pendidikan_magister',
         'pendidikan_doktor', 'bidang_keahlian', 'jabatan_akademik', 'sertifikat_pendidik_profesional',
-        'sertifikat_kompetensi_profesi_industri', 'id_pt_unit_dosen_tetap', 'id_kategori_dosen', 'kriteria'
+        'sertifikat_kompetensi_profesi_industri'
     ];
 }

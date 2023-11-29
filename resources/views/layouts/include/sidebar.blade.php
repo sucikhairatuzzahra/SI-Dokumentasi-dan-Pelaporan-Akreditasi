@@ -33,8 +33,6 @@
                 </ul>
             </div>
         </div>
-
-        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Dashboard &amp; Users</div>
         @include('layouts.include.sidebar.admin')
     </div>
 </nav>
