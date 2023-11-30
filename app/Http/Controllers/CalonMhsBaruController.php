@@ -27,7 +27,7 @@ class CalonMhsBaruController extends Controller
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
-            return view('mahasiswa.index', compact('data', 'ptUnit', 'request'));
+            return view('mahasiswa.index', compact('data', 'request'));
         }
 
         if (Gate::allows('isAdmProdi')) {

@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Models;
+
 use Attribute;
 use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Aksesibilitas extends Model
 {
@@ -12,18 +14,16 @@ class Aksesibilitas extends Model
     protected $table = "aksesibilitas";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'jenis_data', 'secara_manual', 'tanpa_jrg', 'lan', 'wan', 'id_pt_unit','kode_pt_unit'
+        'jenis_data', 'secara_manual', 'tanpa_jrg', 'lan', 'wan', 'id_pt_unit'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'id_pt_unit');
     }
-    
-    // protected function id_pt_unit (): CastsAttribute
-    // {
-    //     return new CastsAttribute(
-    //         get: fn ($value) => ['PNP', 'SPM', 'JUR.TI', 'D4 TRPL', 'D3 MI','AKT','P3M'][$value],
-    //     );
-    // }
+
+    public function ptUnit(): BelongsTo
+    {
+        return $this->belongsTo(PTUnit::class, 'id_pt_unit');
+    }
 }

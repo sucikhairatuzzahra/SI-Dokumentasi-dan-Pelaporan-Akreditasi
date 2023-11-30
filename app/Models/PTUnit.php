@@ -35,4 +35,9 @@ class PTUnit extends Model
     {
         return $this->hasMany(TenagaKependidikan::class, 'id_pt_unit');
     }
+
+    public function Aksesibilitas(): HasMany
+    {
+        return $this->hasMany(Aksesibilitas::class, 'id_pt_unit');
+    }
 }

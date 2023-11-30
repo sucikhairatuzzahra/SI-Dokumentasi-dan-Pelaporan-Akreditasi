@@ -70,3 +70,6 @@ Route::get('kependidikan-download', [TenagaKependidikanController::class, 'downl
 
 Route::resource('pendanaan', PendanaanController::class)->except('show')->parameters(['pendanaan' => 'id']);
 Route::get('pendanaan-download', [PendanaanController::class, 'download'])->name('pendanaan.download');
+
+Route::resource('aksesibilitas', AksesibilitasController::class)->except('show')->parameters(['aksesibilitas' => 'id']);
+Route::get('aksesibilitas-download', [AksesibilitasController::class, 'download'])->name('aksesibilitas.download');

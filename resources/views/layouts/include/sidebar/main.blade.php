@@ -40,7 +40,7 @@
         </a>
     </li>
     <li>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{ route('aksesibilitas.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Aksesibilitas</span>
             <span class="pcoded-mcaret"></span>
