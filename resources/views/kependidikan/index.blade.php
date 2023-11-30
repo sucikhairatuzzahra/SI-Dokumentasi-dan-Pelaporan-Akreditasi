@@ -110,15 +110,9 @@
                                                 Unit Kerja
                                             </th>
 
-<<<<<<< HEAD:resources/views/admprodi/page/kependidikan/index.blade.php
-                                            <th scope="col" rowspan="2">
-                                                Aksi
-                                            </th>
-=======
                                             {{-- <th scope="col" rowspan="2">
                                                 Aksi
                                             </th> --}}
->>>>>>> origin/prefered_dev:resources/views/kependidikan/index.blade.php
                                         </tr>
                                         <tr align="center">
                                             <th>
@@ -170,19 +164,10 @@
                                                 <td>{{ $item['jenjang_counts']['sma'] ?? 0 ? count($item['jenjang_counts']['sma']) : 0 }}
                                                 </td>
                                                 {{-- <td>{{ $item['unit_kerja'] }}</td> --}}
-<<<<<<< HEAD:resources/views/admprodi/page/kependidikan/index.blade.php
-                                                <td>{{ $item['kode_pt_unit'] }}</td>
-                                                {{-- <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td> --}}
-
-
-                                                <td>
-
-=======
                                                 <td>{{ $item['pt_unit'] }}</td>
                                                 {{-- <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td> --}}
                                                 {{-- <td>
 
->>>>>>> origin/prefered_dev:resources/views/kependidikan/index.blade.php
                                                     <a href="{{ route('kependidikanbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
                                                         style="margin-right: 7px">
                                                         Lihat

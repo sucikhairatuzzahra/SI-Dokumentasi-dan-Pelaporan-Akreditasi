@@ -17,21 +17,10 @@ class DatabaseSeeder extends Seeder
             CreateJenisLuaranLainSeeder::class,
             CreateJenisLuaranSeeder::class,
             CreateJenjangProgramSeeder::class,
-<<<<<<< HEAD
-            CreateKategoriDosenSeeder::class,
-            CreateLevelPTUnitSeeder::class,
-            CreateLevelPendidikanTertinggiSeeder::class,
-            CreatePTUnitSeeder::class,
-            CreateTahunAkademikSeeder::class,
-            CreateUserSeeder::class
-        ]);
-        // \App\Models\User::factory(10)->create();
-=======
             CreateLevelPTUnitSeeder::class,
             CreatePTUnitSeeder::class,
             CreateTahunAkademikSeeder::class,
             CreateUserSeeder::class,
->>>>>>> origin/prefered_dev
 
             CreateKategoriDosenSeeder::class,
             CreateLevelPendidikanTertinggiSeeder::class,

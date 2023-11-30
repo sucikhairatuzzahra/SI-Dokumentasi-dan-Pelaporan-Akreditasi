@@ -19,15 +19,6 @@ return new class extends Migration
             $table->enum('jenis_penelitian_pengabdian', ['penelitian', 'pengabdian']);
             $table->string('judul');
             $table->enum('ketua',['ya','tidak']);
-<<<<<<< HEAD
-            $table->string('jenis_luaran');
-            $table->string('jenis_luaran_lain');
-            $table->string('tahun');
-            $table->string('dana');
-            $table->string('bukti')->nullable();
-            $table->integer('id_pt_unit');
-            $table->string('kode_pt_unit');
-=======
             $table->unsignedBigInteger('id_luaran');
             $table->foreign('id_luaran')->references('id')->on('jenis_luaran');
             $table->unsignedBigInteger('id_luaran_lain');
@@ -37,7 +28,6 @@ return new class extends Migration
             $table->string('bukti')->nullable();
             $table->unsignedBigInteger('id_pt_unit');
             $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
->>>>>>> origin/prefered_dev
             $table->timestamps();
         });
     }

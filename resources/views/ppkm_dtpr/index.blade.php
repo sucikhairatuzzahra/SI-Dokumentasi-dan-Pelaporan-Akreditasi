@@ -87,12 +87,6 @@
                                             </th>
                                             <th scope="col">
                                                 Unit Kerja
-<<<<<<< HEAD:resources/views/admprodi/page/ppkm_dtpr/index.blade.php
-                                            </th>
-                                            <th scope="col">
-                                                Aksi
-=======
->>>>>>> origin/prefered_dev:resources/views/ppkm_dtpr/index.blade.php
                                             </th>
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
@@ -112,21 +106,12 @@
                                                 <td>{{ $item->jumlah_penelitian_infokom_hki }}</td>
                                                 <td>{{ $item->jumlah_pkm_diadopsi_masyarakat }}</td>
                                                 <td>{{ $item->jumlah_pkm_hki }}</td>
-<<<<<<< HEAD:resources/views/admprodi/page/ppkm_dtpr/index.blade.php
-                                                <td>{{ $item->kode_pt_unit }}</td>
-                                                <td>
-                                                    <a href="{{ route('ppkmdtprbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
-                                                        style="margin-right: 7px">
-                                                        Lihat
-                                                    </a>
-=======
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 <td>
                                                     {{-- <a href="{{ route('ppkmdtprbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
                                                         style="margin-right: 7px">
                                                         Lihat
                                                     </a> --}}
->>>>>>> origin/prefered_dev:resources/views/ppkm_dtpr/index.blade.php
                                                 </td>
                                             </tr>
                                         @endforeach

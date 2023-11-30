@@ -55,11 +55,7 @@
                 <td>{{ $item->maba_transfer }}</td>
                 <td>{{ $item->mhs_aktif_reguler }}</td>
                 <td>{{ $item->mhs_aktif_transfer }}</td>
-<<<<<<< HEAD:resources/views/kaprodi/page/mhsbaru/table.blade.php
-                <td>{{ $item->kode_pt_unit }}</td>
-=======
                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
->>>>>>> origin/prefered_dev:resources/views/mahasiswa/table.blade.php
             </tr>
         @endforeach
     </tbody>

@@ -17,30 +17,16 @@ class TenagaKependidikan extends Model
     protected $table = "tenaga_kpddkn";
     protected $primaryKey = 'id';
     protected $fillable = [
-<<<<<<< HEAD
-        'nama','jenis_tenaga_kependidikan','jenjang_pendidikan', 'id_pt_unit','kode_pt_unit'
-=======
         'nama', 'jenis_tenaga_kependidikan', 'jenjang_pendidikan', 'id_pt_unit'
->>>>>>> origin/prefered_dev
     ];
 
     public function lulusan()
     {
         return $this->hasOne(JumlahTenagaKependidikan::class);
     }
-<<<<<<< HEAD
-    //
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
-    }
-
- 
-=======
     
     public function ptUnit(): BelongsTo
     {
         return $this->belongsTo(PTUnit::class, 'id_pt_unit');
     }
->>>>>>> origin/prefered_dev
 }

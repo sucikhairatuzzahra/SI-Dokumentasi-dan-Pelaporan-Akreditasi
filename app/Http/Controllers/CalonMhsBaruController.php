@@ -8,10 +8,7 @@ use App\Models\PTUnit;
 use App\Models\TahunAkademik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Gate;
->>>>>>> origin/prefered_dev
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -19,68 +16,6 @@ class CalonMhsBaruController extends Controller
 
 {
 
-<<<<<<< HEAD
-    public function index($id_pt_unit='')
-    {
-        $tahunAkademiks = TahunAkademik::all();
-        if($id_pt_unit){
-            $data = MhsBaru::where('id_pt_unit', $id_pt_unit)->get();
-            return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks'));
-
-        }else{
-            $data = Mhsbaru::with('tahunAkademik')->get();
-    
-            return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks'));
-
-        }
-        
-    }
-    public function getDataByProdi($id_pt_unit)
-    {
-        $data = MhsBaru::where('id_pt_unit', $id_pt_unit)->get();
-        $tahunAkademiks = TahunAkademik::all();
-
-        // return response()->json($data);
-        return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks'));
-    }
-    
-    public function kaprodiIndex()
-    {
-        $data = Mhsbaru::with('tahunAkademik')->get();
-        $tahunAkademiks = TahunAkademik::all();
-
-        return view('kaprodi.page.mhsbaru.index', compact('data','tahunAkademiks'));
-    }
-
-    public function admprodiIndex()
-    {
-        $data = Mhsbaru::with('tahunAkademik')->get();
-        $tahunAkademiks = TahunAkademik::all();
-        return view('admprodi.page.mhsbaru.index', compact('data', 'tahunAkademiks'));
-    }
-    public function create()
-    {
-        $tahunAkademiks = TahunAkademik::all();
-        return view(
-            'admprodi.page.mhsbaru.form',
-            [
-                'url' => 'simpan-cmb',
-                'tahunAkademiks' => $tahunAkademiks,
-             
-            ]
-        );
-    } 
-    public function store(Request $request)
-    {
-        
-        $user = Auth::user();
-        $input = Mhsbaru::insert([
-            'id' => $request->id,
-            'thn_akademik' => $request->tahun_akademik,
-            'id_pt_unit' => $user->id_pt_unit,
-            'kode_pt_unit' => $user->kode_pt_unit,
-            // 'id_pt_unit' => Auth::user()->id_pt_unit,
-=======
     public function index(Request $request)
     {
         if (Gate::allows('isJurusan')) {
@@ -112,7 +47,6 @@ class CalonMhsBaruController extends Controller
             'id' => $request->id,
             'id_thn_akademik' => $request->thn_akademik,
             'id_pt_unit' => $request->id_pt_unit,
->>>>>>> origin/prefered_dev
             'daya_tampung' => $request->daya_tampung,
             'pendaftar' => $request->pendaftar,
             'lulus_seleksi' => $request->lulus_seleksi,
@@ -132,16 +66,9 @@ class CalonMhsBaruController extends Controller
     public function update(Request $request, $id)
     {
         $mhs = Mhsbaru::find($id);
-<<<<<<< HEAD
-        $update = $mhs->update([
-            'thn_akademik' => $request->thn_akademik,
-            'id_pt_unit' => Auth::user()->id_pt_unit,
-            'kode_pt_unit' => Auth::user()->kode_pt_unit,
-=======
         $mhs->update([
             'id_thn_akademik' => $request->thn_akademik,
             'id_pt_unit' => $request->kode_pt_unit,
->>>>>>> origin/prefered_dev
             'daya_tampung' => $request->daya_tampung,
             'pendaftar' => $request->pendaftar,
             'lulus_seleksi' => $request->lulus_seleksi,

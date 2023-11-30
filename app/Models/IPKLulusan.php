@@ -12,14 +12,6 @@ class IPKLulusan extends Model
     protected $table = "ipk_lulusan";
     protected $primaryKey = 'id';
     protected $fillable = [
-<<<<<<< HEAD
-        'tahun_lulus', 'jumlah_lulusan', 'ipk_min', 'ipk_rata_rata', 'ipk_max', 'id_pt_unit','kode_pt_unit'
-    ];
-  
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
-=======
         'tahun_lulus', 'jumlah_lulusan', 'ipk_min', 'ipk_rata_rata', 'ipk_max', 'id_pt_unit'
     ];
 
@@ -31,6 +23,5 @@ class IPKLulusan extends Model
     public function ptUnit(): BelongsTo
     {
         return $this->belongsTo(PTUnit::class, 'id_pt_unit');
->>>>>>> origin/prefered_dev
     }
 }

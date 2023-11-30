@@ -74,9 +74,6 @@
                                                 Bidang Keahlian
                                             </th>
                                             <th scope="col">
-<<<<<<< HEAD:resources/views/admprodi/page/saranaprasarana/index.blade.php
-                                                Unit Kerja
-=======
                                                 Jabatan Akademik
                                             </th>
                                             <th scope="col">
@@ -84,7 +81,6 @@
                                             </th>
                                             <th scope="col">
                                                 Sertifikat Kompetensi Profesi Industri
->>>>>>> origin/prefered_dev:resources/views/admin/dosen/index.blade.php
                                             </th>
                                             <th scope="col">
                                                 Aksi
@@ -98,15 +94,6 @@
                                         @foreach ($data as $no => $item)
                                             <tr>
                                                 <td>{{ $no + 1 }}</td>
-<<<<<<< HEAD:resources/views/admprodi/page/saranaprasarana/index.blade.php
-                                                <td>{{ $item->sarana }}</td>
-                                                <td>{{ $item->daya_tampung }}</td>
-                                                <td>{{ $item->luas_ruang }}</td>
-                                                <td>{{ $item->jml_mhs }}</td>
-                                                <td>{{ $item->jam_lyn }}</td>
-                                                <td>{{ $item->perangkat }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
-=======
                                                 <td>{{ $item->nama_dosen }}</td>
                                                 <td>{{ $item->nomor_induk_dosen }}</td>
                                                 <td>{{ $item->jenis_nomor_induk_dosen }}</td>
@@ -116,7 +103,6 @@
                                                 <td>{{ $item->jabatan_akademik }}</td>
                                                 <td>{{ $item->sertifikat_pendidik_profesional }}</td>
                                                 <td>{{ $item->sertifikat_kompetensi_profesi_industri }}</td>
->>>>>>> origin/prefered_dev:resources/views/admin/dosen/index.blade.php
                                                 <td>
                                                     <form
                                                         action="{{ route('dosen.destroy', ['id' => $item->id]) }}" method="POST">

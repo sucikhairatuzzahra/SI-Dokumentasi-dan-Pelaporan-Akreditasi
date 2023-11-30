@@ -121,12 +121,6 @@
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
-<<<<<<< HEAD:resources/views/admprodi/page/mhsbaru/index.blade.php
-                                            </th>
-                                            <th scope="col" rowspan="2">
-                                                Aksi
-=======
->>>>>>> origin/prefered_dev:resources/views/mahasiswa/index.blade.php
                                             </th>
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
@@ -168,28 +162,6 @@
                                                 <td>{{ $item->maba_transfer }}</td>
                                                 <td>{{ $item->mhs_aktif_reguler }}</td>
                                                 <td>{{ $item->mhs_aktif_transfer }}</td>
-<<<<<<< HEAD:resources/views/admprodi/page/mhsbaru/index.blade.php
-                                                {{-- <td>{{ $item->id_pt_unit }}</td> --}}
-                                                <td>{{ $item->kode_pt_unit }}</td>
-
-                                                <td>
-                                                    <a href="{{ route('edit-cmb', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('hapus-cmb', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-cmb', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-
-                                                </td>
-=======
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
@@ -205,7 +177,6 @@
                                                         </form>
                                                     </td>
                                                 @endcan
->>>>>>> origin/prefered_dev:resources/views/mahasiswa/index.blade.php
                                             </tr>
                                         @endforeach
                                     </tbody>

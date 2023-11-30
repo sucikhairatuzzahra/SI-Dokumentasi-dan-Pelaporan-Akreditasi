@@ -85,17 +85,11 @@
                                             <th scope="col" rowspan="2">
                                                 PT Unit
                                             </th>
-<<<<<<< HEAD:resources/views/admprodi/page/bidang_kerja_lulusan/index.blade.php
-                                            <th scope="col" rowspan="2">
-                                                Aksi
-                                            </th>
-=======
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
                                                 </th>
                                             @endcan
->>>>>>> origin/prefered_dev:resources/views/bidang_kerja_lulusan/index.blade.php
                                         </tr>
                                         <tr align="center">
                                             <th>
@@ -123,25 +117,6 @@
                                                 <td>{{ $item->nasional }}</td>
                                                 <td>{{ $item->wirausaha }}</td>
                                                 <td>{{ $item->kode_pt_unit }}</td>
-<<<<<<< HEAD:resources/views/admprodi/page/bidang_kerja_lulusan/index.blade.php
-                                                <td>
-                                                    <a href="{{ route('edit-kerjalulusan', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('hapus-kerjalulusan', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-kerjalulusan', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-
-                                                </td>
-=======
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <form
@@ -157,7 +132,6 @@
                                                         </form>
                                                     </td>
                                                 @endcan
->>>>>>> origin/prefered_dev:resources/views/bidang_kerja_lulusan/index.blade.php
                                             </tr>
                                         @endforeach
                                     </tbody>

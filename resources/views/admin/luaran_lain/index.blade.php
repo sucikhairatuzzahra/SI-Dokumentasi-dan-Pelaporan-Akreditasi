@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:resources/views/jurusan/page/pendanaan/index.blade.php
-@extends('jurusan.layout.app')
-========
 @extends('layouts.app')
->>>>>>>> origin/prefered_dev:resources/views/admin/luaran_lain/index.blade.php
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -65,19 +61,6 @@
                                             <th scope="col">
                                                 Aksi
                                             </th>
-<<<<<<<< HEAD:resources/views/jurusan/page/pendanaan/index.blade.php
-                                            <th scope="col">
-                                                Bukti
-                                            </th>
-                                            <th scope="col">
-                                                Keterangan
-                                            </th>
-                                            <th scope="col">
-                                                Unit Kerja
-                                            </th>
-
-========
->>>>>>>> origin/prefered_dev:resources/views/admin/luaran_lain/index.blade.php
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -87,15 +70,7 @@
                                         @foreach ($data as $no => $item)
                                             <tr>
                                                 <td>{{ $no + 1 }}</td>
-<<<<<<<< HEAD:resources/views/jurusan/page/pendanaan/index.blade.php
-                                                <td>{{ $item->sumber_dana }}</td>
-                                                <td>{{ $item->jumlah }}</td>
-                                                <td>{{ $item->bukti }}</td>
-                                                <td>{{ $item->keterangan }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
-========
                                                 <td>{{ $item->jenis_luaran_lain }}</td>
->>>>>>>> origin/prefered_dev:resources/views/admin/luaran_lain/index.blade.php
 
                                                 <td>
                                                     <form action="{{ route('luaran-lain.destroy', ['id' => $item->id]) }}"

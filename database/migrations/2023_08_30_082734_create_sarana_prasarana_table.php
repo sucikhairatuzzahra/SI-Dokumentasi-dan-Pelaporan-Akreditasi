@@ -21,13 +21,8 @@ return new class extends Migration
             $table->integer('jml_mhs');
             $table->string('jam_lyn');
             $table->text('perangkat');
-<<<<<<< HEAD
-            $table->integer('id_pt_unit');
-            $table->string('kode_pt_unit');
-=======
             $table->unsignedBigInteger('id_pt_unit');
             $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
->>>>>>> origin/prefered_dev
             $table->timestamps();
         });
     }

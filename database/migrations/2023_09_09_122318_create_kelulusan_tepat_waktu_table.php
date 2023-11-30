@@ -21,13 +21,8 @@ return new class extends Migration
             $table->integer('wisuda_ke');
             $table->integer('jml_lulusan');
             $table->string('masa_studi');
-<<<<<<< HEAD
-            $table->integer('id_pt_unit');
-            $table->string('kode_pt_unit');
-=======
             $table->unsignedBigInteger('id_pt_unit');
             $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
->>>>>>> origin/prefered_dev
             $table->timestamps();
         });
     }

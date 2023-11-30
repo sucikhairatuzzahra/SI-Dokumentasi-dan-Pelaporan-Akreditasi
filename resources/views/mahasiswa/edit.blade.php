@@ -54,10 +54,6 @@
                                                 @endforeach
                                             </select>
                                         </div>
-<<<<<<< HEAD:resources/views/admprodi/page/mhsbaru/form_edit.blade.php
-
-=======
->>>>>>> origin/prefered_dev:resources/views/mahasiswa/edit.blade.php
                                         <div class="form-group">
                                             <label for="daya_tampung">Daya Tampung</label>
                                             <input type="text" class="form-control" id="daya_tampung" name="daya_tampung"
@@ -104,15 +100,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="pt_unit">Unit Kerja</label>
-<<<<<<< HEAD:resources/views/admprodi/page/mhsbaru/form_edit.blade.php
-                                            <input type="hidden" name="pt_unit" value="{{ Auth::user()->kode_pt_unit }}">
-
-=======
                                             <input type="hidden" class="form-control" name="id_pt_unit"
                                                 value="{{ $editData->ptUnit->id }}" required>
                                             <input type="text" class="form-control"
                                                 value="{{ $editData->ptUnit->kode_pt_unit }}" disabled>
->>>>>>> origin/prefered_dev:resources/views/mahasiswa/edit.blade.php
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>

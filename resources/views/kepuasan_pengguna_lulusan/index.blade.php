@@ -69,12 +69,6 @@
                                             </th>
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
-<<<<<<< HEAD:resources/views/admprodi/page/kepuasan_pengguna_lulusan/index.blade.php
-                                            </th>
-                                            <th scope="col" rowspan="2">
-                                                Aksi
-=======
->>>>>>> origin/prefered_dev:resources/views/kepuasan_pengguna_lulusan/index.blade.php
                                             </th>
                                             {{-- <th scope="col" rowspan="2">
                                                 Aksi
@@ -107,11 +101,7 @@
                                                 <td>{{ $item->kurang }}</td>
                                                 <td>{{ $item->rencana_tindak_lanjut }}</td>
                                                 <td>{{ $item->kode_pt_unit }}</td>
-<<<<<<< HEAD:resources/views/admprodi/page/kepuasan_pengguna_lulusan/index.blade.php
-                                                <td>
-=======
                                                 {{-- <td>
->>>>>>> origin/prefered_dev:resources/views/kepuasan_pengguna_lulusan/index.blade.php
                                                     <a href="{{ route('edit-kepuasan_pengguna', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">
                                                         Edit

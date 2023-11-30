@@ -47,6 +47,10 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
+                                {{-- <div class="row">
+                                    <a href="{{ route('sumberdana-download') }}">
+                                        <button class="btn btn-success">Download</button></a>
+                                </div> --}}
 
                                 <table class="table table-bordered">
                                     <thead>
@@ -60,17 +64,11 @@
                                             <th scope="col">
                                                 Email
                                             </th>
-                                            {{-- <th scope="col">
+                                            <th scope="col">
                                                 Password
-                                            </th> --}}
+                                            </th>
                                             <th scope="col">
                                                 Role
-                                            </th>
-                                            <th scope="col">
-                                                Id_pt_unit
-                                            </th>
-                                            <th scope="col">
-                                                Unit Kerja
                                             </th>
                                             <th scope="col">
                                                 Aksi
@@ -86,10 +84,8 @@
                                                 <td>{{ $no + 1 }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
-                                                {{-- <td>{{ $item->password }}</td> --}}
+                                                <td>{{ $item->password }}</td>
                                                 <td>{{ $item->role }}</td>
-                                                <td>{{ $item->id_pt_unit }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
                                                 <td>
                                                     <a href="{{ route('users.edit', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

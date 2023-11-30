@@ -79,12 +79,6 @@
                                             </th>
                                             <th scope="col">
                                                 Unit Kerja
-<<<<<<< HEAD:resources/views/admprodi/page/masa_tunggu_lulusan/index.blade.php
-                                            </th>
-                                            <th scope="col">
-                                                Aksi
-=======
->>>>>>> origin/prefered_dev:resources/views/masa_tunggu_lulusan/index.blade.php
                                             </th>
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
@@ -102,29 +96,6 @@
                                                 <td>{{ $item->jumlah_lulusan }}</td>
                                                 <td>{{ $item->lulusan_terlacak }}</td>
                                                 <td>{{ $item->waktu_tunggu }}</td>
-<<<<<<< HEAD:resources/views/admprodi/page/masa_tunggu_lulusan/index.blade.php
-                                                <td>{{ $item->kode_pt_unit }}</td>
-
-                                                <td>
-
-                                                    <a href="{{ route('edit-masatunggu', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-
-                                                    <a href="{{ route('hapus-masatunggu', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-masatunggu', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-
-                                                </td>
-=======
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
@@ -140,7 +111,6 @@
                                                         </form>
                                                     </td>
                                                 @endcan
->>>>>>> origin/prefered_dev:resources/views/masa_tunggu_lulusan/index.blade.php
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:resources/views/jurusan/page/ipk_lulusan/index.blade.php
-@extends('jurusan.layout.app')
-========
 @extends('layouts.app')
->>>>>>>> origin/prefered_dev:resources/views/ipk_lulusan/index.blade.php
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -111,10 +107,6 @@
                                                 <td>{{ $item->ipk_min }}</td>
                                                 <td>{{ $item->ipk_rata_rata }}</td>
                                                 <td>{{ $item->ipk_max }}</td>
-<<<<<<<< HEAD:resources/views/jurusan/page/ipk_lulusan/index.blade.php
-                                                <td>{{ $item->kode_pt_unit }}</td>
-
-========
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
@@ -130,7 +122,6 @@
                                                         </form>
                                                     </td>
                                                 @endcan
->>>>>>>> origin/prefered_dev:resources/views/ipk_lulusan/index.blade.php
                                             </tr>
                                         @endforeach
                                     </tbody>

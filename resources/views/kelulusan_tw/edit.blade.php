@@ -99,17 +99,11 @@
                                                 value="{{ $editData->masa_studi }}">
                                         </div>
                                         <div class="form-group">
-<<<<<<< HEAD:resources/views/admprodi/page/kelulusan_tepat_waktu/form_edit.blade.php
-                                            <label for="id_pt_unit">Unit Kerja</label>
-                                            <input type="hidden" name="id_pt_unit"
-                                                value="{{ Auth::user()->kode_pt_unit }}">
-=======
                                             <label for="pt_unit">Unit Kerja</label>
                                             <input type="hidden" class="form-control" name="id_pt_unit"
                                                 value="{{ $editData->ptUnit->id }}" required>
                                             <input type="text" class="form-control"
                                                 value="{{ $editData->ptUnit->kode_pt_unit }}" disabled>
->>>>>>> origin/prefered_dev:resources/views/kelulusan_tw/edit.blade.php
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>

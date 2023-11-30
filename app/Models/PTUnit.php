@@ -14,18 +14,11 @@ class PTUnit extends Model
     protected $fillable = [
         'kode_pt_unit', 'nama_pt_unit'
     ];
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> origin/prefered_dev
     public function users()
     {
         return $this->hasMany(User::class, 'id_pt_unit');
     }
-<<<<<<< HEAD
-   
-=======
 
     public function mhsBaru(): HasMany
     {
@@ -86,5 +79,4 @@ class PTUnit extends Model
     {
         return $this->hasMany(PPKMDariDTPR::class, 'id_pt_unit');
     }
->>>>>>> origin/prefered_dev
 }

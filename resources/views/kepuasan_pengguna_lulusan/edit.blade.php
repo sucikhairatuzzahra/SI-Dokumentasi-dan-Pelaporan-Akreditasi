@@ -39,11 +39,7 @@
                                     <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
                                 </div>
                                 <div class="card-block">
-<<<<<<< HEAD:resources/views/admprodi/page/kepuasan_pengguna_lulusan/form_edit.blade.php
-                                    <form action="{{ route('update-kepuasan_pengguna', $editData->id) }}" method="POST">
-=======
                                     <form action="{{ route('kepuasan-pengguna.update', $editData->id) }}" method="POST">
->>>>>>> origin/prefered_dev:resources/views/kepuasan_pengguna_lulusan/edit.blade.php
                                         @csrf
                                         @method('put')
                                         <div class="form-group">
@@ -78,15 +74,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="id_pt_unit">Unit Kerja</label>
-<<<<<<< HEAD:resources/views/admprodi/page/kepuasan_pengguna_lulusan/form_edit.blade.php
-                                            <input type="hidden" name="id_pt_unit"
-                                                value="{{ Auth::user()->kode_pt_unit }}">
-=======
                                             <input type="hidden" class="form-control" name="id_pt_unit"
                                                 value="{{ $ptUnit->id }}" required>
                                             <input type="text" class="form-control" value="{{ $ptUnit->kode_pt_unit }}"
                                                 disabled>
->>>>>>> origin/prefered_dev:resources/views/kepuasan_pengguna_lulusan/edit.blade.php
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>

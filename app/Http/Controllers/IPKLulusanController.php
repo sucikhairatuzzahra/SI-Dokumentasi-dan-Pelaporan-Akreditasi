@@ -20,35 +20,21 @@ class IPKLulusanController extends Controller
     {
         $data = IPKLulusan::all();
         // dd($data);
-<<<<<<< HEAD
-        return view('jurusan.page.ipk_lulusan.index', compact('data'));
-=======
         return view('ipk_lulusan.index', compact('data'));
->>>>>>> origin/prefered_dev
     }
     public function admprodiIndex()
     {
         $data = IPKLulusan::all();
-<<<<<<< HEAD
-    
-        // dd($data);
-        return view('admprodi.page.ipk_lulusan.index', compact('data'));
-=======
 
         // dd($data);
         return view('ipk_lulusan.index', compact('data'));
->>>>>>> origin/prefered_dev
     }
 
     public function kaprodiIndex()
     {
         $data = IPKLulusan::all();
 
-<<<<<<< HEAD
-        return view('kaprodi.page.ipk_lulusan.index', compact('data'));
-=======
         return view('ipk_lulusan.index', compact('data'));
->>>>>>> origin/prefered_dev
     }
     /**
      * Show the form for creating a new resource.
@@ -56,19 +42,9 @@ class IPKLulusanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-<<<<<<< HEAD
-    { 
-        return view(
-            'admprodi.page.ipk_lulusan.form',
-            [
-                'url' => 'simpan-ipklulusan',
-            ]
-        );
-=======
     {
         $ptUnit = Auth::user()->ptUnit;
         return view('ipk_lulusan.create', compact('ptUnit'));
->>>>>>> origin/prefered_dev
     }
 
     /**
@@ -109,11 +85,7 @@ class IPKLulusanController extends Controller
     public function edit($id)
     {
         $data['editData'] = IPKLulusan::find($id);
-<<<<<<< HEAD
-        return view('admprodi.page.ipk_lulusan.form_edit', $data);
-=======
         return view('ipk_lulusan.edit', $data);
->>>>>>> origin/prefered_dev
     }
 
     /**
@@ -125,7 +97,6 @@ class IPKLulusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
         $ipk = IPKLulusan::find($id);
         $ipk->update([
             'tahun_lulus' => $request->tahun_lulus,
@@ -133,24 +104,9 @@ class IPKLulusanController extends Controller
             'ipk_min' => $request->ipk_min,
             'ipk_rata_rata' => $request->ipk_rata_rata,
             'ipk_max' => $request->ipk_max,
-<<<<<<< HEAD
-            'id_pt_unit' => $user->id_pt_unit,
-            'kode_pt_unit' => $user->kode_pt_unit,
-
-        ]);
-        if ($update) {
-            return redirect('ipklulusan')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-                alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admprodi.page.kependidikan.index';
-                </script>";
-        }
-=======
             'id_pt_unit' => $request->kode_pt_unit,
         ]);
         return redirect('ipklulusan')->with('success', 'Data berhasil disimpan');
->>>>>>> origin/prefered_dev
     }
 
     /**

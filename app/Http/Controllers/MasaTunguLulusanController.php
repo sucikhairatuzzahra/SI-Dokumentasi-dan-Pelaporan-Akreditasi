@@ -7,13 +7,8 @@ use App\Models\MasaTungguLulusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
-<<<<<<< HEAD
-use App\Models\PTUnit;
-use Illuminate\Support\Facades\Auth;
-=======
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
->>>>>>> origin/prefered_dev
 
 class MasaTunguLulusanController extends Controller
 {
@@ -24,25 +19,6 @@ class MasaTunguLulusanController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        $data = MasaTungguLulusan::all();
-        
-        return view('jurusan.page.masa_tunggu_lulusan.index', compact('data'));
-    }
-    public function admprodiIndex()
-    {
-        $data = MasaTungguLulusan::all();
-     
-        return view('admprodi.page.masa_tunggu_lulusan.index', compact('data'));
-    }
-    public function kaprodiIndex()
-    {
-        $data = MasaTungguLulusan::all();
-        // foreach ($data as $key => $tahun) {
-        //     $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
-        // }
-        return view('kaprodi.page.masa_tunggu_lulusan.index', compact('data'));
-=======
         if (Gate::allows('isJurusan')) {
             $data = MasaTungguLulusan::paginate(20);
             return view('masa_tunggu_lulusan.index', compact('data'));
@@ -53,7 +29,6 @@ class MasaTunguLulusanController extends Controller
             $data = $data->paginate(20);
             return view('masa_tunggu_lulusan.index', compact('data'));
         }
->>>>>>> origin/prefered_dev
     }
 
     /**
@@ -63,19 +38,8 @@ class MasaTunguLulusanController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
-   
-        return view(
-            'admprodi.page.masa_tunggu_lulusan.form',
-            [
-                'url' => 'simpan-masatunggu',
-               
-            ]
-        );
-=======
         $ptUnit = Auth::user()->ptUnit;
         return view('masa_tunggu_lulusan.create', compact('ptUnit'));
->>>>>>> origin/prefered_dev
     }
 
     /**
@@ -86,19 +50,13 @@ class MasaTunguLulusanController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-        $user = Auth::user();
-        $input = MasaTungguLulusan::insert([
-=======
         MasaTungguLulusan::insert([
->>>>>>> origin/prefered_dev
             'id' => $request->id,
             'tahun_lulus' => $request->tahun_lulus,
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
-            'id_pt_unit' => $user->id_pt_unit,
-            'kode_pt_unit' => $user->kode_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         return redirect('masa-tunggu')->with('pesan', 'Data berhasil disimpan');
     }
@@ -122,7 +80,9 @@ class MasaTunguLulusanController extends Controller
      */
     public function edit($id)
     {
-        $data['editData'] = MasaTungguLulusan::find($id);
+        $data['editData'] = DB::table('masa_tunggu_lulusan')
+            ->where('id', $id)
+            ->first();
         return view('admprodi.page.masa_tunggu_lulusan.form_edit', $data);
     }
 
@@ -135,15 +95,13 @@ class MasaTunguLulusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
         $masatunggu = MasaTungguLulusan::find($id);
         $update = $masatunggu->update([
             'tahun_lulus' => $request->tahun_lulus,
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
-            'id_pt_unit' => $user->id_pt_unit,
-            'kode_pt_unit' => $user->kode_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
         ]);
         if ($update) {
             return redirect('masatunggu')->with('pesan', 'Data berhasil disimpan');
@@ -153,6 +111,20 @@ class MasaTunguLulusanController extends Controller
                 window.location = '/admprodi.page.masa_tunggu_lulusan.index';
                 </script>";
         }
+        // $update = DB::table('masa_tunggu_lulusan')
+        //     ->where('id', $id)
+        //     ->update([
+        //         'tahun_lulus' => $request->tahun_lulus,
+        //         'waktu_tunggu' => $request->waktu_tunggu,
+        //     ]);
+        // if ($update) {
+        //     return redirect('masatunggu')->with('pesan', 'Data berhasil disimpan');
+        // } else {
+        //     echo "<script>
+        //         alert('Data gagal diinput, masukkan kebali data dengan benar');
+        //         window.location = '/admin.page.masa_tunggu_lulusan.index';
+        //         </script>";
+        // }
     }
 
     /**

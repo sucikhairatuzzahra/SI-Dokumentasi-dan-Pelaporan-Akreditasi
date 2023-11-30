@@ -151,23 +151,6 @@
                                                 <td>{{ $item->manajemen_pt_sendiri }}</td>
                                                 <td>{{ $item->manajemen_pt_lain }}</td>
                                                 <td>{{ $item->kode_pt_unit }}</td>
-<<<<<<< HEAD:resources/views/admprodi/page/beban_dtpr/index.blade.php
-                                                <td>
-                                                    <a href="{{ route('edit-bebandtpr', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('hapus-bebandtpr', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-bebandtpr', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-=======
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <a href="{{ route('edit-bebandtpr', ['id' => $item->id]) }}"
@@ -184,7 +167,6 @@
                                                             @csrf
                                                             @method('DELETE')
                                                         </form>
->>>>>>> origin/prefered_dev:resources/views/beban_dtpr/index.blade.php
 
                                                     </td>
                                                 @endcan

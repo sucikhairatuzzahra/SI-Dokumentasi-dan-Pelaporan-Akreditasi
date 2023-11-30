@@ -17,14 +17,7 @@ class BebanDTPR extends Model
         'sks_penelitian', 'manajemen_pt_sendiri', 'manajemen_pt_lain','id_pt_unit','kode_pt_unit'
     ];
 
-<<<<<<< HEAD
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
-=======
     public function ptUnit(): BelongsTo {
         return $this->belongsTo(PTUnit::class, 'id_pt_unit');
->>>>>>> origin/prefered_dev
     }
-
 }

@@ -61,19 +61,6 @@
                                             <th scope="col">
                                                 Aksi
                                             </th>
-<<<<<<< HEAD:resources/views/kaprodi/page/pendanaan/index.blade.php
-                                            <th scope="col">
-                                                Bukti
-                                            </th>
-                                            <th scope="col">
-                                                Keterangan
-                                            </th>
-                                            <th scope="col">
-                                                Unit Kerja
-                                            </th>
-
-=======
->>>>>>> origin/prefered_dev:resources/views/admin/tahun_akademik/index.blade.php
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,14 +70,6 @@
                                         @foreach ($data as $no => $item)
                                             <tr>
                                                 <td>{{ $no + 1 }}</td>
-<<<<<<< HEAD:resources/views/kaprodi/page/pendanaan/index.blade.php
-                                                <td>{{ $item->sumber_dana }}</td>
-                                                <td>{{ $item->jumlah }}</td>
-                                                <td>{{ $item->bukti }}</td>
-                                                <td>{{ $item->keterangan }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
-
-=======
                                                 <td>{{ $item->tahun_akademik }}</td>
                                                 <td>
                                                     <form action="{{ route('ta.destroy', ['id' => $item->id]) }}"
@@ -100,7 +79,6 @@
                                                         <button type="submit" class="btn btn-link">Hapus</button>
                                                     </form>
                                                 </td>
->>>>>>> origin/prefered_dev:resources/views/admin/tahun_akademik/index.blade.php
                                             </tr>
                                         @endforeach
                                     </tbody>

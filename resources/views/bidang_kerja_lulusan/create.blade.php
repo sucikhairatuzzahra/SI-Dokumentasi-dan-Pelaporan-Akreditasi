@@ -80,15 +80,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="id_pt_unit">Unit Kerja</label>
-<<<<<<< HEAD:resources/views/admprodi/page/bidang_kerja_lulusan/form.blade.php
-                                            <input type="hidden" name="id_pt_unit"
-                                                value="{{ Auth::user()->kode_pt_unit }}">
-=======
                                             <input type="hidden" class="form-control" name="id_pt_unit"
                                                 value="{{ $ptUnit->id }}" required>
                                             <input type="text" class="form-control" value="{{ $ptUnit->kode_pt_unit }}"
                                                 disabled>
->>>>>>> origin/prefered_dev:resources/views/bidang_kerja_lulusan/create.blade.php
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>

@@ -12,14 +12,6 @@ class MasaTungguLulusan extends Model
     protected $table = "masa_tunggu_lulusan";
     protected $primaryKey = 'id';
     protected $fillable = [
-<<<<<<< HEAD
-        'tahun_lulus', 'waktu_tunggu','id_pt_unit','kode_pt_unit'
-    ];
-  
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
-=======
         'tahun_lulus', 'waktu_tunggu', 'id_pt_unit'
     ];
 
@@ -32,6 +24,5 @@ class MasaTungguLulusan extends Model
     public function ptUnit(): BelongsTo
     {
         return $this->belongsTo(PTUnit::class, 'id_pt_unit');
->>>>>>> origin/prefered_dev
     }
 }

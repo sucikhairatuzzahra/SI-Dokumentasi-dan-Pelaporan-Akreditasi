@@ -108,10 +108,6 @@
                                                 <td>{{ $item->jml_mhs }}</td>
                                                 <td>{{ $item->jam_lyn }}</td>
                                                 <td>{{ $item->perangkat }}</td>
-<<<<<<< HEAD:resources/views/kaprodi/page/saranaprasarana/index.blade.php
-                                                <td>{{ $item->kode_pt_unit }}</td>
-
-=======
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
@@ -127,7 +123,6 @@
                                                         </form>
                                                     </td>
                                                 @endcan
->>>>>>> origin/prefered_dev:resources/views/sarana_prasarana/index.blade.php
                                             </tr>
                                         @endforeach
                                     </tbody>

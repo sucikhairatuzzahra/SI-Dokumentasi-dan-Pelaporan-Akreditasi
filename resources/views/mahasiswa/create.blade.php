@@ -97,29 +97,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="id_pt_unit">Unit Kerja</label>
-<<<<<<< HEAD:resources/views/admprodi/page/mhsbaru/form.blade.php
-                                            <!-- Tambahkan hidden field untuk pt_unit -->
-                                            <input type="hidden" name="id_pt_unit"
-                                                value="{{ Auth::user()->kode_pt_unit }}">
-
-                                        </div>
-                                        {{-- <div class="form-group">
-                                            <label for="pt_unit">PT Unit</label>
-                                            <select name="kode_pt_unit" id="kode_pt_unit" class="form-control">
-                                                @foreach ($ptUnits as $idPtUnit)
-                                                    <option value="{{ $idPtUnit->id }}">
-                                                        {{ $idPtUnit->kode_pt_unit }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div> --}}
-=======
                                             <input type="hidden" class="form-control" name="id_pt_unit"
                                                 value="{{ $ptUnit->id }}" required>
                                             <input type="text" class="form-control" value="{{ $ptUnit->kode_pt_unit }}"
                                                 disabled>
                                         </div>
->>>>>>> origin/prefered_dev:resources/views/mahasiswa/create.blade.php
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>
                                     <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

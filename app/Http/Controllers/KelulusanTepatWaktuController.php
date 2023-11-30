@@ -5,12 +5,6 @@ namespace App\Http\Controllers;
 use App\Exports\KelulusanTepatWaktuExport;
 use App\Models\KelulusanTepatWaktu;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Collection;
-=======
->>>>>>> origin/prefered_dev
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -25,175 +19,6 @@ class KelulusanTepatWaktuController extends Controller
      */
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        $data = KelulusanTepatWaktu::all();
-       
-        foreach ($data as $i => $data1) {
-            // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]
-            $akhir_ts = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts'] = $akhir_ts;
-            // data akhir_ts_1 = data mahasiswa yang lulus di 1 tahun yang lalu, dan tahun masuk di $data['tahun_masuk]
-            $akhir_ts_1 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear()->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_1'] = $akhir_ts_1;
-            // $akhir_ts_2
-            $akhir_ts_2 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(2)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_2'] = $akhir_ts_2;
-            // $akhir_ts_3
-            $akhir_ts_3 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(3)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_3'] = $akhir_ts_3;
-            // $akhir_ts_4
-            $akhir_ts_4 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(4)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_4'] = $akhir_ts_4;
-            // $akhir_ts_5
-            $akhir_ts_5 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(5)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_5'] = $akhir_ts_5;
-            // $akhir_ts_6
-            $akhir_ts_6 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(6)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_6'] = $akhir_ts_6;
-
-            // Jumlah mahasiswa yang lulus sampai dengan ts
-            $data[$i]['jumlah_lulusan_sampai_ts'] = collect([$akhir_ts_6, $akhir_ts_5, $akhir_ts_4, $akhir_ts_3, $akhir_ts_2, $akhir_ts_1, $akhir_ts])->sum();
-
-            // Jumlah mahasiswa yang masih aktif
-            if ($data1['jml_mhs'] > 0) {
-                $data[$i]['jml_mhs_aktif'] = collect([$data1['jml_mhs']])->sum() - $data[$i]['jumlah_lulusan_sampai_ts'];
-            } else {
-                $data[$i]['jml_mhs_aktif'] = 0;
-            }
-        }
-        
-        return view('jurusan.page.kelulusan_tepat_waktu.index', compact('data'));
-    }
-    public function admprodiIndex(Request $request)
-    {
-        $data = KelulusanTepatWaktu::all();
-       
-        foreach ($data as $i => $data1) {
-            // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]
-            $akhir_ts = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts'] = $akhir_ts;
-            // data akhir_ts_1 = data mahasiswa yang lulus di 1 tahun yang lalu, dan tahun masuk di $data['tahun_masuk]
-            $akhir_ts_1 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear()->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_1'] = $akhir_ts_1;
-            // $akhir_ts_2
-            $akhir_ts_2 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(2)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_2'] = $akhir_ts_2;
-            // $akhir_ts_3
-            $akhir_ts_3 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(3)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_3'] = $akhir_ts_3;
-            // $akhir_ts_4
-            $akhir_ts_4 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(4)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_4'] = $akhir_ts_4;
-            // $akhir_ts_5
-            $akhir_ts_5 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(5)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_5'] = $akhir_ts_5;
-            // $akhir_ts_6
-            $akhir_ts_6 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(6)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_6'] = $akhir_ts_6;
-
-            // Jumlah mahasiswa yang lulus sampai dengan ts
-            $data[$i]['jumlah_lulusan_sampai_ts'] = collect([$akhir_ts_6, $akhir_ts_5, $akhir_ts_4, $akhir_ts_3, $akhir_ts_2, $akhir_ts_1, $akhir_ts])->sum();
-
-            // Jumlah mahasiswa yang masih aktif
-            if ($data1['jml_mhs'] > 0) {
-                $data[$i]['jml_mhs_aktif'] = collect([$data1['jml_mhs']])->sum() - $data[$i]['jumlah_lulusan_sampai_ts'];
-            } else {
-                $data[$i]['jml_mhs_aktif'] = 0;
-            }
-        }
-        return view('admprodi.page.kelulusan_tepat_waktu.index', compact('data'));
-
-    }
-    public function kaprodiIndex()
-    {
-        $data = KelulusanTepatWaktu::all();
-       
-        foreach ($data as $i => $data1) {
-            // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]
-            $akhir_ts = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts'] = $akhir_ts;
-            // data akhir_ts_1 = data mahasiswa yang lulus di 1 tahun yang lalu, dan tahun masuk di $data['tahun_masuk]
-            $akhir_ts_1 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear()->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_1'] = $akhir_ts_1;
-            // $akhir_ts_2
-            $akhir_ts_2 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(2)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_2'] = $akhir_ts_2;
-            // $akhir_ts_3
-            $akhir_ts_3 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(3)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_3'] = $akhir_ts_3;
-            // $akhir_ts_4
-            $akhir_ts_4 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(4)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_4'] = $akhir_ts_4;
-            // $akhir_ts_5
-            $akhir_ts_5 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(5)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_5'] = $akhir_ts_5;
-            // $akhir_ts_6
-            $akhir_ts_6 = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
-            ->where('tahun_masuk', $data1['tahun_masuk'])
-            ->where('tahun_lulus', Carbon::now()->subYear(6)->format('Y'))
-            ->sum('jml_lulusan');
-            $data[$i]['akhir_ts_6'] = $akhir_ts_6;
-=======
 
         if (Gate::allows('isJurusan')) {
             $data = KelulusanTepatWaktu::all();
@@ -246,7 +71,6 @@ class KelulusanTepatWaktuController extends Controller
                     ->where('tahun_lulus', Carbon::now()->subYear(6)->format('Y'))
                     ->sum('jml_lulusan');
                 $data[$i]['akhir_ts_6'] = $akhir_ts_6;
->>>>>>> origin/prefered_dev
 
                 // Jumlah mahasiswa yang lulus sampai dengan ts
                 $data[$i]['jumlah_lulusan_sampai_ts'] = collect([$akhir_ts_6, $akhir_ts_5, $akhir_ts_4, $akhir_ts_3, $akhir_ts_2, $akhir_ts_1, $akhir_ts])->sum();
@@ -258,11 +82,6 @@ class KelulusanTepatWaktuController extends Controller
                     $data[$i]['jml_mhs_aktif'] = 0;
                 }
             }
-<<<<<<< HEAD
-        }
-      
-        return view('kaprodi.page.kelulusan_tepat_waktu.index', compact('data'));
-=======
             return view('kelulusan_tw.index', compact('data'));
         }
         if (Gate::allows('isKaprodi')) {
@@ -325,7 +144,6 @@ class KelulusanTepatWaktuController extends Controller
 
             return view('kelulusan_tw.index', compact('data'));
         }
->>>>>>> origin/prefered_dev
     }
 
     /**
@@ -335,19 +153,8 @@ class KelulusanTepatWaktuController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
-        // $ptUnits = PTUnit::all();
-        return view(
-            'admprodi.page.kelulusan_tepat_waktu.form',
-            [
-                'url' => 'simpan-kelulusan_tepatwaktu',
-                // 'ptUnits' =>  $ptUnits,
-            ]
-        );
-=======
         $ptUnit = Auth::user()->ptUnit;
         return view('kelulusan_tw.create', compact('ptUnit'));
->>>>>>> origin/prefered_dev
     }
 
     /**
@@ -358,16 +165,10 @@ class KelulusanTepatWaktuController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-        $user = Auth::user();
-        $input = KelulusanTepatWaktu::insert([
-=======
         KelulusanTepatWaktu::insert([
->>>>>>> origin/prefered_dev
             'id' => $request->id,
             'tahun_masuk' => $request->tahun_masuk,
-            'id_pt_unit' => $user->id_pt_unit,
-            'kode_pt_unit' => $user->kode_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
             'jml_mhs' => $request->jml_mhs,
             'tahun_lulus' => $request->tahun_lulus,
             'jml_lulusan' => $request->jml_lulusan,
@@ -400,12 +201,10 @@ class KelulusanTepatWaktuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
         $kelulusan = KelulusanTepatWaktu::find($id);
         $kelulusan->update([
             'tahun_masuk' => $request->tahun_masuk,
-            'id_pt_unit' => $user->id_pt_unit,
-            'kode_pt_unit' => $user->kode_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
             'jml_mhs' => $request->jml_mhs,
             'tahun_lulus' => $request->tahun_lulus,
             'jml_lulusan' => $request->jml_lulusan,

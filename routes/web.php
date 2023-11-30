@@ -18,10 +18,10 @@ use App\Http\Controllers\TenagaKependidikanController;
 use App\Http\Controllers\JumlahTenagaKependidikanController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DosenController;
-use App\Http\Controllers\PTUnitController;
 use App\Http\Controllers\LuaranController;
-use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\LuaranLainController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PTUnitController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

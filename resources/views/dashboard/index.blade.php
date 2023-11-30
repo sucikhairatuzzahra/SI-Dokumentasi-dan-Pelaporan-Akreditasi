@@ -31,7 +31,7 @@
             <div class="page-wrapper">
                 <!-- Page-body start -->
                 <div class="page-body">
-                    {{-- tampilan tabel  --}}
+                    <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
                             <h5>Daftar Kriteria</h5>
@@ -112,11 +112,7 @@
                         </div>
                     </div>
                     <!-- Basic table card end -->
-
-                    {{-- tampilan tabel users  --}}
-
                 </div>
-
                 <!-- Page-body end -->
             </div>
         </div>

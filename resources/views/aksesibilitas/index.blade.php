@@ -144,9 +144,6 @@
                                                 <td>{{ $item->lan }}</td>
                                                 <td><a href="{{ $item->wan }}">{{ $item->wan }}</a></td>
                                                 <td>{{ $item->kode_pt_unit }}</td>
-<<<<<<< HEAD:resources/views/kaprodi/page/aksesibilitas/index.blade.php
-
-=======
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <form
@@ -162,7 +159,6 @@
                                                         </form>
                                                     </td>
                                                 @endcan
->>>>>>> origin/prefered_dev:resources/views/aksesibilitas/index.blade.php
                                             </tr>
                                         @endforeach
                                     </tbody>

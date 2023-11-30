@@ -1,8 +1,4 @@
-<<<<<<< HEAD:resources/views/admin/page/users/form_edit.blade.php
-@extends('admin.layout.app')
-=======
 @extends('layouts.app')
->>>>>>> origin/prefered_dev:resources/views/admin/users/form_edit.blade.php
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -64,26 +60,6 @@
                                                 <option value="2">Adm Prodi</option>
                                                 <option value="1">Kaprodi</option>
                                                 <option value="0">Jurusan</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="id_pt_unit">Id Pt Unit</label>
-                                            <select name="id_pt_unit" id="id_pt_unit" class="form-control">
-                                                @foreach ($ptUnits as $idPtUnit)
-                                                    <option value="{{ $idPtUnit->id }}">
-                                                        {{ $idPtUnit->id }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="kode_pt_unit">Kode Pt Unit</label>
-                                            <select name="kode_pt_unit" id="kode_pt_unit" class="form-control">
-                                                @foreach ($ptUnits as $idPtUnit)
-                                                    <option value="{{ $idPtUnit->kode_pt_unit }}">
-                                                        {{ $idPtUnit->kode_pt_unit }}
-                                                    </option>
-                                                @endforeach
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>

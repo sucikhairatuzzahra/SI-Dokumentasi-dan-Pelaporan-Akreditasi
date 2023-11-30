@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LuaranLain extends Model
+class JumlahTenagaKependidikan extends Model
 {
     use HasFactory;
-    protected $table = "jenis_luaran_lain";
+    protected $table = "jml_tng_kpddkn";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'jenis_luaran_lain'
+        'nama','jenis_tng_kpddkn','jenjang_pendidikan','unit_kerja'
     ];
 }
