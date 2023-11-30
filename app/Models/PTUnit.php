@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PTUnit extends Model
@@ -39,5 +38,15 @@ class PTUnit extends Model
     public function Aksesibilitas(): HasMany
     {
         return $this->hasMany(Aksesibilitas::class, 'id_pt_unit');
+    }
+
+    public function SaranaPrasarana(): HasMany
+    {
+        return $this->hasMany(SaranaPrasarana::class, 'id_pt_unit');
+    }
+
+    public function IPKLulusan(): HasMany
+    {
+        return $this->hasMany(IPKLulusan::class, 'id_pt_unit');
     }
 }

@@ -76,3 +76,6 @@ Route::get('aksesibilitas-download', [AksesibilitasController::class, 'download'
 
 Route::resource('sarana', SaranaPrasaranaController::class)->except('show')->parameters(['sarana' => 'id']);
 Route::get('sarana-download', [SaranaPrasaranaController::class, 'download'])->name('sarana.download');
+
+Route::resource('ipk-lulusan', IPKLulusanController::class)->except('show')->parameters(['ipk-lulusan' => 'id']);
+Route::get('ipk-lulusan-download', [IPKLulusanController::class, 'download'])->name('ipk-lulusan.download');;

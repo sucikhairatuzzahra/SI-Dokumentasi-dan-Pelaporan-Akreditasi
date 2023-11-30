@@ -58,7 +58,7 @@
 <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Luaran &amp; Capaian Tridarma</div>
 <ul class="pcoded-item pcoded-left-item">
     <li>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{ route('ipk-lulusan.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
             <span class="pcoded-mtext" data-i18n="nav.form-components.main">IPK Lulusan</span>
             <span class="pcoded-mcaret"></span>
