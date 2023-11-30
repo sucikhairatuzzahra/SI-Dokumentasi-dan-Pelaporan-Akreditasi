@@ -107,7 +107,7 @@
                                                 <td>{{ $item->ipk_min }}</td>
                                                 <td>{{ $item->ipk_rata_rata }}</td>
                                                 <td>{{ $item->ipk_max }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <form action="{{ route('ipk-lulusan.destroy', ['id' => $item->id]) }}"

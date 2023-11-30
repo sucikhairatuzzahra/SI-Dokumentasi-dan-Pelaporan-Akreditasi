@@ -20,8 +20,6 @@ class TenagaKependidikanController extends Controller
     {
         if (Gate::allows('isJurusan')) {
             $data = TenagaKependidikan::paginate('20');
-
-            // dd($data);
             return view('admin.page.kependidikan.index', compact('data'));
         }
 
