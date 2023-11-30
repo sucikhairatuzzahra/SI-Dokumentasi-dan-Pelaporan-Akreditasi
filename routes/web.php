@@ -67,8 +67,11 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     });
 });
 
-Route::middleware(['auth', 'user-role:jurusan'])->group(function () {
-    Route::prefix('jurusan')->group(function () {
+Route::resource('mahasiswa', CalonMhsBaruController::class)->parameters(['mahasiswa' => 'id']);
+Route::get('mahasiswa/download', [CalonMhsBaruController::class, 'download'])->name('mahasiswa.download');
+
+// Route::middleware(['auth', 'user-role:jurusan'])->group(function () {
+//     Route::prefix('jurusan')->group(function () {
         
-    });
-});
+//     });
+// });

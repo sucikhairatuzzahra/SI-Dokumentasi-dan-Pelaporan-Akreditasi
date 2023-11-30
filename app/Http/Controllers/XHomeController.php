@@ -26,10 +26,10 @@ class XHomeController extends Controller
                 return view('jurusan.index');
             }
             if (Gate::allows('isKaprodi', $role)) {
-                return view('kaprodi.page.dashboard.index');
+                return view('kaprodi.index');
             }
             if (Gate::allows('isAdmProdi', $role)) {
-                return view('admprodi.page.dashboard.index');
+                return view('admprodi.index');
             }
             abort(404);
         } else {

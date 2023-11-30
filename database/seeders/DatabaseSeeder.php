@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             CreateUserSeeder::class,
             
             CreateKategoriDosenSeeder::class,
-            CreateLevelPendidikanTertinggiSeeder::class
+            CreateLevelPendidikanTertinggiSeeder::class,
+            MhsBaruSeed::class,
         ]);
     }
 }

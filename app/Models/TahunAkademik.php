@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TahunAkademik extends Model
 {
@@ -14,4 +16,7 @@ class TahunAkademik extends Model
         'tahun_akademik'
     ];
     //controllernya di admincontroller
+    public function mhsBaru(): HasMany {
+        return $this->hasMany(MhsBaru::class, 'id_thn_akademik');
+    }
 }

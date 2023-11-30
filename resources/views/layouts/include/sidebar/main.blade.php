@@ -2,7 +2,7 @@
 <ul class="pcoded-item pcoded-left-item">
     @include('layouts.include.sidebar.dashboard')
     <li>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{ route('mahasiswa.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Mahasiswa</span>
             <span class="pcoded-mcaret"></span>
