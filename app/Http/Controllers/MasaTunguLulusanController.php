@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Exports\MasaTungguLulusanExport;
-use App\Models\BidangKerjaLulusan;
 use App\Models\MasaTungguLulusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\PTUnit;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class MasaTunguLulusanController extends Controller
 {
@@ -19,25 +19,17 @@ class MasaTunguLulusanController extends Controller
      */
     public function index()
     {
-        $data = MasaTungguLulusan::paginate(20);
-        
-        return view('admin.page.masa_tunggu_lulusan.index', compact('data'));
-    }
-    public function admprodiIndex()
-    {
-        $data = MasaTungguLulusan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-     
-        return view('admprodi.page.masa_tunggu_lulusan.index', compact('data','ptUnits'));
-    }
-    public function kaprodiIndex()
-    {
-        $data = MasaTungguLulusan::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-        // foreach ($data as $key => $tahun) {
-        //     $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
-        // }
-        return view('kaprodi.page.masa_tunggu_lulusan.index', compact('data','ptUnits'));
+        if (Gate::allows('isJurusan')) {
+            $data = MasaTungguLulusan::paginate(20);
+
+            return view('admin.page.masa_tunggu_lulusan.index', compact('data'));
+        }
+
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = MasaTungguLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('masa_tunggu_lulusan.index', compact('data'));
+        }
     }
 
     /**
@@ -47,14 +39,8 @@ class MasaTunguLulusanController extends Controller
      */
     public function create()
     {
-        $ptUnits = PTUnit::all();
-        return view(
-            'admprodi.page.masa_tunggu_lulusan.form',
-            [
-                'url' => 'simpan-masatunggu',
-                'ptUnits' =>  $ptUnits,
-            ]
-        );
+        $ptUnit = Auth::user()->ptUnit;
+        return view('masa_tunggu_lulusan.create', compact('ptUnit'));
     }
 
     /**
@@ -73,14 +59,7 @@ class MasaTunguLulusanController extends Controller
             'waktu_tunggu' => $request->waktu_tunggu,
             'pt_unit' => $request->kode_pt_unit,
         ]);
-        if ($input) {
-            return redirect('masatunggu')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-            alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admprodi.page.masa_tunggu_lulusan.index';
-            </script>";
-        }
+        return redirect('masa-tunggu')->with('pesan', 'Data berhasil disimpan');
     }
 
     /**

@@ -59,4 +59,8 @@ class PTUnit extends Model
     {
         return $this->hasMany(KepuasanPenggunaLulusan::class, 'id_pt_unit');
     }
+
+    public function masatunggu() : HasMany {
+        return $this->hasMany(MasaTungguLulusan::class, 'id_pt_unit');
+    }
 }

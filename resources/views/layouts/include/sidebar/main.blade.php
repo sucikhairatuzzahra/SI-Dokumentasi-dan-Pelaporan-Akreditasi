@@ -79,21 +79,21 @@
         </a>
     </li>
     <li>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{ route('masa-tunggu.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Masa Tunggu</span>
             <span class="pcoded-mcaret"></span>
         </a>
     </li>
     <li>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{ route('kerja-lulusan.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Bidang Kerja Lulusan</span>
             <span class="pcoded-mcaret"></span>
         </a>
     </li>
     <li>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{ route('ppkm_dtpr.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Penelitian &amp; Pengabdian</span>
             <span class="pcoded-mcaret"></span>

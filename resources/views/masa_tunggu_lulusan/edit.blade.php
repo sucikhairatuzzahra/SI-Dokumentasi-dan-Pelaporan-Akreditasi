@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Pendayagunaan Sarana dan Prasarana Utama</h5>
-                        <p class="m-b-0">Form Pendayagunaan Sarana dan Prasarana Utama</p>
+                        <h5 class="m-b-10">Rata-rata Masa Tunggu Lulusan untuk Bekerja Pertama Kali</h5>
+                        <p class="m-b-0">Form Rata-rata Masa Tunggu Lulusan untuk Bekerja Pertama Kali</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,8 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Pendayagunaan Sarana dan Prasarana Utama</a>
+                        <li class="breadcrumb-item"><a href="#!">Rata-rata Masa Tunggu Lulusan untuk Bekerja Pertama
+                                Kali</a>
                         </li>
                     </ul>
                 </div>
@@ -35,42 +36,32 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Form Pendayagunaan Sarana dan Prasarana Utama</h5>
+                                    <h5>Form Rata-rata Masa Tunggu Lulusan untuk Bekerja Pertama Kali</h5>
                                     <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
                                 </div>
                                 <div class="card-block">
-                                    <form action="{{ route('sarana.update', $editData->id) }}" method="POST">
+                                    <form action="{{ route('masa-tunggu.update', $editData->id) }}" method="POST">
                                         @csrf
                                         @method('put')
                                         <div class="form-group">
-                                            <label for="sarana">Sarana atau Prasarana</label>
-                                            <input type="text" class="form-control" id="sarana" name="sarana"
-                                                value="{{ $editData->sarana }}">
+                                            <label for="tahun_lulus">Tahun Lulus</label>
+                                            <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus"
+                                                value="{{ $editData->tahun_lulus }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="daya_tampung">Daya Tampung</label>
-                                            <input type="text" class="form-control" id="daya_tampung" name="daya_tampung"
-                                                value="{{ $editData->daya_tampung }}">
+                                            <label for="jumlah_lulusan">Jumlah Lulusan</label>
+                                            <input type="text" class="form-control" id="jumlah_lulusan"
+                                                name="jumlah_lulusan" value="{{ $editData->jumlah_lulusan }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="luas_ruang">Luas Ruang (m2)</label>
-                                            <input type="text" class="form-control" id="luas_ruang" name="luas_ruang"
-                                                value="{{ $editData->luas_ruang }}">
+                                            <label for="lulusan_terlacak">Jumlah Lulusan Yang Terlacak</label>
+                                            <input type="text" class="form-control" id="lulusan_terlacak"
+                                                name="lulusan_terlacak" value="{{ $editData->lulusan_terlacak }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="jml_mhs">Jumlah Mahasiswa Yang Dilayani</label>
-                                            <input type="text" class="form-control" id="jml_mhs" name="jml_mhs"
-                                                value="{{ $editData->jml_mhs }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="jam_lyn">Jam Layanan</label>
-                                            <input type="text" class="form-control" id="jam_lyn" name="jam_lyn"
-                                                value="{{ $editData->jam_lyn }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="perangkat">Perangkat Yang Dimiliki</label>
-                                            <input type="text" class="form-control" id="perangkat" name="perangkat"
-                                                value="{{ $editData->perangkat }}">
+                                            <label for="waktu_tunggu">Rata-rata Waktu Tunggu (Bulan)</label>
+                                            <input type="text" class="form-control" id="waktu_tunggu" name="waktu_tunggu"
+                                                value="{{ $editData->waktu_tunggu }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="pt_unit">Unit Kerja</label>

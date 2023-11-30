@@ -21,14 +21,15 @@ class DatabaseSeeder extends Seeder
             CreatePTUnitSeeder::class,
             CreateTahunAkademikSeeder::class,
             CreateUserSeeder::class,
-            
+
             CreateKategoriDosenSeeder::class,
             CreateLevelPendidikanTertinggiSeeder::class,
             MhsBaruSeed::class,
             TenagaKependidikanSeed::class,
             KelulusanTepatWaktuSeed::class,
             IPKLulusanSeed::class,
-            KepuasanPenggunaSeed::class
+            KepuasanPenggunaSeed::class,
+            MasaTungguLulusanSeed::class,
         ]);
     }
 }
