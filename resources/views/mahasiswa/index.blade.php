@@ -74,16 +74,18 @@
                                 <a href="{{ route('mahasiswa.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
+
+                                {{-- Alerting --}}
+                                @if (session('success'))
+                                    <div class="alert alert-success">{{ session('success') }}</div>
+                                @endif
+
+                                @if (session('error'))
+                                    <div class="alert alert-danger">{{ session('error') }}</div>
+                                @endif
                             @endcan
 
-                            {{-- Alerting --}}
-                            @if (session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
-                            @endif
 
-                            @if (session('error'))
-                                <div class="alert alert-danger">{{ session('error') }}</div>
-                            @endif
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">

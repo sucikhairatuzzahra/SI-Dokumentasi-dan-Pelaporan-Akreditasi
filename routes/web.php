@@ -68,5 +68,5 @@ Route::get('beban-dtpr-download', [BebanDTRPController::class, 'download'])->nam
 Route::resource('kependidikan', TenagaKependidikanController::class)->except('show')->parameters(['kependidikan' => 'id']);
 Route::get('kependidikan-download', [TenagaKependidikanController::class, 'download'])->name('kependidikan.download');
 
-Route::resource('pendanaan', PendanaanController::class)->parameters(['pendanaan' => 'id']);
+Route::resource('pendanaan', PendanaanController::class)->except('show')->parameters(['pendanaan' => 'id']);
 Route::get('pendanaan-download', [PendanaanController::class, 'download'])->name('pendanaan.download');
