@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\MahasiswaExport;
+use App\Exports\MhsBaruExport;
 use App\Models\Mhsbaru;
 use App\Models\PTUnit;
 use App\Models\TahunAkademik;
@@ -26,7 +27,7 @@ class CalonMhsBaruController extends Controller
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
-            return view('jurusan.mahasiswa.index', compact('data', 'request', 'ptUnit'));
+            return view('jurusan.mahasiswa.index', compact('data', 'ptUnit', 'request'));
         }
 
         if (Gate::allows('isAdmProdi')) {
@@ -36,8 +37,7 @@ class CalonMhsBaruController extends Controller
         }
 
         if (Gate::allows('isKaprodi')) {
-            $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
-            $data->paginate(20);
+            $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('kaprodi.mahasiswa.index', compact('data'));
         }
@@ -107,11 +107,11 @@ class CalonMhsBaruController extends Controller
     {
         $prodi = Mhsbaru::findOrFail($id);
 
-        return view('jurusan.page.mhsbaru.index', compact('prodi'));
+        return view('jurusan.mahasiswa.index', compact('prodi'));
     }
 
-    public function download()
+    public function export()
     {
-        return Excel::download(new MahasiswaExport, 'Mahasiswa Baru.xlsx');
+        return Excel::download(new MahasiswaExport, 'Mahasiswa_Baru.xlsx');
     }
 }

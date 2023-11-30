@@ -34,38 +34,16 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-header-left">
-                                <h5>Pilih Program Studi </h5>
-                            </div>
-                        </div>
-                        <div class="card-block">
-                            <form action="{{ route('mahasiswa.index') }}" method="get">
-                                <div class="row">
-                                    <div class="col-md-3 form-group">
-                                        <label for="">Program Studi</label>
-                                        <select name="id_pt_unit" class="form-control">
-                                            <option value="0">--Pilih Program Studi--</option>
-                                            <option value="5" {{ $request->id_pt_unit === '5' ? 'selected' : '' }}>D3 MI
-                                            </option>
-                                            <option value="6" {{ $request->id_pt_unit === '6' ? 'selected' : '' }}>D3 TK
-                                            </option>
-                                            <option value="4" {{ $request->id_pt_unit === '4' ? 'selected' : '' }}>D4 TRPL
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2 form-group" style="margin-top:25px;">
-                                        <input type="submit" class="btn btn-primary" value="Filter">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        {{-- tabel  --}}
-                        <br>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
                             <h5>Jumlah Calon Mahasiswa</h5>
-
+                            <br><br>
+                            <a class="btn btn-success" href="{{ route('mahasiswa.download') }}">
+                                Download</a>
+                            
+                                {{-- Alerting --}}
+                            @if (session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+                            
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -78,14 +56,12 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr align="center">
                                             <th scope="col" rowspan="2">
                                                 Tahun Akademik
                                             </th>
-
                                             <th scope="col" rowspan="2">
                                                 Daya Tampung
                                             </th>
@@ -127,9 +103,9 @@
                                     <tbody>
 
                                         @foreach ($data as $no => $item)
-                                            <tr align="center" class="mhsbaru_{{ $no }}">
-                                                <td class="tahun_akademik_{{ $no }}">
-                                                    {{ $item->tahunAkademik->tahun_akademik }}</td>
+                                            <tr align="center">
+                                                {{-- <td>{{ $no + 1 }}</td> --}}
+                                                <td>{{ $item->tahunAkademik->tahun_akademik }}</td>
                                                 <td>{{ $item->daya_tampung }}</td>
                                                 <td>{{ $item->pendaftar }}</td>
                                                 <td>{{ $item->lulus_seleksi }}</td>
@@ -138,14 +114,11 @@
                                                 <td>{{ $item->mhs_aktif_reguler }}</td>
                                                 <td>{{ $item->mhs_aktif_transfer }}</td>
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
-
                                             </tr>
                                         @endforeach
                                     </tbody>
+
                                 </table>
-                            </div>
-                            <div class="row">
-                                {!! $data->links() !!}
                             </div>
                         </div>
                     </div>

@@ -38,14 +38,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware(['auth'])->group(function () {
-// });
-//route login
 Route::get('/', [XHomeController::class, 'index'])->name('home.route');
-
-// Route::get('/', function () {
-//     return view('auth.login');
-// })->name('login');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -68,7 +61,7 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
 });
 
 Route::resource('mahasiswa', CalonMhsBaruController::class)->parameters(['mahasiswa' => 'id']);
-Route::get('mahasiswa/download', [CalonMhsBaruController::class, 'download'])->name('mahasiswa.download');
+Route::get('mahasiswa-download', [CalonMhsBaruController::class, 'export'])->name('mahasiswa.download');
 
 // Route::middleware(['auth', 'user-role:jurusan'])->group(function () {
 //     Route::prefix('jurusan')->group(function () {
