@@ -73,3 +73,6 @@ Route::get('pendanaan-download', [PendanaanController::class, 'download'])->name
 
 Route::resource('aksesibilitas', AksesibilitasController::class)->except('show')->parameters(['aksesibilitas' => 'id']);
 Route::get('aksesibilitas-download', [AksesibilitasController::class, 'download'])->name('aksesibilitas.download');
+
+Route::resource('sarana', SaranaPrasaranaController::class)->except('show')->parameters(['sarana' => 'id']);
+Route::get('sarana-download', [SaranaPrasaranaController::class, 'download'])->name('sarana.download');

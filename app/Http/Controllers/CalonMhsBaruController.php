@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Exports\MahasiswaExport;
-use App\Exports\MhsBaruExport;
 use App\Models\Mhsbaru;
 use App\Models\PTUnit;
 use App\Models\TahunAkademik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -30,13 +28,7 @@ class CalonMhsBaruController extends Controller
             return view('mahasiswa.index', compact('data', 'request'));
         }
 
-        if (Gate::allows('isAdmProdi')) {
-            $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
-            $data = $data->paginate(20);
-            return view('mahasiswa.index', compact('data'));
-        }
-
-        if (Gate::allows('isKaprodi')) {
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
             $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('mahasiswa.index', compact('data'));
