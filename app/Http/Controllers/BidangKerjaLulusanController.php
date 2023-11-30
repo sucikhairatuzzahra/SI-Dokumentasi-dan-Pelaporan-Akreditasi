@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PTUnit;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class BidangKerjaLulusanController extends Controller
 {
@@ -19,6 +21,7 @@ class BidangKerjaLulusanController extends Controller
     //index  untuk jurusan
     public function index()
     {
+<<<<<<< HEAD
         $data = BidangKerjaLulusan::all();
         return view('jurusan.page.bidang_kerja_lulusan.index', compact('data'));
     }
@@ -34,6 +37,21 @@ class BidangKerjaLulusanController extends Controller
 
         return view('kaprodi.page.bidang_kerja_lulusan.index', compact('data'));
     }
+=======
+
+        if (Gate::allows('isJurusan')) {
+            $data = BidangKerjaLulusan::paginate(20);
+            return view('bidang_kerja_lulusan.index', compact('data'));
+        }
+
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = BidangKerjaLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('bidang_kerja_lulusan.index', compact('data'));
+        }
+    }
+
+>>>>>>> origin/prefered_dev
     /**
      * Show the form for creating a new resource.
      *
@@ -41,6 +59,7 @@ class BidangKerjaLulusanController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         
         return view(
             'admprodi.page.bidang_kerja_lulusan.form',
@@ -49,6 +68,10 @@ class BidangKerjaLulusanController extends Controller
             
             ]
         );
+=======
+        $ptUnit = Auth::user()->ptUnit;
+        return view('bidang_kerja_lulusan.create', compact('ptUnit'));
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -59,8 +82,12 @@ class BidangKerjaLulusanController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $user = Auth::user();
         $input = BidangKerjaLulusan::insert([
+=======
+        BidangKerjaLulusan::create([
+>>>>>>> origin/prefered_dev
             'id' => $request->id,
             'tahun_lulus' => $request->tahun_lulus,
             'jumlah_lulusan' => $request->jumlah_lulusan,
@@ -70,6 +97,7 @@ class BidangKerjaLulusanController extends Controller
             'internasional' => $request->internasional,
             'nasional' => $request->nasional,
             'wirausaha' => $request->wirausaha,
+<<<<<<< HEAD
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
         ]);
@@ -92,6 +120,11 @@ class BidangKerjaLulusanController extends Controller
     public function show($id)
     {
         //
+=======
+            'id_pt_unit' => $request->kode_pt_unit,
+        ]);
+        return redirect('kerja-lulusan')->with('success', 'Data berhasil disimpan');
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -103,7 +136,11 @@ class BidangKerjaLulusanController extends Controller
     public function edit($id)
     {
         $data['editData'] = BidangKerjaLulusan::find($id);
+<<<<<<< HEAD
         return view('admprodi.page.bidang_kerja_lulusan.form_edit', $data);
+=======
+        return view('bidang_kerja_lulusan.edit', $data);
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -117,7 +154,7 @@ class BidangKerjaLulusanController extends Controller
     {
         $user = Auth::user();
         $kerjalulusan = BidangKerjaLulusan::find($id);
-        $update = $kerjalulusan->update([
+        $kerjalulusan->update([
             'tahun_lulus' => $request->tahun_lulus,
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
@@ -129,14 +166,7 @@ class BidangKerjaLulusanController extends Controller
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
         ]);
-        if ($update) {
-            return redirect('kerjalulusan')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-                alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.bidang_kerja_lulusan.index';
-                </script>";
-        }
+        return redirect('kerjalulusan')->with('success', 'Data berhasil disimpan');
     }
 
     /**

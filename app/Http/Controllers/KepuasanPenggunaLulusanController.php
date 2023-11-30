@@ -7,7 +7,11 @@ use App\Models\KepuasanPenggunaLulusan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
 use App\Models\PTUnit;
+=======
+use Illuminate\Support\Facades\Gate;
+>>>>>>> origin/prefered_dev
 
 class KepuasanPenggunaLulusanController extends Controller
 {
@@ -18,17 +22,23 @@ class KepuasanPenggunaLulusanController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $data = KepuasanPenggunaLulusan::all();
         return view('jurusan.page.kepuasan_pengguna_lulusan.index', compact('data'));
+=======
+        if (Gate::allows('isJurusan')) {
+            $data = KepuasanPenggunaLulusan::paginate('20');
+            return view('kepuasan_pengguna_lulusan.index', compact('data'));
+        }
+>>>>>>> origin/prefered_dev
 
-        // $program = DB::table('tb_program')->get();
-        // return view(
-        //     'admin/page/program/index',
-        //     [
-        //         'program' => $program
-        //     ]
-        // );
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = KepuasanPenggunaLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('kepuasan_pengguna_lulusan.index', compact('data'));
+        }
     }
+<<<<<<< HEAD
     public function admprodiIndex()
     {
         $data = KepuasanPenggunaLulusan::all();
@@ -40,6 +50,9 @@ class KepuasanPenggunaLulusanController extends Controller
 
         return view('kaprodi.page.kepuasan_pengguna_lulusan.index', compact('data'));
     }
+=======
+
+>>>>>>> origin/prefered_dev
     /**
      * Show the form for creating a new resource.
      *
@@ -47,14 +60,8 @@ class KepuasanPenggunaLulusanController extends Controller
      */
     public function create()
     {
-        $ptUnits = PTUnit::all();
-        return view(
-            'admprodi.page.kepuasan_pengguna_lulusan.form',
-            [
-                'url' => 'simpan-kepuasan_pengguna',
-                'ptUnits' =>  $ptUnits,
-            ]
-        );
+        $ptUnit = Auth::user()->ptUnit;
+        return view('kepuasan_pengguna_lulusan.create', compact('ptUnit'));
     }
 
     /**
@@ -65,8 +72,12 @@ class KepuasanPenggunaLulusanController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $user = Auth::user();
         $input = KepuasanPenggunaLulusan::insert([
+=======
+        KepuasanPenggunaLulusan::insert([
+>>>>>>> origin/prefered_dev
             'id' => $request->id,
             'jenis_kemampuan' => $request->jenis_kemampuan,
             'sangat_baik' => $request->sangat_baik,
@@ -74,28 +85,15 @@ class KepuasanPenggunaLulusanController extends Controller
             'cukup' => $request->cukup,
             'kurang' => $request->kurang,
             'rencana_tindak_lanjut' => $request->rencana_tindak_lanjut,
+<<<<<<< HEAD
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
+=======
+            'id_pt_unit' => $request->id_pt_unit,
+>>>>>>> origin/prefered_dev
         ]);
-        if ($input) {
-            return redirect('kepuasan_pengguna')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-            alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admprodi.page.kepuasan_pengguna_lulusan.index';
-            </script>";
-        }
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('kepuasan_pengguna')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -107,7 +105,11 @@ class KepuasanPenggunaLulusanController extends Controller
     public function edit($id)
     {
         $data['editData'] = KepuasanPenggunaLulusan::find($id);
+<<<<<<< HEAD
         return view('admprodi.page.kepuasan_pengguna_lulusan.form_edit', $data);
+=======
+        return view('kepuasan_pengguna_lulusan.edit', $data);
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -131,6 +133,7 @@ class KepuasanPenggunaLulusanController extends Controller
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
         ]);
+<<<<<<< HEAD
         if ($update) {
             return redirect('kepuasan_pengguna')->with('pesan', 'Data berhasil disimpan');
         } else {
@@ -139,6 +142,9 @@ class KepuasanPenggunaLulusanController extends Controller
                 window.location = '/admprodi.page.kepuasan_pengguna_lulusan.index';
                 </script>";
         }
+=======
+        return redirect('kepuasan_pengguna')->with('success', 'Data berhasil disimpan');
+>>>>>>> origin/prefered_dev
     }
 
     /**

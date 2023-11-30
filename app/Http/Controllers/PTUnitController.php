@@ -15,8 +15,8 @@ class PTUnitController extends Controller
     public function index()
     {
         $data = PTUnit::all();
-        
-        return view('admin.page.ptunit.index', compact('data'));
+
+        return view('admin.ptunit.index', compact('data'));
     }
 
     /**
@@ -26,12 +26,7 @@ class PTUnitController extends Controller
      */
     public function create()
     {
-        return view(
-            'admin.page.ptunit.form',
-            [
-                'url' => 'simpan-ptunit',
-            ]
-        );
+        return view('admin.ptunit.create');
     }
 
     /**
@@ -49,47 +44,13 @@ class PTUnitController extends Controller
         ]);
 
         if ($input) {
-            return redirect('ptunit')->with('pesan', 'Data berhasil disimpan');
+            return redirect('ptunit')->with('success', 'Data berhasil disimpan');
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
             window.location = '/admin.page.ptunit.index';
             </script>";
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -103,6 +64,6 @@ class PTUnitController extends Controller
         $data = PTUnit::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $data->delete();
 
-        return redirect()->route('ptunit')->with('success', 'Data PT Unit berhasil dihapus');
+        return redirect()->route('ptunit.index')->with('success', 'Data PT Unit berhasil dihapus');
     }
 }

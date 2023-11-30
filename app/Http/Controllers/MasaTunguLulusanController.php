@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Exports\MasaTungguLulusanExport;
-use App\Models\BidangKerjaLulusan;
 use App\Models\MasaTungguLulusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+<<<<<<< HEAD
 use App\Models\PTUnit;
 use Illuminate\Support\Facades\Auth;
+=======
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+>>>>>>> origin/prefered_dev
 
 class MasaTunguLulusanController extends Controller
 {
@@ -20,6 +24,7 @@ class MasaTunguLulusanController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $data = MasaTungguLulusan::all();
         
         return view('jurusan.page.masa_tunggu_lulusan.index', compact('data'));
@@ -37,6 +42,18 @@ class MasaTunguLulusanController extends Controller
         //     $data[$key]['bidang'] = BidangKerjaLulusan::where('tahun_lulus', $tahun->tahun_lulus)->first();
         // }
         return view('kaprodi.page.masa_tunggu_lulusan.index', compact('data'));
+=======
+        if (Gate::allows('isJurusan')) {
+            $data = MasaTungguLulusan::paginate(20);
+            return view('masa_tunggu_lulusan.index', compact('data'));
+        }
+
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = MasaTungguLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('masa_tunggu_lulusan.index', compact('data'));
+        }
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -46,6 +63,7 @@ class MasaTunguLulusanController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
    
         return view(
             'admprodi.page.masa_tunggu_lulusan.form',
@@ -54,6 +72,10 @@ class MasaTunguLulusanController extends Controller
                
             ]
         );
+=======
+        $ptUnit = Auth::user()->ptUnit;
+        return view('masa_tunggu_lulusan.create', compact('ptUnit'));
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -64,8 +86,12 @@ class MasaTunguLulusanController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $user = Auth::user();
         $input = MasaTungguLulusan::insert([
+=======
+        MasaTungguLulusan::insert([
+>>>>>>> origin/prefered_dev
             'id' => $request->id,
             'tahun_lulus' => $request->tahun_lulus,
             'jumlah_lulusan' => $request->jumlah_lulusan,
@@ -74,14 +100,7 @@ class MasaTunguLulusanController extends Controller
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
         ]);
-        if ($input) {
-            return redirect('masatunggu')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-            alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admprodi.page.masa_tunggu_lulusan.index';
-            </script>";
-        }
+        return redirect('masa-tunggu')->with('pesan', 'Data berhasil disimpan');
     }
 
     /**

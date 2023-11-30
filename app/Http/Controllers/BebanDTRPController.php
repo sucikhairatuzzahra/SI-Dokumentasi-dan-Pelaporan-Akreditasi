@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\PTUnit;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Gate;
+>>>>>>> origin/prefered_dev
 
 class BebanDTRPController extends Controller
 {
@@ -16,6 +20,7 @@ class BebanDTRPController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function index($id_pt_unit='')
     {
         // $data = BebanDTPR::all();
@@ -47,7 +52,34 @@ class BebanDTRPController extends Controller
     {
         $data = BebanDTPR::all();
         return view('kaprodi.page.beban_dtpr.index', compact('data'));
+=======
+    public function index(Request $request)
+    {
+        if (Gate::allows('isJurusan')) {
+            $ptUnit = PTUnit::all();
+            $data = BebanDTPR::orderBy('id', 'desc')
+                ->with('ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
+
+            return view('beban_dtpr.index', compact('data', 'request'));
+        }
+
+        if (Gate::allows('isAdmProdi')) {
+            $data = BebanDTPR::with('ptUnit');
+            $data = $data->paginate(20);
+            return view('beban_dtpr.index', compact('data'));
+        }
+
+        if (Gate::allows('isKaprodi')) {
+            $data = BebanDTPR::with('ptUnit');
+            $data = $data->paginate(20);
+            return view('beban_dtpr.index', compact('data'));
+        }
+>>>>>>> origin/prefered_dev
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -55,6 +87,7 @@ class BebanDTRPController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
       
         return view(
             'admprodi.page.beban_dtpr.form',
@@ -63,6 +96,10 @@ class BebanDTRPController extends Controller
              
             ]
         );
+=======
+        $ptUnit = Auth::user()->ptUnit;
+        return view('beban_dtpr.create', compact('ptUnit'));
+>>>>>>> origin/prefered_dev
     }
 
 
@@ -74,8 +111,12 @@ class BebanDTRPController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $user = Auth::user();
         $input = BebanDTPR::insert([
+=======
+        BebanDTPR::create([
+>>>>>>> origin/prefered_dev
             'id' => $request->id,
             'nama_dosen' => $request->nama_dosen,
             'pgjrn_ps_sendiri' => $request->pgjrn_ps_sendiri,
@@ -88,25 +129,7 @@ class BebanDTRPController extends Controller
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
         ]);
-        if ($input) {
-            return redirect('bebandtpr')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-            alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admprodi.page.beban_dtpr.index';
-            </script>";
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('beban-dtpr')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -118,7 +141,11 @@ class BebanDTRPController extends Controller
     public function edit($id)
     {
         $data['editData'] = BebanDTPR::find($id);
+<<<<<<< HEAD
         return view('admprodi.page.beban_dtpr.form_edit', $data);
+=======
+        return view('beban_dtpr.edit', $data);
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -132,7 +159,7 @@ class BebanDTRPController extends Controller
     {
         $user = Auth::user();
         $dtpr = BebanDTPR::find($id);
-        $update = $dtpr->update([
+        $dtpr->update([
             'nama_dosen' => $request->nama_dosen,
             'pgjrn_ps_sendiri' => $request->pgjrn_ps_sendiri,
             'pgjrn_ps_lain_pt_sendiri' => $request->pgjrn_ps_lain_pt_sendiri,
@@ -144,6 +171,7 @@ class BebanDTRPController extends Controller
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
         ]);
+<<<<<<< HEAD
         if ($update) {
             return redirect('bebandtpr')->with('pesan', 'Data berhasil disimpan');
         } else {
@@ -152,6 +180,10 @@ class BebanDTRPController extends Controller
                 window.location = '/admprodi.page.bidang_kerja_lulusan.index';
                 </script>";
         }
+=======
+
+        return redirect('bebandtpr')->with('success', 'Data berhasil disimpan');
+>>>>>>> origin/prefered_dev
     }
 
     /**

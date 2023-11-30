@@ -23,8 +23,13 @@ return new class extends Migration
             $table->integer('sks_pengabdian');
             $table->integer('manajemen_pt_sendiri');
             $table->integer('manajemen_pt_lain');
+<<<<<<< HEAD
             $table->integer('id_pt_unit');
             $table->string('kode_pt_unit');
+=======
+            $table->unsignedBigInteger('id_pt_unit');
+            $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
+>>>>>>> origin/prefered_dev
             $table->timestamps();
         });
     }

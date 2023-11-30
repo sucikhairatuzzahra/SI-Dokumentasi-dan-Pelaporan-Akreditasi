@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "mix"
+        "development": "mix",
+        "vite": "vite build"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",

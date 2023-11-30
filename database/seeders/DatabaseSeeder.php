@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CreateJenisLuaranLainSeeder::class,
             CreateJenisLuaranSeeder::class,
             CreateJenjangProgramSeeder::class,
+<<<<<<< HEAD
             CreateKategoriDosenSeeder::class,
             CreateLevelPTUnitSeeder::class,
             CreateLevelPendidikanTertinggiSeeder::class,
@@ -26,10 +26,25 @@ class DatabaseSeeder extends Seeder
             CreateUserSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
+=======
+            CreateLevelPTUnitSeeder::class,
+            CreatePTUnitSeeder::class,
+            CreateTahunAkademikSeeder::class,
+            CreateUserSeeder::class,
+>>>>>>> origin/prefered_dev
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+            CreateKategoriDosenSeeder::class,
+            CreateLevelPendidikanTertinggiSeeder::class,
+            MhsBaruSeed::class,
+            TenagaKependidikanSeed::class,
+            KelulusanTepatWaktuSeed::class,
+            IPKLulusanSeed::class,
+            KepuasanPenggunaSeed::class,
+            MasaTungguLulusanSeed::class,
+            BidangKerjaLulusanSeed::class,
+            PPKMDariDTPRSeed::class,
+            SaranaSeed::class,
+            PendanaanSeed::class
+        ]);
     }
 }

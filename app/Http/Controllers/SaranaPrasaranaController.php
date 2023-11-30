@@ -7,7 +7,8 @@ use App\Models\SaranaPrasarana;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\PTUnit;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class SaranaPrasaranaController extends Controller
 {
@@ -18,6 +19,7 @@ class SaranaPrasaranaController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $data = SaranaPrasarana::all();
         return view('jurusan.page.saranaprasarana.index', compact('data'));
     }
@@ -31,6 +33,20 @@ class SaranaPrasaranaController extends Controller
         $data = SaranaPrasarana::all();
         return view('kaprodi.page.saranaprasarana.index', compact('data'));
     }
+=======
+        if (Gate::allows('isJurusan')) {
+            $data = SaranaPrasarana::paginate('20');
+            return view('sarana_prasarana.index', compact('data'));
+        }
+
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = SaranaPrasarana::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('sarana_prasarana.index', compact('data'));
+        }
+    }
+
+>>>>>>> origin/prefered_dev
     /**
      * Show the form for creating a new resource.
      *
@@ -38,12 +54,17 @@ class SaranaPrasaranaController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         return view(
             'admprodi.page.saranaprasarana.form',
             [
                 'url' => 'simpan-sarana',
             ]
         );
+=======
+        $ptUnit = Auth::user()->ptUnit;
+        return view('sarana_prasarana.create', compact('ptUnit'));
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -54,8 +75,12 @@ class SaranaPrasaranaController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $user = Auth::user();
         $input = SaranaPrasarana::insert([
+=======
+        SaranaPrasarana::insert([
+>>>>>>> origin/prefered_dev
             'id' => $request->id,
             'sarana' => $request->sarana,
             'daya_tampung' => $request->daya_tampung,
@@ -67,25 +92,7 @@ class SaranaPrasaranaController extends Controller
             'kode_pt_unit' => $user->kode_pt_unit,
 
         ]);
-        if ($input) {
-            return redirect('sarana')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-            alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admprodi.page.saranaprasarana.index';
-            </script>";
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('sarana')->with('pesan', 'Data berhasil disimpan');
     }
 
     /**
@@ -97,7 +104,7 @@ class SaranaPrasaranaController extends Controller
     public function edit($id)
     {
         $data['editData'] = SaranaPrasarana::find($id);
-        return view('admprodi.page.saranaprasarana.form_edit', $data);
+        return view('sarana_prasarana.edit', $data);
     }
 
     /**
@@ -111,24 +118,21 @@ class SaranaPrasaranaController extends Controller
     {
         $user = Auth::user();
         $sarana = SaranaPrasarana::find($id);
-        $update = $sarana->update([
+        $sarana->update([
             'sarana' => $request->sarana,
             'daya_tampung' => $request->daya_tampung,
             'luas_ruang' => $request->luas_ruang,
             'jml_mhs' => $request->jml_mhs,
             'jam_lyn' => $request->jam_lyn,
             'perangkat' => $request->perangkat,
+<<<<<<< HEAD
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
+=======
+            'id_pt_unit' => $request->kode_pt_unit,
+>>>>>>> origin/prefered_dev
         ]);
-        if ($update) {
-            return redirect('sarana')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-                alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admprodi.page.saranaprasarana.index';
-                </script>";
-        }
+        return redirect('sarana')->with('success', 'Data berhasil disimpan');
     }
 
     /**

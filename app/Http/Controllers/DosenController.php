@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
 use App\Models\Pegawai;
@@ -16,11 +17,15 @@ class DosenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $data = Dosen::all();
+<<<<<<< HEAD
         
         return view('admin.page.dosen.index', compact('data'));
+=======
+        return view('admin.dosen.index', compact('data'));
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -30,6 +35,7 @@ class DosenController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         $idPegawais = Pegawai::all();
         $idKatDosens = KategoriDosen::all();
         $idPtUnits = PTUnit::all();
@@ -44,6 +50,9 @@ class DosenController extends Controller
                 'idLevelPddkns' => $idLevelPddkns,
             ]
         );
+=======
+        return view('admin.dosen.create');
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -59,14 +68,22 @@ class DosenController extends Controller
             'nama_dosen' => $request->nama_dosen,
             'nomor_induk_dosen' => $request->nomor_induk_dosen,
             'jenis_nomor_induk_dosen' => $request->jenis_nomor_induk_dosen,
+<<<<<<< HEAD
             'id_level_pendidikan_tertinggi' => $request->nama_level_pendidikan,
+=======
+>>>>>>> origin/prefered_dev
             'pendidikan_magister' => $request->pendidikan_magister,
             'pendidikan_doktor' => $request->pendidikan_doktor,
             'bidang_keahlian' => $request->bidang_keahlian,  
             'jabatan_akademik' => $request->jabatan_akademik,
+<<<<<<< HEAD
             'id_pegawai' => $request->nip,
             'id_pt_unit' => $request->kode_pt_unit,
             'id_kategori_dosen' => $request->kode_kategori_dosen,
+=======
+            'sertifikat_pendidik_profesional' => $request->sertifikat_pendidik_profesional,
+            'sertifikat_kompetensi_profesi_industri' => $request->sertifikat_kompetensi_profesi_industri,
+>>>>>>> origin/prefered_dev
         ]);
 
         if ($input) {
@@ -76,7 +93,11 @@ class DosenController extends Controller
             alert('Data gagal diinput, masukkan kebali data dengan benar');
             window.location = '/admin.page.dosen.index';
             </script>";
+<<<<<<< HEAD
         }
+=======
+        } 
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -87,7 +108,8 @@ class DosenController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['editData'] = Dosen::find($id);
+        return view('admin.dosen.show', $data);
     }
 
     /**
@@ -99,7 +121,11 @@ class DosenController extends Controller
     public function edit($id)
     {
         $data['editData'] = Dosen::find($id);
+<<<<<<< HEAD
         return view('admin.page.dosen.form_edit', $data);
+=======
+        return view('admin.dosen.edit', $data);
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -145,7 +171,11 @@ class DosenController extends Controller
     {
         $data = Dosen::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $data->delete();
+<<<<<<< HEAD
 
         return redirect()->route('dosen')->with('success', 'Dosen berhasil dihapus');
+=======
+        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil dihapus');
+>>>>>>> origin/prefered_dev
     }
 }

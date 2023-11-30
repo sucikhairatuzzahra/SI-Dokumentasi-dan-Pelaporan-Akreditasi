@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 use App\Models\LuaranLain;
+=======
+use App\Models\LuaranLain;
+use Illuminate\Http\Request;
+>>>>>>> origin/prefered_dev
 
 class LuaranLainController extends Controller
 {
@@ -15,7 +20,11 @@ class LuaranLainController extends Controller
     public function index()
     {
         $data = LuaranLain::all();
+<<<<<<< HEAD
         return view('admin.page.luaran_lain.index', compact('data'));
+=======
+        return view('admin.luaran_lain.index', compact('data'));
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -25,12 +34,16 @@ class LuaranLainController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         return view(
             'admin.page.luaran_lain.form',
             [
                 'url' => 'simpan-luaranlain',
             ]
         );
+=======
+        return view('admin.luaran_lain.create');
+>>>>>>> origin/prefered_dev
     }
 
     /**
@@ -57,6 +70,7 @@ class LuaranLainController extends Controller
     }
 
     /**
+<<<<<<< HEAD
      * Display the specified resource.
      *
      * @param  int  $id
@@ -91,6 +105,8 @@ class LuaranLainController extends Controller
     }
 
     /**
+=======
+>>>>>>> origin/prefered_dev
      * Remove the specified resource from storage.
      *
      * @param  int  $id

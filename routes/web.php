@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AksesibilitasController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BebanDTRPController;
 use App\Http\Controllers\BidangKerjaLulusanController;
 use App\Http\Controllers\CalonMhsBaruController;
@@ -18,6 +17,10 @@ use App\Http\Controllers\SaranaPrasaranaController;
 use App\Http\Controllers\TenagaKependidikanController;
 use App\Http\Controllers\JumlahTenagaKependidikanController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\LuaranController;
+use App\Http\Controllers\LuaranLainController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PTUnitController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LuaranController;
@@ -37,12 +40,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware(['auth'])->group(function () {
-// });
-//route login
-Route::get('/', function () {
-    return view('auth.login');
-})->name('login');
+Route::get('/', [HomeController::class, 'index'])->name('home.route');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -51,10 +49,8 @@ Route::get('/register', function () {
 
 Auth::routes();
 
-//Route Jurusan
-Route::middleware(['auth', 'user-role:jurusan'])->group(function () {
-    Route::get('/home', [HomeController::class, 'jurusanHome'])->name('home');
 
+<<<<<<< HEAD
     //route Calon Mahasiswa Baru
     Route::get('/jurusan-mahasiswa/{id_pt_unit?}', [CalonMhsBaruController::class, 'index'])->name('jurusan-mahasiswa'); //index
     Route::get('/databyprodi/{id_pt_unit}', [CalonMhsBaruController::class, 'getDataByProdi'])->name('databyprodi');
@@ -327,6 +323,50 @@ Route::middleware(['auth', 'user-role:admprodi'])->group(function () {
     Route::put('/update-kelulusan_tepatwaktu/{id}', [KelulusanTepatWaktuController::class, 'update'])->name('update-kelulusan_tepatwaktu');
     Route::delete('/hapus-kelulusan_tepatwaktu/{id}', [KelulusanTepatWaktuController::class, 'destroy'])->name('hapus-kelulusan_tepatwaktu'); //destroy
 
+=======
+Route::middleware(['auth', 'user-role:admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::resource('users', DashboardController::class)->except(['show'])->parameters(['users' => 'id']);
+        Route::resource('dosen', DosenController::class)->parameters(['dosen' => 'id']);
+        Route::resource('ptunit', PTUnitController::class)->except(['show', 'edit', 'update'])->parameters(['ptunit' => 'id']);
+        Route::resource('ta', AdminController::class)->except(['show', 'edit', 'update'])->parameters(['ta' => 'id']);
+        Route::resource('pegawai', PegawaiController::class)->except('show')->parameters(['pegawai' => 'id']);
+        Route::resource('luaran', LuaranController::class)->except(['show', 'edit', 'update'])->parameters(['luaran' => 'id']);
+        Route::resource('luaran-lain', LuaranLainController::class)->except(['show', 'edit', 'update'])->parameters(['luaran-lain' => 'id']);
+    });
+>>>>>>> origin/prefered_dev
 });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('mahasiswa', CalonMhsBaruController::class)->except('show')->parameters(['mahasiswa' => 'id']);
+Route::get('mahasiswa-download', [CalonMhsBaruController::class, 'export'])->name('mahasiswa.download');
+Route::resource('beban-dtpr', BebanDTRPController::class)->parameters(['beban-dtpr' => 'id']);
+Route::get('beban-dtpr-download', [BebanDTRPController::class, 'download'])->name('beban-dtpr.download');
+Route::resource('kependidikan', TenagaKependidikanController::class)->except('show')->parameters(['kependidikan' => 'id']);
+Route::get('kependidikan-download', [TenagaKependidikanController::class, 'download'])->name('kependidikan.download');
+
+Route::resource('pendanaan', PendanaanController::class)->except('show')->parameters(['pendanaan' => 'id']);
+Route::get('pendanaan-download', [PendanaanController::class, 'download'])->name('pendanaan.download');
+
+Route::resource('aksesibilitas', AksesibilitasController::class)->except('show')->parameters(['aksesibilitas' => 'id']);
+Route::get('aksesibilitas-download', [AksesibilitasController::class, 'download'])->name('aksesibilitas.download');
+
+Route::resource('sarana', SaranaPrasaranaController::class)->except('show')->parameters(['sarana' => 'id']);
+Route::get('sarana-download', [SaranaPrasaranaController::class, 'download'])->name('sarana.download');
+
+Route::resource('ipk-lulusan', IPKLulusanController::class)->except('show')->parameters(['ipk-lulusan' => 'id']);
+Route::get('ipk-lulusan-download', [IPKLulusanController::class, 'download'])->name('ipk-lulusan.download');
+
+Route::resource('lulus-tw', KelulusanTepatWaktuController::class)->except('show')->parameters(['lulus-tw' => 'id']);
+Route::get('ipk-lulusan-download', [KelulusanTepatWaktuController::class, 'download'])->name('lulus-tw.download');
+
+Route::resource('kepuasan-pengguna', KepuasanPenggunaLulusanController::class)->except('show')->parameters(['kepuasan-pengguna' => 'id']);
+Route::get('kepuasan-pengguna-download', [KepuasanPenggunaLulusanController::class, 'download'])->name('kepuasan-pengguna.download');
+
+Route::resource('masa-tunggu', MasaTunguLulusanController::class)->except('show')->parameters(['masa-tunggu' => 'id']);
+Route::get('masa-tunggu-download', [MasaTungguLulusanController::class, 'download'])->name('masa-tunggu.download');
+
+Route::resource('kerja-lulusan', BidangKerjaLulusanController::class)->except('show')->parameters(['kerja-lulusan' => 'id']);
+Route::get('kerja-lulusan-download', [BidangKerjaLulusanController::class, 'download'])->name('kerja-lulusan.download');
+
+Route::resource('ppkm-dtpr', PPKMDariDTPRController::class)->except('show')->parameters(['ppkm_dtpr' => 'id']);
+Route::get('ppkm-dtpr-download', [PPKMDariDTPRController::class, 'download'])->name('ppkm-dtpr.download');

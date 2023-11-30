@@ -21,8 +21,12 @@ return new class extends Migration
             $table->string('password'); 
             $table->tinyInteger('role')->default(0);
             // 0=jurusan 1=kaprodi 2=admprodi 3=admin
+<<<<<<< HEAD
             $table->integer('id_pt_unit')->default(3);
             $table->string('kode_pt_unit')->nullable();
+=======
+            $table->unsignedBigInteger('id_pt_unit')->default(3);
+>>>>>>> origin/prefered_dev
             $table->rememberToken();
             $table->timestamps();
         });
