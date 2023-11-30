@@ -15,13 +15,19 @@ class PTUnit extends Model
     protected $fillable = [
         'kode_pt_unit', 'nama_pt_unit'
     ];
-    
+
     public function users()
     {
         return $this->hasMany(User::class, 'id_pt_unit');
     }
-    
-    public function mhsBaru(): HasMany {
+
+    public function mhsBaru(): HasMany
+    {
         return $this->hasMany(Mhsbaru::class, 'id_pt_unit');
     }
-}   
+
+    public function bebanDtpr(): HasMany
+    {
+        return $this->hasMany(BebanDTPR::class, 'id_pt_unit');
+    }
+}

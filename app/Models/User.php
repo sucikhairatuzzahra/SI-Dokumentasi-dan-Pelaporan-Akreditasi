@@ -57,6 +57,10 @@ class User extends Authenticatable
         // jurusan =0, kaprodi=1, admprodi=2, admin=3
     }
 
+    public function hasRole($rolename) {
+        return $this->role == $rolename;
+    }
+
     //merelasikan ke tabel pt unit
     public function ptUnit()
     {

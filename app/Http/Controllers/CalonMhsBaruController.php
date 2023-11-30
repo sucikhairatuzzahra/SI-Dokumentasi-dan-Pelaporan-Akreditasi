@@ -27,19 +27,19 @@ class CalonMhsBaruController extends Controller
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
-            return view('jurusan.mahasiswa.index', compact('data', 'ptUnit', 'request'));
+            return view('mahasiswa.index', compact('data', 'ptUnit', 'request'));
         }
 
         if (Gate::allows('isAdmProdi')) {
             $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
-            return view('admprodi.mahasiswa.index', compact('data'));
+            return view('mahasiswa.index', compact('data'));
         }
 
         if (Gate::allows('isKaprodi')) {
             $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
-            return view('kaprodi.mahasiswa.index', compact('data'));
+            return view('mahasiswa.index', compact('data'));
         }
     }
 
@@ -47,14 +47,7 @@ class CalonMhsBaruController extends Controller
     {
         $tahunAkademiks = TahunAkademik::all();
         $userPtUnit = Auth::user()->ptUnit;
-        Log::debug($userPtUnit);
-        return view(
-            'admprodi.mahasiswa.create',
-            [
-                'tahunAkademiks' => $tahunAkademiks,
-                'userPtUnit' =>  $userPtUnit,
-            ]
-        );
+        return view('mahasiswa.create', compact('tahunAkademiks', 'ptUnit'));
     }
     public function store(Request $request)
     {
@@ -76,7 +69,7 @@ class CalonMhsBaruController extends Controller
     {
         $tahunAkademiks = TahunAkademik::all();
         $data['editData'] = Mhsbaru::find($id);
-        return view('admprodi.mahasiswa.edit', $data, compact('tahunAkademiks'));
+        return view('mahasiswa.edit', $data, compact('tahunAkademiks'));
     }
     public function update(Request $request, $id)
     {
@@ -101,13 +94,6 @@ class CalonMhsBaruController extends Controller
         $mhsbaru->delete();
 
         return redirect(route('mahasiswa.index'))->with('success', 'Data Calon Mahasiswa Baru berhasil dihapus');
-    }
-
-    public function show($id)
-    {
-        $prodi = Mhsbaru::findOrFail($id);
-
-        return view('jurusan.mahasiswa.index', compact('prodi'));
     }
 
     public function export()

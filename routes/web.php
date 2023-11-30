@@ -60,11 +60,7 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     });
 });
 
-Route::resource('mahasiswa', CalonMhsBaruController::class)->parameters(['mahasiswa' => 'id']);
+Route::resource('mahasiswa', CalonMhsBaruController::class)->except('show')->parameters(['mahasiswa' => 'id']);
 Route::get('mahasiswa-download', [CalonMhsBaruController::class, 'export'])->name('mahasiswa.download');
-
-// Route::middleware(['auth', 'user-role:jurusan'])->group(function () {
-//     Route::prefix('jurusan')->group(function () {
-        
-//     });
-// });
+Route::resource('beban-dtpr', BebanDTRPController::class)->parameters(['beban-dtpr' => 'id']);
+Route::get('beban-dtpr-download', [BebanDTRPController::class, 'download'])->name('beban-dtpr.download');
