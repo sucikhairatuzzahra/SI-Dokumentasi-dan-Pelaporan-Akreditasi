@@ -18,38 +18,6 @@ class AksesibilitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
-    public function index($id_pt_unit='')
-    {
-        if($id_pt_unit){
-            $data = Aksesibilitas::where('id_pt_unit', $id_pt_unit)->get();
-        return view('jurusan.page.aksesibilitas.index', compact('data'));
-
-        }else{
-            $data = Aksesibilitas::all();
-         return view('jurusan.page.aksesibilitas.index', compact('data'));
-        }
-
-        // $data = Aksesibilitas::all();
-        
-    }
-    public function getDataByProdi($id_pt_unit)
-    {
-        $data = Aksesibilitas::where('id_pt_unit', $id_pt_unit)->get();
-        // return response()->json($data);
-        return view('jurusan.page.aksesibilitas.index', compact('data'));
-    }
-
-    public function admprodiIndex()
-    {
-        $data = Aksesibilitas::all();
-        return view('admprodi.page.aksesibilitas.index', compact('data'));
-    }
-    public function kaprodiIndex()
-    {
-        $data = Aksesibilitas::all();
-        return view('kaprodi.page.aksesibilitas.index', compact('data'));
-=======
     public function index(Request $request)
     {
         if (Gate::allows('isJurusan')) {
@@ -73,7 +41,6 @@ class AksesibilitasController extends Controller
             $data = $data->paginate(20);
             return view('aksesibilitas.index', compact('data'));
         }
->>>>>>> origin/prefered_dev
     }
 
     /**
@@ -83,19 +50,8 @@ class AksesibilitasController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
-       
-        return view(
-            'admprodi.page.aksesibilitas.form',
-            [
-                'url' => 'simpan-aksesibilitas',
-              
-            ]
-        );
-=======
         $ptUnit = Auth::user()->ptUnit;
         return view('aksesibilitas.create', compact('ptUnit'));
->>>>>>> origin/prefered_dev
     }
 
     /**
@@ -130,12 +86,7 @@ class AksesibilitasController extends Controller
     public function edit($id)
     {
         $data['editData'] = Aksesibilitas::find($id);
-<<<<<<< HEAD
-
-        return view('admprodi.page.aksesibilitas.form_edit', $data);
-=======
         return view('aksesibilitas.edit', $data);
->>>>>>> origin/prefered_dev
     }
 
     /**
@@ -157,18 +108,7 @@ class AksesibilitasController extends Controller
             'id_pt_unit' => $request->id_pt_unit,
             'kode_pt_unit' => $request->kode_pt_unit,
         ]);
-<<<<<<< HEAD
-        if ($update) {
-            return redirect('aksesibilitas')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-                alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admprodi.page.aksesibilitas.index';
-                </script>";
-        }
-=======
         return redirect('aksesibilitas')->with('success', 'Data berhasil disimpan');
->>>>>>> origin/prefered_dev
     }
 
     /**
