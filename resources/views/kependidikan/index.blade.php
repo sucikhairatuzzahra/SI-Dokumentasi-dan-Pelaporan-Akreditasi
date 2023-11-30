@@ -35,9 +35,20 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Kualifikasi Tenaga Kependidikan</h5>
-                            <a href="{{ route('kependidikan.create') }}">
-                                <span>Tambah data <code>disini</code> </span>
-                            </a>
+                            @can('isAdmProdi')
+                                <a href="{{ route('kependidikan.create') }}">
+                                    <span>Tambah data <code>disini</code></span>
+                                </a>
+
+                                {{-- Alerting --}}
+                                @if (session('success'))
+                                    <div class="alert alert-success">{{ session('success') }}</div>
+                                @endif
+
+                                @if (session('error'))
+                                    <div class="alert alert-danger">{{ session('error') }}</div>
+                                @endif
+                            @endcan
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">

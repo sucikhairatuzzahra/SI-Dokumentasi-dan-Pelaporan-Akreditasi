@@ -73,8 +73,8 @@
                                                 disabled>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                     </form>
+                                    <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                 </div>
 
                             </div>

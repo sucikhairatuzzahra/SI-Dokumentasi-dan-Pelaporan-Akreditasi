@@ -85,14 +85,14 @@ class SaranaPrasaranaController extends Controller
     public function update(Request $request, $id)
     {
         $sarana = SaranaPrasarana::find($id);
-        $update = $sarana->update([
+        $sarana->update([
             'sarana' => $request->sarana,
             'daya_tampung' => $request->daya_tampung,
             'luas_ruang' => $request->luas_ruang,
             'jml_mhs' => $request->jml_mhs,
             'jam_lyn' => $request->jam_lyn,
             'perangkat' => $request->perangkat,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->kode_pt_unit,
         ]);
         return redirect('sarana')->with('success', 'Data berhasil disimpan');
     }
