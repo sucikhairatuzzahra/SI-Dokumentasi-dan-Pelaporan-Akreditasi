@@ -7,7 +7,6 @@ use App\Models\KelulusanTepatWaktu;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
-use App\Models\PTUnit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -28,7 +27,7 @@ class KelulusanTepatWaktuController extends Controller
 
         if (Gate::allows('isAdmProdi')) {
             $data = KelulusanTepatWaktu::with('ptUnit')->get();
-        
+
             foreach ($data as $i => $data1) {
                 // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]
                 $akhir_ts = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
@@ -166,7 +165,7 @@ class KelulusanTepatWaktuController extends Controller
      */
     public function store(Request $request)
     {
-        $input = KelulusanTepatWaktu::insert([
+        KelulusanTepatWaktu::insert([
             'id' => $request->id,
             'tahun_masuk' => $request->tahun_masuk,
             'pt_unit' => $request->kode_pt_unit,
@@ -203,7 +202,7 @@ class KelulusanTepatWaktuController extends Controller
     public function update(Request $request, $id)
     {
         $kelulusan = KelulusanTepatWaktu::find($id);
-        $update = $kelulusan->update([
+        $kelulusan->update([
             'tahun_masuk' => $request->tahun_masuk,
             'pt_unit' => $request->kode_pt_unit,
             'jml_mhs' => $request->jml_mhs,

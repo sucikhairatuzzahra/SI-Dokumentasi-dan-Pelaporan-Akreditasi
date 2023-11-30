@@ -35,12 +35,12 @@ class PTUnit extends Model
         return $this->hasMany(TenagaKependidikan::class, 'id_pt_unit');
     }
 
-    public function Aksesibilitas(): HasMany
+    public function aksesibilitas(): HasMany
     {
         return $this->hasMany(Aksesibilitas::class, 'id_pt_unit');
     }
 
-    public function SaranaPrasarana(): HasMany
+    public function saranaPrasarana(): HasMany
     {
         return $this->hasMany(SaranaPrasarana::class, 'id_pt_unit');
     }
@@ -50,8 +50,13 @@ class PTUnit extends Model
         return $this->hasMany(IPKLulusan::class, 'id_pt_unit');
     }
 
-    public function KelulusanTepatWaktu(): HasMany
+    public function kelulusanTepatWaktu(): HasMany
     {
         return $this->hasMany(KelulusanTepatWaktu::class, 'id_pt_unit');
+    }
+
+    public function kepuasanPenggunaLulusan(): HasMany
+    {
+        return $this->hasMany(KepuasanPenggunaLulusan::class, 'id_pt_unit');
     }
 }

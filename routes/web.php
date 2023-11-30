@@ -81,3 +81,6 @@ Route::get('ipk-lulusan-download', [IPKLulusanController::class, 'download'])->n
 
 Route::resource('lulus-tw', KelulusanTepatWaktuController::class)->except('show')->parameters(['lulus-tw' => 'id']);
 Route::get('ipk-lulusan-download', [KelulusanTepatWaktuController::class, 'download'])->name('lulus-tw.download');
+
+Route::resource('kepuasan-pengguna', KepuasanPenggunaLulusanController::class)->except('show')->parameters(['kepuasan-pengguna' => 'id']);
+Route::get('kepuasan-pengguna-download', [KepuasanPenggunaLulusanController::class, 'download'])->name('kepuasan-pengguna.download');
