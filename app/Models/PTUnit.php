@@ -69,4 +69,9 @@ class PTUnit extends Model
     {
         return $this->hasMany(BidangKerjaLulusan::class, 'id_pt_unit');
     }
+
+    public function PPKMDariDTPR(): HasMany
+    {
+        return $this->hasMany(PPKMDariDTPR::class, 'id_pt_unit');
+    }
 }

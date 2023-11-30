@@ -93,7 +93,7 @@
         </a>
     </li>
     <li>
-        <a href="{{ route('ppkm_dtpr.index') }}" class="waves-effect waves-dark">
+        <a href="{{ route('ppkm-dtpr.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Penelitian &amp; Pengabdian</span>
             <span class="pcoded-mcaret"></span>

@@ -6,7 +6,8 @@ use App\Exports\PPKMDTPRExport;
 use App\Models\PPKMDariDTPR;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\PTUnit;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PPKMDariDTPRController extends Controller
 {
@@ -17,23 +18,17 @@ class PPKMDariDTPRController extends Controller
      */
     public function index()
     {
-        $data = PPKMDariDTPR::paginate('20');
-        // dd($data);
-        return view('admin.page.ppkm_dtpr.index', compact('data'));
-    }
-    public function admprodiIndex()
-    {
-        $data = PPKMDariDTPR::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-        // dd($data);
-        return view('admprodi.page.ppkm_dtpr.index', compact('data','ptUnits'));
-    }
-    public function kaprodiIndex()
-    {
-        $data = PPKMDariDTPR::with('idPtUnit')->get();
-        $ptUnits = PTUnit::all();
-        // dd($data);
-        return view('kaprodi.page.ppkm_dtpr.index', compact('data','ptUnits'));
+        if (Gate::allows('isJurusan')) {
+            $data = PPKMDariDTPR::with('ptUnit');
+            $data = $data->paginate('20');
+            return view('ppkm_dtpr.index', compact('data'));
+        }
+
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = PPKMDariDTPR::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('ppkm_dtpr.index', compact('data'));
+        }
     }
 
     /**
@@ -43,14 +38,8 @@ class PPKMDariDTPRController extends Controller
      */
     public function create()
     {
-        $ptUnits = PTUnit::all();
-        return view(
-            'admprodi.page.ppkm_dtpr.form',
-            [
-                'url' => 'simpan-kependidikan',
-                'ptUnits' =>  $ptUnits,
-            ]
-        );
+        $ptUnit = Auth::user()->ptUnit;
+        return view('ppkm_dtpr.create', compact('ptUnit'));
     }
 
     /**
@@ -61,7 +50,7 @@ class PPKMDariDTPRController extends Controller
      */
     public function store(Request $request)
     {
-        $input = PPKMDariDTPR::insert([
+        PPKMDariDTPR::insert([
             'id' => $request->id,
             'nama_dtpr' => $request->nama_dtpr,
             'publikasi_infokom' => $request->publikasi_infokom,
@@ -69,28 +58,10 @@ class PPKMDariDTPRController extends Controller
             'penelitian_infokom_hki' => $request->penelitian_infokom_hki,
             'pkm_infokom_adobsi' => $request->pkm_infokom_adobsi,
             'pkm_infokom_hki' => $request->pkm_infokom_hki,
-               'pt_unit' => $request->kode_pt_unit,
+            'pt_unit' => $request->kode_pt_unit,
 
         ]);
-        if ($input) {
-            return redirect('ppkm_dtpr')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-            alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admprodi.page.ppkm_dtpr.index';
-            </script>";
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('ppkm-dtpr')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -102,7 +73,7 @@ class PPKMDariDTPRController extends Controller
     public function edit($id)
     {
         $data['editData'] = PPKMDariDTPR::find($id);
-        return view('admprodi.page.ppkm_dtpr.form_edit', $data);
+        return view('ppkm_dtpr.edit', $data);
     }
 
     /**
@@ -115,23 +86,16 @@ class PPKMDariDTPRController extends Controller
     public function update(Request $request, $id)
     {
         $ppkm = PPKMDariDTPR::find($id);
-        $update = $ppkm->update([
+        $ppkm->update([
             'nama_dtpr' => $request->nama_dtpr,
             'publikasi_infokom' => $request->publikasi_infokom,
             'penelitian_infokom' => $request->penelitian_infokom,
             'penelitian_infokom_hki' => $request->penelitian_infokom_hki,
             'pkm_infokom_adobsi' => $request->pkm_infokom_adobsi,
             'pkm_infokom_hki' => $request->pkm_infokom_hki,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
-        if ($update) {
-            return redirect('ppkm_dtpr')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-                alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admprodi.page.ppkm_dtpr.index';
-                </script>";
-        }
+        return redirect('ppkm-dtpr')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -144,7 +108,7 @@ class PPKMDariDTPRController extends Controller
     {
         $ppkm = PPKMDariDTPR::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $ppkm->delete();
-        return redirect()->route('ppkm_dtpr')->with('success', 'Data PPKM berhasil dihapus');
+        return redirect()->route('ppkm-dtpr')->with('success', 'Data PPKM berhasil dihapus');
     }
 
     public function download()
