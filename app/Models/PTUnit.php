@@ -30,4 +30,9 @@ class PTUnit extends Model
     {
         return $this->hasMany(BebanDTPR::class, 'id_pt_unit');
     }
+
+    public function kependidikan(): HasMany
+    {
+        return $this->hasMany(TenagaKependidikan::class, 'id_pt_unit');
+    }
 }

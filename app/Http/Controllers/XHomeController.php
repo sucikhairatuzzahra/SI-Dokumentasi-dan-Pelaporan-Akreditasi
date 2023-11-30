@@ -23,13 +23,13 @@ class XHomeController extends Controller
                 return view('admin.index');
             }
             if (Gate::allows('isJurusan', $role)) {
-                return view('jurusan.index');
+                return view('dashboard.jurusan');
             }
             if (Gate::allows('isKaprodi', $role)) {
-                return view('kaprodi.index');
+                return view('dashboard.kaprodi');
             }
             if (Gate::allows('isAdmProdi', $role)) {
-                return view('admprodi.index');
+                return view('dashboard.admprodi');
             }
             abort(404);
         } else {

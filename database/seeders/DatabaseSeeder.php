@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\TenagaKependidikan;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Seeder;
 
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
             CreateKategoriDosenSeeder::class,
             CreateLevelPendidikanTertinggiSeeder::class,
             MhsBaruSeed::class,
+            TenagaKependidikanSeed::class
         ]);
     }
 }

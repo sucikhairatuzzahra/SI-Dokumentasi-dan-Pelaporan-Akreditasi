@@ -24,6 +24,7 @@ use App\Http\Controllers\LuaranLainController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PTUnitController;
 use App\Http\Controllers\XHomeController;
+use App\Models\TenagaKependidikan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -64,3 +65,8 @@ Route::resource('mahasiswa', CalonMhsBaruController::class)->except('show')->par
 Route::get('mahasiswa-download', [CalonMhsBaruController::class, 'export'])->name('mahasiswa.download');
 Route::resource('beban-dtpr', BebanDTRPController::class)->parameters(['beban-dtpr' => 'id']);
 Route::get('beban-dtpr-download', [BebanDTRPController::class, 'download'])->name('beban-dtpr.download');
+Route::resource('kependidikan', TenagaKependidikanController::class)->except('show')->parameters(['kependidikan' => 'id']);
+Route::get('kependidikan-download', [TenagaKependidikanController::class, 'download'])->name('kependidikan.download');
+
+Route::resource('pendanaan', PendanaanController::class)->parameters(['pendanaan' => 'id']);
+Route::get('pendanaan-download', [PendanaanController::class, 'download'])->name('pendanaan.download');

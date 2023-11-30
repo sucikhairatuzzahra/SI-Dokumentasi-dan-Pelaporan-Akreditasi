@@ -20,7 +20,7 @@
         </a>
     </li>
     <li>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{ route('kependidikan.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Tenaga Kependidikan</span>
             <span class="pcoded-mcaret"></span>
@@ -33,7 +33,7 @@
 <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Keuangan dan Sarana</div>
 <ul class="pcoded-item pcoded-left-item">
     <li>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{ route('pendanaan.index') }}" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Sumber Dana Prodi</span>
             <span class="pcoded-mcaret"></span>
