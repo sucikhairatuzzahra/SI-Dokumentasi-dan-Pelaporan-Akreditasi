@@ -24,12 +24,7 @@ class TenagaKependidikan extends Model
     {
         return $this->hasOne(JumlahTenagaKependidikan::class);
     }
-    //
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_pt_unit');
-    }
-
+    
     public function ptUnit(): BelongsTo
     {
         return $this->belongsTo(PTUnit::class, 'id_pt_unit');

@@ -15,11 +15,6 @@ class SaranaPrasarana extends Model
         'sarana', 'daya_tampung', 'luas_ruang', 'jml_mhs', 'jam_lyn', 'perangkat', 'id_pt_unit'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_pt_unit', 'kode_pt_unit');
-    }
-
     public function ptUnit(): BelongsTo
     {
         return $this->belongsTo(PTUnit::class, 'id_pt_unit');
