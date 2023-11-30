@@ -6,11 +6,8 @@ use App\Exports\TenagaKependidikanExport;
 use App\Models\TenagaKependidikan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\DB;
-use App\Models\PTUnit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
 
 class TenagaKependidikanController extends Controller
 {
