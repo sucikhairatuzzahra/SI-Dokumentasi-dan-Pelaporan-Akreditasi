@@ -17,21 +17,20 @@ class PendanaanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Gate::allows('isJurusan')) {
-            $data = Pendanaan::paginate('20');
+            $ptUnit = PTUnit::all();
+            $data = Pendanaan::orderBy('id', 'desc')
+                ->with('ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
             return view('pendanaan.index', compact('data'));
         }
 
-        if (Gate::allows('isAdmProdi')) {
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
             $data = Pendanaan::with('idPtUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
-            $data = $data->paginate(20);
-            return view('pendanaan.index', compact('data'));
-        }
-
-        if (Gate::allows('isKaprodi')) {
-            $data = Pendanaan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('pendanaan.index', compact('data'));
         }

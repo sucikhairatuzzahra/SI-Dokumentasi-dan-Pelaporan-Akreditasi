@@ -5,6 +5,7 @@ use Attribute;
 use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pendanaan extends Model
 {
@@ -12,11 +13,11 @@ class Pendanaan extends Model
     protected $table = "pendanaan";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'sumber_dana', 'jumlah', 'bukti', 'keterangan','id_pt_unit','kode_pt_unit'
+        'sumber_dana', 'jumlah', 'bukti', 'keterangan','id_pt_unit'
     ];
   
-    public function user()
+    public function ptUnit(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
+        return $this->belongsTo(PTUnit::class, 'id_pt_unit');
     }
 }

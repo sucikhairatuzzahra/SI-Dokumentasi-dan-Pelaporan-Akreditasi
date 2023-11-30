@@ -108,7 +108,7 @@
                                                 <td>{{ $item->jml_mhs }}</td>
                                                 <td>{{ $item->jam_lyn }}</td>
                                                 <td>{{ $item->perangkat }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <form action="{{ route('sarana.destroy', ['id' => $item->id]) }}"

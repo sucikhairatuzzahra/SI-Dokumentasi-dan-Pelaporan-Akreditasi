@@ -100,7 +100,7 @@
                                                 <td>{{ $item->jumlah }}</td>
                                                 <td>{{ $item->bukti }}</td>
                                                 <td>{{ $item->keterangan }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <form action="{{ route('pendanaan.destroy', ['id' => $item->id]) }}"

@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             MasaTungguLulusanSeed::class,
             BidangKerjaLulusanSeed::class,
             PPKMDariDTPRSeed::class,
+            SaranaSeed::class,
+            PendanaanSeed::class
         ]);
     }
 }

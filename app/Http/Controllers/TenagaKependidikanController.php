@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\TenagaKependidikanExport;
+use App\Models\PTUnit;
 use App\Models\TenagaKependidikan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -16,14 +17,39 @@ class TenagaKependidikanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Gate::allows('isJurusan')) {
-            $data = TenagaKependidikan::paginate('20');
-            return view('admin.page.kependidikan.index', compact('data'));
+            $ptUnit = PTUnit::all();
+            $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'id_pt_unit')
+                ->with('ptUnit')
+                ->orderBy('jenis_tenaga_kependidikan')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->get();
+
+            $tenaga_kependidikan2 = TenagaKependidikan::all();
+
+            $data = [];
+            $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
+            foreach ($tenaga_kependidikan as $key => $value) {
+                $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
+                $data[$key] = [
+                    'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
+                    'nama' => $value->nama,
+                    'pt_unit' => $value->ptUnit->kode_pt_unit,
+                    'unit_kerja' => $value->unit_kerja,
+                    'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
+                    'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan', $value->jenis_tenaga_kependidikan)
+                        ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
+                            $jenjangCounts[$keyjp] = $item->count();
+                        })
+                ];
+            }
+            return view('kependidikan.index', compact('data', 'request', 'tenaga_kependidikan'));
         }
 
-        if (Gate::allows('isAdmProdi')) {
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
             $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'id_pt_unit')->with('ptUnit')
                 ->orderBy('jenis_tenaga_kependidikan')->get();
             $tenaga_kependidikan2 = TenagaKependidikan::all();
@@ -46,12 +72,6 @@ class TenagaKependidikanController extends Controller
             }
 
             return view('kependidikan.index', compact('data', 'tenaga_kependidikan'));
-        }
-
-        if (Gate::allows('isKaprodi')) {
-            $data = TenagaKependidikan::paginate('20');
-
-            return view('kaprodi.page.kependidikan.index', compact('data'));
         }
     }
 

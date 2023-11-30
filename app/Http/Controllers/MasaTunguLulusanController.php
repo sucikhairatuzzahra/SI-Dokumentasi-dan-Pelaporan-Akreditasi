@@ -21,8 +21,7 @@ class MasaTunguLulusanController extends Controller
     {
         if (Gate::allows('isJurusan')) {
             $data = MasaTungguLulusan::paginate(20);
-
-            return view('admin.page.masa_tunggu_lulusan.index', compact('data'));
+            return view('masa_tunggu_lulusan.index', compact('data'));
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
