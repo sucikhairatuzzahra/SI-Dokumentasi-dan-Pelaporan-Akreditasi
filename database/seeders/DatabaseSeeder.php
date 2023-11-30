@@ -29,7 +29,9 @@ class DatabaseSeeder extends Seeder
             CreateKategoriDosenSeeder::class,
             CreateLevelPendidikanTertinggiSeeder::class,
             MhsBaruSeed::class,
-            TenagaKependidikanSeed::class
+            TenagaKependidikanSeed::class,
+            KelulusanTepatWaktuSeed::class,
+            IPKLulusanSeed::class
         ]);
     }
 }

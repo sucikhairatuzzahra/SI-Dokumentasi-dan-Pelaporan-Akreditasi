@@ -49,4 +49,9 @@ class PTUnit extends Model
     {
         return $this->hasMany(IPKLulusan::class, 'id_pt_unit');
     }
+
+    public function KelulusanTepatWaktu(): HasMany
+    {
+        return $this->hasMany(KelulusanTepatWaktu::class, 'id_pt_unit');
+    }
 }

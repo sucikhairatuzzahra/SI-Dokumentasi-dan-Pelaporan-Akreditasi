@@ -24,7 +24,6 @@ use App\Http\Controllers\LuaranLainController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PTUnitController;
 use App\Http\Controllers\XHomeController;
-use App\Models\TenagaKependidikan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -78,4 +77,7 @@ Route::resource('sarana', SaranaPrasaranaController::class)->except('show')->par
 Route::get('sarana-download', [SaranaPrasaranaController::class, 'download'])->name('sarana.download');
 
 Route::resource('ipk-lulusan', IPKLulusanController::class)->except('show')->parameters(['ipk-lulusan' => 'id']);
-Route::get('ipk-lulusan-download', [IPKLulusanController::class, 'download'])->name('ipk-lulusan.download');;
+Route::get('ipk-lulusan-download', [IPKLulusanController::class, 'download'])->name('ipk-lulusan.download');
+
+Route::resource('lulus-tw', KelulusanTepatWaktuController::class)->except('show')->parameters(['lulus-tw' => 'id']);
+Route::get('ipk-lulusan-download', [KelulusanTepatWaktuController::class, 'download'])->name('lulus-tw.download');
