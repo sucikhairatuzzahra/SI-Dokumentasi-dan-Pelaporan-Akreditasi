@@ -34,8 +34,8 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Kriteria</h5>
-                            <span>use class <code>table</code> inside table element</span>
+                            <h5>Daftar Kriteria</h5>
+                            {{-- <span>use class <code>table</code> inside table element</span> --}}
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -65,6 +65,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
+
                                         <tr>
                                             <td>Kriteria 1</td>
                                             <td><a href="#">Visi, Misi, Tujuan dan Strategi</a></td>
@@ -75,15 +77,15 @@
                                         </tr>
                                         <tr>
                                             <td>Kriteria 3</td>
-                                            <td><a href="#">Mahasiswa</a></td>
+                                            <td><a href="{{ route('mahasiswa.index') }}">Mahasiswa</a></td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 4</td>
-                                            <td><a href="#">Sumber Daya Manusia</a> </td>
+                                            <td><a href="{{ route('kependidikan.index') }}">Sumber Daya Manusia</a> </td>
                                         </tr>
                                         <tr>
                                             <td>Kriteria 5</td>
-                                            <td><a href="#">Keuangan, Sarana dan
+                                            <td><a href="{{ route('pendanaan.index') }}">Keuangan, Sarana dan
                                                     Prasarana</a></td>
                                         </tr>
                                         <tr>
@@ -100,7 +102,7 @@
                                         </tr>
                                         <tr>
                                             <td>Kriteria 9</td>
-                                            <td><a href="#">Luaran dan Capaian Tridarma</a>
+                                            <td><a href="{{ route('ipk-lulusan.index') }}">Luaran dan Capaian Tridarma</a>
                                             </td>
                                         </tr>
                                     </tbody>

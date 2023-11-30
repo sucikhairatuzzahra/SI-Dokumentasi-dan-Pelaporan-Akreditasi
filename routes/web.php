@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AksesibilitasController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BebanDTRPController;
 use App\Http\Controllers\BidangKerjaLulusanController;
 use App\Http\Controllers\CalonMhsBaruController;
@@ -23,7 +22,6 @@ use App\Http\Controllers\LuaranController;
 use App\Http\Controllers\LuaranLainController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PTUnitController;
-use App\Http\Controllers\XHomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [XHomeController::class, 'index'])->name('home.route');
+Route::get('/', [HomeController::class, 'index'])->name('home.route');
 
 Route::get('/register', function () {
     return view('auth.register');
