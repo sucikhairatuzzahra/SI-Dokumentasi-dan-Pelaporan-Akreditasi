@@ -51,7 +51,7 @@ class MasaTunguLulusanController extends Controller
      */
     public function store(Request $request)
     {
-        $input = MasaTungguLulusan::insert([
+        MasaTungguLulusan::insert([
             'id' => $request->id,
             'tahun_lulus' => $request->tahun_lulus,
             'jumlah_lulusan' => $request->jumlah_lulusan,

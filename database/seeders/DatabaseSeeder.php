@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             IPKLulusanSeed::class,
             KepuasanPenggunaSeed::class,
             MasaTungguLulusanSeed::class,
+            BidangKerjaLulusanSeed::class
         ]);
     }
 }
