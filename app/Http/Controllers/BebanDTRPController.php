@@ -6,6 +6,7 @@ use App\Exports\BebanDTPRExport;
 use App\Models\BebanDTPR;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Dosen;
 use App\Models\PTUnit;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,12 +56,12 @@ class BebanDTRPController extends Controller
      */
     public function create()
     {
-      
+        $dosens = Dosen::all();
         return view(
             'admprodi.page.beban_dtpr.form',
             [
                 'url' => 'simpan-bebandtpr',
-             
+                'dosens' => $dosens,
             ]
         );
     }
@@ -129,7 +130,7 @@ class BebanDTRPController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    { 
         $user = Auth::user();
         $dtpr = BebanDTPR::find($id);
         $update = $dtpr->update([

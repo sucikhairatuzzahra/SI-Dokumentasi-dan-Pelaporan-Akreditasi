@@ -87,7 +87,7 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->nama_dtpr }}</td>
+                                                <td>{{ $item->dosen->nama_dosen }}</td>
                                                 <td>{{ $item->jumlah_publikasi_infokom }}</td>
                                                 <td>{{ $item->jumlah_penelitian_infokom }}</td>
                                                 <td>{{ $item->jumlah_penelitian_infokom_hki }}</td>

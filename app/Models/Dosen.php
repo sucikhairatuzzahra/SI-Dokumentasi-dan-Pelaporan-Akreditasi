@@ -33,6 +33,6 @@ class Dosen extends Model
 
     public function idLevelPddkn()
     {
-        return $this->belongsTo(PTUnit::class, 'id_level_pendidikan_tertinggi');
+        return $this->belongsTo(LevelPendidikanTertinggi::class, 'id_level_pendidikan_tertinggi');
     }
 }

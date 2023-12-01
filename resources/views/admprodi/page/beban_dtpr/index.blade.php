@@ -104,7 +104,7 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->nama_dosen }}</td>
+                                                <td>{{ $item->dosen->nama_dosen }}</td>
                                                 <td>{{ $item->pgjrn_ps_sendiri }}</td>
                                                 <td>{{ $item->pgjrn_ps_lain_pt_sendiri }}</td>
                                                 <td>{{ $item->pgjrn_pt_lain }}</td>

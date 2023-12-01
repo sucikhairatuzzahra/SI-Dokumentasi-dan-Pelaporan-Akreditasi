@@ -21,7 +21,7 @@ class KelulusanTepatWaktuController extends Controller
      */
     public function index()
     {
-        $data = KelulusanTepatWaktu::all();
+        $data = KelulusanTepatWaktu::all()->orderBy('tahun_masuk')->get();
        
         foreach ($data as $i => $data1) {
             // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]

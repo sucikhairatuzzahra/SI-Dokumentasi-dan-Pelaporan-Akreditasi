@@ -55,9 +55,21 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="jenis_nomor_induk_dosen">Jenis Nomor Induk Dosen</label>
-                                            <input type="text" class="form-control" id="jenis_nomor_induk_dosen"
-                                                name="jenis_nomor_induk_dosen"
-                                                value="{{ $editData->jenis_nomor_induk_dosen }}">
+                                            <select name="jenis_nomor_induk_dosen" class="form-control">
+                                                <option value="NIDN">NIDN</option>
+                                                <option value="NIDK">NIDK</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_level_pendidikan_tertinggi">Pendidikan Tertinggi</label>
+                                            <select name="nama_level_pendidikan" id="nama_level_pendidikan"
+                                                class="form-control">
+                                                @foreach ($idLevelPddkns as $idLevelPddkn)
+                                                    <option value="{{ $idLevelPddkn->pk_id_level_pendidikan_tertinggi }}">
+                                                        {{ $idLevelPddkn->nama_level_pendidikan }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="pendidikan_magister"> Pendidikan Magister</label>
@@ -80,19 +92,35 @@
                                                 name="jabatan_akademik" value="{{ $editData->jabatan_akademik }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="sertifikat_pendidik_profesional">Sertifikat Pendidik
-                                                Profesional</label>
-                                            <input type="text" class="form-control" id="sertifikat_pendidik_profesional"
-                                                name="sertifikat_pendidik_profesional"
-                                                value="{{ $editData->sertifikat_pendidik_profesional }}">
+                                            <label for="id_pegawai">NIP</label>
+                                            <select name="nip" id="nip" class="form-control">
+                                                @foreach ($idPegawais as $idPegawai)
+                                                    <option value="{{ $idPegawai->pk_id_pegawai }}">
+                                                        {{ $idPegawai->nip }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="sertifikat_kompetensi_profesi_industri">Sertifikat Kompetensi
-                                                Profesi Industri</label>
-                                            <input type="text" class="form-control"
-                                                id="sertifikat_kompetensi_profesi_industri"
-                                                name="sertifikat_kompetensi_profesi_industri"
-                                                value="{{ $editData->sertifikat_kompetensi_profesi_industri }}">
+                                            <label for="id_pt_unit">Unit Kerja</label>
+                                            <select name="kode_pt_unit" id="kode_pt_unit" class="form-control">
+                                                @foreach ($idPtUnits as $idPtUnit)
+                                                    <option value="{{ $idPtUnit->id }}" {{-- {{ $data->thn_akademik == $idPtUnit->id ? 'selected' : '' }} --}}>
+                                                        {{ $idPtUnit->kode_pt_unit }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="kategori_dosen">Kategori Dosen</label>
+                                            <select name="kode_kategori_dosen" id="kode_kategori_dosen"
+                                                class="form-control">
+                                                @foreach ($idKatDosens as $idKatDosens)
+                                                    <option value="{{ $idKatDosens->pk_id_kategori_dosen }}">
+                                                        {{ $idKatDosens->kode_kategori_dosen }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Simpan</button>

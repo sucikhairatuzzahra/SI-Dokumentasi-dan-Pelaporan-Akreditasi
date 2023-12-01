@@ -99,7 +99,12 @@ class DosenController extends Controller
     public function edit($id)
     {
         $data['editData'] = Dosen::find($id);
-        return view('admin.page.dosen.form_edit', $data);
+        $idPegawais = Pegawai::all();
+        $idKatDosens = KategoriDosen::all();
+        $idPtUnits = PTUnit::all();
+        $idLevelPddkns = LevelPendidikanTertinggi::all();
+     
+        return view('admin.page.dosen.form_edit', $data, compact('idPegawais','idKatDosens','idPtUnits','idLevelPddkns'));
     }
 
     /**
@@ -116,14 +121,14 @@ class DosenController extends Controller
             'nama_dosen' => $request->nama_dosen,
             'nomor_induk_dosen' => $request->nomor_induk_dosen,
             'jenis_nomor_induk_dosen' => $request->jenis_nomor_induk_dosen,
-            'id_level_pendidikan_tertinggi' => $request->id_level_pendidikan_tertinggi,
+            'id_level_pendidikan_tertinggi' => $request->nama_level_pendidikan,
             'pendidikan_magister' => $request->pendidikan_magister,
             'pendidikan_doktor' => $request->pendidikan_doktor,
             'bidang_keahlian' => $request->bidang_keahlian,  
             'jabatan_akademik' => $request->jabatan_akademik,
-            'id_pegawai' => $request->id_pegawai,
-            'id_pt_unit' => $request->id_pt_unit,
-            'id_kategori_dosen' => $request->id_kategori_dosen,
+            'id_pegawai' => $request->nip,
+            'id_pt_unit' => $request->kode_pt_unit,
+            'id_kategori_dosen' => $request->kode_kategori_dosen,
         ]);
         if ($update) {
             return redirect('dosen')->with('pesan', 'Data berhasil disimpan');

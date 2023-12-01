@@ -33,8 +33,8 @@ class PPKMDariDTPR extends Model
         return $this->belongsTo(LuaranLain::class, 'jenis_luaran_lain');
     }
 
-    // public function users()
-    // {
-    //     return $this->hasMany(User::class, 'id_pt_unit');
-    // }
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'nama_dtpr');
+    }
 }

@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PTUnit;
 use App\Models\Luaran;
+use App\Models\Dosen;
 use App\Models\LuaranLain;
 
 class PPKMDariDTPRController extends Controller
@@ -83,12 +84,14 @@ class PPKMDariDTPRController extends Controller
     {
         $luarans = Luaran::all();
         $luaranlains = LuaranLain::all();
+        $dosens = Dosen::all();
         return view(
             'admprodi.page.ppkm_dtpr.form',
             [
                 'url' => 'simpan-ppkm_dtpr',
                 'luarans' =>  $luarans,
                 'luaranlains' =>  $luaranlains,
+                'dosens' => $dosens,
             ]
         );
     }
@@ -104,7 +107,7 @@ class PPKMDariDTPRController extends Controller
         $user = Auth::user();
         $input = PPKMDariDTPR::insert([
             'id' => $request->id,
-            'nama_dtpr' => $request->nama_dtpr,
+            'nama_dtpr' => $request->nama_dosen,
             'jenis_penelitian_pengabdian' => $request->jenis_penelitian_pengabdian,
             'judul' => $request->judul,
             'ketua' => $request->ketua,
@@ -174,7 +177,7 @@ class PPKMDariDTPRController extends Controller
         $user = Auth::user();
         $ppkm = PPKMDariDTPR::find($id);
         $update = $ppkm->update([
-            'nama_dtpr' => $request->nama_dtpr,
+            'nama_dtpr' => $request->nama_dosen,
             'jenis_penelitian_pengabdian' => $request->jenis_penelitian_pengabdian,
             'judul' => $request->judul,
             'ketua' => $request->ketua,

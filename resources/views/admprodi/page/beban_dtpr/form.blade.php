@@ -44,7 +44,14 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="nama_dosen">Nama Dosen</label>
-                                            <input type="text" class="form-control" id="nama_dosen" name="nama_dosen">
+                                            {{-- <input type="text" class="form-control" id="nama_dosen" name="nama_dosen"> --}}
+                                            <select name="nama_dosen" id="nama_dosen" class="form-control">
+                                                @foreach ($dosens as $dosen)
+                                                    <option value="{{ $dosen->id }}">
+                                                        {{ $dosen->nama_dosen }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="pgjrn_ps_sendiri">SKS Pengajaran Pada PS Sendiri</label>
@@ -84,7 +91,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="id_pt_unit">Unit Kerja</label>
-                                            <input type="hidden" name="id_pt_unit"
+                                            <input type="hidden" name="kode_pt_unit"
                                                 value="{{ Auth::user()->kode_pt_unit }}">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>

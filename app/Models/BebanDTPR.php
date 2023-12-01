@@ -21,4 +21,9 @@ class BebanDTPR extends Model
         return $this->belongsTo(User::class, 'id_pt_unit','kode_pt_unit');
     }
 
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'nama_dosen');
+    }
+
 }

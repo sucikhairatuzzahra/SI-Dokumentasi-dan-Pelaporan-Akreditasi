@@ -54,7 +54,7 @@ class TenagaKependidikanController extends Controller
         $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
         foreach ($tenaga_kependidikan as $key => $value) {
             $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
-            $user = User::where('id_pt_unit',$value->id_pt_unit)->get();
+            $user = User::where('id',$value->id_pt_unit)->get();
             $data[$key] = [
                 'user' => $user,
                 'id' => $value->id,
@@ -64,6 +64,7 @@ class TenagaKependidikanController extends Controller
                 'kode_pt_unit' => $value->kode_pt_unit,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
                 'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan',$value->jenis_tenaga_kependidikan)
+                ->where('id_pt_unit', $value->id_pt_unit)
                 ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan','jenis_tenaga_kependidikan','id_pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
                  $jenjangCounts[$keyjp] = $item->count(); 
             })

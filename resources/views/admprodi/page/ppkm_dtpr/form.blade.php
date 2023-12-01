@@ -44,7 +44,14 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="nama_dtpr">Nama DTPRs</label>
-                                            <input type="text" class="form-control" id="nama_dtpr" name="nama_dtpr">
+                                            {{-- <input type="text" class="form-control" id="nama_dtpr" name="nama_dtpr"> --}}
+                                            <select name="nama_dosen" id="nama_dosen" class="form-control">
+                                                @foreach ($dosens as $dosen)
+                                                    <option value="{{ $dosen->id }}">
+                                                        {{ $dosen->nama_dosen }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="jenis_penelitian_pengabdian">Jenis Penelitian Pengabdian</label>
