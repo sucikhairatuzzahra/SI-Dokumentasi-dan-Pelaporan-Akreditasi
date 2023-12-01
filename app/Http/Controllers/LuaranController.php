@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Luaran;
+use Illuminate\Http\Request;
 
 class LuaranController extends Controller
 {
@@ -15,7 +15,7 @@ class LuaranController extends Controller
     public function index()
     {
         $data = Luaran::all();
-        return view('admin.page.luaran.index', compact('data'));
+        return view('admin.luaran.index', compact('data'));
     }
 
     /**
@@ -25,12 +25,7 @@ class LuaranController extends Controller
      */
     public function create()
     {
-        return view(
-            'admin.page.luaran.form',
-            [
-                'url' => 'simpan-luaran',
-            ]
-        );
+        return view('admin.luaran.create');
     }
 
     /**
@@ -54,40 +49,6 @@ class LuaranController extends Controller
             window.location = '/admin.page.luaran.index';
             </script>";
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

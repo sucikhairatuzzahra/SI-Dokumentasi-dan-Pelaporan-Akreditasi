@@ -3,42 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Display a listing of the resource.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function jurusanHome()
-    {
-        // return view('home', ["msg" => "i am Jurusan role"]);
-        return view('jurusan.page.dashboard.index');
-    }
-    public function kaprodiHome()
-    {
-        // return view('home', ["msg" => "i am Kaprodi role"]);
-        return view('kaprodi.page.dashboard.index');
-    }
-    public function admprodiHome()
-    {
-        // return view('home', ["msg" => "i am Adm Program Studi role"]);
-        return view('admprodi.page.dashboard.index');
-    }
-    public function adminHome()
-    {
-        // return view('home', ["msg" => "i am Admin role"]);
-        return view('admin.page.dashboard.index');
+        Log::debug(Auth::user());
+        if (Auth::check()) {
+            $role = Auth::user()->role;
+            if (Gate::allows('isAdmin', $role)) {
+                return view('admin.index');
+            } else {
+                return view('dashboard.index');
+            }
+            abort(404);
+        } else {
+            return view('auth.login');
+        }
     }
 }

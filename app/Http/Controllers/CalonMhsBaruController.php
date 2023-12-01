@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Exports\MahasiswaExport;
 use App\Models\Mhsbaru;
-use App\Models\TahunAkademik;
 use App\Models\PTUnit;
+use App\Models\TahunAkademik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -15,66 +16,37 @@ class CalonMhsBaruController extends Controller
 
 {
 
-    public function index($id_pt_unit='')
+    public function index(Request $request)
     {
-        $tahunAkademiks = TahunAkademik::all();
-        if($id_pt_unit){
-            $data = MhsBaru::where('id_pt_unit', $id_pt_unit)->get();
-            return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks'));
-
-        }else{
-            $data = Mhsbaru::with('tahunAkademik')->get();
-    
-            return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks'));
-
+        if (Gate::allows('isJurusan')) {
+            $ptUnit = PTUnit::all();
+            $data = Mhsbaru::orderBy('id', 'desc')
+                ->with('tahunAkademik', 'ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
+            return view('mahasiswa.index', compact('data', 'request'));
         }
-        
-    }
-    public function getDataByProdi($id_pt_unit)
-    {
-        $data = MhsBaru::where('id_pt_unit', $id_pt_unit)->get();
-        $tahunAkademiks = TahunAkademik::all();
 
-        // return response()->json($data);
-        return view('jurusan.page.mhsbaru.index', compact('data','tahunAkademiks'));
-    }
-    
-    public function kaprodiIndex()
-    {
-        $data = Mhsbaru::with('tahunAkademik')->get();
-        $tahunAkademiks = TahunAkademik::all();
-
-        return view('kaprodi.page.mhsbaru.index', compact('data','tahunAkademiks'));
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('mahasiswa.index', compact('data'));
+        }
     }
 
-    public function admprodiIndex()
-    {
-        $data = Mhsbaru::with('tahunAkademik')->get();
-        $tahunAkademiks = TahunAkademik::all();
-        return view('admprodi.page.mhsbaru.index', compact('data', 'tahunAkademiks'));
-    }
     public function create()
     {
         $tahunAkademiks = TahunAkademik::all();
-        return view(
-            'admprodi.page.mhsbaru.form',
-            [
-                'url' => 'simpan-cmb',
-                'tahunAkademiks' => $tahunAkademiks,
-             
-            ]
-        );
-    } 
+        $userPtUnit = Auth::user()->ptUnit;
+        return view('mahasiswa.create', compact('tahunAkademiks', 'ptUnit'));
+    }
     public function store(Request $request)
     {
-        
-        $user = Auth::user();
-        $input = Mhsbaru::insert([
+        Mhsbaru::insert([
             'id' => $request->id,
-            'thn_akademik' => $request->tahun_akademik,
-            'id_pt_unit' => $user->id_pt_unit,
-            'kode_pt_unit' => $user->kode_pt_unit,
-            // 'id_pt_unit' => Auth::user()->id_pt_unit,
+            'id_thn_akademik' => $request->thn_akademik,
+            'id_pt_unit' => $request->id_pt_unit,
             'daya_tampung' => $request->daya_tampung,
             'pendaftar' => $request->pendaftar,
             'lulus_seleksi' => $request->lulus_seleksi,
@@ -83,27 +55,20 @@ class CalonMhsBaruController extends Controller
             'mhs_aktif_reguler' => $request->mhs_aktif_reguler,
             'mhs_aktif_transfer' => $request->mhs_aktif_transfer
         ]);
-        if ($input) {
-            return redirect('mhs-baru')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-            alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admprodi.page.mhsbaru.index';
-            </script>";
-        }
+        return redirect(route('mahasiswa.index'))->with('success', 'Data berhasil disimpan');
     }
     public function edit($id)
     {
+        $tahunAkademiks = TahunAkademik::all();
         $data['editData'] = Mhsbaru::find($id);
-        return view('admprodi.page.mhsbaru.form_edit', $data);
+        return view('mahasiswa.edit', $data, compact('tahunAkademiks'));
     }
     public function update(Request $request, $id)
     {
         $mhs = Mhsbaru::find($id);
-        $update = $mhs->update([
-            'thn_akademik' => $request->thn_akademik,
-            'id_pt_unit' => Auth::user()->id_pt_unit,
-            'kode_pt_unit' => Auth::user()->kode_pt_unit,
+        $mhs->update([
+            'id_thn_akademik' => $request->thn_akademik,
+            'id_pt_unit' => $request->kode_pt_unit,
             'daya_tampung' => $request->daya_tampung,
             'pendaftar' => $request->pendaftar,
             'lulus_seleksi' => $request->lulus_seleksi,
@@ -112,34 +77,19 @@ class CalonMhsBaruController extends Controller
             'mhs_aktif_reguler' => $request->mhs_aktif_reguler,
             'mhs_aktif_transfer' => $request->mhs_aktif_transfer,
         ]);
-        if ($update) {
-            return redirect('mhs-baru')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-                alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.mhsbaru.index';
-                </script>";
-        }
+        return redirect(route('mahasiswa.index'))->with('success', 'Data berhasil disimpan');
     }
+
     public function destroy($id)
     {
         $mhsbaru = Mhsbaru::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $mhsbaru->delete();
 
-        return redirect()->route('mhs-baru')->with('success', 'Data Calon Mahasiswa Baru berhasil dihapus');
+        return redirect(route('mahasiswa.index'))->with('success', 'Data Calon Mahasiswa Baru berhasil dihapus');
     }
-    public function show($id)
+
+    public function export()
     {
-        $prodi = Mhsbaru::findOrFail($id);
-
-        return view('jurusan.page.mhsbaru.index', compact('prodi'));
-    }
-    // public function download(){
-
-    // }
-
-    public function download()
-    {
-        return Excel::download(new MahasiswaExport, 'Mahasiswa Baru.xlsx');
+        return Excel::download(new MahasiswaExport, 'Mahasiswa_Baru.xlsx');
     }
 }

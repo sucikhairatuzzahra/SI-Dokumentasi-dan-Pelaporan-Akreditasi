@@ -12,8 +12,7 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Userame') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"

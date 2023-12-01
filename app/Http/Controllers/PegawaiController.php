@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Pegawai;
+use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
 {
@@ -15,8 +15,7 @@ class PegawaiController extends Controller
     public function index()
     {
         $data = Pegawai::all();
-        
-        return view('admin.page.pegawai.index', compact('data'));
+        return view('admin.pegawai.index', compact('data'));
     }
 
     /**
@@ -26,12 +25,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view(
-            'admin.page.pegawai.form',
-            [
-                'url' => 'simpan-pegawai',
-            ]
-        );
+        return view('admin.pegawai.create');
     }
 
     /**
@@ -51,7 +45,7 @@ class PegawaiController extends Controller
         ]);
 
         if ($input) {
-            return redirect('pegawai')->with('pesan', 'Data berhasil disimpan');
+            return redirect('pegawai')->with('success', 'Data berhasil disimpan');
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
@@ -61,33 +55,22 @@ class PegawaiController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit($pk_id_pegawai)
+    public function edit($id)
     {
-        $data['editData'] = Pegawai::find($pk_id_pegawai);
-        return view('admin.page.pegawai.form_edit', $data);
+        $data['editData'] = Pegawai::find($id);
+        return view('admin.pegawai.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $pk_id_pegawai
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -114,7 +97,7 @@ class PegawaiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -122,6 +105,6 @@ class PegawaiController extends Controller
         $data = Pegawai::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $data->delete();
 
-        return redirect()->route('pegawai')->with('success', 'Data Pegawai berhasil dihapus');
+        return redirect()->route('pegawai.index')->with('success', 'Data Pegawai berhasil dihapus');
     }
 }

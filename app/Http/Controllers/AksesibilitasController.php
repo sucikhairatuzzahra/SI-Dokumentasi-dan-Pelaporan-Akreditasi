@@ -8,6 +8,7 @@ use App\Models\PTUnit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AksesibilitasController extends Controller
@@ -17,37 +18,31 @@ class AksesibilitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id_pt_unit='')
+    public function index(Request $request)
     {
-        if($id_pt_unit){
-            $data = Aksesibilitas::where('id_pt_unit', $id_pt_unit)->get();
-        return view('jurusan.page.aksesibilitas.index', compact('data'));
-
-        }else{
-            $data = Aksesibilitas::all();
-         return view('jurusan.page.aksesibilitas.index', compact('data'));
+        if (Gate::allows('isJurusan')) {
+            $ptUnit = PTUnit::all();
+            $data = Aksesibilitas::orderBy('id', 'desc')
+                ->with('ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
+            return view('aksesibilitas.index', compact('data', 'request'));
         }
 
-        // $data = Aksesibilitas::all();
-        
-    }
-    public function getDataByProdi($id_pt_unit)
-    {
-        $data = Aksesibilitas::where('id_pt_unit', $id_pt_unit)->get();
-        // return response()->json($data);
-        return view('jurusan.page.aksesibilitas.index', compact('data'));
+        if (Gate::allows('isAdmProdi')) {
+            $data = Aksesibilitas::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('aksesibilitas.index', compact('data'));
+        }
+
+        if (Gate::allows('isKaprodi')) {
+            $data = Aksesibilitas::with('ptUnit', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('aksesibilitas.index', compact('data'));
+        }
     }
 
-    public function admprodiIndex()
-    {
-        $data = Aksesibilitas::all();
-        return view('admprodi.page.aksesibilitas.index', compact('data'));
-    }
-    public function kaprodiIndex()
-    {
-        $data = Aksesibilitas::all();
-        return view('kaprodi.page.aksesibilitas.index', compact('data'));
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -55,14 +50,8 @@ class AksesibilitasController extends Controller
      */
     public function create()
     {
-       
-        return view(
-            'admprodi.page.aksesibilitas.form',
-            [
-                'url' => 'simpan-aksesibilitas',
-              
-            ]
-        );
+        $ptUnit = Auth::user()->ptUnit;
+        return view('aksesibilitas.create', compact('ptUnit'));
     }
 
     /**
@@ -85,25 +74,7 @@ class AksesibilitasController extends Controller
             'kode_pt_unit' => $user->kode_pt_unit,
 
         ]);
-        if ($input) {
-            return redirect('aksesibilitas')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-            alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admprodi.page.aksesibilitas.index';
-            </script>";
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('aksesibilitas')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -114,13 +85,8 @@ class AksesibilitasController extends Controller
      */
     public function edit($id)
     {
-        // $data['editData'] = DB::table('masa_tunggu_lulusan')
-        //     ->where('id', $id)
-        //     ->first();
-
         $data['editData'] = Aksesibilitas::find($id);
-
-        return view('admprodi.page.aksesibilitas.form_edit', $data);
+        return view('aksesibilitas.edit', $data);
     }
 
     /**
@@ -133,7 +99,7 @@ class AksesibilitasController extends Controller
     public function update(Request $request, $id)
     {
         $akses = Aksesibilitas::find($id);
-        $update = $akses->update([
+        $akses->update([
             'jenis_data' => $request->jenis_data,
             'secara_manual' => $request->secara_manual,
             'tanpa_jrg' => $request->tanpa_jrg,
@@ -142,14 +108,7 @@ class AksesibilitasController extends Controller
             'id_pt_unit' => $request->id_pt_unit,
             'kode_pt_unit' => $request->kode_pt_unit,
         ]);
-        if ($update) {
-            return redirect('aksesibilitas')->with('pesan', 'Data berhasil disimpan');
-        } else {
-            echo "<script>
-                alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admprodi.page.aksesibilitas.index';
-                </script>";
-        }
+        return redirect('aksesibilitas')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -164,6 +123,7 @@ class AksesibilitasController extends Controller
         $akses->delete();
         return redirect()->route('aksesibilitas')->with('success', 'Data Aksesibilitas berhasil dihapus');
     }
+    
     public function download()
     {
         return Excel::download(new AksesibilitasExport, 'Aksesibilitasi.xlsx');
