@@ -7,6 +7,7 @@ use App\Models\BidangKerjaLulusan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\PTUnit;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -17,13 +18,18 @@ class BidangKerjaLulusanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
         if (Gate::allows('isJurusan')) {
-            $data = BidangKerjaLulusan::paginate(20);
-            return view('bidang_kerja_lulusan.index', compact('data'));
+            $ptUnit = PTUnit::all();
+            $data = BidangKerjaLulusan::orderBy('id', 'desc')
+                ->with('ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
+            return view('bidang_kerja_lulusan.index', compact('data', 'request'));
         }
+
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
             $data = BidangKerjaLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
@@ -61,7 +67,7 @@ class BidangKerjaLulusanController extends Controller
             'internasional' => $request->internasional,
             'nasional' => $request->nasional,
             'wirausaha' => $request->wirausaha,
-            'id_pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
         return redirect('kerja-lulusan')->with('success', 'Data berhasil disimpan');
     }
@@ -97,9 +103,9 @@ class BidangKerjaLulusanController extends Controller
             'internasional' => $request->internasional,
             'nasional' => $request->nasional,
             'wirausaha' => $request->wirausaha,
-            'pt_unit' => $request->kode_pt_unit,
+            'pt_unit' => $request->id_pt_unit,
         ]);
-        return redirect('kerjalulusan')->with('success', 'Data berhasil disimpan');
+        return redirect('kerja-lulusan')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -112,7 +118,7 @@ class BidangKerjaLulusanController extends Controller
     {
         $kerjalulusan = BidangKerjaLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kerjalulusan->delete();
-        return redirect()->route('kerjalulusan')->with('success', 'Data Bidang Kerja Lulusan berhasil dihapus');
+        return redirect()->route('kerja-lulusan')->with('success', 'Data Bidang Kerja Lulusan berhasil dihapus');
     }
 
     public function download()

@@ -95,6 +95,7 @@
                                                 value="{{ old('mhs_aktif_transfer') }}" required>
                                             <p class="text-danger">{{ $errors->first('mhs_aktif_transfer') }}</p>
                                         </div>
+
                                         <div class="form-group">
                                             <label for="id_pt_unit">Unit Kerja</label>
                                             <input type="hidden" class="form-control" name="id_pt_unit"

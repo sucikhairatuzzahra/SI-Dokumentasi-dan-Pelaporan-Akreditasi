@@ -26,11 +26,11 @@ class PendanaanController extends Controller
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
-            return view('pendanaan.index', compact('data'));
+            return view('pendanaan.index', compact('data','request'));
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = Pendanaan::with('idPtUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = Pendanaan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('pendanaan.index', compact('data'));
         }

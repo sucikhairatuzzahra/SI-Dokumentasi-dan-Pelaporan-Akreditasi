@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\KepuasanPenggunaLulusanExport;
 use App\Models\KepuasanPenggunaLulusan;
 use Illuminate\Http\Request;
+use App\Models\PTUnit;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -16,11 +17,17 @@ class KepuasanPenggunaLulusanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Gate::allows('isJurusan')) {
-            $data = KepuasanPenggunaLulusan::paginate('20');
-            return view('kepuasan_pengguna_lulusan.index', compact('data'));
+            $ptUnit = PTUnit::all();
+            $data = KepuasanPenggunaLulusan::orderBy('id', 'desc')
+                ->with('ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
+            return view('kepuasan_pengguna_lulusan.index', compact('data', 'request'));
+       
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
@@ -60,7 +67,7 @@ class KepuasanPenggunaLulusanController extends Controller
             'id_pt_unit' => $request->id_pt_unit,
         ]);
 
-        return redirect('kepuasan_pengguna')->with('success', 'Data berhasil disimpan');
+        return redirect(route('kepuasan_pengguna'))->with('success', 'Data berhasil disimpan');
     }
 
     /**

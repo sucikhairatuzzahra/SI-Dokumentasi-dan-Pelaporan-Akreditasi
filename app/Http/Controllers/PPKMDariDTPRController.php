@@ -7,14 +7,14 @@ use App\Models\PPKMDariDTPR;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
+
 use App\Models\PTUnit;
 use App\Models\Luaran;
 use App\Models\Dosen;
 use App\Models\LuaranLain;
-=======
+
 use Illuminate\Support\Facades\Gate;
->>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
+
 
 class PPKMDariDTPRController extends Controller
 {
@@ -23,12 +23,21 @@ class PPKMDariDTPRController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Gate::allows('isJurusan')) {
-            $data = PPKMDariDTPR::with('ptUnit');
-            $data = $data->paginate('20');
-            return view('ppkm_dtpr.index', compact('data'));
+            $ptUnit = PTUnit::all();
+            $data = PPKMDariDTPR::orderBy('id', 'desc')
+                ->with('ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
+
+            return view('ppkm_dtpr.index', compact('data', 'request'));
+
+            // $data = PPKMDariDTPR::with('ptUnit');
+            // $data = $data->paginate('20');
+            // return view('ppkm_dtpr.index', compact('data'));
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
@@ -45,7 +54,7 @@ class PPKMDariDTPRController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
+
         $luarans = Luaran::all();
         $luaranlains = LuaranLain::all();
         $dosens = Dosen::all();
@@ -58,10 +67,10 @@ class PPKMDariDTPRController extends Controller
                 'dosens' => $dosens,
             ]
         );
-=======
+
         $ptUnit = Auth::user()->ptUnit;
         return view('ppkm_dtpr.create', compact('ptUnit'));
->>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
+
     }
 
     /**
@@ -74,7 +83,7 @@ class PPKMDariDTPRController extends Controller
     {
         PPKMDariDTPR::insert([
             'id' => $request->id,
-<<<<<<< HEAD
+// <<<<<<< HEAD
             'nama_dtpr' => $request->nama_dosen,
             'jenis_penelitian_pengabdian' => $request->jenis_penelitian_pengabdian,
             'judul' => $request->judul,
@@ -86,15 +95,15 @@ class PPKMDariDTPRController extends Controller
             'bukti' => $request->bukti,
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
-=======
-            'nama_dtpr' => $request->nama_dtpr,
-            'publikasi_infokom' => $request->publikasi_infokom,
-            'penelitian_infokom' => $request->penelitian_infokom,
-            'penelitian_infokom_hki' => $request->penelitian_infokom_hki,
-            'pkm_infokom_adobsi' => $request->pkm_infokom_adobsi,
-            'pkm_infokom_hki' => $request->pkm_infokom_hki,
-            'pt_unit' => $request->kode_pt_unit,
->>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
+// =======
+            // 'nama_dtpr' => $request->nama_dtpr,
+            // 'publikasi_infokom' => $request->publikasi_infokom,
+            // 'penelitian_infokom' => $request->penelitian_infokom,
+            // 'penelitian_infokom_hki' => $request->penelitian_infokom_hki,
+            // 'pkm_infokom_adobsi' => $request->pkm_infokom_adobsi,
+            // 'pkm_infokom_hki' => $request->pkm_infokom_hki,
+            // 'pt_unit' => $request->kode_pt_unit,
+
 
         ]);
         return redirect('ppkm-dtpr')->with('success', 'Data berhasil disimpan');
@@ -122,7 +131,7 @@ class PPKMDariDTPRController extends Controller
     public function update(Request $request, $id)
     {
         $ppkm = PPKMDariDTPR::find($id);
-<<<<<<< HEAD
+// <<<<<<< HEAD
         $update = $ppkm->update([
             'nama_dtpr' => $request->nama_dosen,
             'jenis_penelitian_pengabdian' => $request->jenis_penelitian_pengabdian,
@@ -136,16 +145,16 @@ class PPKMDariDTPRController extends Controller
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
 
-=======
-        $ppkm->update([
-            'nama_dtpr' => $request->nama_dtpr,
-            'publikasi_infokom' => $request->publikasi_infokom,
-            'penelitian_infokom' => $request->penelitian_infokom,
-            'penelitian_infokom_hki' => $request->penelitian_infokom_hki,
-            'pkm_infokom_adobsi' => $request->pkm_infokom_adobsi,
-            'pkm_infokom_hki' => $request->pkm_infokom_hki,
-            'id_pt_unit' => $request->id_pt_unit,
->>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
+// =======
+//         $ppkm->update([
+//             'nama_dtpr' => $request->nama_dtpr,
+//             'publikasi_infokom' => $request->publikasi_infokom,
+//             'penelitian_infokom' => $request->penelitian_infokom,
+//             'penelitian_infokom_hki' => $request->penelitian_infokom_hki,
+//             'pkm_infokom_adobsi' => $request->pkm_infokom_adobsi,
+//             'pkm_infokom_hki' => $request->pkm_infokom_hki,
+//             'id_pt_unit' => $request->id_pt_unit,
+// >>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
         ]);
         return redirect('ppkm-dtpr')->with('success', 'Data berhasil disimpan');
     }

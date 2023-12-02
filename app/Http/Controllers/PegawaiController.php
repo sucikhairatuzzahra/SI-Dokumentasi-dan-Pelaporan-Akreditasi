@@ -37,7 +37,7 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
         $input = Pegawai::insert([
-            'pk_id_pegawai' => $request->pk_id_pegawai,
+            'id' => $request->id,
             'nama_pegawai' => $request->nama_pegawai,
             'tanggal_lahir' => $request->tanggal_lahir,
             'nip' => $request->nip,
@@ -45,11 +45,11 @@ class PegawaiController extends Controller
         ]);
 
         if ($input) {
-            return redirect('pegawai')->with('success', 'Data berhasil disimpan');
+            return redirect('admin/pegawai')->with('success', 'Data berhasil disimpan');
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.pegawai.index';
+            window.location = '/admin.pegawai.index';
             </script>";
         }
     }
@@ -85,11 +85,11 @@ class PegawaiController extends Controller
         ]);
     
         if ($update) {
-            return redirect('pegawai')->with('pesan', 'Data berhasil disimpan');
+            return redirect('admin/pegawai')->with('pesan', 'Data berhasil disimpan');
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.pegawai.index';
+            window.location = '/admin.pegawai.index';
             </script>";
         }
     }

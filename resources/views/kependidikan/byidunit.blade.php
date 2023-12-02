@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admprodi.layout.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Daftar Pegawai</h5>
-                        <p class="m-b-0">Data Pegawai</p>
+                        <h5 class="m-b-10">Kualifikasi Tenaga Kependidikan</h5>
+                        <p class="m-b-0">Data Kualifikasi Tenaga Kependidikan</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -15,8 +15,9 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
-
-                        <li class="breadcrumb-item"><a href="#!">Daftar Pegawai</a>
+                        <li class="breadcrumb-item"><a href="#!">Sumber Daya Manusia</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Kualifikasi Tenaga Kependidikan</a>
                         </li>
                     </ul>
                 </div>
@@ -33,10 +34,11 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Daftar Pegawai</h5>
-                            <a href="{{ route('pegawai.create') }}">
+                            <h5>Kualifikasi Tenaga Kependidikan</h5>
+                            {{-- <a href="{{ route('edit-kependidikan') }}">
                                 <span>Tambah data <code>disini</code> </span>
-                            </a>
+                            </a> --}}
+
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -52,50 +54,48 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
-                                            <th scope="col">
-                                                No
+                                            <th scope="col" rowspan="2">
+                                                Nama
                                             </th>
-                                            <th scope="col">
-                                                Nama Pegawai
+                                            <th scope="col" rowspan="2">
+                                                Jenis Tenaga Kependidikan
                                             </th>
-                                            <th scope="col">
-                                                Tanggal lahir
+                                            <th scope="col" rowspan="2">
+                                                Jenjang Pendidikan
                                             </th>
-                                            <th scope="col">
-                                                NIP
+                                            <th scope="col" rowspan="2">
+                                                Unit Kerja
                                             </th>
-                                            <th scope="col">
-                                                Aktif
-                                            </th>
-
-                                            <th scope="col">
+                                            <th scope="col" rowspan="2">
                                                 Aksi
                                             </th>
                                         </tr>
+
                                     </thead>
                                     <tbody>
-                                        <?php $no = 1;
-                                        // dd($data);
-                                        ?>
-                                        @foreach ($data as $no => $item)
-                                            <tr>
-                                                <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->nama_pegawai }}</td>
-                                                <td>{{ $item->tanggal_lahir }}</td>
-                                                <td>{{ $item->nip }}</td>
-                                                <td>{{ $item->aktif }}</td>
 
+                                        @foreach ($data as $no => $item)
+                                            <tr align="center">
+                                                <td>{{ $item['nama'] }}</td>
+                                                <td>{{ $item['jenis_tenaga_kependidikan'] }}</td>
+                                                <td>{{ $item['jenjang_pendidikan'] }} </td>
+                                                <td>{{ $item['kode_pt_unit'] }}</td>
                                                 <td>
-                                                    <form action="{{ route('pegawai.destroy', ['id' => $item->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href="{{ route('pegawai.edit', ['id' => $item->id]) }}"
-                                                            style="margin-right: 7px">
-                                                            Edit
-                                                        </a>
-                                                        <button type="submit" class="btn btn-link">Hapus</button>
-                                                    </form>
+
+                                                    @can('isAdmProdi')
+                                                    <td>
+                                                        <form action="{{ route('kependidikan.destroy', ['id' => $item->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <a href="{{ route('kependidikan.edit', ['id' => $item->id]) }}"
+                                                                style="margin-right: 7px">
+                                                                Edit
+                                                            </a>
+                                                            <button type="submit" class="btn btn-link">Hapus</button>
+                                                        </form>
+                                                    </td>
+                                                @endcan
                                                 </td>
                                             </tr>
                                         @endforeach

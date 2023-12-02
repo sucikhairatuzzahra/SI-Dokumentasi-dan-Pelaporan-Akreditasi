@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\SaranaPrasaranaExport;
 use App\Models\SaranaPrasarana;
 use Illuminate\Http\Request;
+use App\Models\PTUnit;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -16,12 +17,22 @@ class SaranaPrasaranaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Gate::allows('isJurusan')) {
-            $data = SaranaPrasarana::paginate('20');
-            return view('sarana_prasarana.index', compact('data'));
+            $ptUnit = PTUnit::all();
+            $data = SaranaPrasarana::orderBy('id', 'desc')
+                ->with('ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
+
+            return view('sarana_prasarana.index', compact('data', 'request'));
         }
+        // if (Gate::allows('isJurusan')) {
+        //     $data = SaranaPrasarana::paginate('20');
+        //     return view('sarana_prasarana.index', compact('data'));
+        // }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
             $data = SaranaPrasarana::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
@@ -57,7 +68,7 @@ class SaranaPrasaranaController extends Controller
             'jml_mhs' => $request->jml_mhs,
             'jam_lyn' => $request->jam_lyn,
             'perangkat' => $request->perangkat,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
 
         ]);
         return redirect('sarana')->with('pesan', 'Data berhasil disimpan');
@@ -92,7 +103,7 @@ class SaranaPrasaranaController extends Controller
             'jml_mhs' => $request->jml_mhs,
             'jam_lyn' => $request->jam_lyn,
             'perangkat' => $request->perangkat,
-            'id_pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
         return redirect('sarana')->with('success', 'Data berhasil disimpan');
     }

@@ -38,7 +38,7 @@ class CalonMhsBaruController extends Controller
     public function create()
     {
         $tahunAkademiks = TahunAkademik::all();
-        $userPtUnit = Auth::user()->ptUnit;
+        $ptUnit = Auth::user()->ptUnit;
         return view('mahasiswa.create', compact('tahunAkademiks', 'ptUnit'));
     }
     public function store(Request $request)
@@ -68,7 +68,7 @@ class CalonMhsBaruController extends Controller
         $mhs = Mhsbaru::find($id);
         $mhs->update([
             'id_thn_akademik' => $request->thn_akademik,
-            'id_pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
             'daya_tampung' => $request->daya_tampung,
             'pendaftar' => $request->pendaftar,
             'lulus_seleksi' => $request->lulus_seleksi,

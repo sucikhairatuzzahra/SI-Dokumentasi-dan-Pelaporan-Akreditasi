@@ -166,28 +166,14 @@
                                                 {{-- <td>{{ $item['unit_kerja'] }}</td> --}}
                                                 <td>{{ $item['pt_unit'] }}</td>
                                                 {{-- <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td> --}}
-                                                {{-- <td>
-
-                                                    <a href="{{ route('kependidikanbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
-                                                        style="margin-right: 7px">
-                                                        Lihat
-                                                    </a>
-
-                                                    <a href="{{ route('edit-kependidikan', ['id' => $item['id']]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('hapus-kependidikan', ['id' => $item['id']]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item['id'] }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item['id'] }}"
-                                                        action="{{ route('hapus-kependidikan', ['id' => $item['id']]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                </td> --}}
+                                                {{-- @can('isAdmProdi')
+                                                    <td>
+                                                        <a href="{{ route('kependidikan.byptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
+                                                            style="margin-right: 7px">
+                                                            Lihat
+                                                        </a>
+                                                    </td>
+                                                @endcan --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

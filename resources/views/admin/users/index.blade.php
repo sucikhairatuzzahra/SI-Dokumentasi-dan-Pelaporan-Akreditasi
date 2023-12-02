@@ -64,7 +64,7 @@
                                             <th scope="col">
                                                 Email
                                             </th>
-<<<<<<< HEAD:resources/views/admin/page/users/index.blade.php
+
                                             {{-- <th scope="col">
                                                 Password
                                             </th> --}}
@@ -74,14 +74,7 @@
                                             {{-- <th scope="col">
                                                 Id_pt_unit
                                             </th> --}}
-=======
-                                            <th scope="col">
-                                                Password
-                                            </th>
->>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8:resources/views/admin/users/index.blade.php
-                                            <th scope="col">
-                                                Role
-                                            </th>
+
                                             <th scope="col">
                                                 Aksi
                                             </th>
@@ -96,13 +89,12 @@
                                                 <td>{{ $no + 1 }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
-                                                <td>{{ $item->password }}</td>
+                                                {{-- <td>{{ $item->password }}</td> --}}
                                                 <td>{{ $item->role }}</td>
-<<<<<<< HEAD:resources/views/admin/page/users/index.blade.php
+
                                                 {{-- <td>{{ $item->id_pt_unit }}</td> --}}
-                                                <td>{{ $item->kode_pt_unit }}</td>
-=======
->>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8:resources/views/admin/users/index.blade.php
+                                                {{-- <td>{{ $item->kode_pt_unit }}</td> --}}
+
                                                 <td>
                                                     <a href="{{ route('users.edit', ['id' => $item->id]) }}"
                                                         style="margin-right: 7px">

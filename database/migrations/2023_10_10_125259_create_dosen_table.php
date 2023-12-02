@@ -18,16 +18,19 @@ return new class extends Migration
             $table->string('nama_dosen');
             $table->string('nomor_induk_dosen')->unique();
             $table->enum('jenis_nomor_induk_dosen', ['NIDN', 'NIDK']);
-            $table->integer('id_level_pendidikan_tertinggi');
+            $table->unsignedBigInteger('id_level_pendidikan_tertinggi');
+            $table->foreign('id_level_pendidikan_tertinggi')->references('id')->on('level_pendidikan_tertinggi');
             $table->string('pendidikan_magister');
             $table->string('pendidikan_doktor')->nullable();
             $table->string('bidang_keahlian');
             $table->string('jabatan_akademik')->nullable();
-            $table->integer('id_pegawai');
-            $table->integer('id_pt_unit');
-            $table->integer('id_kategori_dosen');
-            // $table->string('sertifikat_pendidik_profesional')->nullable();
-            // $table->string('sertifikat_kompetensi_profesi_industri')->nullable();
+            $table->unsignedBigInteger('id_pegawai');
+            $table->foreign('id_pegawai')->references('id')->on('pegawai');
+            $table->unsignedBigInteger('id_pt_unit');
+            $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
+            $table->unsignedBigInteger('id_kategori_dosen');
+            $table->foreign('id_kategori_dosen')->references('id')->on('kategori_dosen');
+          
             $table->timestamps();
         });
     }

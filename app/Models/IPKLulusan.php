@@ -17,7 +17,7 @@ class IPKLulusan extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_pt_unit', 'kode_pt_unit');
+        return $this->belongsTo(User::class, 'id_pt_unit');
     }
 
     public function ptUnit(): BelongsTo

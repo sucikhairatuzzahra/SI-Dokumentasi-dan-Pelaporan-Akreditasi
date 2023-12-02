@@ -6,22 +6,29 @@ use App\Exports\MasaTungguLulusanExport;
 use App\Models\MasaTungguLulusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\PTUnit;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
-class MasaTunguLulusanController extends Controller
+class MasaTungguLulusanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Gate::allows('isJurusan')) {
-            $data = MasaTungguLulusan::paginate(20);
-            return view('masa_tunggu_lulusan.index', compact('data'));
+            $ptUnit = PTUnit::all();
+            $data = MasaTungguLulusan::orderBy('id', 'desc')
+                ->with('ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
+            return view('masa_tunggu_lulusan.index', compact('data', 'request'));
+            
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
@@ -56,7 +63,7 @@ class MasaTunguLulusanController extends Controller
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
         return redirect('masa-tunggu')->with('pesan', 'Data berhasil disimpan');
     }
@@ -80,10 +87,14 @@ class MasaTunguLulusanController extends Controller
      */
     public function edit($id)
     {
-        $data['editData'] = DB::table('masa_tunggu_lulusan')
-            ->where('id', $id)
-            ->first();
-        return view('admprodi.page.masa_tunggu_lulusan.form_edit', $data);
+
+        $data['editData'] = MasaTungguLulusan::find($id);
+        return view('masa_tunggu_lulusan.edit', $data);
+
+        // $data['editData'] = DB::table('masa_tunggu_lulusan')
+        //     ->where('id', $id)
+        //     ->first();
+        // return view('masa_tunggu_lulusan.edit', $data);
     }
 
     /**
@@ -101,10 +112,10 @@ class MasaTunguLulusanController extends Controller
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
         if ($update) {
-            return redirect('masatunggu')->with('pesan', 'Data berhasil disimpan');
+            return redirect('masa-tunggu')->with('pesan', 'Data berhasil disimpan');
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
@@ -137,7 +148,7 @@ class MasaTunguLulusanController extends Controller
     {
         $masatunggu = MasaTungguLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $masatunggu->delete();
-        return redirect()->route('masatunggu')->with('success', 'Data Masa Tunggu Lulusan Bekerja berhasil dihapus');
+        return redirect()->route('masa-tunggu')->with('success', 'Data Masa Tunggu Lulusan Bekerja berhasil dihapus');
     }
 
     public function download()

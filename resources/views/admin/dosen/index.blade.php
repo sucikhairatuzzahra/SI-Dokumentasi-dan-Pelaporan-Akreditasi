@@ -65,6 +65,9 @@
                                                 Jenis Nomor Induk Dosen
                                             </th>
                                             <th scope="col">
+                                                Pendidikan Tertinggi
+                                            </th>
+                                            <th scope="col">
                                                 Pendidikan Magister
                                             </th>
                                             <th scope="col">
@@ -77,10 +80,13 @@
                                                 Jabatan Akademik
                                             </th>
                                             <th scope="col">
-                                                Sertifikat Pendidik Profesional
+                                                NIP
                                             </th>
                                             <th scope="col">
-                                                Sertifikat Kompetensi Profesi Industri
+                                                Unit Kerja
+                                            </th>
+                                            <th scope="col">
+                                                Kategori Dosen
                                             </th>
                                             <th scope="col">
                                                 Aksi
@@ -97,15 +103,17 @@
                                                 <td>{{ $item->nama_dosen }}</td>
                                                 <td>{{ $item->nomor_induk_dosen }}</td>
                                                 <td>{{ $item->jenis_nomor_induk_dosen }}</td>
+                                                <td>{{ $item->levelPddkn->nama_level_pendidikan }}</td>
                                                 <td>{{ $item->pendidikan_magister }}</td>
                                                 <td>{{ $item->pendidikan_doktor }}</td>
                                                 <td>{{ $item->bidang_keahlian }}</td>
                                                 <td>{{ $item->jabatan_akademik }}</td>
-                                                <td>{{ $item->sertifikat_pendidik_profesional }}</td>
-                                                <td>{{ $item->sertifikat_kompetensi_profesi_industri }}</td>
+                                                <td>{{ $item->idPegawai->nip }}</td>
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->idKatDosen->kode_kategori_dosen }}</td>
                                                 <td>
-                                                    <form
-                                                        action="{{ route('dosen.destroy', ['id' => $item->id]) }}" method="POST">
+                                                    <form action="{{ route('dosen.destroy', ['id' => $item->id]) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <a href="{{ route('dosen.edit', ['id' => $item->id]) }}"

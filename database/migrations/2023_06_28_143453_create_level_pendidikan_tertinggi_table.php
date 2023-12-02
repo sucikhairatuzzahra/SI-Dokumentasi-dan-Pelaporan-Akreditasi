@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('level_pendidikan_tertinggi', function (Blueprint $table) {
-            $table->id('pk_id_level_pendidikan_tertinggi');
+            $table->id();
             $table->string('nama_level_pendidikan');
             $table->string('kode_level_pendidikan');
             $table->enum('dosen',['y','t']);

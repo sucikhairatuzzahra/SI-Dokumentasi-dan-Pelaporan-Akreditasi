@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\PTUnit;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class IPKLulusanController extends Controller
 {
@@ -16,26 +17,44 @@ class IPKLulusanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = IPKLulusan::all();
-        // dd($data);
-        return view('ipk_lulusan.index', compact('data'));
-    }
-    public function admprodiIndex()
-    {
-        $data = IPKLulusan::all();
+        if (Gate::allows('isJurusan')) {
+            $ptUnit = PTUnit::all();
+            $data = IPKLulusan::orderBy('id', 'desc')
+                ->with('ptUnit')
+                ->when($request->id_pt_unit, function ($query) use ($request) {
+                    $query->where('id_pt_unit', $request->id_pt_unit);
+                })->paginate(20);
+            return view('ipk_lulusan.index', compact('data', 'request'));
+        }
 
-        // dd($data);
-        return view('ipk_lulusan.index', compact('data'));
+
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = IPKLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = $data->paginate(20);
+            return view('ipk_lulusan.index', compact('data'));
+        }
+
+        // $data = IPKLulusan::all();
+        // // dd($data);
+        // return view('ipk_lulusan.index', compact('data'));
     }
 
-    public function kaprodiIndex()
-    {
-        $data = IPKLulusan::all();
+    // public function admprodiIndex()
+    // {
+    //     $data = IPKLulusan::all();
 
-        return view('ipk_lulusan.index', compact('data'));
-    }
+    //     // dd($data);
+    //     return view('ipk_lulusan.index', compact('data'));
+    // }
+
+    // public function kaprodiIndex()
+    // {
+    //     $data = IPKLulusan::all();
+
+    //     return view('ipk_lulusan.index', compact('data'));
+    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -64,10 +83,10 @@ class IPKLulusanController extends Controller
             'ipk_rata_rata' => $request->ipk_rata_rata,
             'ipk_max' => $request->ipk_max,
             'id_pt_unit' => $user->id_pt_unit,
-            'kode_pt_unit' => $user->kode_pt_unit,
+            // 'kode_pt_unit' => $user->kode_pt_unit,
         ]);
         if ($input) {
-            return redirect('ipklulusan')->with('pesan', 'Data berhasil disimpan');
+            return redirect('ipk-lulusan')->with('pesan', 'Data berhasil disimpan');
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
@@ -104,9 +123,9 @@ class IPKLulusanController extends Controller
             'ipk_min' => $request->ipk_min,
             'ipk_rata_rata' => $request->ipk_rata_rata,
             'ipk_max' => $request->ipk_max,
-            'id_pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
-        return redirect('ipklulusan')->with('success', 'Data berhasil disimpan');
+        return redirect('ipk-lulusan')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -119,7 +138,7 @@ class IPKLulusanController extends Controller
     {
         $ipk = IPKLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $ipk->delete();
-        return redirect()->route('ipklulusan')->with('success', 'Data IPK Lulusan berhasil dihapus');
+        return redirect()->route('ipk-lulusan')->with('success', 'Data IPK Lulusan berhasil dihapus');
     }
 
     public function download()

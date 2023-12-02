@@ -9,7 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IPKLulusanController;
 use App\Http\Controllers\KelulusanTepatWaktuController;
 use App\Http\Controllers\KepuasanPenggunaLulusanController;
-use App\Http\Controllers\MasaTunguLulusanController;
+use App\Http\Controllers\MasaTungguLulusanController;
 use App\Http\Controllers\PendanaanController;
 use App\Http\Controllers\PenelitianPengabdian;
 use App\Http\Controllers\PPKMDariDTPRController;
@@ -83,7 +83,7 @@ Route::get('ipk-lulusan-download', [KelulusanTepatWaktuController::class, 'downl
 Route::resource('kepuasan-pengguna', KepuasanPenggunaLulusanController::class)->except('show')->parameters(['kepuasan-pengguna' => 'id']);
 Route::get('kepuasan-pengguna-download', [KepuasanPenggunaLulusanController::class, 'download'])->name('kepuasan-pengguna.download');
 
-Route::resource('masa-tunggu', MasaTunguLulusanController::class)->except('show')->parameters(['masa-tunggu' => 'id']);
+Route::resource('masa-tunggu', MasaTungguLulusanController::class)->except('show')->parameters(['masa-tunggu' => 'id']);
 Route::get('masa-tunggu-download', [MasaTungguLulusanController::class, 'download'])->name('masa-tunggu.download');
 
 Route::resource('kerja-lulusan', BidangKerjaLulusanController::class)->except('show')->parameters(['kerja-lulusan' => 'id']);

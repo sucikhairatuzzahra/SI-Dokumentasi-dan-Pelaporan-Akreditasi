@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\Pegawai;
+use App\Models\KategoriDosen;
+use App\Models\PTUnit;
+use App\Models\LevelPendidikanTertinggi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DosenController extends Controller
 {
@@ -25,7 +31,11 @@ class DosenController extends Controller
      */
     public function create()
     {
-        return view('admin.dosen.create');
+        $idPegawais = Pegawai::all();
+        $idKatDosens = KategoriDosen::all();
+        $ptUnit = Auth::user()->ptUnit;
+        $idLevelPddkns = LevelPendidikanTertinggi::all();
+        return view('admin.dosen.create', compact('idPegawais','idKatDosens','ptUnit','idLevelPddkns'));
     }
 
     /**
@@ -41,20 +51,31 @@ class DosenController extends Controller
             'nama_dosen' => $request->nama_dosen,
             'nomor_induk_dosen' => $request->nomor_induk_dosen,
             'jenis_nomor_induk_dosen' => $request->jenis_nomor_induk_dosen,
+            'id_level_pendidikan_tertinggi' => $request->id_level_pendidikan_tertinggi,
             'pendidikan_magister' => $request->pendidikan_magister,
             'pendidikan_doktor' => $request->pendidikan_doktor,
             'bidang_keahlian' => $request->bidang_keahlian,  
             'jabatan_akademik' => $request->jabatan_akademik,
-            'sertifikat_pendidik_profesional' => $request->sertifikat_pendidik_profesional,
-            'sertifikat_kompetensi_profesi_industri' => $request->sertifikat_kompetensi_profesi_industri,
+            'id_pegawai' => $request->id_pegawai,
+            'id_pt_unit' => $request->id_pt_unit,
+            'id_kategori_dosen' => $request->id_kategori_dosen,
+            // 'nama_dosen' => $request->nama_dosen,
+            // 'nomor_induk_dosen' => $request->nomor_induk_dosen,
+            // 'jenis_nomor_induk_dosen' => $request->jenis_nomor_induk_dosen,
+            // 'pendidikan_magister' => $request->pendidikan_magister,
+            // 'pendidikan_doktor' => $request->pendidikan_doktor,
+            // 'bidang_keahlian' => $request->bidang_keahlian,  
+            // 'jabatan_akademik' => $request->jabatan_akademik,
+            // 'sertifikat_pendidik_profesional' => $request->sertifikat_pendidik_profesional,
+            // 'sertifikat_kompetensi_profesi_industri' => $request->sertifikat_kompetensi_profesi_industri,
         ]);
 
         if ($input) {
-            return redirect('dosen')->with('pesan', 'Data berhasil disimpan');
+            return redirect('admin/dosen')->with('pesan', 'Data berhasil disimpan');
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.dosen.index';
+            window.location = '/admin.dosen.index';
             </script>";
         } 
     }
@@ -80,16 +101,16 @@ class DosenController extends Controller
     public function edit($id)
     {
         $data['editData'] = Dosen::find($id);
-<<<<<<< HEAD
+// <<<<<<< HEAD
         $idPegawais = Pegawai::all();
         $idKatDosens = KategoriDosen::all();
-        $idPtUnits = PTUnit::all();
+        $ptUnit = PTUnit::all();
         $idLevelPddkns = LevelPendidikanTertinggi::all();
      
-        return view('admin.page.dosen.form_edit', $data, compact('idPegawais','idKatDosens','idPtUnits','idLevelPddkns'));
-=======
+//         return view('admin.page.dosen.form_edit', $data, compact('idPegawais','idKatDosens','idPtUnits','idLevelPddkns'));
+// =======
         return view('admin.dosen.edit', $data);
->>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
+
     }
 
     /**
@@ -101,32 +122,30 @@ class DosenController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
+// <<<<<<< HEAD
         $dosen = Dosen::find($id);
         $update = $dosen->update([
             'nama_dosen' => $request->nama_dosen,
             'nomor_induk_dosen' => $request->nomor_induk_dosen,
             'jenis_nomor_induk_dosen' => $request->jenis_nomor_induk_dosen,
-            'id_level_pendidikan_tertinggi' => $request->nama_level_pendidikan,
+            'id_level_pendidikan_tertinggi' => $request->id_level_pendidikan_tertinggi,
             'pendidikan_magister' => $request->pendidikan_magister,
             'pendidikan_doktor' => $request->pendidikan_doktor,
             'bidang_keahlian' => $request->bidang_keahlian,  
             'jabatan_akademik' => $request->jabatan_akademik,
             'id_pegawai' => $request->nip,
-            'id_pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
             'id_kategori_dosen' => $request->kode_kategori_dosen,
         ]);
         if ($update) {
-            return redirect('dosen')->with('pesan', 'Data berhasil disimpan');
+            return redirect('admin/dosen')->with('pesan', 'Data berhasil disimpan');
         } else {
             echo "<script>
                 alert('Data gagal diinput, masukkan kembali data dengan benar');
-                window.location = '/admin.page.dosen.index';
+                window.location = '/admin.dosen.index';
                 </script>";
         }
-=======
-        //
->>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
+
     }
 
     /**

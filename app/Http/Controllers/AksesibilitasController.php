@@ -70,8 +70,8 @@ class AksesibilitasController extends Controller
             'tanpa_jrg' => $request->tanpa_jrg,
             'lan' => $request->lan,
             'wan' => $request->wan,
-            'id_pt_unit' => $user->id_pt_unit,
-            'kode_pt_unit' => $user->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
+            // 'kode_pt_unit' => $user->kode_pt_unit,
 
         ]);
         return redirect('aksesibilitas')->with('success', 'Data berhasil disimpan');
@@ -106,7 +106,7 @@ class AksesibilitasController extends Controller
             'lan' => $request->lan,
             'wan' => $request->wan,
             'id_pt_unit' => $request->id_pt_unit,
-            'kode_pt_unit' => $request->kode_pt_unit,
+            // 'kode_pt_unit' => $request->kode_pt_unit,
         ]);
         return redirect('aksesibilitas')->with('success', 'Data berhasil disimpan');
     }

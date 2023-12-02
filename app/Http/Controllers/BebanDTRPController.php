@@ -52,17 +52,18 @@ class BebanDTRPController extends Controller
     public function create()
     {
 // <<<<<<< HEAD
-        $dosens = Dosen::all();
-        return view(
-            'admprodi.page.beban_dtpr.form',
-            [
-                'url' => 'simpan-bebandtpr',
-                'dosens' => $dosens,
-            ]
-        );
-// =======
+        // $dosens = Dosen::all();
+//         return view(
+//             'admprodi.page.beban_dtpr.form',
+//             [
+//                 'url' => 'simpan-bebandtpr',
+//                 'dosens' => $dosens,
+//             ]
+//         );
+// // =======
         $ptUnit = Auth::user()->ptUnit;
-        return view('beban_dtpr.create', compact('ptUnit'));
+        $dosens = Dosen::all();
+        return view('beban_dtpr.create', compact('ptUnit','dosens'));
 // >>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
     }
 
@@ -85,7 +86,7 @@ class BebanDTRPController extends Controller
             'sks_pengabdian' => $request->sks_pengabdian,
             'manajemen_pt_sendiri' => $request->manajemen_pt_sendiri,
             'manajemen_pt_lain' => $request->manajemen_pt_lain,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
         return redirect('beban-dtpr')->with('success', 'Data berhasil disimpan');
     }
@@ -110,12 +111,9 @@ class BebanDTRPController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-// <<<<<<< HEAD
     { 
-        $user = Auth::user();
-// =======
-    
-// >>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
+        // $user = Auth::user();
+
         $dtpr = BebanDTPR::find($id);
         $dtpr->update([
             'nama_dosen' => $request->nama_dosen,

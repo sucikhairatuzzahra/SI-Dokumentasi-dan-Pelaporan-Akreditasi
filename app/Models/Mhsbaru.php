@@ -5,9 +5,10 @@ namespace App\Models;
 use Attribute;
 use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use App\Exports\MahasiswaExport;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Mhsbaru extends Model
 {

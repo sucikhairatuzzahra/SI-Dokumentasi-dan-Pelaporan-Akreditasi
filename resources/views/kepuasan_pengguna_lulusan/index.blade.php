@@ -30,6 +30,41 @@
             <div class="page-wrapper">
                 <!-- Page-body start -->
                 <div class="page-body">
+                    @can('isJurusan')
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-left">
+                                    <h5>Pilih Program Studi </h5>
+                                </div>
+                            </div>
+                            <div class="card-block">
+                                <form action="{{ route('kepuasan-pengguna.index') }}" method="get">
+                                    <div class="row">
+                                        <div class="col-md-3 form-group">
+                                            <label for="">Program Studi</label>
+                                            <select name="id_pt_unit" class="form-control">
+                                                <option value="0">--Pilih Program Studi--</option>
+                                                <option value="5" {{ $request->id_pt_unit === '5' ? 'selected' : '' }}>D3
+                                                    MI
+                                                </option>
+                                                <option value="6" {{ $request->id_pt_unit === '6' ? 'selected' : '' }}>D3
+                                                    TK
+                                                </option>
+                                                <option value="4" {{ $request->id_pt_unit === '4' ? 'selected' : '' }}>D4
+                                                    TRPL
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 form-group" style="margin-top:25px;">
+                                            <input type="submit" class="btn btn-primary" value="Filter">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            {{-- tabel  --}}
+                            <br>
+                        </div>
+                    @endcan
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
@@ -48,7 +83,7 @@
                                     <div class="alert alert-danger">{{ session('error') }}</div>
                                 @endif
                             @endcan
-                            
+
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
@@ -70,9 +105,9 @@
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
-                                            {{-- <th scope="col" rowspan="2">
+                                            <th scope="col" rowspan="2">
                                                 Aksi
-                                            </th> --}}
+                                            </th>
                                         </tr>
                                         <tr align="center">
                                             <th>
@@ -100,24 +135,22 @@
                                                 <td>{{ $item->cukup }}</td>
                                                 <td>{{ $item->kurang }}</td>
                                                 <td>{{ $item->rencana_tindak_lanjut }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
-                                                {{-- <td>
-                                                    <a href="{{ route('edit-kepuasan_pengguna', ['id' => $item->id]) }}"
-                                                        style="margin-right: 7px">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('hapus-kepuasan_pengguna', ['id' => $item->id]) }}"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                        Hapus
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="{{ route('hapus-kepuasan_pengguna', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-
-                                                </td> --}}
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
+                                                @can('isAdmProdi')
+                                                    <td>
+                                                        <form
+                                                            action="{{ route('kepuasan-pengguna.destroy', ['id' => $item->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <a href="{{ route('kepuasan-pengguna.edit', ['id' => $item->id]) }}"
+                                                                style="margin-right: 7px">
+                                                                Edit
+                                                            </a>
+                                                            <button type="submit" class="btn btn-link">Hapus</button>
+                                                        </form>
+                                                    </td>
+                                                @endcan
                                             </tr>
                                         @endforeach
                                     </tbody>

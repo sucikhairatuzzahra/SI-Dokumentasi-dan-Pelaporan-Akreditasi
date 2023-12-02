@@ -30,6 +30,41 @@
             <div class="page-wrapper">
                 <!-- Page-body start -->
                 <div class="page-body">
+                    @can('isJurusan')
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-left">
+                                    <h5>Pilih Program Studi </h5>
+                                </div>
+                            </div>
+                            <div class="card-block">
+                                <form action="{{ route('lulus-tw.index') }}" method="get">
+                                    <div class="row">
+                                        <div class="col-md-3 form-group">
+                                            <label for="">Program Studi</label>
+                                            <select name="id_pt_unit" class="form-control">
+                                                <option value="0">--Pilih Program Studi--</option>
+                                                <option value="5" {{ $request->id_pt_unit === '5' ? 'selected' : '' }}>D3
+                                                    MI
+                                                </option>
+                                                <option value="6" {{ $request->id_pt_unit === '6' ? 'selected' : '' }}>D3
+                                                    TK
+                                                </option>
+                                                <option value="4" {{ $request->id_pt_unit === '4' ? 'selected' : '' }}>D4
+                                                    TRPL
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 form-group" style="margin-top:25px;">
+                                            <input type="submit" class="btn btn-primary" value="Filter">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            {{-- tabel  --}}
+                            <br>
+                        </div>
+                    @endcan
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
@@ -135,7 +170,7 @@
                                                     <td>{{ $item->jumlah_lulusan_sampai_ts }}</td>
                                                     <td>{{ $item->masa_studi }}</td>
                                                     <td>{{ $item->jml_mhs_aktif }}</td>
-                                                    <td>{{ $item->kode_pt_unit }}</td>
+                                                    <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                     @can('isAdmProdi')
                                                         <td>
                                                             <form action="{{ route('lulus-tw.destroy', ['id' => $item->id]) }}"

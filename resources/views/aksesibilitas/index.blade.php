@@ -143,7 +143,7 @@
                                                 <td>{{ $item->tanpa_jrg }}</td>
                                                 <td>{{ $item->lan }}</td>
                                                 <td><a href="{{ $item->wan }}">{{ $item->wan }}</a></td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <form
