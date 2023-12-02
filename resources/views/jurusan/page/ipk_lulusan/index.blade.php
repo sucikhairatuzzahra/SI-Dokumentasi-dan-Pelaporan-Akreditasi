@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:resources/views/jurusan/page/ipk_lulusan/index.blade.php
 @extends('jurusan.layout.app')
+========
+@extends('layouts.app')
+>>>>>>>> origin/prefered_dev:resources/views/ipk_lulusan/index.blade.php
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -6,7 +10,7 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Indeks Prestasi Kumulatif Lulusan</h5>
+                        <h5 class="m-b-10">IPK Lulusan</h5>
                         <p class="m-b-0">Data Bidang Kerja Lulusan</p>
                     </div>
                 </div>
@@ -16,7 +20,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Indeks Prestasi Kumulatif Lulusan</a>
+                        <li class="breadcrumb-item"><a href="#!">IPK Lulusan</a>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +37,21 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Indeks Prestasi Kumulatif Lulusan</h5>
+                            <h5>IPK Lulusan</h5>
+                            @can('isAdmProdi')
+                                <a href="{{ route('ipk-lulusan.create') }}">
+                                    <span>Tambah data <code>disini</code></span>
+                                </a>
+
+                                {{-- Alerting --}}
+                                @if (session('success'))
+                                    <div class="alert alert-success">{{ session('success') }}</div>
+                                @endif
+
+                                @if (session('error'))
+                                    <div class="alert alert-danger">{{ session('error') }}</div>
+                                @endif
+                            @endcan
 
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -47,10 +65,6 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-                                {{-- <div class="row">
-                                    <a href="{{ route('ipklulusan-download') }}">
-                                        <button class="btn btn-success">Download</button></a>
-                                </div> --}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
@@ -69,8 +83,11 @@
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
-
-
+                                            @can('isAdmProdi')
+                                                <th scope="col" rowspan="2">
+                                                    Aksi
+                                                </th>
+                                            @endcan
                                         </tr>
                                         <tr align="center">
                                             <th>
@@ -94,8 +111,26 @@
                                                 <td>{{ $item->ipk_min }}</td>
                                                 <td>{{ $item->ipk_rata_rata }}</td>
                                                 <td>{{ $item->ipk_max }}</td>
+<<<<<<<< HEAD:resources/views/jurusan/page/ipk_lulusan/index.blade.php
                                                 <td>{{ $item->kode_pt_unit }}</td>
 
+========
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
+                                                @can('isAdmProdi')
+                                                    <td>
+                                                        <form action="{{ route('ipk-lulusan.destroy', ['id' => $item->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <a href="{{ route('ipk-lulusan.edit', ['id' => $item->id]) }}"
+                                                                style="margin-right: 7px">
+                                                                Edit
+                                                            </a>
+                                                            <button type="submit" class="btn btn-link">Hapus</button>
+                                                        </form>
+                                                    </td>
+                                                @endcan
+>>>>>>>> origin/prefered_dev:resources/views/ipk_lulusan/index.blade.php
                                             </tr>
                                         @endforeach
                                     </tbody>

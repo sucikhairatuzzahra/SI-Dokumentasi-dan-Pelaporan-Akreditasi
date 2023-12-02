@@ -23,8 +23,8 @@ return new class extends Migration
             $table->integer('internasional');
             $table->integer('nasional');
             $table->integer('wirausaha');
-            $table->integer('id_pt_unit');
-            $table->string('kode_pt_unit');
+            $table->unsignedBigInteger('id_pt_unit');
+            $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
             $table->timestamps();
         });
     }

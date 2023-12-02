@@ -15,8 +15,8 @@ class AdminController extends Controller
     public function index()
     {
         $data = TahunAkademik::all();
-        
-        return view('admin.page.tahun_akademik.index', compact('data'));
+
+        return view('admin.tahun_akademik.index', compact('data'));
     }
 
     /**
@@ -26,12 +26,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view(
-            'admin.page.tahun_akademik.form',
-            [
-                'url' => 'simpan-tahun-akademik',
-            ]
-        );
+        return view('admin.page.tahun_akademik.form');
     }
 
     /**
@@ -48,47 +43,13 @@ class AdminController extends Controller
         ]);
 
         if ($input) {
-            return redirect('tahun-akademik')->with('pesan', 'Data berhasil disimpan');
+            return redirect('tahun-akademik.index')->with('success', 'Data berhasil disimpan');
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
             window.location = '/admprodi.page.tahun_akademik.index';
             </script>";
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -102,6 +63,6 @@ class AdminController extends Controller
         $dana = TahunAkademik::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $dana->delete();
 
-        return redirect()->route('tahun-akademik')->with('success', 'Data tahun akademik berhasil dihapus');
+        return redirect()->route('tahun-akademik.index')->with('success', 'Data tahun akademik berhasil dihapus');
     }
 }

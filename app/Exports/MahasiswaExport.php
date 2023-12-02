@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Mhsbaru;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Events\AfterSheet;
@@ -36,8 +37,7 @@ class MahasiswaExport implements FromView, ShouldAutoSize
 
     public function view(): View
     {
-        return view('kaprodi.page.mhsbaru.table', [
-            'data' => Mhsbaru::all()
-        ]);
+        $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+        return view('kaprodi.mahasiswa.table', compact('data'));
     }
 }
