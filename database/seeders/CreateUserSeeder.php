@@ -80,7 +80,6 @@ class CreateUserSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'role' => 3,
                 'id_pt_unit' => 3,
-                
             ]
         ];
         foreach ($users as $user) {

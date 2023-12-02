@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="page-header-title">
                         <h5 class="m-b-10">Pegawai</h5>
-                        <p class="m-b-0">Form Tambah Pegawai</p>
+                        <p class="m-b-0">Form Edit Pegawai</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -39,37 +39,43 @@
 
                                 </div>
                                 <div class="card-block">
-                                    <form action="{{ route('pegawai.update', $editData->pk_id_pegawai) }}" method="POST">
+                                    <form action="{{ route('pegawai.update', $editData->id) }}" method="POST">
                                         @csrf
                                         @method('put')
 
                                         <div class="form-group">
                                             <label for="nama_pegawai">Nama Pegawai</label>
                                             <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai"
-                                                value="{{ $editData->nama_pegawai }}">
+                                                value="{{ $editData->nama_pegawai }}" required>
+                                            <p class="text-danger">{{ $errors->first('nama_pegawai') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="tanggal_lahir">Tanggal Lahir</label>
                                             <input type="date" class="form-control" id="tanggal_lahir"
-                                                name="tanggal_lahir" value="{{ $editData->tanggal_lahir }}">
+                                                name="tanggal_lahir" value="{{ $editData->tanggal_lahir }}" required>
+                                            <p class="text-danger">{{ $errors->first('tanggal_lahir') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="nip">Nomor Induk Pegawai</label>
                                             <input type="text" class="form-control" id="nip" name="nip"
-                                                value="{{ $editData->nip }}">
+                                                value="{{ $editData->nip }}" required>
+                                            <p class="text-danger">{{ $errors->first('nip') }}</p>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="aktif">Aktif</label>
                                             <select name="aktif" class="form-control">
-                                                <option value="ya">Ya</option>
-                                                <option value="tidak">Tidak</option>
-
+                                                <option value="ya" {{ $editData->aktif == 'ya' ? 'selected' : '' }}>Ya
+                                                </option>
+                                                <option value="tidak" {{ $editData->aktif == 'ya' ? 'selected' : '' }}>
+                                                    Tidak</option>
                                             </select>
+                                            <p class="text-danger">{{ $errors->first('aktif') }}</p>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <a href="{{ route('pegawai.index') }}" class="btn btn-light">Cancel</a>
                                     </form>
-                                    <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                 </div>
 
                             </div>

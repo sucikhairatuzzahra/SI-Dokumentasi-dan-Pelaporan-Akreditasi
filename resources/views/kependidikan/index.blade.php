@@ -109,10 +109,9 @@
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
-
-                                            {{-- <th scope="col" rowspan="2">
+                                            <th scope="col" rowspan="2">
                                                 Aksi
-                                            </th> --}}
+                                            </th>
                                         </tr>
                                         <tr align="center">
                                             <th>
@@ -166,14 +165,14 @@
                                                 {{-- <td>{{ $item['unit_kerja'] }}</td> --}}
                                                 <td>{{ $item['pt_unit'] }}</td>
                                                 {{-- <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td> --}}
-                                                {{-- @can('isAdmProdi')
+                                                @can('isAdmProdi')
                                                     <td>
-                                                        <a href="{{ route('kependidikan.byptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
+                                                        <a href="{{ route('kependidikan.show', ['id' => $item['id_pt_unit']]) }}"
                                                             style="margin-right: 7px">
                                                             Lihat
                                                         </a>
                                                     </td>
-                                                @endcan --}}
+                                                @endcan
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -1,4 +1,4 @@
-@extends('admprodi.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -66,23 +66,23 @@
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Aksi
-                                            </th>
+                                            @can('isAdmProdi')
+                                                <th scope="col" rowspan="2">
+                                                    Aksi
+                                                </th>
+                                            @endcan
                                         </tr>
 
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($data as $no => $item)
+                                        @foreach ($data as $item)
                                             <tr align="center">
-                                                <td>{{ $item['nama'] }}</td>
-                                                <td>{{ $item['jenis_tenaga_kependidikan'] }}</td>
-                                                <td>{{ $item['jenjang_pendidikan'] }} </td>
-                                                <td>{{ $item['kode_pt_unit'] }}</td>
-                                                <td>
-
-                                                    @can('isAdmProdi')
+                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->jenis_tenaga_kependidikan }}</td>
+                                                <td>{{ $item->jenjang_pendidikan }} </td>
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
+                                                @can('isAdmProdi')
                                                     <td>
                                                         <form action="{{ route('kependidikan.destroy', ['id' => $item->id]) }}"
                                                             method="POST">
@@ -96,7 +96,6 @@
                                                         </form>
                                                     </td>
                                                 @endcan
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
@@ -30,37 +31,6 @@ class DashboardController extends Controller
         }
     }
 
-    public function indexAdmin()
-    {
-        return view('admin.page.dashboard.index');
-    }
-
-    public function admprodiIndex()
-    {
-        return view('admprodi.page.dashboard.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexJurusan()
-    {
-        return view('jurusan.page.dashboard.index');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function indexKaprodi()
-    {
-        return view('kaprodi.page.dashboard.index');
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -70,6 +40,7 @@ class DashboardController extends Controller
     public function edit($id)
     {
         $data['editData'] = User::find($id);
+        Log::debug($data['editData']);
         return view('admin.users.form_edit', $data);
     }
 
