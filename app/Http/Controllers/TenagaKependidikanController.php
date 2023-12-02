@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class TenagaKependidikanController extends Controller
 {
@@ -61,6 +62,7 @@ class TenagaKependidikanController extends Controller
                 $data[$key] = [
                     'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
                     'nama' => $value->nama,
+                    'id_pt_unit' => $value->ptUnit->id,
                     'pt_unit' => $value->ptUnit->kode_pt_unit,
                     'unit_kerja' => $value->unit_kerja,
                     'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
@@ -100,10 +102,22 @@ class TenagaKependidikanController extends Controller
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
-            'id_pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
 
         return redirect('kependidikan')->with('success', 'Data berhasil disimpan');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $data = TenagaKependidikan::where('id_pt_unit', $id)->with('ptUnit')->get();
+        return view('kependidikan.show', compact('data'));
     }
 
     /**

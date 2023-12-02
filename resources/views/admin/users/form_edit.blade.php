@@ -56,14 +56,18 @@
                                             <label for="role">Role</label>
 
                                             <select name="role" class="form-control">
-                                                <option value="3">Admin</option>
-                                                <option value="2">Adm Prodi</option>
-                                                <option value="1">Kaprodi</option>
-                                                <option value="0">Jurusan</option>
+                                                <option value="3" {{ $editData->role == 'admin' ? 'selected' : '' }}>Admin
+                                                </option>
+                                                <option value="2" {{ $editData->role == 'admprodi' ? 'selected' : '' }}>Adm
+                                                    Prodi</option>
+                                                <option value="1" {{ $editData->role == 'kaprodi' ? 'selected' : '' }}>
+                                                    Kaprodi</option>
+                                                <option value="0" {{ $editData->role == 'jurusan' ? 'selected' : '' }}>
+                                                    Jurusan</option>
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
+                                        <a href="{{ route('users.index') }}" class="btn btn-light" type="button">Cancel</a>
                                     </form>
                                 </div>
 

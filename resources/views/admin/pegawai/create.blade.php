@@ -44,25 +44,31 @@
 
                                         <div class="form-group">
                                             <label for="nama_pegawai">Nama Pegawai</label>
-                                            <input type="text" class="form-control" id="nama_pegawai"
-                                                name="nama_pegawai">
+                                            <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai"
+                                                value="{{ old('nama_pegawai') }}" required>
+                                            <p class="text-danger">{{ $errors->first('nama_pegawai') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="tanggal_lahir">Tanggal Lahir</label>
                                             <input type="date" class="form-control" id="tanggal_lahir"
-                                                name="tanggal_lahir">
+                                                name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
+                                            <p class="text-danger">{{ $errors->first('tanggal_lahir') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="nip">Nomor Induk Pegawai</label>
-                                            <input type="text" class="form-control" id="nip" name="nip">
+                                            <input type="text" class="form-control" id="nip" name="nip"
+                                                value="{{ old('nip') }}" required>
+                                            <p class="text-danger">{{ $errors->first('nip') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="aktif">Aktif</label>
-                                            <select name="aktif" class="form-control">
-                                                <option value="ya">Ya</option>
-                                                <option value="tidak">Tidak</option>
-
+                                            <select name="aktif" class="form-control" required>
+                                                <option value="ya" {{ old('aktif') == 'ya' ? 'selected' : '' }}>Ya
+                                                </option>
+                                                <option value="tidak" {{ old('aktif') == 'ya' ? 'selected' : '' }}>Tidak
+                                                </option>
                                             </select>
+                                            <p class="text-danger">{{ $errors->first('aktif') }}</p>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Simpan</button>

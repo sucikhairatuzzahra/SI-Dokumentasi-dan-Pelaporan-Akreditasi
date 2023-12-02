@@ -62,7 +62,7 @@ Route::resource('mahasiswa', CalonMhsBaruController::class)->except('show')->par
 Route::get('mahasiswa-download', [CalonMhsBaruController::class, 'export'])->name('mahasiswa.download');
 Route::resource('beban-dtpr', BebanDTRPController::class)->parameters(['beban-dtpr' => 'id']);
 Route::get('beban-dtpr-download', [BebanDTRPController::class, 'download'])->name('beban-dtpr.download');
-Route::resource('kependidikan', TenagaKependidikanController::class)->except('show')->parameters(['kependidikan' => 'id']);
+Route::resource('kependidikan', TenagaKependidikanController::class)->parameters(['kependidikan' => 'id']);
 Route::get('kependidikan-download', [TenagaKependidikanController::class, 'download'])->name('kependidikan.download');
 
 Route::resource('pendanaan', PendanaanController::class)->except('show')->parameters(['pendanaan' => 'id']);
