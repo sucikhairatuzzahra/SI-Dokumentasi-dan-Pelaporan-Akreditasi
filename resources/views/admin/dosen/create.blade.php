@@ -45,8 +45,8 @@
                                         @csrf
 
                                         <div class="form-group">
-                                            <label for="nama_dosen">Nama Dosen</label>
-                                            <select name="id_pegawai" class="form-control">
+                                            <label for="id_pegawai">Nama Dosen</label>
+                                            <select name="id_pegawai" class="form-control" required>
                                                 @foreach ($idPegawais as $pegawai)
                                                     <option value="{{ $pegawai->id }}"
                                                         {{ old('id_pegawai') == $pegawai->id ? 'selected' : '' }}>
@@ -54,7 +54,6 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            {{-- <input type="text" class="form-control" id="nama_pegawai" name="nama_dosen"> --}}
                                         </div>
                                         <div class="form-group">
                                             <label for="nomor_induk_dosen">Nomor Induk Dosen</label>
@@ -128,7 +127,7 @@
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
+                                        <a href="{{ route('dosen.index') }}" class="btn btn-light">Cancel</a>
                                     </form>
                                 </div>
 

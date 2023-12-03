@@ -37,66 +37,98 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Dosen</h5>
-                                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
                                     <form action="{{ route('dosen.update', $editData->id) }}" method="POST">
                                         @csrf
                                         @method('put')
                                         <div class="form-group">
-                                            <label for="nama_dosen">Nama Dosen</label>
-                                            <input type="text" class="form-control" id="nama_dosen" name="nama_dosen"
-                                                value="{{ $editData->nama_dosen }}">
+                                            <label for="id_pegawai">Nama Dosen</label>
+                                            <select name="id_pegawai" class="form-control">
+                                                @foreach ($idPegawais as $pegawai)
+                                                    <option value="{{ $pegawai->id }}"
+                                                        {{ $editData->nama_dosen == $pegawai->id ? 'selected' : '' }}>
+                                                        {{ $pegawai->nama_pegawai }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="nomor_induk_dosen">Nomor Induk Dosen</label>
-                                            <input type="text" class="form-control" id="nomor_induk_dosen"
-                                                name="nomor_induk_dosen" value="{{ $editData->nomor_induk_dosen }}">
+                                            <input type="text" class="form-control" name="nomor_induk_dosen"
+                                                value="{{ $editData->nomor_induk_dosen }}" required>
+                                            <p class="text-danger">{{ $errors->first('nomor_induk_dosen') }}</p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="jenis_nomor_induk_dosen">Jenis Nomor Induk Dosen</label>
-                                            <input type="text" class="form-control" id="jenis_nomor_induk_dosen"
-                                                name="jenis_nomor_induk_dosen"
-                                                value="{{ $editData->jenis_nomor_induk_dosen }}">
+                                            <label for="jenis_nid">Jenis Nomor Induk Dosen</label>
+                                            <select name="jenis_nid" class="form-control">
+                                                <option value="NIDN"
+                                                    {{ $editData->jenis_nomor_induk_dosen == 'NIDN' ? 'selected' : '' }}>
+                                                    NIDN
+                                                </option>
+                                                <option value="NIDK"
+                                                    {{ $editData->jenis_nomor_induk_dosen == 'NIDN' ? 'selected' : '' }}>
+                                                    NIDK
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="level_pendidikan_tertinggi">Pendidikan Tertinggi</label>
+                                            <select name="level_pendidikan_tertinggi" class="form-control">
+                                                @foreach ($idLevelPddkns as $levelPddkn)
+                                                    <option value="{{ $levelPddkn->id }}"
+                                                        {{ $editData->id_level_pendidikan_tertinggi == $levelPddkn->id ? 'selected' : '' }}>
+                                                        {{ $levelPddkn->nama_level_pendidikan }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="pendidikan_magister"> Pendidikan Magister</label>
-                                            <input type="text" class="form-control" id="pendidikan_magister"
-                                                name="pendidikan_magister" value="{{ $editData->pendidikan_magister }}">
+                                            <input type="text" class="form-control" name="pendidikan_magister"
+                                                value="{{ $editData->pendidikan_magister }}" required>
+                                            <p class="text-danger">{{ $errors->first('pendidikan_magister') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="pendidikan_doktor">Pendidikan Doktor</label>
-                                            <input type="text" class="form-control" id="pendidikan_doktor"
-                                                name="pendidikan_doktor" value="{{ $editData->pendidikan_doktor }}">
+                                            <input type="text" class="form-control" name="pendidikan_doktor"
+                                                value="{{ $editData->pendidikan_doktor }}" required>
+                                            <p class="text-danger">{{ $errors->first('pendidikan_doktor') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="bidang_keahlian">Bidang Keahlian</label>
                                             <input type="text" class="form-control" id="bidang_keahlian"
-                                                name="bidang_keahlian" value="{{ $editData->bidang_keahlian }}">
+                                                name="bidang_keahlian" value="{{ $editData->bidang_keahlian }}" required>
+                                            <p class="text-danger">{{ $errors->first('bidang_keahlian') }}</p>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="jabatan_akademik"> Jabatan Akademik</label>
                                             <input type="text" class="form-control" id="jabatan_akademik"
-                                                name="jabatan_akademik" value="{{ $editData->jabatan_akademik }}">
+                                                name="jabatan_akademik" value="{{ $editData->jabatan_akademik }}" required>
+                                            <p class="text-danger">{{ $errors->first('jabatan_akademik') }}</p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="sertifikat_pendidik_profesional">Sertifikat Pendidik
-                                                Profesional</label>
-                                            <input type="text" class="form-control" id="sertifikat_pendidik_profesional"
-                                                name="sertifikat_pendidik_profesional"
-                                                value="{{ $editData->sertifikat_pendidik_profesional }}">
+                                            <label for="kategori_dosen">Kategori Dosen</label>
+                                            <select name="kode_kategori_dosen" class="form-control">
+                                                @foreach ($idKatDosens as $idKatDosen)
+                                                    <option value="{{ $idKatDosen->id }}"
+                                                        {{ $editData->kode_kategori_dosen == $idKatDosen->id ? 'selected' : '' }}>
+                                                        {{ $idKatDosen->kode_kategori_dosen }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="sertifikat_kompetensi_profesi_industri">Sertifikat Kompetensi
-                                                Profesi Industri</label>
-                                            <input type="text" class="form-control"
-                                                id="sertifikat_kompetensi_profesi_industri"
-                                                name="sertifikat_kompetensi_profesi_industri"
-                                                value="{{ $editData->sertifikat_kompetensi_profesi_industri }}">
+                                            <label for="id_pt_unit">Unit Kerja</label>
+                                            <input type="hidden" class="form-control" name="id_pt_unit"
+                                                value="{{ $ptUnit->id }}" required>
+                                            <input type="text" class="form-control" value="{{ $ptUnit->kode_pt_unit }}"
+                                                disabled>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
+                                        <a href="{{ route('dosen.index') }}" class="btn btn-light">Cancel</a>
                                     </form>
                                 </div>
 
