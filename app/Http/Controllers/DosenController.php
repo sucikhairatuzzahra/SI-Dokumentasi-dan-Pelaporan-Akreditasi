@@ -31,11 +31,11 @@ class DosenController extends Controller
      */
     public function create()
     {
-        $idPegawais = Pegawai::all();
-        $idKatDosens = KategoriDosen::all();
+        $pegawai = Pegawai::all();
+        $katDosen = KategoriDosen::all();
         $ptUnit = Auth::user()->ptUnit;
-        $idLevelPddkns = LevelPendidikanTertinggi::all();
-        return view('admin.dosen.create', compact('idPegawais', 'idKatDosens', 'ptUnit', 'idLevelPddkns'));
+        $lvPendidikan = LevelPendidikanTertinggi::all();
+        return view('admin.dosen.create', compact('pegawai','katDosen','ptUnit','lvPendidikan'));
     }
 
     /**
