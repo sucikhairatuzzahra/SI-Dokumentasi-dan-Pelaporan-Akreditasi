@@ -16,6 +16,6 @@ class Pegawai extends Model
     ];
     public function Dosen(): HasMany
     {
-        return $this->hasMany(Dosen::class, 'id_pegawai');
+        return $this->hasMany(Dosen::class, 'id_pegawai','nama_dosen');
     }
 }

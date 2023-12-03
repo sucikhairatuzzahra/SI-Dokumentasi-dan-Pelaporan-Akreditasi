@@ -17,9 +17,9 @@ class Dosen extends Model
         'id_pegawai', 'id_pt_unit', 'id_kategori_dosen'
     ];
 
-    public function idPegawai():BelongsTo
+    public function pegawai():BelongsTo
     {
-         return $this->belongsTo(Pegawai::class, 'id_pegawai');
+         return $this->belongsTo(Pegawai::class, 'id_pegawai','nama_dosen');
     }
      
      public function idKatDosen():BelongsTo

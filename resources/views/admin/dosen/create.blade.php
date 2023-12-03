@@ -44,7 +44,14 @@
 
                                         <div class="form-group">
                                             <label for="nama_dosen">Nama Dosen</label>
-                                            <input type="text" class="form-control" id="nama_dosen" name="nama_dosen">
+                                            <select name="nama_dosen" id="nama_dosen" class="form-control">
+                                                @foreach ($idPegawais as $pegawai)
+                                                    <option value="{{ $pegawai->id }}">
+                                                        {{ $pegawai->nama_pegawai }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            {{-- <input type="text" class="form-control" id="nama_dosen" name="nama_dosen"> --}}
                                         </div>
                                         <div class="form-group">
                                             <label for="nomor_induk_dosen">Nomor Induk Dosen</label>
@@ -103,9 +110,9 @@
                                         <div class="form-group">
                                             <label for="id_pegawai">NIP</label>
                                             <select name="nip" id="nip" class="form-control">
-                                                @foreach ($idPegawais as $idPegawai)
-                                                    <option value="{{ $idPegawai->id }}">
-                                                        {{ $idPegawai->nip }}
+                                                @foreach ($idPegawais as $pegawai)
+                                                    <option value="{{ $pegawai->id }}">
+                                                        {{ $pegawai->nip }}
                                                     </option>
                                                 @endforeach
                                             </select>
