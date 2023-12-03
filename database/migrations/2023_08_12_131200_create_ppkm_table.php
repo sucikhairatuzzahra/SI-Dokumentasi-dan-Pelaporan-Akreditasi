@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ppkm', function (Blueprint $table) {
-            $table->id('pk_id_ppkm');
+            $table->id();
             $table->string('tahun');
             $table->string('judul');
             $table->enum('jenis_penelitian_pengabdian', ['penelitian', 'pengabdian']);
-            $table->enum('id_jenis_sumber_pembiayaan', ['1', '2', '3', '4']);
-            $table->enum('sumber_pembiayaan', ['mandiri', 'perguruan_tinggi', 'lmbg_dlm_negri', 'lmbg_luar_negri']);
-            $table->enum('kerjasama', ['y', 't']);
-            $table->string('id_kriteria');
+            $table->unsignedBigInteger('id_jenis_sumber_pembiayaan');
+            $table->foreign('id_jenis_sumber_pembiayaan')->references('id')->on('jenis_sumber_pembiayaan');
+            $table->string('sumber_pembiayaan');
+            // $table->enum('kerjasama', ['y', 't']);
             $table->timestamps();
         });
     }

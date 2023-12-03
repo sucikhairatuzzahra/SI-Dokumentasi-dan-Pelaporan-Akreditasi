@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             CreatePTUnitSeeder::class,
             CreateTahunAkademikSeeder::class,
             CreateUserSeeder::class,
-
+            CreateJenisSumberPembiayaanSeeder::class,
             CreateKategoriDosenSeeder::class,
             CreateLevelPendidikanTertinggiSeeder::class,
             MhsBaruSeed::class,

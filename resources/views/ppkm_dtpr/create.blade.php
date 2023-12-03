@@ -37,10 +37,10 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+                                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
-                                    <form action="{{ route('ppkm-dtpr.update') }}" method="POST">
+                                    <form action="{{ route('ppkm-dtpr.store') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <label for="nama_dtpr">Nama DTPRs</label>

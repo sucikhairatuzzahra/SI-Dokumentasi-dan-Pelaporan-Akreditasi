@@ -17,6 +17,7 @@ use App\Http\Controllers\SaranaPrasaranaController;
 use App\Http\Controllers\TenagaKependidikanController;
 use App\Http\Controllers\JumlahTenagaKependidikanController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PPKMController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LuaranController;
 use App\Http\Controllers\LuaranLainController;
@@ -60,8 +61,10 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
 
 Route::resource('mahasiswa', CalonMhsBaruController::class)->except('show')->parameters(['mahasiswa' => 'id']);
 Route::get('mahasiswa-download', [CalonMhsBaruController::class, 'export'])->name('mahasiswa.download');
+
 Route::resource('beban-dtpr', BebanDTRPController::class)->parameters(['beban-dtpr' => 'id']);
 Route::get('beban-dtpr-download', [BebanDTRPController::class, 'download'])->name('beban-dtpr.download');
+
 Route::resource('kependidikan', TenagaKependidikanController::class)->parameters(['kependidikan' => 'id']);
 Route::get('kependidikan-download', [TenagaKependidikanController::class, 'download'])->name('kependidikan.download');
 
@@ -91,3 +94,6 @@ Route::get('kerja-lulusan-download', [BidangKerjaLulusanController::class, 'down
 
 Route::resource('ppkm-dtpr', PPKMDariDTPRController::class)->except('show')->parameters(['ppkm_dtpr' => 'id']);
 Route::get('ppkm-dtpr-download', [PPKMDariDTPRController::class, 'download'])->name('ppkm-dtpr.download');
+
+Route::resource('ppkm', PPKMController::class)->except('show')->parameters(['ppkm' => 'id']);
+// Route::get('ppkm-dtpr-download', [PPKMDariDTPRController::class, 'download'])->name('ppkm-dtpr.download');

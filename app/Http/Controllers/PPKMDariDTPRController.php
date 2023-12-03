@@ -43,6 +43,7 @@ class PPKMDariDTPRController extends Controller
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
             $data = PPKMDariDTPR::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
+
             return view('ppkm_dtpr.index', compact('data'));
         }
     }
@@ -58,18 +59,18 @@ class PPKMDariDTPRController extends Controller
         $luarans = Luaran::all();
         $luaranlains = LuaranLain::all();
         $dosens = Dosen::all();
-        return view(
-            'admprodi.page.ppkm_dtpr.form',
-            [
-                'url' => 'simpan-ppkm_dtpr',
-                'luarans' =>  $luarans,
-                'luaranlains' =>  $luaranlains,
-                'dosens' => $dosens,
-            ]
-        );
+        // return view(
+        //     'admprodi.page.ppkm_dtpr.form',
+        //     [
+        //         'url' => 'simpan-ppkm_dtpr',
+        //         'luarans' =>  $luarans,
+        //         'luaranlains' =>  $luaranlains,
+        //         'dosens' => $dosens,
+        //     ]
+        // );
 
         $ptUnit = Auth::user()->ptUnit;
-        return view('ppkm_dtpr.create', compact('ptUnit'));
+        return view('ppkm_dtpr.create', compact('ptUnit','luarans','luaranlains','dosens'));
 
     }
 
@@ -83,7 +84,6 @@ class PPKMDariDTPRController extends Controller
     {
         PPKMDariDTPR::insert([
             'id' => $request->id,
-// <<<<<<< HEAD
             'nama_dtpr' => $request->nama_dosen,
             'jenis_penelitian_pengabdian' => $request->jenis_penelitian_pengabdian,
             'judul' => $request->judul,
@@ -95,16 +95,6 @@ class PPKMDariDTPRController extends Controller
             'bukti' => $request->bukti,
             'id_pt_unit' => $user->id_pt_unit,
             'kode_pt_unit' => $user->kode_pt_unit,
-// =======
-            // 'nama_dtpr' => $request->nama_dtpr,
-            // 'publikasi_infokom' => $request->publikasi_infokom,
-            // 'penelitian_infokom' => $request->penelitian_infokom,
-            // 'penelitian_infokom_hki' => $request->penelitian_infokom_hki,
-            // 'pkm_infokom_adobsi' => $request->pkm_infokom_adobsi,
-            // 'pkm_infokom_hki' => $request->pkm_infokom_hki,
-            // 'pt_unit' => $request->kode_pt_unit,
-
-
         ]);
         return redirect('ppkm-dtpr')->with('success', 'Data berhasil disimpan');
     }
