@@ -21,10 +21,10 @@ class Dosen extends Model
 
     public function pegawai():BelongsTo
     {
-         return $this->belongsTo(Pegawai::class, 'id_pegawai','nama_dosen');
+         return $this->belongsTo(Pegawai::class, 'id_pegawai');
     }
      
-     public function idKatDosen():BelongsTo
+     public function kategoriDosen():BelongsTo
     {
          return $this->belongsTo(KategoriDosen::class, 'id_kategori_dosen');
     }

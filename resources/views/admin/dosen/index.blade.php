@@ -110,7 +110,7 @@
                                                 <td>{{ $item->jabatan_akademik }}</td>
                                                 <td>{{ $item->pegawai->nip }}</td>
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
-                                                <td>{{ $item->idKatDosen->kode_kategori_dosen }}</td>
+                                                <td>{{ $item->kategoriDosen->kode_kategori_dosen }}</td>
                                                 <td>
                                                     <form action="{{ route('dosen.destroy', ['id' => $item->id]) }}"
                                                         method="POST">
