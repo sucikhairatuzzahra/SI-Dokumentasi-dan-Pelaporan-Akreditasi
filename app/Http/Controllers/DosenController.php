@@ -21,6 +21,7 @@ class DosenController extends Controller
     public function index(Request $request)
     {
         $data = Dosen::all();
+        // $data = Dosen::with('ptUnit','pegawai','idKatDosen','levelPddkn');
         return view('admin.dosen.index', compact('data'));
     }
 
@@ -36,6 +37,20 @@ class DosenController extends Controller
         $ptUnit = Auth::user()->ptUnit;
         $idLevelPddkns = LevelPendidikanTertinggi::all();
         return view('admin.dosen.create', compact('idPegawais','idKatDosens','ptUnit','idLevelPddkns'));
+
+        // $idPegawais = Pegawai::all();
+        // $idKatDosens = KategoriDosen::all();
+        // $ptUnit = Auth::user()->ptUnit;
+        // $idLevelPddkns = LevelPendidikanTertinggi::all();
+        // return view(
+        //     'admin.dosen.create',
+        //     [
+        //         // 'url' => 'simpan-ppkm_dtpr',
+        //         'idKatDosens' =>  $luarans,
+        //         'idPegawais' =>  $idPegawais,
+        //         'idLevelPddkns' => $idLevelPddkns,
+        //     ]
+        // );  
     }
 
     /**
@@ -48,7 +63,7 @@ class DosenController extends Controller
     {
         $input = Dosen::insert([
             'id' => $request->id,
-            'nama_dosen' => $request->nama_dosen,
+            'nama_dosen' => $request->nama_pegawai,
             'nomor_induk_dosen' => $request->nomor_induk_dosen,
             'jenis_nomor_induk_dosen' => $request->jenis_nomor_induk_dosen,
             'id_level_pendidikan_tertinggi' => $request->id_level_pendidikan_tertinggi,

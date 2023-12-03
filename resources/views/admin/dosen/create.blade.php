@@ -44,14 +44,14 @@
 
                                         <div class="form-group">
                                             <label for="nama_dosen">Nama Dosen</label>
-                                            <select name="nama_dosen" id="nama_dosen" class="form-control">
+                                            <select name="nama_pegawai" id="nama_pegawai" class="form-control">
                                                 @foreach ($idPegawais as $pegawai)
                                                     <option value="{{ $pegawai->id }}">
                                                         {{ $pegawai->nama_pegawai }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            {{-- <input type="text" class="form-control" id="nama_dosen" name="nama_dosen"> --}}
+                                            {{-- <input type="text" class="form-control" id="nama_pegawai" name="nama_dosen"> --}}
                                         </div>
                                         <div class="form-group">
                                             <label for="nomor_induk_dosen">Nomor Induk Dosen</label>

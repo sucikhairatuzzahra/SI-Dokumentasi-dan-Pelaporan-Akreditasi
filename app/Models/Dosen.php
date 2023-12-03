@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Dosen extends Model
 {
@@ -35,6 +37,15 @@ class Dosen extends Model
     public function levelPddkn(): BelongsTo
     {
         return $this->belongsTo(LevelPendidikanTertinggi::class, 'id_level_pendidikan_tertinggi');
+    }
+
+    public function bebanDtpr(): HasMany
+    {
+        return $this->hasMany(BebanDTPR::class, 'id_dosen');
+    }
+    public function ppkmDtpr(): HasMany
+    {
+        return $this->hasMany(PPKMDariDTPR::class, 'id_dosen');
     }
 
 }

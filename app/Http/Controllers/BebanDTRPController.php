@@ -78,7 +78,7 @@ class BebanDTRPController extends Controller
     {
         BebanDTPR::create([
             'id' => $request->id,
-            'nama_dosen' => $request->nama_dosen,
+            'id_dosen' => $request->id_dosen,
             'pgjrn_ps_sendiri' => $request->pgjrn_ps_sendiri,
             'pgjrn_ps_lain_pt_sendiri' => $request->pgjrn_ps_lain_pt_sendiri,
             'pgjrn_pt_lain' => $request->pgjrn_pt_lain,
@@ -116,7 +116,7 @@ class BebanDTRPController extends Controller
 
         $dtpr = BebanDTPR::find($id);
         $dtpr->update([
-            'nama_dosen' => $request->nama_dosen,
+            'id_dosen' => $request->id_dosen,
             'pgjrn_ps_sendiri' => $request->pgjrn_ps_sendiri,
             'pgjrn_ps_lain_pt_sendiri' => $request->pgjrn_ps_lain_pt_sendiri,
             'pgjrn_pt_lain' => $request->pgjrn_pt_lain,

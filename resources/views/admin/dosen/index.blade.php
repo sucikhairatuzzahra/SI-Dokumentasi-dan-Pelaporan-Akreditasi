@@ -100,7 +100,7 @@
                                         @foreach ($data as $no => $item)
                                             <tr>
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->nama_pegawai }}</td>
+                                                <td>{{ $item->pegawai->nama_pegawai }}</td>
                                                 <td>{{ $item->nomor_induk_dosen }}</td>
                                                 <td>{{ $item->jenis_nomor_induk_dosen }}</td>
                                                 <td>{{ $item->levelPddkn->nama_level_pendidikan }}</td>
@@ -108,7 +108,7 @@
                                                 <td>{{ $item->pendidikan_doktor }}</td>
                                                 <td>{{ $item->bidang_keahlian }}</td>
                                                 <td>{{ $item->jabatan_akademik }}</td>
-                                                <td>{{ $item->nip }}</td>
+                                                <td>{{ $item->pegawai->nip }}</td>
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 <td>{{ $item->idKatDosen->kode_kategori_dosen }}</td>
                                                 <td>

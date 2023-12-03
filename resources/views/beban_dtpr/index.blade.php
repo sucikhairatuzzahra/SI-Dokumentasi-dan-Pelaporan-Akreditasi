@@ -150,24 +150,19 @@
                                                 <td>{{ $item->sks_pengabdian }}</td>
                                                 <td>{{ $item->manajemen_pt_sendiri }}</td>
                                                 <td>{{ $item->manajemen_pt_lain }}</td>
-                                                <td>{{ $item->kode_pt_unit }}</td>
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
-                                                        <a href="{{ route('edit-bebandtpr', ['id' => $item->id]) }}"
-                                                            style="margin-right: 7px">
-                                                            Edit
-                                                        </a>
-                                                        <a href="{{ route('hapus-bebandtpr', ['id' => $item->id]) }}"
-                                                            onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                            Hapus
-                                                        </a>
-                                                        <form id="delete-form-{{ $item->id }}"
-                                                            action="{{ route('hapus-bebandtpr', ['id' => $item->id]) }}"
-                                                            method="POST" style="display: none;">
+                                                        <form action="{{ route('beban-dtpr.destroy', ['id' => $item->id]) }}"
+                                                            method="POST">
                                                             @csrf
                                                             @method('DELETE')
+                                                            <a href="{{ route('beban-dtpr.edit', ['id' => $item->id]) }}"
+                                                                style="margin-right: 7px">
+                                                                Edit
+                                                            </a>
+                                                            <button type="submit" class="btn btn-link">Hapus</button>
                                                         </form>
-
                                                     </td>
                                                 @endcan
                                             </tr>
