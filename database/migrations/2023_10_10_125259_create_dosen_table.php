@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('dosen', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_dosen');
             $table->string('nomor_induk_dosen')->unique();
             $table->enum('jenis_nomor_induk_dosen', ['NIDN', 'NIDK']);
             $table->unsignedBigInteger('id_level_pendidikan_tertinggi');
@@ -30,7 +29,6 @@ return new class extends Migration
             $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
             $table->unsignedBigInteger('id_kategori_dosen');
             $table->foreign('id_kategori_dosen')->references('id')->on('kategori_dosen');
-          
             $table->timestamps();
         });
     }

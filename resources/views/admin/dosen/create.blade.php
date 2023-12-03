@@ -36,17 +36,20 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Tambah Dosen</h5>
-
                                 </div>
                                 <div class="card-block">
+                                    @if (session('error'))
+                                        <div class="alert alert-danger">{{ session('error') }}</div>
+                                    @endif
                                     <form action="{{ route('dosen.store') }}" method="POST">
                                         @csrf
 
                                         <div class="form-group">
                                             <label for="nama_dosen">Nama Dosen</label>
-                                            <select name="nama_pegawai" id="nama_pegawai" class="form-control">
+                                            <select name="id_pegawai" class="form-control">
                                                 @foreach ($idPegawais as $pegawai)
-                                                    <option value="{{ $pegawai->id }}">
+                                                    <option value="{{ $pegawai->id }}"
+                                                        {{ old('id_pegawai') == $pegawai->id ? 'selected' : '' }}>
                                                         {{ $pegawai->nama_pegawai }}
                                                     </option>
                                                 @endforeach
@@ -55,22 +58,27 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="nomor_induk_dosen">Nomor Induk Dosen</label>
-                                            <input type="text" class="form-control" id="nomor_induk_dosen"
-                                                name="nomor_induk_dosen">
+                                            <input type="text" class="form-control" name="nomor_induk_dosen"
+                                                value="{{ old('nomor_induk_dosen') }}" required>
+                                            <p class="text-danger">{{ $errors->first('nomor_induk_dosen') }}</p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="jenis_nomor_induk_dosen">Jenis Nomor Induk Dosen</label>
-                                            <select name="jenis_nomor_induk_dosen" class="form-control">
-                                                <option value="NIDN">NIDN</option>
-                                                <option value="NIDK">NIDK</option>
+                                            <label for="jenis_nid">Jenis Nomor Induk Dosen</label>
+                                            <select name="jenis_nid" class="form-control">
+                                                <option value="NIDN" {{ old('jenis_nid') == 'NIDN' ? 'selected' : '' }}>
+                                                    NIDN
+                                                </option>
+                                                <option value="NIDK" {{ old('jenis_nid') == 'NIDN' ? 'selected' : '' }}>
+                                                    NIDK
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="id_level_pendidikan_tertinggi">Pendidikan Tertinggi</label>
-                                            <select name="id_level_pendidikan_tertinggi" id="id_level_pendidikan_tertinggi"
-                                                class="form-control">
+                                            <label for="level_pendidikan_tertinggi">Pendidikan Tertinggi</label>
+                                            <select name="level_pendidikan_tertinggi" class="form-control">
                                                 @foreach ($idLevelPddkns as $levelPddkn)
-                                                    <option value="{{ $levelPddkn->id }}">
+                                                    <option value="{{ $levelPddkn->id }}"
+                                                        {{ old('id_level_pendidikan_tertinggi') == $levelPddkn->id ? 'selected' : '' }}>
                                                         {{ $levelPddkn->nama_level_pendidikan }}
                                                     </option>
                                                 @endforeach
@@ -78,41 +86,35 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="pendidikan_magister"> Pendidikan Magister</label>
-                                            <input type="text" class="form-control" id="pendidikan_magister"
-                                                name="pendidikan_magister">
+                                            <input type="text" class="form-control" name="pendidikan_magister"
+                                                value="{{ old('pendidikan_magister') }}" required>
+                                            <p class="text-danger">{{ $errors->first('pendidikan_magister') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="pendidikan_doktor">Pendidikan Doktor</label>
-                                            <input type="text" class="form-control" id="pendidikan_doktor"
-                                                name="pendidikan_doktor">
+                                            <input type="text" class="form-control" name="pendidikan_doktor"
+                                                value="{{ old('pendidikan_doktor') }}" required>
+                                            <p class="text-danger">{{ $errors->first('pendidikan_doktor') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="bidang_keahlian">Bidang Keahlian</label>
-                                            <input type="text" class="form-control" id="bidang_keahlian"
-                                                name="bidang_keahlian">
+                                            <input type="text" class="form-control" name="bidang_keahlian"
+                                                value="{{ old('bidang_keahlian') }}" required>
+                                            <p class="text-danger">{{ $errors->first('bidang_keahlian') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="jabatan_akademik"> Jabatan Akademik</label>
-                                            <input type="text" class="form-control" id="jabatan_akademik"
-                                                name="jabatan_akademik">
+                                            <input type="text" class="form-control" name="jabatan_akademik"
+                                                value="{{ old('jabatan_akademik') }}" required>
+                                            <p class="text-danger">{{ $errors->first('jabatan_akademik') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="kategori_dosen">Kategori Dosen</label>
-                                            <select name="kode_kategori_dosen" id="kode_kategori_dosen"
-                                                class="form-control">
+                                            <select name="kode_kategori_dosen" class="form-control">
                                                 @foreach ($idKatDosens as $idKatDosen)
-                                                    <option value="{{ $idKatDosen->id }}">
+                                                    <option value="{{ $idKatDosen->id }}"
+                                                        {{ old('kode_kategori_dosen') == $idKatDosen->id ? 'selected' : '' }}>
                                                         {{ $idKatDosen->kode_kategori_dosen }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="id_pegawai">NIP</label>
-                                            <select name="nip" id="nip" class="form-control">
-                                                @foreach ($idPegawais as $pegawai)
-                                                    <option value="{{ $pegawai->id }}">
-                                                        {{ $pegawai->nip }}
                                                     </option>
                                                 @endforeach
                                             </select>
