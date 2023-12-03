@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             KepuasanPenggunaSeed::class,
             MasaTungguLulusanSeed::class,
             BidangKerjaLulusanSeed::class,
-            PPKMDariDTPRSeed::class,
+            // PPKMDariDTPRSeed::class,
             SaranaSeed::class,
             PendanaanSeed::class
         ]);

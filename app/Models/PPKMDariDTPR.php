@@ -14,9 +14,7 @@ class PPKMDariDTPR extends Model
     protected $table = "ppkm_dtpr";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id_dosen',  'ketua', 'jenis_luaran', 'judul-luaran',
-        'jenis_luaran_lain', 'judul_luaran_lain',
-        'bukti', 'id_pt_unit'
+        'id_ppkm','id_dosen',  'ketua', 'id_pt_unit'
     ];
 
     public function luaran(): BelongsTo
@@ -39,6 +37,11 @@ class PPKMDariDTPR extends Model
     public function dosen(): BelongsTo
     {
         return $this->belongsTo(Dosen::class, 'id_dosen');
+    }
+
+    public function ppkm(): BelongsTo
+    {
+        return $this->belongsTo(PPKM::class, 'id_dosen');
     }
 
 }

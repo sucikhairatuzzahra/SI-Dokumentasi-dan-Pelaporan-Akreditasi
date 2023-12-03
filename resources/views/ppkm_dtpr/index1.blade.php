@@ -103,15 +103,23 @@
                                                 No
                                             </th>
                                             <th scope="col">
-                                                Judul
+                                                Nama DTPRs
                                             </th>
                                             <th scope="col">
-                                                Dosen
+                                                Jumlah Publikasi bertema INFOKOM
                                             </th>
                                             <th scope="col">
-                                                Ketua
+                                                Jumlah Penelitian bertema INFOKOM
                                             </th>
-
+                                            <th scope="col">
+                                                Jumlah penelitian bertema INFOKOM yang mendapat HKI
+                                            </th>
+                                            <th scope="col">
+                                                Jumlah PkM bertema INFOKOM yang diadopsi masyarakat
+                                            </th>
+                                            <th scope="col">
+                                                Jumlah PkM bertema INFOKOM yang mendapat HKI
+                                            </th>
                                             <th scope="col">
                                                 Unit Kerja
                                             </th>
@@ -127,24 +135,19 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->ppkm->judul }}</td>
-                                                <td>{{ $item->dosen->nomor_induk_dosen }}</td>
-                                                <td>{{ $item->ketua }}</td>
+                                                <td>{{ $item->dosen->nama_dosen }}</td>
+                                                <td>{{ $item->jumlah_publikasi_infokom }}</td>
+                                                <td>{{ $item->jumlah_penelitian_infokom }}</td>
+                                                <td>{{ $item->jumlah_penelitian_infokom_hki }}</td>
+                                                <td>{{ $item->jumlah_pkm_diadopsi_masyarakat }}</td>
+                                                <td>{{ $item->jumlah_pkm_hki }}</td>
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
-                                                @can('isAdmProdi')
-                                                    <td>
-                                                        <form action="{{ route('ppkm-dtpr.destroy', ['id' => $item->id]) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <a href="{{ route('ppkm-dtpr.edit', ['id' => $item->id]) }}"
-                                                                style="margin-right: 7px">
-                                                                Edit
-                                                            </a>
-                                                            <button type="submit" class="btn btn-link">Hapus</button>
-                                                        </form>
-                                                    </td>
-                                                @endcan
+                                                <td>
+                                                    {{-- <a href="{{ route('ppkmdtprbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
+                                                        style="margin-right: 7px">
+                                                        Lihat
+                                                    </a> --}}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

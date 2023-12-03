@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PTUnit;
+use App\Models\PPKM;
 use App\Models\JenisSumberPembiayaan;
 use Illuminate\Support\Facades\Gate; 
 
@@ -15,9 +16,23 @@ class PPKMController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // if (Gate::allows('isJurusan')) {
+        //     // $ptUnit = PTUnit::all();
+        //     $data = IPKLulusan::orderBy('id', 'desc')
+        //         ->with('ptUnit')
+        //         ->when($request->id_pt_unit, function ($query) use ($request) {
+        //             $query->where('id_pt_unit', $request->id_pt_unit);
+        //         })->paginate(20);
+        //     return view('ppkm.index', compact('data', 'request'));
+        // }
+
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = PPKM::with('pembiayaan');
+            $data = $data->paginate(20);
+            return view('ppkm.index', compact('data'));
+        }
     }
 
     /**
@@ -27,9 +42,9 @@ class PPKMController extends Controller
      */
     public function create()
     {
-        $pembiayaan = JenisSumberPembiayaan::all();
+        $pembiayaans = JenisSumberPembiayaan::all();
         // $ptUnit = Auth::user()->ptUnit;
-        return view('ppkm_dtpr.create', compact('dosens'));
+        return view('ppkm.create', compact('pembiayaans'));
     }
 
     /**
@@ -44,7 +59,7 @@ class PPKMController extends Controller
             'id' => $request->id,
             'tahun' => $request->tahun,
             'judul' => $request->judul,
-            'id_jenis_sumber_pembiayaan' => $user->id_jenis_sumber_pembiayaan,
+            'id_jenis_sumber_pembiayaan' => $request->jenis_sumber_pembiayaan,
             'sumber_pembiayaan' => $request->sumber_pembiayaan,
             'jenis_penelitian_pengabdian' => $request->jenis_penelitian_pengabdian,
         ]);
@@ -70,7 +85,9 @@ class PPKMController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pembiayaans = JenisSumberPembiayaan::all();
+        $data['editData'] = PPKM::find($id);
+        return view('ppkm.edit', $data, compact('pembiayaans'));
     }
 
     /**
@@ -82,7 +99,16 @@ class PPKMController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $ppkm = PPKM::find($id);
+        $ppkm->update([
+            'tahun' => $request->tahun,
+            'judul' => $request->judul,
+            'id_jenis_sumber_pembiayaan' => $request->jenis_sumber_pembiayaan,
+            'sumber_pembiayaan' => $request->sumber_pembiayaan,
+            'jenis_penelitian_pengabdian' => $request->jenis_penelitian_pengabdian,
+        ]);
+        return redirect(route('ppkm.index'))->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -93,6 +119,9 @@ class PPKMController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mhsbaru = PPKM::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $mhsbaru->delete();
+
+        return redirect(route('ppkm.index'))->with('success', 'Data PPKM berhasil dihapus');
     }
 }

@@ -17,17 +17,19 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_dosen');
             $table->foreign('id_dosen')->references('id')->on('dosen');
+            $table->unsignedBigInteger('id_ppkm');
+            $table->foreign('id_ppkm')->references('id')->on('ppkm');
             $table->enum('ketua',['ya','tidak']);
-            $table->unsignedBigInteger('id_luaran');
-            $table->foreign('id_luaran')->references('id')->on('jenis_luaran');
-            $table->string('judul_luaran');
-            $table->unsignedBigInteger('id_luaran_lain');
-            $table->foreign('id_luaran_lain')->references('id')->on('jenis_luaran_lain');
-            $table->string('judul_luaran_lain');
-            $table->string('bukti')->nullable();
             $table->unsignedBigInteger('id_pt_unit');
             $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
             $table->timestamps();
+             // $table->unsignedBigInteger('id_luaran');
+            // $table->foreign('id_luaran')->references('id')->on('jenis_luaran');
+            // $table->string('judul_luaran');
+            // $table->unsignedBigInteger('id_luaran_lain');
+            // $table->foreign('id_luaran_lain')->references('id')->on('jenis_luaran_lain');
+            // $table->string('judul_luaran_lain');
+            // $table->string('bukti')->nullable();
         });
     }
 

@@ -29,7 +29,6 @@ class IPKLulusanController extends Controller
             return view('ipk_lulusan.index', compact('data', 'request'));
         }
 
-
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
             $data = IPKLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);

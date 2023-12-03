@@ -99,14 +99,13 @@ class DosenController extends Controller
     public function edit($id)
     {
         $data['editData'] = Dosen::find($id);
-        // <<<<<<< HEAD
+    
         $idPegawais = Pegawai::all();
         $idKatDosens = KategoriDosen::all();
         $ptUnit = PTUnit::all();
         $idLevelPddkns = LevelPendidikanTertinggi::all();
 
-        //         return view('admin.page.dosen.form_edit', $data, compact('idPegawais','idKatDosens','idPtUnits','idLevelPddkns'));
-        // =======
+        
         return view('admin.dosen.edit', $data);
     }
 

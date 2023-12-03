@@ -42,28 +42,31 @@
                                 <div class="card-block">
                                     <form action="{{ route('ppkm-dtpr.store') }}" method="POST">
                                         @csrf
+
                                         <div class="form-group">
-                                            <label for="nama_dtpr">Nama DTPRs</label>
+                                            <label for="id_ppkm">Judul Penelitian Pengabdian</label>
                                             {{-- <input type="text" class="form-control" id="nama_dtpr" name="nama_dtpr"> --}}
-                                            <select name="nama_dosen" id="nama_dosen" class="form-control">
-                                                @foreach ($dosens as $dosen)
-                                                    <option value="{{ $dosen->id }}">
-                                                        {{ $dosen->nama_dosen }}
+                                            <select name="judul" id="judul" class="form-control">
+                                                @foreach ($ppkms as $ppkm)
+                                                    <option value="{{ $ppkm->id }}">
+                                                        {{ $ppkm->judul }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="jenis_penelitian_pengabdian">Jenis Penelitian Pengabdian</label>
-                                            <select name="jenis_penelitian_pengabdian" class="form-control">
-                                                <option value="penelitian">penelitian</option>
-                                                <option value="pengabdian">pengabdian</option>
+                                            <label for="nama_dtpr">Nama DTPRs</label>
+                                            {{-- <input type="text" class="form-control" id="nama_dtpr" name="nama_dtpr"> --}}
+                                            <select name="nomor_induk_dosen" id="nomor_induk_dosen" class="form-control">
+                                                @foreach ($dosens as $dosen)
+                                                    <option value="{{ $dosen->id }}">
+                                                        {{ $dosen->nomor_induk_dosen }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="judul">Judul</label>
-                                            <input type="text" class="form-control" id="judul" name="judul">
-                                        </div>
+
                                         <div class="form-group">
                                             <label for="ketua">Ketua</label>
                                             <select name="ketua" class="form-control">
@@ -71,7 +74,7 @@
                                                 <option value="tidak">tidak</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="jenis_luaran">Jenis Luaran</label>
                                             <select name="jenis_luaran" id="jenis_luaran" class="form-control">
                                                 @foreach ($luarans as $luaran)
@@ -90,19 +93,8 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tahun">Tahun</label>
-                                            <input type="text" class="form-control" id="tahun" name="tahun">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="dana">Dana</label>
-                                            <input type="text" class="form-control" id="dana" name="dana">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="bukti">Bukti</label>
-                                            <input type="file" name="bukti" id="bukti" class="form-control">
-                                        </div>
+                                        </div> --}}
+
                                         <div class="form-group">
                                             <label for="id_pt_unit">Unit Kerja</label>
                                             <input type="hidden" class="form-control" name="id_pt_unit"
