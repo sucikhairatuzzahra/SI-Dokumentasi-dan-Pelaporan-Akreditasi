@@ -7,10 +7,9 @@ use App\Models\Pegawai;
 use App\Models\KategoriDosen;
 use App\Models\PTUnit;
 use App\Models\LevelPendidikanTertinggi;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\DosenRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DosenController extends Controller
 {
@@ -45,9 +44,22 @@ class DosenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DosenRequest $request)
+    public function store(Request $request)
     {
-        Dosen::create([
+        $this->validate($request, [
+            'nomor_induk_dosen' => 'required|string',
+            'jenis_nomor_induk_dosen' => 'required',
+            'id_level_pendidikan_tertinggi' => 'required|exists:level_pendidikan_tertinggi, id',
+            'pendidikan_magister' => 'required',
+            'pendidikan_doktor' => 'required',
+            'bidang_keahlian' => 'required',
+            'jabatan_akademik' => 'required',
+            'id_pegawai' => 'required',
+            'id_pt_unit' => 'required',
+            'id_kategori_dosen' => 'required',
+        ]);
+
+        Dosen::insert([
             'nomor_induk_dosen' => $request->nomor_induk_dosen,
             'jenis_nomor_induk_dosen' => $request->jenis_nid,
             'id_level_pendidikan_tertinggi' => $request->level_pendidikan_tertinggi,
@@ -87,16 +99,22 @@ class DosenController extends Controller
     public function edit($id)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         $data['editData'] = Dosen::find($id);
     
 =======
         $editData = Dosen::find($id);
         dd($editData);
 >>>>>>> c2b0efb (update dosen controller)
+=======
+        $data['editData'] = Dosen::find($id);
+        // <<<<<<< HEAD
+>>>>>>> bf7dbae (Revert "update dosen controller")
         $idPegawais = Pegawai::all();
         $idKatDosens = KategoriDosen::all();
-        $ptUnit = Auth::user()->ptUnit;
+        $ptUnit = PTUnit::all();
         $idLevelPddkns = LevelPendidikanTertinggi::all();
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         
@@ -104,6 +122,12 @@ class DosenController extends Controller
 =======
         return view('admin.dosen.edit', compact('editData', 'idPegawais', 'idKatDosens', 'ptUnit', 'idLevelPddkns'));
 >>>>>>> c2b0efb (update dosen controller)
+=======
+
+        //         return view('admin.page.dosen.form_edit', $data, compact('idPegawais','idKatDosens','idPtUnits','idLevelPddkns'));
+        // =======
+        return view('admin.dosen.edit', $data);
+>>>>>>> bf7dbae (Revert "update dosen controller")
     }
 
     /**
@@ -113,21 +137,31 @@ class DosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DosenRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        Dosen::find($id)->update([
+        // <<<<<<< HEAD
+        $dosen = Dosen::find($id);
+        $update = $dosen->update([
+            'nama_dosen' => $request->nama_dosen,
             'nomor_induk_dosen' => $request->nomor_induk_dosen,
-            'jenis_nomor_induk_dosen' => $request->jenis_nid,
-            'id_level_pendidikan_tertinggi' => $request->level_pendidikan_tertinggi,
+            'jenis_nomor_induk_dosen' => $request->jenis_nomor_induk_dosen,
+            'id_level_pendidikan_tertinggi' => $request->id_level_pendidikan_tertinggi,
             'pendidikan_magister' => $request->pendidikan_magister,
             'pendidikan_doktor' => $request->pendidikan_doktor,
             'bidang_keahlian' => $request->bidang_keahlian,
             'jabatan_akademik' => $request->jabatan_akademik,
-            'id_pegawai' => $request->id_pegawai,
+            'id_pegawai' => $request->nip,
             'id_pt_unit' => $request->id_pt_unit,
             'id_kategori_dosen' => $request->kode_kategori_dosen,
         ]);
-        return redirect(route('dosen.index'))->with('success', 'Data berhasil disimpan');
+        if ($update) {
+            return redirect('admin/dosen')->with('pesan', 'Data berhasil disimpan');
+        } else {
+            echo "<script>
+                alert('Data gagal diinput, masukkan kembali data dengan benar');
+                window.location = '/admin.dosen.index';
+                </script>";
+        }
     }
 
     /**
