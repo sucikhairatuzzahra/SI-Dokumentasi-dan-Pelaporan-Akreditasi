@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('ppkm_dtpr', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('id_dosen');
-            // $table->foreign('id_dosen')->references('id')->on('dosen');
+            $table->unsignedBigInteger('id_dosen');
+            $table->foreign('id_dosen')->references('id')->on('dosen');
             $table->enum('ketua',['ya','tidak']);
             $table->unsignedBigInteger('id_luaran');
             $table->foreign('id_luaran')->references('id')->on('jenis_luaran');

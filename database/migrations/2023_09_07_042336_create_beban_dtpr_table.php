@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('beban_dtpr', function (Blueprint $table) {
             $table->id();
             // $table->string('nama_dosen');
-            // $table->unsignedBigInteger('id_dosen');
-            // $table->foreign('id_dosen')->references('id')->on('dosen');
+            $table->unsignedBigInteger('id_dosen');
+            $table->foreign('id_dosen')->references('id')->on('dosen');
             $table->integer('pgjrn_ps_sendiri');
             $table->integer('pgjrn_ps_lain_pt_sendiri');
             $table->integer('pgjrn_pt_lain');
