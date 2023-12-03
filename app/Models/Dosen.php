@@ -13,20 +13,22 @@ class Dosen extends Model
     use HasFactory;
     protected $table = "dosen";
     protected $primaryKey = 'id';
+
+    protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $fillable = [
-        'nama_dosen', 'nomor_induk_dosen', 'jenis_nomor_induk_dosen', 'id_level_pendidikan_tertinggi',
-        'pendidikan_magister', 'pendidikan_doktor', 'bidang_keahlian', 'jabatan_akademik',
-        'id_pegawai', 'id_pt_unit', 'id_kategori_dosen'
+        // 'nomor_induk_dosen', 'jenis_nomor_induk_dosen', 'id_level_pendidikan_tertinggi',
+        // 'pendidikan_magister', 'pendidikan_doktor', 'bidang_keahlian', 'jabatan_akademik',
+        // 'id_pegawai', 'id_pt_unit', 'id_kategori_dosen'
     ];
 
-    public function pegawai():BelongsTo
+    public function pegawai(): BelongsTo
     {
-         return $this->belongsTo(Pegawai::class, 'id_pegawai');
+        return $this->belongsTo(Pegawai::class, 'id_pegawai');
     }
-     
-     public function kategoriDosen():BelongsTo
+
+    public function kategoriDosen(): BelongsTo
     {
-         return $this->belongsTo(KategoriDosen::class, 'id_kategori_dosen');
+        return $this->belongsTo(KategoriDosen::class, 'id_kategori_dosen');
     }
 
     public function ptUnit(): BelongsTo
@@ -47,5 +49,4 @@ class Dosen extends Model
     {
         return $this->hasMany(PPKMDariDTPR::class, 'id_dosen');
     }
-
 }

@@ -45,16 +45,16 @@
                                         @csrf
 
                                         <div class="form-group">
-                                            <label for="nama_dosen">Nama Dosen</label>
+                                            <label for="id_pegawai">Nama Dosen</label>
                                             <select name="id_pegawai" class="form-control">
-                                                @foreach ($idPegawais as $pegawai)
-                                                    <option value="{{ $pegawai->id }}"
-                                                        {{ old('id_pegawai') == $pegawai->id ? 'selected' : '' }}>
-                                                        {{ $pegawai->nama_pegawai }}
+                                                @foreach ($pegawai as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('id_pegawai') == $data->id ? 'selected' : '' }}>
+                                                        {{ $data->nama_pegawai }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            {{-- <input type="text" class="form-control" id="nama_pegawai" name="nama_dosen"> --}}
+                                            <p class="text-danger">{{ $errors->first('id_pegawai') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="nomor_induk_dosen">Nomor Induk Dosen</label>
@@ -76,7 +76,7 @@
                                         <div class="form-group">
                                             <label for="level_pendidikan_tertinggi">Pendidikan Tertinggi</label>
                                             <select name="level_pendidikan_tertinggi" class="form-control">
-                                                @foreach ($idLevelPddkns as $levelPddkn)
+                                                @foreach ($lvPendidikan as $levelPddkn)
                                                     <option value="{{ $levelPddkn->id }}"
                                                         {{ old('id_level_pendidikan_tertinggi') == $levelPddkn->id ? 'selected' : '' }}>
                                                         {{ $levelPddkn->nama_level_pendidikan }}
@@ -111,7 +111,7 @@
                                         <div class="form-group">
                                             <label for="kategori_dosen">Kategori Dosen</label>
                                             <select name="kode_kategori_dosen" class="form-control">
-                                                @foreach ($idKatDosens as $idKatDosen)
+                                                @foreach ($katDosen as $idKatDosen)
                                                     <option value="{{ $idKatDosen->id }}"
                                                         {{ old('kode_kategori_dosen') == $idKatDosen->id ? 'selected' : '' }}>
                                                         {{ $idKatDosen->kode_kategori_dosen }}
@@ -121,14 +121,17 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="id_pt_unit">Unit Kerja</label>
-                                            <input type="hidden" class="form-control" name="id_pt_unit"
-                                                value="{{ $ptUnit->id }}" required>
-                                            <input type="text" class="form-control" value="{{ $ptUnit->kode_pt_unit }}"
-                                                disabled>
+                                            <select name="id_pt_unit" class="form-control" required>
+                                                @foreach ($ptUnit as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('id_pt_unit') == $data->id ? 'selected' : '' }}>
+                                                        {{ $data->kode_pt_unit }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
-
                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
+                                        <a href="{{ route('dosen.index') }}" class="btn btn-light">Cancel</a>
                                     </form>
                                 </div>
 
