@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('cln_mhsbaru', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_thn_akademik');
-            $table->foreign('id_thn_akademik')->references('id')->on('tahun_akademik');
-            $table->unsignedBigInteger('id_pt_unit');
-            $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
+            $table->foreignId('id_thn_akademik')->constrained('tahun_akademik')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('daya_tampung');
             $table->integer('pendaftar');
             $table->integer('lulus_seleksi');

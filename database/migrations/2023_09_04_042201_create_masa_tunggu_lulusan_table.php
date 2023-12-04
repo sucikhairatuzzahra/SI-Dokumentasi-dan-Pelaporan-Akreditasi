@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('masa_tunggu_lulusan', function (Blueprint $table) {
             $table->id();
-            $table->integer('tahun_lulus');
+            $table->year('tahun_lulus');
             $table->integer('jumlah_lulusan');
             $table->integer('lulusan_terlacak');
             $table->integer('waktu_tunggu');
-            $table->unsignedBigInteger('id_pt_unit');
-            $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
+            $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

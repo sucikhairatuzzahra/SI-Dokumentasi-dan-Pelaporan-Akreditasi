@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jenjang_program', function (Blueprint $table) {
+        Schema::create('luaran_lain_ppkm_dosen', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_jenjang_program');
-            $table->string('nama_jenjang_program');
-            $table->enum('aktif', ['y', 't']);
+            $table->foreignId('id_luaran_lain_ppkm')->constrained('luaran_lain_ppkm')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenjang_program');
+        Schema::dropIfExists('luaran_lain_ppkm_dosen');
     }
 };

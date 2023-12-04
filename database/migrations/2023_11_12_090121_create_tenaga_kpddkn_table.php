@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('jenis_tenaga_kependidikan');
             $table->enum('jenjang_pendidikan', ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3']);
-            $table->unsignedBigInteger('id_pt_unit');
-            $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
+            $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

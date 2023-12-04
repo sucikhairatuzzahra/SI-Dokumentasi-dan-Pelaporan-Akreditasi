@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PPKMDariDTPR extends Model
 {
@@ -34,9 +35,9 @@ class PPKMDariDTPR extends Model
     }
 
 
-    public function dosen(): BelongsTo
+    public function dosen(): HasMany
     {
-        return $this->belongsTo(Dosen::class, 'id_dosen');
+        return $this->hasMany(Dosen::class, 'id_dosen');
     }
 
     public function ppkm(): BelongsTo
