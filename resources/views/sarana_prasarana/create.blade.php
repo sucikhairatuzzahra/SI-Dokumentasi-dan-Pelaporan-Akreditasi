@@ -73,8 +73,9 @@
                                             <input type="text" class="form-control" value="{{ $ptUnit->kode_pt_unit }}"
                                                 disabled>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+
                                     </form>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                     <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
                                 </div>
 

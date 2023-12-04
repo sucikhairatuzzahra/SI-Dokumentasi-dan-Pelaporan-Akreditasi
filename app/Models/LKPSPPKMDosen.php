@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class LPKSPPKMDosen extends Pivot
+class LKPSPPKMDosen extends Pivot
 {
     //
 }

@@ -128,7 +128,7 @@
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
                                                 <td>{{ $item->ppkm->judul }}</td>
-                                                <td>{{ $item->dosen->nama_dosen }}</td>
+                                                <td>{{ $item->dosens->nomor_induk_dosen }}</td>
                                                 <td>{{ $item->ketua }}</td>
                                                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                                                 @can('isAdmProdi')

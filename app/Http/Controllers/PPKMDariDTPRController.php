@@ -42,8 +42,8 @@ class PPKMDariDTPRController extends Controller
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = PPKMDariDTPR::with('ptUnit','ppkm','dosen')->where('id_pt_unit', Auth::user()->id_pt_unit);
-            $data = $data->paginate(20);
+            $data = PPKMDariDTPR::with('ptUnit','ppkm','dosens')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+            $data = $data->all();
 
             return view('ppkm_dtpr.index', compact('data'));
         }
@@ -60,9 +60,9 @@ class PPKMDariDTPRController extends Controller
         // $luarans = Luaran::all();
         // $luaranlains = LuaranLain::all();
         $dosens = Dosen::all();
-        $ppkms = PPKM::all();
+        $ppkm = PPKM::all();
         $ptUnit = Auth::user()->ptUnit;
-        return view('ppkm_dtpr.create', compact('ptUnit','ppkms','dosens'));
+        return view('ppkm_dtpr.create', compact('ptUnit','ppkm','dosens'));
 
     }
 
@@ -77,8 +77,8 @@ class PPKMDariDTPRController extends Controller
        
         PPKMDariDTPR::insert([
             'id' => $request->id,
-            'id_dosen' => $request->nomor_induk_dosen,
-            'id_ppkm' => $request->judul,
+            'id_dosen' => $request->id_dosen,
+            'id_ppkm' => $request->id_ppkm,
             'ketua' => $request->ketua,
             'id_pt_unit' => $request->id_pt_unit,
         ]);

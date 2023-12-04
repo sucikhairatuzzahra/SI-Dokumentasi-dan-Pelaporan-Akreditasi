@@ -35,14 +35,14 @@ class PPKMDariDTPR extends Model
     }
 
 
-    public function dosen(): HasMany
+    public function dosens(): HasMany
     {
         return $this->hasMany(Dosen::class, 'id_dosen');
     }
 
     public function ppkm(): BelongsTo
     {
-        return $this->belongsTo(PPKM::class, 'id_dosen');
+        return $this->belongsTo(PPKM::class, 'id_ppkm');
     }
 
 }

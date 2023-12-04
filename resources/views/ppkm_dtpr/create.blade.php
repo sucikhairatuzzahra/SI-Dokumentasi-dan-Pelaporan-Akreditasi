@@ -46,25 +46,36 @@
                                         <div class="form-group">
                                             <label for="id_ppkm">Judul Penelitian Pengabdian</label>
                                             {{-- <input type="text" class="form-control" id="nama_dtpr" name="nama_dtpr"> --}}
-                                            <select name="judul" id="judul" class="form-control">
-                                                @foreach ($ppkms as $ppkm)
-                                                    <option value="{{ $ppkm->id }}">
-                                                        {{ $ppkm->judul }}
+                                            <select name="id_ppkm" class="form-control">
+                                                @foreach ($ppkm as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('id_ppkm') == $data->id ? 'selected' : '' }}>
+                                                        {{ $data->judul }}
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger">{{ $errors->first('id_ppkm') }}</p>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="nama_dtpr">Nama DTPRs</label>
-                                            {{-- <input type="text" class="form-control" id="nama_dtpr" name="nama_dtpr"> --}}
-                                            <select name="nomor_induk_dosen" id="nomor_induk_dosen" class="form-control">
+                                            <label for="id_dosen">Nama DTPRs</label>
+                                            <select name="id_dosen" class="form-control">
+                                                @foreach ($dosens as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('id_dosen') == $data->id ? 'selected' : '' }}>
+                                                        {{ $data->nomor_induk_dosen }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <p class="text-danger">{{ $errors->first('id_dosen') }}</p>
+
+                                            {{-- <select name="nomor_induk_dosen" id="nomor_induk_dosen" class="form-control">
                                                 @foreach ($dosens as $dosen)
                                                     <option value="{{ $dosen->id }}">
                                                         {{ $dosen->nomor_induk_dosen }}
                                                     </option>
                                                 @endforeach
-                                            </select>
+                                            </select> --}}
                                         </div>
 
                                         <div class="form-group">
