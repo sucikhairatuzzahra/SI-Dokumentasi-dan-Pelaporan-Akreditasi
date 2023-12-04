@@ -7,9 +7,12 @@ use App\Models\BebanDTPR;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Dosen;
+use App\Models\Pegawai;
 use App\Models\PTUnit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
+
 
 class BebanDTRPController extends Controller
 {
@@ -31,16 +34,15 @@ class BebanDTRPController extends Controller
             return view('beban_dtpr.index', compact('data', 'request'));
         }
 
-        if (Gate::allows('isAdmProdi')) {
-            $data = BebanDTPR::with('ptUnit');
-            $data = $data->paginate(20);
-            return view('beban_dtpr.index', compact('data'));
-        }
-
-        if (Gate::allows('isKaprodi')) {
-            $data = BebanDTPR::with('ptUnit');
-            $data = $data->paginate(20);
-            return view('beban_dtpr.index', compact('data'));
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = BebanDTPR::with('ptUnit', 'dosens')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+            $nama_dosen = [];
+            foreach ($data as $value) {
+                $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
+                $nama_dosen[] = $pegawai['nama_pegawai'];
+            }
+            Log::debug($nama_dosen);
+            return view('beban_dtpr.index', compact('data', 'nama_dosen'));
         }
     }
 
@@ -50,21 +52,11 @@ class BebanDTRPController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-// <<<<<<< HEAD
-        // $dosens = Dosen::all();
-//         return view(
-//             'admprodi.page.beban_dtpr.form',
-//             [
-//                 'url' => 'simpan-bebandtpr',
-//                 'dosens' => $dosens,
-//             ]
-//         );
-// // =======
+    { 
         $ptUnit = Auth::user()->ptUnit;
-        $dosens = Dosen::all();
+        $dosens = Dosen::with('pegawai')->get();
         return view('beban_dtpr.create', compact('ptUnit','dosens'));
-// >>>>>>> 4dface9ac6ed703672574384b923776abfacf6f8
+
     }
 
 
@@ -100,7 +92,9 @@ class BebanDTRPController extends Controller
     public function edit($id)
     {
         $data['editData'] = BebanDTPR::find($id);
-        return view('beban_dtpr.edit', $data);
+        $ptUnit = Auth::user()->ptUnit;
+        $dosens = Dosen::with('pegawai')->get();
+        return view('beban_dtpr.edit', $data, compact('ptUnit', 'ppkm', 'dosens'));
     }
 
     /**

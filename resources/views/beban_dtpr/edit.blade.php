@@ -44,8 +44,19 @@
                                         @method('put')
                                         <div class="form-group">
                                             <label for="nama_dosen">Nama Dosen</label>
-                                            <input type="text" class="form-control" id="nama_dosen" name="nama_dosen"
-                                                value="{{ $editData->nama_dosen }}">
+                                            {{-- <input type="text" class="form-control" id="nama_dosen" name="nama_dosen"
+                                                value="{{ $editData->nama_dosen }}"> --}}
+
+                                            <select name="id_dosen" class="form-control">
+                                                @foreach ($dosens as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('id_dosen') == $data->id ? 'selected' : '' }}>
+                                                        {{ $data->pegawai->nama_pegawai }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <p class="text-danger">{{ $errors->first('id_dosen') }}</p>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="pgjrn_ps_sendiri">SKS Pengajaran Pada PS Sendiri</label>

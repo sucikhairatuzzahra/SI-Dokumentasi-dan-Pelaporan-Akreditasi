@@ -43,28 +43,34 @@
                                     <form action="{{ route('ppkm-dtpr.update', $editData->id) }}" method="POST">
                                         @csrf
                                         @method('put')
+
                                         <div class="form-group">
-                                            <label for="nama_dtpr">Nama DTPRs</label>
-                                            <select name="nama_dosen" id="nama_dosen" class="form-control">
-                                                @foreach ($dosens as $dosen)
-                                                    <option value="{{ $dosen->id }}">
-                                                        {{ $dosen->nama_dosen }}
+                                            <label for="id_ppkm">Judul Penelitian Pengabdian</label>
+                                            {{-- <input type="text" class="form-control" id="nama_dtpr" name="nama_dtpr"> --}}
+                                            <select name="id_ppkm" class="form-control">
+                                                @foreach ($ppkm as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('id_ppkm') == $data->id ? 'selected' : '' }}>
+                                                        {{ $data->judul }}
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger">{{ $errors->first('id_ppkm') }}</p>
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="jenis_penelitian_pengabdian">Jenis Penelitian Pengabdian</label>
-                                            <select name="jenis_penelitian_pengabdian" class="form-control">
-                                                <option value="penelitian">penelitian</option>
-                                                <option value="pengabdian">pengabdian</option>
+                                            <label for="id_dosen">Nama DTPRs</label>
+                                            <select name="id_dosen" class="form-control">
+                                                @foreach ($dosens as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('id_dosen') == $data->id ? 'selected' : '' }}>
+                                                        {{ $data->pegawai->nama_pegawai }}
+                                                    </option>
+                                                @endforeach
                                             </select>
+                                            <p class="text-danger">{{ $errors->first('id_dosen') }}</p>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="judul">Judul</label>
-                                            <input type="text" class="form-control" id="judul" name="judul"
-                                                value="{{ $editData->judul }}">
-                                        </div>
+
                                         <div class="form-group">
                                             <label for="ketua">Ketua</label>
                                             <select name="ketua" class="form-control">
@@ -72,43 +78,7 @@
                                                 <option value="tidak">tidak</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="jenis_luaran">Jenis Luaran</label>
-                                            <select name="jenis_luaran" id="jenis_luaran" class="form-control">
-                                                @foreach ($luarans as $luaran)
-                                                    <option value="{{ $luaran->id }}">
-                                                        {{ $luaran->jenis_luaran }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="jenis_luaran_lain">Jenis Luaran Lain</label>
-                                            <select name="jenis_luaran_lain" id="jenis_luaran_lain" class="form-control">
-                                                @foreach ($luaranlains as $luaranLain)
-                                                    <option value="{{ $luaranLain->id }}">
-                                                        {{ $luaranLain->jenis_luaran_lain }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tahun">Tahun</label>
-                                            <input type="text" class="form-control" id="tahun" name="tahun"
-                                                value="{{ $editData->tahun }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="dana">Dana</label>
-                                            <input type="text" class="form-control" id="dana" name="dana"
-                                                value="{{ $editData->dana }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="bukti">Bukti</label>
-                                            <input type="file" name="bukti" id="bukti" class="form-control">
-                                            @if ($editData->bukti)
-                                                <a href="{{ asset('storage/bukti_dtpr/' . $editData->bukti) }}">Lihat</a>
-                                            @endif
-                                        </div>
+
                                         <div class="form-group">
                                             <label for="pt_unit">Unit Kerja</label>
                                             <input type="hidden" class="form-control" name="id_pt_unit"

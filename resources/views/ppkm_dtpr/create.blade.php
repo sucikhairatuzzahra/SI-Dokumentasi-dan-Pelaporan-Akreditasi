@@ -68,14 +68,6 @@
                                                 @endforeach
                                             </select>
                                             <p class="text-danger">{{ $errors->first('id_dosen') }}</p>
-
-                                            {{-- <select name="nomor_induk_dosen" id="nomor_induk_dosen" class="form-control">
-                                                @foreach ($dosens as $dosen)
-                                                    <option value="{{ $dosen->id }}">
-                                                        {{ $dosen->nomor_induk_dosen }}
-                                                    </option>
-                                                @endforeach
-                                            </select> --}}
                                         </div>
 
                                         <div class="form-group">

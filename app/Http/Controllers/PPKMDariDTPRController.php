@@ -98,7 +98,10 @@ class PPKMDariDTPRController extends Controller
     {
         $data['editData'] = PPKMDariDTPR::find($id);
         $dosens = Dosen::with('pegawai')->get();
-        return view('ppkm_dtpr.edit', $data, compact('dosens'));
+        $ppkm = PPKM::all();
+        $ptUnit = Auth::user()->ptUnit;
+   
+        return view('ppkm_dtpr.edit', $data, compact('dosens','ptUnit', 'ppkm'));
     }
 
     /**

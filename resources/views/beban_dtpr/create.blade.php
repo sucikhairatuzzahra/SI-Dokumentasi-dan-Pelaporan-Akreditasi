@@ -45,10 +45,11 @@
                                         <div class="form-group">
                                             <label for="nama_dosen">Nama Dosen</label>
                                             {{-- <input type="text" class="form-control" id="nama_dosen" name="nama_dosen"> --}}
-                                            <select name="nama_dosen" id="nama_dosen" class="form-control">
-                                                @foreach ($dosens as $dosen)
-                                                    <option value="{{ $dosen->id }}">
-                                                        {{ $dosen->nama_dosen }}
+                                            <select name="id_dosen" class="form-control">
+                                                @foreach ($dosens as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('id_dosen') == $data->id ? 'selected' : '' }}>
+                                                        {{ $data->pegawai->nama_pegawai }}
                                                     </option>
                                                 @endforeach
                                             </select>
