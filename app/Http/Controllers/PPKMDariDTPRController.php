@@ -13,9 +13,9 @@ use App\Models\PTUnit;
 use App\Models\Luaran;
 use App\Models\Dosen;
 use App\Models\LuaranLain;
-
+use App\Models\Pegawai;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Support\Facades\Log;
 
 class PPKMDariDTPRController extends Controller
 {
@@ -42,10 +42,14 @@ class PPKMDariDTPRController extends Controller
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = PPKMDariDTPR::with('ptUnit','ppkm','dosens')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
-            $data = $data->all();
-
-            return view('ppkm_dtpr.index', compact('data'));
+            $data = PPKMDariDTPR::with('ptUnit', 'ppkm', 'dosens')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+            $nama_dosen = [];
+            foreach ($data as $value) {
+                $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
+                $nama_dosen[] = $pegawai['nama_pegawai'];
+            }
+            Log::debug($nama_dosen);
+            return view('ppkm_dtpr.index', compact('data', 'nama_dosen'));
         }
     }
 
@@ -59,11 +63,10 @@ class PPKMDariDTPRController extends Controller
 
         // $luarans = Luaran::all();
         // $luaranlains = LuaranLain::all();
-        $dosens = Dosen::all();
+        $dosens = Dosen::with('pegawai')->get();
         $ppkm = PPKM::all();
         $ptUnit = Auth::user()->ptUnit;
-        return view('ppkm_dtpr.create', compact('ptUnit','ppkm','dosens'));
-
+        return view('ppkm_dtpr.create', compact('ptUnit', 'ppkm', 'dosens'));
     }
 
     /**
@@ -74,7 +77,7 @@ class PPKMDariDTPRController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         PPKMDariDTPR::insert([
             'id' => $request->id,
             'id_dosen' => $request->id_dosen,
@@ -94,7 +97,8 @@ class PPKMDariDTPRController extends Controller
     public function edit($id)
     {
         $data['editData'] = PPKMDariDTPR::find($id);
-        return view('ppkm_dtpr.edit', $data);
+        $dosens = Dosen::with('pegawai')->get();
+        return view('ppkm_dtpr.edit', $data, compact('dosens'));
     }
 
     /**
@@ -112,7 +116,7 @@ class PPKMDariDTPRController extends Controller
             'id_ppkm' => $request->id_ppkm,
             'ketua' => $request->ketua,
             'id_pt_unit' => $request->id_pt_unit,
-          
+
         ]);
         return redirect('ppkm-dtpr')->with('success', 'Data berhasil disimpan');
     }
