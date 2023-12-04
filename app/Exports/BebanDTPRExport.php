@@ -15,8 +15,7 @@ class BebanDTPRExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        return view('kaprodi.page.beban_dtpr.table', [
-            'data' => BebanDTPR::all()
-        ]);
+        $data = BebanDTPR::with( 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+        return view('beban_dtpr.table', compact('data'));
     }
 }

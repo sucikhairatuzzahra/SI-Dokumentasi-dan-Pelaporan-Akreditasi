@@ -37,7 +37,7 @@ class AksesibilitasController extends Controller
         }
 
         if (Gate::allows('isKaprodi')) {
-            $data = Aksesibilitas::with('ptUnit', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = Aksesibilitas::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('aksesibilitas.index', compact('data'));
         }

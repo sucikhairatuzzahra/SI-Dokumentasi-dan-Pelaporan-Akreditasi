@@ -15,8 +15,7 @@ class SumberDanaExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        return view('kaprodi.page.pendanaan.table', [
-            'data' => Pendanaan::all()
-        ]);
+        $data = Pendanaan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        return view('pendanaan.table', compact('data'));
     }
 }

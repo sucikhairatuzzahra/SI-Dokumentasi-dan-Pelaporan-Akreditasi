@@ -4,6 +4,7 @@
             <th scope="col" rowspan="2">
                 Tahun Akademik
             </th>
+
             <th scope="col" rowspan="2">
                 Daya Tampung
             </th>
@@ -56,8 +57,8 @@
                 <td>{{ $item->mhs_aktif_reguler }}</td>
                 <td>{{ $item->mhs_aktif_transfer }}</td>
                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
+
             </tr>
         @endforeach
     </tbody>
-
 </table>

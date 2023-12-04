@@ -89,8 +89,6 @@
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
 
-                                {{-- <a href="{{ route('list.provinsi') }}" type="submit" class="btn btn-primary"
-                                    style="margin-bottom:10px ">Tambah</a> --}}
                                 <table class="table table-bordered" style="align-content: center">
                                     <thead>
                                         <tr>
@@ -115,9 +113,11 @@
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Aksi
-                                            </th>
+                                            @can('isAdmProdi')
+                                                <th scope="col" rowspan="2">
+                                                    Aksi
+                                                </th>
+                                            @endcan
                                         </tr>
                                         <tr>
                                             <th>

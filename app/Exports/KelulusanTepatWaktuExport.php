@@ -15,8 +15,7 @@ class KelulusanTepatWaktuExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        return view('kaprodi.page.kelulusan_tepat_waktu.table', [
-            'data' => KelulusanTepatWaktu::all()
-        ]);
+        $data = KelulusanTepatWaktu::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        return view('kelulusan_tw.table', compact('data'));
     }
 }

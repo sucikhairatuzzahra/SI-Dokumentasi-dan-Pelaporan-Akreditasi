@@ -15,8 +15,7 @@ class TenagaKependidikanExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        return view('kaprodi.page.kependidikan.table', [
-            'data' => TenagaKependidikan::all()
-        ]);
+        $data = TenagaKependidikan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        return view('kependidikan.table', compact('data'));
     }
 }

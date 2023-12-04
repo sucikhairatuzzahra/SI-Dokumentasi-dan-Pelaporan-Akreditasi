@@ -38,6 +38,6 @@ class MahasiswaExport implements FromView, ShouldAutoSize
     public function view(): View
     {
         $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
-        return view('kaprodi.mahasiswa.table', compact('data'));
+        return view('mahasiswa.table', compact('data'));
     }
 }

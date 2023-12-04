@@ -15,8 +15,7 @@ class MasaTungguLulusanExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        return view('kaprodi.page.masa_tunggu_lulusan.table', [
-            'data' => MasaTungguLulusan::all()
-        ]);
+        $data = MasaTungguLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        return view('masa_tunggu_lulusan.table', compact('data'));
     }
 }

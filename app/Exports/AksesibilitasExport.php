@@ -15,8 +15,8 @@ class AksesibilitasExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        return view('kaprodi.page.aksesibilitas.table', [
-            'data' => Aksesibilitas::all()
-        ]);
+        $data = Mhsbaru::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+        return view('aksesibilitas.table', compact('data'));
+
     }
 }

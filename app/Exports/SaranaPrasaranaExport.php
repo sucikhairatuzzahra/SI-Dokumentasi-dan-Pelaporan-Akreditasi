@@ -16,8 +16,7 @@ class SaranaPrasaranaExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        return view('kaprodi.page.saranaprasarana.table', [
-            'data' => SaranaPrasarana::all()
-        ]);
+        $data = SaranaPrasarana::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        return view('sarana_prasarana.table', compact('data'));
     }
 }

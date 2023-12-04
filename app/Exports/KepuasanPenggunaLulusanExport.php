@@ -15,8 +15,7 @@ class KepuasanPenggunaLulusanExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        return view('kaprodi.page.kepuasan_pengguna_lulusan.table', [
-            'data' => KepuasanPenggunaLulusan::all()
-        ]);
+        $data = KepuasanPenggunaLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        return view('kepuasan_pengguna_lulusan.table', compact('data'));
     }
 }

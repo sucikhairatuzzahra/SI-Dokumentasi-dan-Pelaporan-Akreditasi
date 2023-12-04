@@ -109,9 +109,11 @@
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Aksi
-                                            </th>
+                                            @can('isAdmProdi')
+                                                <th scope="col" rowspan="2">
+                                                    Aksi
+                                                </th>
+                                            @endcan
                                         </tr>
                                         <tr align="center">
                                             <th>
