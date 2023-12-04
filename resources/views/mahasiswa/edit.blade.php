@@ -46,62 +46,60 @@
 
                                         <div class="form-group">
                                             <label for="thn_akademik">Tahun Akademik</label>
-                                            <select name="tahun_akademik" id="tahun_akademik" class="form-control">
+                                            <select name="thn_akademik" class="form-control" required>
                                                 @foreach ($tahunAkademiks as $row)
                                                     <option value="{{ $row->id }}"
-                                                        {{ $editData->thn_akademik == $row->id ? 'selected' : '' }}>
+                                                        {{ $editData->id_thn_akademik == $row->id ? 'selected' : '' }}>
                                                         {{ $row->tahun_akademik }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="daya_tampung">Daya Tampung</label>
-                                            <input type="text" class="form-control" id="daya_tampung" name="daya_tampung"
+                                            <input type="text" class="form-control" name="daya_tampung"
                                                 value="{{ $editData->daya_tampung }}" required>
                                             <p class="text-danger">{{ $errors->first('daya_tampung') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="pendaftar">Pendaftar</label>
-                                            <input type="text" class="form-control" id="pendaftar" name="pendaftar"
+                                            <input type="text" class="form-control" name="pendaftar"
                                                 value="{{ $editData->pendaftar }}" required>
                                             <p class="text-danger">{{ $errors->first('pendaftar') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="lulus_seleksi">Lulus Seleksi</label>
-                                            <input type="text" class="form-control" id="lulus_seleksi"
-                                                name="lulus_seleksi" value="{{ $editData->lulus_seleksi }}" required>
+                                            <input type="text" class="form-control" name="lulus_seleksi"
+                                                value="{{ $editData->lulus_seleksi }}" required>
                                             <p class="text-danger">{{ $errors->first('lulus_seleksi') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="maba_reguler">Mahasiswa Baru Reguler</label>
-                                            <input type="text" class="form-control" id="maba_reguler" name="maba_reguler"
+                                            <input type="text" class="form-control" name="maba_reguler"
                                                 value="{{ $editData->maba_reguler }}" required>
                                             <p class="text-danger">{{ $errors->first('maba_reguler') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="maba_transfer">Mahasiswa Baru Transfer</label>
-                                            <input type="text" class="form-control" id="maba_transfer"
-                                                name="maba_transfer" value="{{ $editData->maba_transfer }}" required>
+                                            <input type="text" class="form-control" name="maba_transfer"
+                                                value="{{ $editData->maba_transfer }}" required>
                                             <p class="text-danger">{{ $errors->first('maba_transfer') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="mhs_aktif_reguler">Mahasiswa Aktif Reguler</label>
-                                            <input type="text" class="form-control" id="mhs_aktif_reguler"
-                                                name="mhs_aktif_reguler" value="{{ $editData->mhs_aktif_reguler }}"
-                                                required>
+                                            <input type="text" class="form-control" name="mhs_aktif_reguler"
+                                                value="{{ $editData->mhs_aktif_reguler }}" required>
                                             <p class="text-danger">{{ $errors->first('mhs_aktif_reguler') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="mhs_aktif_transfer">Mahasiswa Aktif Transfer</label>
-                                            <input type="text" class="form-control" id="mhs_aktif_transfer"
-                                                name="mhs_aktif_transfer" value="{{ $editData->mhs_aktif_transfer }}"
-                                                required>
+                                            <input type="text" class="form-control" name="mhs_aktif_transfer"
+                                                value="{{ $editData->mhs_aktif_transfer }}" required>
                                             <p class="text-danger">{{ $errors->first('mhs_aktif_transfer') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="pt_unit">Unit Kerja</label>
-                                            <input type="hidden" class="form-control" name="id_pt_unit"
-                                                value="{{ $editData->ptUnit->id }}" required>
+                                            <input type="hidden" class="form-control" value="{{ $editData->ptUnit->id }}"
+                                                required>
                                             <input type="text" class="form-control"
                                                 value="{{ $editData->ptUnit->kode_pt_unit }}" disabled>
                                         </div>

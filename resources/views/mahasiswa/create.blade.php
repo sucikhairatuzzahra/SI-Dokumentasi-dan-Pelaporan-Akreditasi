@@ -47,11 +47,13 @@
                                             <label for="thn_akademik">Tahun Akademik</label>
                                             <select name="thn_akademik" class="form-control">
                                                 @foreach ($tahunAkademiks as $tahunAkademik)
-                                                    <option value="{{ $tahunAkademik->id }}">
+                                                    <option value="{{ $tahunAkademik->id }}"
+                                                        {{ old('thn_akademik') == $tahunAkademik->id ? 'selected' : '' }}>
                                                         {{ $tahunAkademik->tahun_akademik }}
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger">{{ $errors->first('thn_akademik') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="daya_tampung">Daya Tampung</label>
