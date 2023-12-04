@@ -88,7 +88,12 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-
+                                @can('isKaprodi')
+                                    <div class="row">
+                                        <a href="{{ route('beban-dtpr.download') }}">
+                                            <button class="btn btn-success">Unduh LKPS</button></a>
+                                    </div>
+                                @endcan
                                 <table class="table table-bordered" style="align-content: center">
                                     <thead>
                                         <tr>

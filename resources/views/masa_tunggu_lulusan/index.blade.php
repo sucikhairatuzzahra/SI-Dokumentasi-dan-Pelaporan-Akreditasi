@@ -97,6 +97,12 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
+                                @can('isKaprodi')
+                                    <div class="row">
+                                        <a href="{{ route('masa-tunggu.download') }}">
+                                            <button class="btn btn-success">Unduh LKPS</button></a>
+                                    </div>
+                                @endcan
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="text-align-last: center">
