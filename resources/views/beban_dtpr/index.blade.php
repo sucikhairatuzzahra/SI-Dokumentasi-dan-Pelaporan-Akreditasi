@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="card-block">
-                                <form action="{{ route('mahasiswa.index') }}" method="get">
+                                <form action="{{ route('beban-dtpr.index') }}" method="get">
                                     <div class="row">
                                         <div class="col-md-3 form-group">
                                             <label for="">Program Studi</label>

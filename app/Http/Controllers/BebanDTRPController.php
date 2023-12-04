@@ -30,8 +30,14 @@ class BebanDTRPController extends Controller
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
-
-            return view('beban_dtpr.index', compact('data', 'request'));
+             $nama_dosen = [];
+            foreach ($data as $value) {
+                $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
+                $nama_dosen[] = $pegawai['nama_pegawai'];
+            }
+            Log::debug($nama_dosen);
+            return view('beban_dtpr.index', compact('data', 'nama_dosen','request'));
+       
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
