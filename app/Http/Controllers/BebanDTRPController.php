@@ -94,7 +94,7 @@ class BebanDTRPController extends Controller
         $data['editData'] = BebanDTPR::find($id);
         $ptUnit = Auth::user()->ptUnit;
         $dosens = Dosen::with('pegawai')->get();
-        return view('beban_dtpr.edit', $data, compact('ptUnit', 'ppkm', 'dosens'));
+        return view('beban_dtpr.edit', $data, compact('ptUnit', 'dosens'));
     }
 
     /**
@@ -118,10 +118,10 @@ class BebanDTRPController extends Controller
             'sks_pengabdian' => $request->sks_pengabdian,
             'manajemen_pt_sendiri' => $request->manajemen_pt_sendiri,
             'manajemen_pt_lain' => $request->manajemen_pt_lain,
-            'pt_unit' => $request->kode_pt_unit,
+            'id_pt_unit' => $request->id_pt_unit,
         ]);
 
-        return redirect('bebandtpr')->with('success', 'Data berhasil disimpan');
+        return redirect('beban-dtpr')->with('success', 'Data berhasil disimpan');
     }
 
     /**
