@@ -17,18 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('nomor_induk_dosen')->unique();
             $table->enum('jenis_nomor_induk_dosen', ['NIDN', 'NIDK']);
-            $table->unsignedBigInteger('id_level_pendidikan_tertinggi');
-            $table->foreign('id_level_pendidikan_tertinggi')->references('id')->on('level_pendidikan_tertinggi');
+            $table->foreignId('id_level_pendidikan_tertinggi')->constrained('level_pendidikan_tertinggi')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('pendidikan_magister');
             $table->string('pendidikan_doktor')->nullable();
             $table->string('bidang_keahlian');
             $table->string('jabatan_akademik')->nullable();
-            $table->unsignedBigInteger('id_pegawai');
-            $table->foreign('id_pegawai')->references('id')->on('pegawai');
-            $table->unsignedBigInteger('id_pt_unit');
-            $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
-            $table->unsignedBigInteger('id_kategori_dosen');
-            $table->foreign('id_kategori_dosen')->references('id')->on('kategori_dosen');
+            $table->foreignId('id_pegawai')->constrained('pegawai')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('id_kategori_dosen')->constrained('kategori_dosen')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

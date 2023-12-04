@@ -45,8 +45,9 @@ class Dosen extends Model
     {
         return $this->hasMany(BebanDTPR::class, 'id_dosen');
     }
-    // public function ppkmDtpr(): HasMany
-    // {
-    //     return $this->hasMany(PPKMDariDTPR::class, 'id_dosen');
-    // }
+
+    public function ppkmDtpr(): BelongsTo
+    {
+        return $this->belongsTo(PPKMDariDTPR::class, 'id_dosen');
+    }
 }

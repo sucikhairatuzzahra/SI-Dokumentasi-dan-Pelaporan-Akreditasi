@@ -15,13 +15,11 @@ return new class extends Migration
     {
         Schema::create('ppkm', function (Blueprint $table) {
             $table->id();
-            $table->string('tahun');
+            $table->year('tahun');
             $table->string('judul');
-            $table->enum('jenis_penelitian_pengabdian', ['penelitian', 'pengabdian']);
-            $table->unsignedBigInteger('id_jenis_sumber_pembiayaan');
-            $table->foreign('id_jenis_sumber_pembiayaan')->references('id')->on('jenis_sumber_pembiayaan');
+            $table->foreignId('id_jenis_sumber_pembiayaan')->constrained('jenis_sumber_pembiayaan')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('sumber_pembiayaan');
-            // $table->enum('kerjasama', ['y', 't']);
+            $table->enum('jenis_penelitian_pengabdian', ['Penelitian', 'Pengabdian']);
             $table->timestamps();
         });
     }

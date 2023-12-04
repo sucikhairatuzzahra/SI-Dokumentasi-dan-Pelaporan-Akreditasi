@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jenjang_program', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode_jenjang_program');
-            $table->string('nama_jenjang_program');
-            $table->enum('aktif', ['y', 't']);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('id_pt_unit')->after('role')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenjang_program');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_id_pt_unit_foreign');
+        });
     }
 };

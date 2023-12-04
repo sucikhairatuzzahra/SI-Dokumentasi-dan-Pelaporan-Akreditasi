@@ -94,9 +94,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $no = 1;
-                                        // dd($data);
-                                        ?>
+                                        <?php $no = 1; ?>
                                         @foreach ($data as $no => $item)
                                             <tr>
                                                 <td>{{ $no + 1 }}</td>
@@ -122,7 +120,6 @@
                                                         </a>
                                                         <button type="submit" class="btn btn-link">Hapus</button>
                                                     </form>
-
                                                 </td>
                                             </tr>
                                         @endforeach

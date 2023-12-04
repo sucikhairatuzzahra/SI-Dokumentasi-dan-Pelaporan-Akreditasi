@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ppkm_dtpr', function (Blueprint $table) {
+        Schema::create('luaran_lain_ppkm', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_dosen')->constrained('dosen')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->year('tahun');
             $table->foreignId('id_ppkm')->constrained('ppkm')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->enum('ketua', ['ya', 'tidak']);
-            $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('id_jenis_luaran_lain')->constrained('jenis_luaran_lain')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('judul_luaran_lain');
+            $table->string('keterangan');
+            $table->integer('jumlah_sitasi');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ppkm_dtpr');
+        Schema::dropIfExists('luaran_lain_ppkm');
     }
 };

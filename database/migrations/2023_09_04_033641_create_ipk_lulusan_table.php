@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('ipk_lulusan', function (Blueprint $table) {
             $table->id();
-            $table->integer('tahun_lulus');
+            $table->year('tahun_lulus');
             $table->double('jumlah_lulusan');
             $table->double('ipk_min');
             $table->double('ipk_rata_rata');
             $table->double('ipk_max');
-            $table->unsignedBigInteger('id_pt_unit');
-            $table->foreign('id_pt_unit')->references('id')->on('pt_unit');
+            $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
