@@ -63,6 +63,7 @@ class CalonMhsBaruController extends Controller
         $data['editData'] = Mhsbaru::find($id);
         return view('mahasiswa.edit', $data, compact('tahunAkademiks'));
     }
+
     public function update(Request $request, $id)
     {
         $mhs = Mhsbaru::find($id);

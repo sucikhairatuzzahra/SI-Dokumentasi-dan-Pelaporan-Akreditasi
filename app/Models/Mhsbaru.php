@@ -16,7 +16,7 @@ class Mhsbaru extends Model
     protected $table = "cln_mhsbaru";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'thn_akademik', 'daya_tampung', 'pendaftar', 'lulus_seleksi', 'maba_reguler',
+        'id_thn_akademik', 'daya_tampung', 'pendaftar', 'lulus_seleksi', 'maba_reguler',
         'maba_transfer', 'mhs_aktif_reguler', 'mhs_aktif_transfer', 'pt_unit'
     ];
 
