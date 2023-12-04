@@ -92,7 +92,7 @@ Route::get('masa-tunggu-download', [MasaTungguLulusanController::class, 'downloa
 Route::resource('kerja-lulusan', BidangKerjaLulusanController::class)->except('show')->parameters(['kerja-lulusan' => 'id']);
 Route::get('kerja-lulusan-download', [BidangKerjaLulusanController::class, 'download'])->name('kerja-lulusan.download');
 
-Route::resource('ppkm-dtpr', PPKMDariDTPRController::class)->except('show')->parameters(['ppkm_dtpr' => 'id']);
+Route::resource('ppkm-dtpr', PPKMDariDTPRController::class)->except('show')->parameters(['ppkm-dtpr' => 'id']);
 Route::get('ppkm-dtpr-download', [PPKMDariDTPRController::class, 'download'])->name('ppkm-dtpr.download');
 
 Route::resource('ppkm', PPKMController::class)->except('show')->parameters(['ppkm' => 'id']);

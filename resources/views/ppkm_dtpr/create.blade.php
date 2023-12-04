@@ -63,7 +63,7 @@
                                                 @foreach ($dosens as $data)
                                                     <option value="{{ $data->id }}"
                                                         {{ old('id_dosen') == $data->id ? 'selected' : '' }}>
-                                                        {{ $data->nomor_induk_dosen }}
+                                                        {{ $data->pegawai->nama_pegawai }}
                                                     </option>
                                                 @endforeach
                                             </select>
