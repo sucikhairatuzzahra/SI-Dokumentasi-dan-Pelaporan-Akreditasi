@@ -23,6 +23,6 @@ class LuaranLainPPKMDosen extends Model
 
     public function luaranLainPpkm(): BelongsTo
     {
-        return $this->belongsTo(LuaranPPKM::class, 'id_luaran_lain_ppkm');
+        return $this->belongsTo(LuaranLainPPKM::class, 'id_luaran_lain_ppkm');
     }
 }

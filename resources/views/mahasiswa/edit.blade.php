@@ -50,7 +50,7 @@
                                                 @foreach ($tahunAkademiks as $row)
                                                     <option value="{{ $row->id }}"
                                                         {{ $editData->id_thn_akademik == $row->id ? 'selected' : '' }}>
-                                                        {{ $row->tahun_akademik }}</option>
+                                                        {{ $row->tahun }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

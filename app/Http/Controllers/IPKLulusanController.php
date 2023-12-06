@@ -22,7 +22,7 @@ class IPKLulusanController extends Controller
         if (Gate::allows('isJurusan')) {
             $ptUnit = PTUnit::all();
             $data = IPKLulusan::orderBy('id', 'desc')
-                ->with('ptUnit')
+                ->with('tahunAkademik','ptUnit')
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
@@ -30,30 +30,15 @@ class IPKLulusanController extends Controller
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = IPKLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = IPKLulusan::with('tahunAkademik','ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('ipk_lulusan.index', compact('data'));
         }
 
-        // $data = IPKLulusan::all();
-        // // dd($data);
-        // return view('ipk_lulusan.index', compact('data'));
+       
     }
 
-    // public function admprodiIndex()
-    // {
-    //     $data = IPKLulusan::all();
-
-    //     // dd($data);
-    //     return view('ipk_lulusan.index', compact('data'));
-    // }
-
-    // public function kaprodiIndex()
-    // {
-    //     $data = IPKLulusan::all();
-
-    //     return view('ipk_lulusan.index', compact('data'));
-    // }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -61,8 +46,9 @@ class IPKLulusanController extends Controller
      */
     public function create()
     {
+        $tahunAkademiks = TahunAkademik::all();
         $ptUnit = Auth::user()->ptUnit;
-        return view('ipk_lulusan.create', compact('ptUnit'));
+        return view('ipk_lulusan.create', compact('ptUnit','tahunAkademiks'));
     }
 
     /**
@@ -76,7 +62,7 @@ class IPKLulusanController extends Controller
         $user = Auth::user();
         $input = IPKLulusan::insert([
             'id' => $request->id,
-            'tahun_lulus' => $request->tahun_lulus,
+            'id_thn_akademik' => $request->thn_akademik,
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'ipk_min' => $request->ipk_min,
             'ipk_rata_rata' => $request->ipk_rata_rata,
@@ -102,8 +88,9 @@ class IPKLulusanController extends Controller
      */
     public function edit($id)
     {
+        $tahunAkademiks = TahunAkademik::all();
         $data['editData'] = IPKLulusan::find($id);
-        return view('ipk_lulusan.edit', $data);
+        return view('ipk_lulusan.edit', $data, compact('tahunAkademiks'));
     }
 
     /**
@@ -117,7 +104,7 @@ class IPKLulusanController extends Controller
     {
         $ipk = IPKLulusan::find($id);
         $ipk->update([
-            'tahun_lulus' => $request->tahun_lulus,
+            'id_thn_akademik' => $request->thn_akademik,
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'ipk_min' => $request->ipk_min,
             'ipk_rata_rata' => $request->ipk_rata_rata,

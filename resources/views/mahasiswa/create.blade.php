@@ -49,7 +49,7 @@
                                                 @foreach ($tahunAkademiks as $tahunAkademik)
                                                     <option value="{{ $tahunAkademik->id }}"
                                                         {{ old('thn_akademik') == $tahunAkademik->id ? 'selected' : '' }}>
-                                                        {{ $tahunAkademik->tahun_akademik }}
+                                                        {{ $tahunAkademik->tahun }}
                                                     </option>
                                                 @endforeach
                                             </select>

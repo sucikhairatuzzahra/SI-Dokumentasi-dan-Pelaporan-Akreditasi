@@ -86,7 +86,7 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->luaranLainPpkm->judul_luaran_lain_ppkm }}</td>
+                                                <td>{{ $item->luaranLainPpkm->judul_luaran_lain }}</td>
                                                 <td>{{ $nama_dosen[$no] }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
