@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('luaran_lain_ppkm_dosen', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_luaran_lain_ppkm')->constrained('luaran_lain_ppkm')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('id_dosen')->constrained('dosen')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
