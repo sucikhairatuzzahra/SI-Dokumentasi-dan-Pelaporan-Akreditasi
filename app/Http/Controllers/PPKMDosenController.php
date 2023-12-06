@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Exports\PPKMDTPRExport;
-use App\Models\PPKMDariDTPR;
+use App\Models\PPKMDosen;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\PPKM;
 use App\Models\PTUnit;
-use App\Models\Luaran;
+use App\Models\JenisLuaran;
 use App\Models\Dosen;
-use App\Models\LuaranLain;
+use App\Models\JenisLuaranLain;
 use App\Models\Pegawai;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 
-class PPKMDariDTPRController extends Controller
+class PPKMDosenController extends Controller
 {
     /**
      * Display a listing of the resource.

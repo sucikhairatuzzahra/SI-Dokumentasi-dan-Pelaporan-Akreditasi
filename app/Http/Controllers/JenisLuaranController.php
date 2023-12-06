@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LuaranLain;
+use App\Models\Luaran;
 use Illuminate\Http\Request;
 
-class LuaranLainController extends Controller
+class JenisLuaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class LuaranLainController extends Controller
      */
     public function index()
     {
-        $data = LuaranLain::all();
-        return view('admin.luaran_lain.index', compact('data'));
+        $data = Luaran::all();
+        return view('admin.luaran.index', compact('data'));
     }
 
     /**
@@ -25,7 +25,7 @@ class LuaranLainController extends Controller
      */
     public function create()
     {
-        return view('admin.luaran_lain.create');
+        return view('admin.luaran.create');
     }
 
     /**
@@ -36,17 +36,17 @@ class LuaranLainController extends Controller
      */
     public function store(Request $request)
     {
-        $input = LuaranLain::insert([
+        $input = Luaran::insert([
             'id' => $request->id,
-            'jenis_luaran_lain' => $request->jenis_luaran_lain,
+            'jenis_luaran' => $request->jenis_luaran,
         ]);
 
         if ($input) {
-            return redirect('luaranlain')->with('pesan', 'Data berhasil disimpan');
+            return redirect('luaran')->with('pesan', 'Data berhasil disimpan');
         } else {
             echo "<script>
             alert('Data gagal diinput, masukkan kebali data dengan benar');
-            window.location = '/admin.page.luaran_lain.index';
+            window.location = '/admin.page.luaran.index';
             </script>";
         }
     }
@@ -59,9 +59,9 @@ class LuaranLainController extends Controller
      */
     public function destroy($id)
     {
-        $data = LuaranLain::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $data = Luaran::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $data->delete();
 
-        return redirect()->route('luaranlain')->with('success', 'Luaran Lain berhasil dihapus');
+        return redirect()->route('luaran')->with('success', 'Luaran berhasil dihapus');
     }
 }

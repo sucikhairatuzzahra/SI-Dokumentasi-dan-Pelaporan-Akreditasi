@@ -13,7 +13,7 @@ class BebanDTPR extends Model
     protected $table = "beban_dtpr";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id_dosen', 'pgjrn_ps_sendiri', 'pgjrn_ps_lain_pt_sendiri', 'pgjrn_pt_lain', 'sks_penelitian',
+        'id_thn_akademik','id_dosen', 'pgjrn_ps_sendiri', 'pgjrn_ps_lain_pt_sendiri', 'pgjrn_pt_lain', 'sks_penelitian',
         'sks_penelitian', 'manajemen_pt_sendiri', 'manajemen_pt_lain','id_pt_unit'
     ];
 
@@ -25,6 +25,11 @@ class BebanDTPR extends Model
     {
         return $this->belongsTo(Dosen::class, 'id_dosen');
     }
+      // Relationship dengan model tahunAkademik
+      public function tahunAkademik(): BelongsTo
+      {
+          return $this->belongsTo(TahunAkademik::class, 'id_thn_akademik');
+      }
 
 
 }

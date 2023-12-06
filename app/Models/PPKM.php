@@ -21,9 +21,9 @@ class PPKM extends Model
         return $this->belongsTo(JenisSumberPembiayaan::class, 'id_jenis_sumber_pembiayaan');
     }
 
-    public function aksesibilitas(): HasMany
+    public function ppkmDosen(): HasMany
     {
-        return $this->hasMany(PPKMDariDTPR::class, 'id_ppkm');
+        return $this->hasMany(PPKMDosen::class, 'id_ppkm');
     }
 
     

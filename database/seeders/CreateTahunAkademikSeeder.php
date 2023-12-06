@@ -17,28 +17,36 @@ class CreateTahunAkademikSeeder extends Seeder
     {
         $data = [
             [
-                'tahun_akademik' => '2023/2024'
+                'tahun_akademik' => '2023/2024',
+                'tahun' => '2023'
             ],
             [
-                'tahun_akademik' => '2022/2023'
+                'tahun_akademik' => '2022/2023',
+                'tahun' => '2022'
             ],
             [
-                'tahun_akademik' => '2021/2022'
+                'tahun_akademik' => '2021/2022',
+                'tahun' => '2022'
             ],
             [
-                'tahun_akademik' => '2020/2021'
+                'tahun_akademik' => '2020/2021',
+                'tahun' => '2020'
             ],
             [
-                'tahun_akademik' => '2019/2020'
+                'tahun_akademik' => '2019/2020',
+                'tahun' => '2019'
             ],
             [
-                'tahun_akademik' => '2018/2019'
+                'tahun_akademik' => '2018/2019',
+                'tahun' => '2018'
             ],
             [
-                'tahun_akademik' => '2017/2018'
+                'tahun_akademik' => '2017/2018',
+                'tahun' => '2017'
             ],
             [
-                'tahun_akademik' => '2016/2017'
+                'tahun_akademik' => '2016/2017',
+                'tahun' => '2016'
             ],
            
 

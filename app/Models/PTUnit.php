@@ -77,7 +77,7 @@ class PTUnit extends Model
 
     public function PPKMDariDTPR(): HasMany
     {
-        return $this->hasMany(PPKMDariDTPR::class, 'id_pt_unit');
+        return $this->hasMany(PPKMDosen::class, 'id_pt_unit');
     }
     public function Dosen(): HasMany
     {

@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('beban_dtpr', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_thn_akademik')->constrained('tahun_akademik')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('id_dosen')->constrained('dosen')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->integer('pgjrn_ps_sendiri');
-            $table->integer('pgjrn_ps_lain_pt_sendiri');
-            $table->integer('pgjrn_pt_lain');
-            $table->integer('sks_penelitian');
-            $table->integer('sks_pengabdian');
-            $table->integer('manajemen_pt_sendiri');
-            $table->integer('manajemen_pt_lain');
+            $table->double('pgjrn_ps_sendiri');
+            $table->double('pgjrn_ps_lain_pt_sendiri');
+            $table->double('pgjrn_pt_lain');
+            $table->double('sks_penelitian');
+            $table->double('sks_pengabdian');
+            $table->double('manajemen_pt_sendiri');
+            $table->double('manajemen_pt_lain');
             $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

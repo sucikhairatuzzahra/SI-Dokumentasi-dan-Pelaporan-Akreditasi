@@ -37,14 +37,26 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Rata-rata Beban DTPR</h5>
-                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+                                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
                                     <form action="{{ route('beban-dtpr.store') }}" method="POST">
                                         @csrf
+
+                                        <div class="form-group">
+                                            <label for="thn_akademik">Tahun</label>
+                                            <select name="thn_akademik" class="form-control">
+                                                @foreach ($tahunAkademiks as $tahunAkademik)
+                                                    <option value="{{ $tahunAkademik->id }}"
+                                                        {{ old('thn_akademik') == $tahunAkademik->id ? 'selected' : '' }}>
+                                                        {{ $tahunAkademik->tahun }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <p class="text-danger">{{ $errors->first('thn_akademik') }}</p>
+                                        </div>
                                         <div class="form-group">
                                             <label for="nama_dosen">Nama Dosen</label>
-                                            {{-- <input type="text" class="form-control" id="nama_dosen" name="nama_dosen"> --}}
                                             <select name="id_dosen" class="form-control">
                                                 @foreach ($dosens as $data)
                                                     <option value="{{ $data->id }}"

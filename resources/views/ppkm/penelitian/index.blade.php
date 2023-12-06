@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="page-header-title">
                         <h5 class="m-b-10">Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                        <p class="m-b-0">Data Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</p>
+                        <p class="m-b-0">Data Penelitian Infokom</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -70,7 +70,7 @@
                         <div class="card-header">
                             <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
                             @can('isAdmProdi')
-                                <a href="{{ route('ppkm.create') }}">
+                                <a href="{{ route('ppkm-penelitian.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
 
@@ -114,9 +114,9 @@
                                             <th scope="col">
                                                 Sumber Pembiayaan
                                             </th>
-                                            <th scope="col">
+                                            {{-- <th scope="col">
                                                 Jenis Penelitian dan Pengabdian
-                                            </th>
+                                            </th> --}}
 
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
@@ -134,7 +134,7 @@
                                                 <td>{{ $item->judul }}</td>
                                                 <td>{{ $item->pembiayaan->jenis_sumber_pembiayaan }}</td>
                                                 <td>{{ $item->sumber_pembiayaan }}</td>
-                                                <td>{{ $item->jenis_penelitian_pengabdian }}</td>
+                                                {{-- <td>{{ $item->jenis_penelitian_pengabdian }}</td> --}}
 
                                                 @can('isAdmProdi')
                                                     <td>

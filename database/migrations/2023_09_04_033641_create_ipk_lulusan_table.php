@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ipk_lulusan', function (Blueprint $table) {
             $table->id();
-            $table->year('tahun_lulus');
+            $table->foreignId('id_thn_akademik')->constrained('tahun_akademik')->cascadeOnUpdate()->cascadeOnDelete();
             $table->double('jumlah_lulusan');
             $table->double('ipk_min');
             $table->double('ipk_rata_rata');

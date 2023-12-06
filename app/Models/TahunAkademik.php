@@ -13,10 +13,20 @@ class TahunAkademik extends Model
     protected $table = "tahun_akademik";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'tahun_akademik'
+        'tahun_akademik','tahun'
     ];
     //controllernya di admincontroller
+   
     public function mhsBaru(): HasMany {
         return $this->hasMany(MhsBaru::class, 'id_thn_akademik');
+    }
+    public function bebanDtpr(): HasMany {
+        return $this->hasMany(BebanDTPR::class, 'id_thn_akademik');
+    }
+    public function ipk(): HasMany {
+        return $this->hasMany(IPKLulusan::class, 'id_thn_akademik');
+    }
+    public function kerjaLulusan(): HasMany {
+        return $this->hasMany(BidangKerjaLulusan::class, 'id_thn_akademik');
     }
 }

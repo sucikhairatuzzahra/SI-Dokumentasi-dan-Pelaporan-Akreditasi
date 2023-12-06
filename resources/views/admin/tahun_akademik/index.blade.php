@@ -59,6 +59,9 @@
                                                 Tahun Akademik
                                             </th>
                                             <th scope="col">
+                                                Tahun
+                                            </th>
+                                            <th scope="col">
                                                 Aksi
                                             </th>
                                         </tr>
@@ -68,14 +71,19 @@
                                         // dd($data);
                                         ?>
                                         @foreach ($data as $no => $item)
-                                            <tr>
+                                            <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
                                                 <td>{{ $item->tahun_akademik }}</td>
+                                                <td>{{ $item->tahun }}</td>
                                                 <td>
                                                     <form action="{{ route('ta.destroy', ['id' => $item->id]) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
+                                                        <a href="{{ route('ta.edit', ['id' => $item->id]) }}"
+                                                            style="margin-right: 7px">
+                                                            Edit
+                                                        </a>
                                                         <button type="submit" class="btn btn-link">Hapus</button>
                                                     </form>
                                                 </td>

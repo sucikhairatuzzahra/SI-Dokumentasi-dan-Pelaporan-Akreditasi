@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Rata-rata beban DTPR per semester, pada TS</h5>
-                        <p class="m-b-0">Data Rata-rata beban DTPR</p>
+                        <h5 class="m-b-10">Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
+                        <p class="m-b-0">Data Pengabdian Infokom</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,7 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Rata-rata beban DTPR</a>
+                        <li class="breadcrumb-item"><a href="#!">PPKM DTPR</a>
                         </li>
                     </ul>
                 </div>
@@ -30,8 +30,7 @@
             <div class="page-wrapper">
                 <!-- Page-body start -->
                 <div class="page-body">
-                    <!-- Basic table card start -->
-                    @can('isJurusan')
+                    {{-- @can('isJurusan')
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-header-left">
@@ -39,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="card-block">
-                                <form action="{{ route('beban-dtpr.index') }}" method="get">
+                                <form action="{{ route('ppkm-dtpr.index') }}" method="get">
                                     <div class="row">
                                         <div class="col-md-3 form-group">
                                             <label for="">Program Studi</label>
@@ -63,17 +62,26 @@
                                 </form>
                             </div>
                             {{-- tabel  --}}
-                            <br>
+                    {{-- <br>
                         </div>
-                    @endcan
+                    @endcan --}}
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Rata-rata beban DTPR</h5>
+                            <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
                             @can('isAdmProdi')
-                                <a href="{{ route('beban-dtpr.create') }}">
-                                    <span>Tambah data <code>disini</code> </span>
+                                <a href="{{ route('ppkm-pengabdian.create') }}">
+                                    <span>Tambah data <code>disini</code></span>
                                 </a>
+
+                                {{-- Alerting --}}
+                                @if (session('success'))
+                                    <div class="alert alert-success">{{ session('success') }}</div>
+                                @endif
+
+                                @if (session('error'))
+                                    <div class="alert alert-danger">{{ session('error') }}</div>
+                                @endif
                             @endcan
 
                             <div class="card-header-right">
@@ -88,61 +96,33 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-                                @can('isKaprodi')
-                                    <div class="row">
-                                        <a href="{{ route('beban-dtpr.download') }}">
-                                            <button class="btn btn-success">Unduh LKPS</button></a>
-                                    </div>
-                                @endcan
-                                <table class="table table-bordered" style="align-content: center">
+                                <table class="table table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th scope="col" rowspan="2">
+                                        <tr style="text-align-last: center">
+                                            <th scope="col">
                                                 No
                                             </th>
-                                            <th scope="col" rowspan="2">
+                                            <th scope="col">
                                                 Tahun
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                Nama Dosen
+                                            <th scope="col">
+                                                Judul
                                             </th>
-                                            <th scope="col" colspan="3" style="align-content: center">
-                                                SKS Pengajaran Pada
+                                            <th scope="col">
+                                                Jenis Sumber Pembiayaan
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                SKS Penelitian
+                                            <th scope="col">
+                                                Sumber Pembiayaan
                                             </th>
-                                            <th scope="col" rowspan="2">
-                                                SKS Pengabdian Pada Masy
-                                            </th>
-                                            <th scope="col" colspan="2">
-                                                SKS Manajemen
-                                            </th>
-                                            <th scope="col" rowspan="2">
-                                                Unit Kerja
-                                            </th>
+                                            {{-- <th scope="col">
+                                                Jenis Penelitian dan Pengabdian
+                                            </th> --}}
+
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
                                                 </th>
                                             @endcan
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                PS Sendiri
-                                            </th>
-                                            <th>
-                                                PS Lain, PT Sendiri
-                                            </th>
-                                            <th>
-                                                PT Lain
-                                            </th>
-                                            <th>
-                                                PT Sendiri
-                                            </th>
-                                            <th>
-                                                PT Lain
-                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -150,23 +130,19 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->tahunAkademik->tahun }}</td>
-                                                <td>{{ $nama_dosen[$no] }}</td>
-                                                <td>{{ $item->pgjrn_ps_sendiri }}</td>
-                                                <td>{{ $item->pgjrn_ps_lain_pt_sendiri }}</td>
-                                                <td>{{ $item->pgjrn_pt_lain }}</td>
-                                                <td>{{ $item->sks_penelitian }}</td>
-                                                <td>{{ $item->sks_pengabdian }}</td>
-                                                <td>{{ $item->manajemen_pt_sendiri }}</td>
-                                                <td>{{ $item->manajemen_pt_lain }}</td>
-                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->tahun }}</td>
+                                                <td>{{ $item->judul }}</td>
+                                                <td>{{ $item->pembiayaan->jenis_sumber_pembiayaan }}</td>
+                                                <td>{{ $item->sumber_pembiayaan }}</td>
+                                                {{-- <td>{{ $item->jenis_penelitian_pengabdian }}</td> --}}
+
                                                 @can('isAdmProdi')
                                                     <td>
-                                                        <form action="{{ route('beban-dtpr.destroy', ['id' => $item->id]) }}"
+                                                        <form action="{{ route('ppkm.destroy', ['id' => $item->id]) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <a href="{{ route('beban-dtpr.edit', ['id' => $item->id]) }}"
+                                                            <a href="{{ route('ppkm.edit', ['id' => $item->id]) }}"
                                                                 style="margin-right: 7px">
                                                                 Edit
                                                             </a>

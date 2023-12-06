@@ -12,7 +12,8 @@ class BidangKerjaLulusan extends Model
     protected $table = "bidang_kerja_lulusan";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'tahun_lulus', 'jumlah_lulusan', 'lulusan_terlacak', 'bidang_infokom', 'non_infokom',
+        //'id_thn_akademik' sebelumnya adalah tahun_lulus
+        'id_thn_akademik', 'jumlah_lulusan', 'lulusan_terlacak', 'bidang_infokom', 'non_infokom',
         'internasional', 'nasional', 'wirausaha', 'id_pt_unit'
     ];
     public function user()
@@ -25,4 +26,9 @@ class BidangKerjaLulusan extends Model
     {
         return $this->belongsTo(PTUnit::class, 'id_pt_unit');
     }
+      // Relationship dengan model tahunAkademik
+      public function tahunAkademik(): BelongsTo
+      {
+          return $this->belongsTo(TahunAkademik::class, 'id_thn_akademik');
+      }
 }

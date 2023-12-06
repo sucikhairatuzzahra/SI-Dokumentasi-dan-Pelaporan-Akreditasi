@@ -37,7 +37,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Rata-rata Masa Tunggu Lulusan untuk Bekerja Pertama Kali</h5>
-                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+                                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
                                     <form action="{{ route('masa-tunggu.store') }}" method="POST">

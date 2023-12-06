@@ -36,7 +36,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Pendayagunaan Sarana dan Prasarana Utama</h5>
-                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+                                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
                                     <form action="{{ route('sarana.store') }}" method="POST">

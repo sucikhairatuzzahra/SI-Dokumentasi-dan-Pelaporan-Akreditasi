@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Dosen;
 use App\Models\Pegawai;
+use App\Models\TahunAkademik;
 use App\Models\PTUnit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -26,7 +27,7 @@ class BebanDTRPController extends Controller
         if (Gate::allows('isJurusan')) {
             $ptUnit = PTUnit::all();
             $data = BebanDTPR::orderBy('id', 'desc')
-                ->with('ptUnit')
+                ->with('ptUnit','tahunAkademik')
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
@@ -41,7 +42,7 @@ class BebanDTRPController extends Controller
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = BebanDTPR::with('ptUnit', 'dosens')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+            $data = BebanDTPR::with('ptUnit', 'dosens','tahunAkademik')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
             $nama_dosen = [];
             foreach ($data as $value) {
                 $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
@@ -59,9 +60,10 @@ class BebanDTRPController extends Controller
      */
     public function create()
     { 
+        $tahunAkademiks = TahunAkademik::all();
         $ptUnit = Auth::user()->ptUnit;
         $dosens = Dosen::with('pegawai')->get();
-        return view('beban_dtpr.create', compact('ptUnit','dosens'));
+        return view('beban_dtpr.create', compact('ptUnit','dosens','tahunAkademiks'));
 
     }
 
@@ -76,6 +78,7 @@ class BebanDTRPController extends Controller
     {
         BebanDTPR::create([
             'id' => $request->id,
+            'id_thn_akademik' => $request->thn_akademik,
             'id_dosen' => $request->id_dosen,
             'pgjrn_ps_sendiri' => $request->pgjrn_ps_sendiri,
             'pgjrn_ps_lain_pt_sendiri' => $request->pgjrn_ps_lain_pt_sendiri,
@@ -99,8 +102,9 @@ class BebanDTRPController extends Controller
     {
         $data['editData'] = BebanDTPR::find($id);
         $ptUnit = Auth::user()->ptUnit;
+        $tahunAkademiks = TahunAkademik::all();
         $dosens = Dosen::with('pegawai')->get();
-        return view('beban_dtpr.edit', $data, compact('ptUnit', 'dosens'));
+        return view('beban_dtpr.edit', $data, compact('ptUnit', 'dosens','tahunAkademiks'));
     }
 
     /**
@@ -116,6 +120,7 @@ class BebanDTRPController extends Controller
 
         $dtpr = BebanDTPR::find($id);
         $dtpr->update([
+            'id_thn_akademik' => $request->thn_akademik,
             'id_dosen' => $request->id_dosen,
             'pgjrn_ps_sendiri' => $request->pgjrn_ps_sendiri,
             'pgjrn_ps_lain_pt_sendiri' => $request->pgjrn_ps_lain_pt_sendiri,
@@ -140,7 +145,7 @@ class BebanDTRPController extends Controller
     {
         $bebandtpr = BebanDTPR::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $bebandtpr->delete();
-        return redirect()->route('bebandtpr')->with('success', 'Data Rata-Rata Beban DTPR Per Semester berhasil dihapus');
+        return redirect()->route('beban-dtpr')->with('success', 'Data Rata-Rata Beban DTPR Per Semester berhasil dihapus');
     }
     public function download()
     {

@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layouts.app')
 @section('content')
     {{-- page header  --}}
     <div class="page-header">
@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="page-header-title">
                         <h5 class="m-b-10">Tahun Akademik</h5>
-                        <p class="m-b-0">Form Tambah Tahun Akademik</p>
+                        <p class="m-b-0">Form Tahun Akademik</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -35,16 +35,22 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Form Tambah Tahun Akademik</h5>
-                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+                                    <h5>Form Tahun Akademik</h5>
+                                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
-                                    <form action="/simpan-tahun_akademik" method="POST">
+                                    <form action="{{ route('ta.update', $editData->id) }}" method="POST">
                                         @csrf
+                                        @method('put')
                                         <div class="form-group">
                                             <label for="tahun_akademik">Tahun Akademik</label>
                                             <input type="text" class="form-control" id="tahun_akademik"
-                                                name="tahun_akademik">
+                                                name="tahun_akademik" value="{{ $editData->tahun_akademik }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tahun">Tahun</label>
+                                            <input type="text" class="form-control" id="tahun" name="tahun"
+                                                value="{{ $editData->tahun }}">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                         <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
