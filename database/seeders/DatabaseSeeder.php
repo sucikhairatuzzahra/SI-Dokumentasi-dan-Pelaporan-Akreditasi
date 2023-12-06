@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
             MhsBaruSeed::class,
             TenagaKependidikanSeed::class,
             KelulusanTepatWaktuSeed::class,
-            IPKLulusanSeed::class,
+            // IPKLulusanSeed::class,
             KepuasanPenggunaSeed::class,
             MasaTungguLulusanSeed::class,
-            BidangKerjaLulusanSeed::class,
+            // BidangKerjaLulusanSeed::class,
             // PPKMDariDTPRSeed::class,
             SaranaSeed::class,
             PendanaanSeed::class

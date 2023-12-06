@@ -30,17 +30,14 @@ class LuaranPPKMDosenController extends Controller
         //     return view('luaran_ppkm_dosen.index', compact('data', 'request'));
 
         // }
-
-    
-            $data = LuaranPPKMDosen::with('luaranPpkm', 'dosens')->get();
-            $nama_dosen = [];
-            foreach ($data as $value) {
-                $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
-                $nama_dosen[] = $pegawai['nama_pegawai'];
-            }
-            Log::debug($nama_dosen);
-            return view('luaran_ppkm_dosen.index', compact('data', 'nama_dosen'));
-        
+        $data = LuaranPPKMDosen::with('luaranPpkm', 'dosens')->get();
+        $nama_dosen = [];
+        foreach ($data as $value) {
+            $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
+            $nama_dosen[] = $pegawai['nama_pegawai'];
+        }
+        Log::debug($nama_dosen);
+        return view('luaran_ppkm_dosen.index', compact('data', 'nama_dosen'));
     }
 
     /**
@@ -52,7 +49,7 @@ class LuaranPPKMDosenController extends Controller
     {
         $dosens = Dosen::with('pegawai')->get();
         $luaranPpkm = LuaranPPKM::all();
-      
+
         return view('luaran_ppkm_dosen.create', compact('luaranPpkm', 'dosens'));
     }
 
@@ -64,10 +61,10 @@ class LuaranPPKMDosenController extends Controller
      */
     public function store(Request $request)
     {
-        LuaranPPKMDosen::insert([
+        LuaranPPKMDosen::create([
             'id' => $request->id,
             'id_dosen' => $request->id_dosen,
-            'id_luaran_ppkm' => $request->id_luaran_ppkm,         
+            'id_luaran_ppkm' => $request->id_luaran_ppkm,
         ]);
         return redirect('luaran-ppkm-dosen')->with('success', 'Data berhasil disimpan');
     }
@@ -95,7 +92,7 @@ class LuaranPPKMDosenController extends Controller
         $dosens = Dosen::with('pegawai')->get();
         $luaranPpkm = LuaranPPKM::all();
         // $ptUnit = Auth::user()->ptUnit;
-   
+
         return view('luaran_ppkm_dosen.edit', $data, compact('dosens', 'luaranPpkm'));
     }
 
@@ -125,7 +122,7 @@ class LuaranPPKMDosenController extends Controller
      */
     public function destroy($id)
     {
-        $ppkm = LuaranPPKMDosen::findOrFail($id); 
+        $ppkm = LuaranPPKMDosen::findOrFail($id);
         $ppkm->delete();
         return redirect()->route('luaran-ppkm-dosen')->with('success', 'Data Publikasi Dosen berhasil dihapus');
     }

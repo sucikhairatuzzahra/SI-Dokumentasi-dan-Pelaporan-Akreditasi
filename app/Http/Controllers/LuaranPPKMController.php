@@ -19,11 +19,12 @@ class LuaranPPKMController extends Controller
      */
     public function index()
     {
-       
-            $data = LuaranPPKM::with('jenisLuaran','ppkm');
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = LuaranPPKM::with('jenisLuaran', 'ppkm');
             $data = $data->paginate(20);
             return view('luaran_ppkm.index', compact('data'));
-        
+        }
+        return redirect()->route('home.route')->with('message', 'Anda tidak diizinkan menggunakan fitur ini!');
     }
 
     /**
@@ -36,7 +37,7 @@ class LuaranPPKMController extends Controller
         $jenisLuarans = JenisLuaran::all();
         $ppkm = PPKM::all();
         // $ptUnit = Auth::user()->ptUnit;
-        return view('luaran_ppkm.create', compact('jenisLuarans','ppkm'));
+        return view('luaran_ppkm.create', compact('jenisLuarans', 'ppkm'));
     }
 
     /**
@@ -54,7 +55,7 @@ class LuaranPPKMController extends Controller
             'id_jenis_luaran' => $request->jenis_luaran,
             'judul_luaran_ppkm' => $request->judul_luaran_ppkm,
             'jumlah_sitasi' => $request->jumlah_sitasi,
-          
+
         ]);
         return redirect('luaran-ppkm')->with('success', 'Data berhasil disimpan');
     }
@@ -81,7 +82,7 @@ class LuaranPPKMController extends Controller
         $jenisLuarans = JenisLuaran::all();
         $ppkm = PPKM::all();
         $data['editData'] = LuaranPPKM::find($id);
-        return view('luaran_ppkm.edit', $data, compact('jenisLuarans','ppkm'));
+        return view('luaran_ppkm.edit', $data, compact('jenisLuarans', 'ppkm'));
     }
 
     /**
