@@ -33,3 +33,10 @@
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/style.css') }}">
+
+<!-- Required Jquery -->
+<script type="text/javascript" src="{{ asset('/assets/js/jquery/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/popper.js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/bootstrap/js/bootstrap.min.js') }} "></script>
+<script type="text/javascript" src="{{ asset('/assets/pages/widget/excanvas.js') }} "></script>

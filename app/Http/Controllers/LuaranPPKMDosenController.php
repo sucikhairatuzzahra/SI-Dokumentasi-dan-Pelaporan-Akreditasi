@@ -91,8 +91,6 @@ class LuaranPPKMDosenController extends Controller
         $data['editData'] = LuaranPPKMDosen::find($id);
         $dosens = Dosen::with('pegawai')->get();
         $luaranPpkm = LuaranPPKM::all();
-        // $ptUnit = Auth::user()->ptUnit;
-
         return view('luaran_ppkm_dosen.edit', $data, compact('dosens', 'luaranPpkm'));
     }
 

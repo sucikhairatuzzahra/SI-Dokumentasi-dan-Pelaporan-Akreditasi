@@ -33,7 +33,9 @@ class DatabaseSeeder extends Seeder
             // BidangKerjaLulusanSeed::class,
             // PPKMDariDTPRSeed::class,
             SaranaSeed::class,
-            PendanaanSeed::class
+            PendanaanSeed::class,
+            PegawaiSeeder::class,
+            DosenSeeder::class,
         ]);
     }
 }
