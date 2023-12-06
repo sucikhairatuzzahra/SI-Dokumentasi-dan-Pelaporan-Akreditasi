@@ -40,8 +40,7 @@ class LuaranLainPPKMDosenController extends Controller
     public function create()
     {
         $dosens = Dosen::with('pegawai')->get();
-        $luaranLainPpkm = LuaranLainPPKM::all();
-      
+        $luaranLainPpkm = LuaranLainPPKM::with('jenisLuaranLain', 'ppkm')->get();
         return view('luaran_lain_ppkm_dosen.create', compact('luaranLainPpkm', 'dosens'));
     }
 
@@ -53,10 +52,10 @@ class LuaranLainPPKMDosenController extends Controller
      */
     public function store(Request $request)
     {
-        LuaranLainPPKMDosen::insert([
+        LuaranLainPPKMDosen::create([
             'id' => $request->id,
             'id_dosen' => $request->id_dosen,
-            'id_luaran_lain_ppkm' => $request->id_luaran_lain_ppkm,         
+            'id_luaran_lain_ppkm' => $request->id_luaran_lain_ppkm,
         ]);
         return redirect('luaran-lain-ppkm-dosen')->with('success', 'Data berhasil disimpan');
     }
@@ -84,7 +83,7 @@ class LuaranLainPPKMDosenController extends Controller
         $dosens = Dosen::with('pegawai')->get();
         $luaranLainPpkm = LuaranLainPPKM::all();
         // $ptUnit = Auth::user()->ptUnit;
-   
+
         return view('luaran_lain_ppkm_dosen.edit', $data, compact('dosens', 'luaranLainPpkm'));
     }
 
@@ -114,9 +113,8 @@ class LuaranLainPPKMDosenController extends Controller
      */
     public function destroy($id)
     {
-        $ppkm = LuaranLainPPKMDosen::findOrFail($id); 
+        $ppkm = LuaranLainPPKMDosen::findOrFail($id);
         $ppkm->delete();
         return redirect()->route('luaran-lain-ppkm-dosen')->with('success', 'Data HKI Dosen berhasil dihapus');
-    
     }
 }

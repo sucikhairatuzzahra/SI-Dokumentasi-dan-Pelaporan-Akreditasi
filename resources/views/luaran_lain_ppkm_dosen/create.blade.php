@@ -49,7 +49,7 @@
                                                 @foreach ($luaranLainPpkm as $data)
                                                     <option value="{{ $data->id }}"
                                                         {{ old('id_luaran_lain_ppkm') == $data->id ? 'selected' : '' }}>
-                                                        {{ $data->judul_luaran_lain_ppkm }}
+                                                        {{ $data->judul_luaran_lain }}
                                                     </option>
                                                 @endforeach
                                             </select>
