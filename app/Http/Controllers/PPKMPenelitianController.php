@@ -28,11 +28,11 @@ class PPKMPenelitianController extends Controller
         //     return view('ppkm.index', compact('data', 'request'));
         // }
 
-        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+      
             $data = PPKM::where('jenis_penelitian_pengabdian', '=', 'penelitian')->with('pembiayaan');
             $data = $data->paginate(20);
             return view('ppkm.penelitian.index', compact('data'));
-        }
+        
     }
 
     /**

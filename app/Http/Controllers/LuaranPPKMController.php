@@ -19,11 +19,11 @@ class LuaranPPKMController extends Controller
      */
     public function index()
     {
-        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+       
             $data = LuaranPPKM::with('jenisLuaran','ppkm');
             $data = $data->paginate(20);
             return view('luaran_ppkm.index', compact('data'));
-        }
+        
     }
 
     /**

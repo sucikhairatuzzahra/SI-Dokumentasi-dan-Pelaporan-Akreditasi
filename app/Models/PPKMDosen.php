@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class PPKMDosen extends Model
 {
     use HasFactory;
-    protected $table = "ppkm_dtpr";
+    protected $table = "ppkm_dosen";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id_ppkm','id_dosen',  'ketua', 'id_pt_unit'
+        'id_ppkm','id_dosen',  'ketua'
     ];
 
   

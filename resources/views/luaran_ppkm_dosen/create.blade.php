@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="page-header-title">
                         <h5 class="m-b-10">Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                        <p class="m-b-0">Form Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</p>
+                        <p class="m-b-0">Form Publikasi Dosen</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -36,7 +36,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Form Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
+                                    <h5>Form Publikasi Dosen</h5>
 
                                 </div>
                                 <div class="card-block">

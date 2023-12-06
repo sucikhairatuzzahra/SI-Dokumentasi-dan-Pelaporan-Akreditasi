@@ -31,8 +31,8 @@ class LuaranPPKMDosenController extends Controller
 
         // }
 
-        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = LuaranPPKMDosen::with('luaranPpkm', 'dosens');
+    
+            $data = LuaranPPKMDosen::with('luaranPpkm', 'dosens')->get();
             $nama_dosen = [];
             foreach ($data as $value) {
                 $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
@@ -40,7 +40,7 @@ class LuaranPPKMDosenController extends Controller
             }
             Log::debug($nama_dosen);
             return view('luaran_ppkm_dosen.index', compact('data', 'nama_dosen'));
-        }
+        
     }
 
     /**
@@ -125,8 +125,8 @@ class LuaranPPKMDosenController extends Controller
      */
     public function destroy($id)
     {
-        $luarandosen = LuaranPPKMDosen::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
-        $luarandosen->delete();
+        $ppkm = LuaranPPKMDosen::findOrFail($id); 
+        $ppkm->delete();
         return redirect()->route('luaran-ppkm-dosen')->with('success', 'Data Publikasi Dosen berhasil dihapus');
     }
 }

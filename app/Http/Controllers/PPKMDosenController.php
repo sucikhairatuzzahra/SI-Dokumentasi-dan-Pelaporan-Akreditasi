@@ -26,19 +26,8 @@ class PPKMDosenController extends Controller
      */
     public function index(Request $request)
     {
-        if (Gate::allows('isJurusan')) {
-            $ptUnit = PTUnit::all();
-            $data = PPKMDosen::orderBy('id', 'desc')->all();
 
-            return view('ppkm_dtpr.index', compact('data', 'request'));
-
-            // $data = PPKMDosen::with('ptUnit');
-            // $data = $data->paginate('20');
-            // return view('ppkm_dtpr.index', compact('data'));
-        }
-
-        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = PPKMDosen::with('ptUnit', 'ppkm', 'dosens')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+            $data = PPKMDosen::with('ppkm', 'dosens')->get();
             $nama_dosen = [];
             foreach ($data as $value) {
                 $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
@@ -46,7 +35,7 @@ class PPKMDosenController extends Controller
             }
             Log::debug($nama_dosen);
             return view('ppkm_dtpr.index', compact('data', 'nama_dosen'));
-        }
+        
     }
 
     /**
@@ -61,8 +50,8 @@ class PPKMDosenController extends Controller
         // $luaranlains = LuaranLain::all();
         $dosens = Dosen::with('pegawai')->get();
         $ppkm = PPKM::all();
-        $ptUnit = Auth::user()->ptUnit;
-        return view('ppkm_dtpr.create', compact('ptUnit', 'ppkm', 'dosens'));
+        // $ptUnit = Auth::user()->ptUnit;
+        return view('ppkm_dtpr.create', compact('ppkm', 'dosens'));
     }
 
     /**
@@ -79,7 +68,7 @@ class PPKMDosenController extends Controller
             'id_dosen' => $request->id_dosen,
             'id_ppkm' => $request->id_ppkm,
             'ketua' => $request->ketua,
-            'id_pt_unit' => $request->id_pt_unit,
+  
         ]);
         return redirect('ppkm-dtpr')->with('success', 'Data berhasil disimpan');
     }
@@ -95,9 +84,9 @@ class PPKMDosenController extends Controller
         $data['editData'] = PPKMDosen::find($id);
         $dosens = Dosen::with('pegawai')->get();
         $ppkm = PPKM::all();
-        $ptUnit = Auth::user()->ptUnit;
+        // $ptUnit = Auth::user()->ptUnit;
    
-        return view('ppkm_dtpr.edit', $data, compact('dosens','ptUnit', 'ppkm'));
+        return view('ppkm_dtpr.edit', $data, compact('dosens','ppkm'));
     }
 
     /**
@@ -114,7 +103,6 @@ class PPKMDosenController extends Controller
             'id_dosen' => $request->id_dosen,
             'id_ppkm' => $request->id_ppkm,
             'ketua' => $request->ketua,
-            'id_pt_unit' => $request->id_pt_unit,
 
         ]);
         return redirect('ppkm-dtpr')->with('success', 'Data berhasil disimpan');

@@ -18,12 +18,11 @@ class PPKMPengabdianController extends Controller
      */
     public function index()
     {
-        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
             // $data = PPKM::with('pembiayaan');
             $data = PPKM::where('jenis_penelitian_pengabdian', '=', 'pengabdian')->with('pembiayaan');
             $data = $data->paginate(20);
             return view('ppkm.pengabdian.index', compact('data'));
-        }
+        
     }
 
     /**

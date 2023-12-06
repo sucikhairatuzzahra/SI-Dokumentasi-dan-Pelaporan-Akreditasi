@@ -112,9 +112,6 @@
                                                 Ketua
                                             </th>
 
-                                            <th scope="col">
-                                                Unit Kerja
-                                            </th>
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
@@ -130,7 +127,7 @@
                                                 <td>{{ $item->ppkm->judul }}</td>
                                                 <td>{{ $nama_dosen[$no] }}</td>
                                                 <td>{{ $item->ketua }}</td>
-                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
+
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <form action="{{ route('ppkm-dtpr.destroy', ['id' => $item->id]) }}"
