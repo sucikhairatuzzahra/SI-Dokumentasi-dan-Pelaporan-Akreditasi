@@ -3,6 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\PPKM;
+use App\Models\PTUnit;
+use App\Models\LuaranPPKM;
+use App\Models\Dosen;
+use App\Models\LuaranPPKMDosen;
+use App\Models\JenisLuaranLain;
+use App\Models\Pegawai;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class LuaranPPKMDosenController extends Controller
 {
@@ -11,9 +22,25 @@ class LuaranPPKMDosenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // if (Gate::allows('isJurusan')) {
+        //     $data = LuaranPPKMDosen::orderBy('id', 'desc')->paginate(20);
+
+        //     return view('luaran_ppkm_dosen.index', compact('data', 'request'));
+
+        // }
+
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = LuaranPPKMDosen::with('luaranPpkm', 'dosens');
+            $nama_dosen = [];
+            foreach ($data as $value) {
+                $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
+                $nama_dosen[] = $pegawai['nama_pegawai'];
+            }
+            Log::debug($nama_dosen);
+            return view('luaran_ppkm_dosen.index', compact('data', 'nama_dosen'));
+        }
     }
 
     /**
@@ -23,7 +50,10 @@ class LuaranPPKMDosenController extends Controller
      */
     public function create()
     {
-        //
+        $dosens = Dosen::with('pegawai')->get();
+        $luaranPpkm = LuaranPPKM::all();
+      
+        return view('luaran_ppkm_dosen.create', compact('luaranPpkm', 'dosens'));
     }
 
     /**
@@ -34,7 +64,12 @@ class LuaranPPKMDosenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        LuaranPPKMDosen::insert([
+            'id' => $request->id,
+            'id_dosen' => $request->id_dosen,
+            'id_luaran_ppkm' => $request->id_luaran_ppkm,         
+        ]);
+        return redirect('luaran-ppkm-dosen')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -56,7 +91,12 @@ class LuaranPPKMDosenController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['editData'] = LuaranPPKMDosen::find($id);
+        $dosens = Dosen::with('pegawai')->get();
+        $luaranPpkm = LuaranPPKM::all();
+        // $ptUnit = Auth::user()->ptUnit;
+   
+        return view('luaran_ppkm_dosen.edit', $data, compact('dosens', 'luaranPpkm'));
     }
 
     /**
@@ -68,7 +108,13 @@ class LuaranPPKMDosenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ppkm = LuaranPPKMDosen::find($id);
+        $update = $ppkm->update([
+            'id_dosen' => $request->id_dosen,
+            'id_luaran_ppkm' => $request->id_luaran_ppkm,
+
+        ]);
+        return redirect('luaran-ppkm-dosen')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -79,6 +125,8 @@ class LuaranPPKMDosenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $luarandosen = LuaranPPKMDosen::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $luarandosen->delete();
+        return redirect()->route('luaran-ppkm-dosen')->with('success', 'Data Publikasi Dosen berhasil dihapus');
     }
 }

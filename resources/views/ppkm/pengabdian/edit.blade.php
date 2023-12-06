@@ -40,7 +40,7 @@
                                     {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
-                                    <form action="{{ route('ppkm-penelitian.update', $editData->id) }}" method="POST">
+                                    <form action="{{ route('ppkm-pengabdian.update', $editData->id) }}" method="POST">
                                         @csrf
                                         @method('put')
 

@@ -28,21 +28,17 @@ class PPKMDosenController extends Controller
     {
         if (Gate::allows('isJurusan')) {
             $ptUnit = PTUnit::all();
-            $data = PPKMDariDTPR::orderBy('id', 'desc')
-                ->with('ptUnit')
-                ->when($request->id_pt_unit, function ($query) use ($request) {
-                    $query->where('id_pt_unit', $request->id_pt_unit);
-                })->paginate(20);
+            $data = PPKMDosen::orderBy('id', 'desc')->all();
 
             return view('ppkm_dtpr.index', compact('data', 'request'));
 
-            // $data = PPKMDariDTPR::with('ptUnit');
+            // $data = PPKMDosen::with('ptUnit');
             // $data = $data->paginate('20');
             // return view('ppkm_dtpr.index', compact('data'));
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = PPKMDariDTPR::with('ptUnit', 'ppkm', 'dosens')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+            $data = PPKMDosen::with('ptUnit', 'ppkm', 'dosens')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
             $nama_dosen = [];
             foreach ($data as $value) {
                 $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
@@ -78,7 +74,7 @@ class PPKMDosenController extends Controller
     public function store(Request $request)
     {
 
-        PPKMDariDTPR::insert([
+        PPKMDosen::insert([
             'id' => $request->id,
             'id_dosen' => $request->id_dosen,
             'id_ppkm' => $request->id_ppkm,
@@ -96,7 +92,7 @@ class PPKMDosenController extends Controller
      */
     public function edit($id)
     {
-        $data['editData'] = PPKMDariDTPR::find($id);
+        $data['editData'] = PPKMDosen::find($id);
         $dosens = Dosen::with('pegawai')->get();
         $ppkm = PPKM::all();
         $ptUnit = Auth::user()->ptUnit;
@@ -113,7 +109,7 @@ class PPKMDosenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ppkm = PPKMDariDTPR::find($id);
+        $ppkm = PPKMDosen::find($id);
         $update = $ppkm->update([
             'id_dosen' => $request->id_dosen,
             'id_ppkm' => $request->id_ppkm,
@@ -132,7 +128,7 @@ class PPKMDosenController extends Controller
      */
     public function destroy($id)
     {
-        $ppkmdtpr = PPKMDariDTPR::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $ppkmdtpr = PPKMDosen::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $ppkmdtpr->delete();
         return redirect()->route('ppkm-dtpr')->with('success', 'Data PPKM berhasil dihapus');
     }

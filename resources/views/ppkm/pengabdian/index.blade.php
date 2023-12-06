@@ -16,7 +16,8 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">PPKM DTPR</a>
+                        <li class="breadcrumb-item"><a href="#!">Penelitian dan Kegiatan Pengabdian kepada Masyarakat
+                                dari DTPR</a>
                         </li>
                     </ul>
                 </div>
@@ -68,7 +69,7 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
+                            <h5>Data Pengabdian Infokom</h5>
                             @can('isAdmProdi')
                                 <a href="{{ route('ppkm-pengabdian.create') }}">
                                     <span>Tambah data <code>disini</code></span>
@@ -138,11 +139,12 @@
 
                                                 @can('isAdmProdi')
                                                     <td>
-                                                        <form action="{{ route('ppkm.destroy', ['id' => $item->id]) }}"
+                                                        <form
+                                                            action="{{ route('ppkm-pengabdian.destroy', ['id' => $item->id]) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <a href="{{ route('ppkm.edit', ['id' => $item->id]) }}"
+                                                            <a href="{{ route('ppkm-pengabdian.edit', ['id' => $item->id]) }}"
                                                                 style="margin-right: 7px">
                                                                 Edit
                                                             </a>

@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="page-header-title">
                         <h5 class="m-b-10">Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                        <p class="m-b-0">Data Penelitian Infokom</p>
+                        <p class="m-b-0">Data HKI PPKM</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -69,9 +69,9 @@
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Data Penelitian Infokom</h5>
+                            <h5>Data HKI PPKM</h5>
                             @can('isAdmProdi')
-                                <a href="{{ route('ppkm-penelitian.create') }}">
+                                <a href="{{ route('luaran-lain-ppkm.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
 
@@ -107,17 +107,20 @@
                                                 Tahun
                                             </th>
                                             <th scope="col">
-                                                Judul
+                                                Judul PPKM
                                             </th>
                                             <th scope="col">
-                                                Jenis Sumber Pembiayaan
+                                                Jenis HKI
                                             </th>
                                             <th scope="col">
-                                                Sumber Pembiayaan
+                                                Judul HKI
                                             </th>
-                                            {{-- <th scope="col">
-                                                Jenis Penelitian dan Pengabdian
-                                            </th> --}}
+                                            <th scope="col">
+                                                Keterangan
+                                            </th>
+                                            <th scope="col">
+                                                Jumlah Sitasi
+                                            </th>
 
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
@@ -132,19 +135,20 @@
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
                                                 <td>{{ $item->tahun }}</td>
-                                                <td>{{ $item->judul }}</td>
-                                                <td>{{ $item->pembiayaan->jenis_sumber_pembiayaan }}</td>
-                                                <td>{{ $item->sumber_pembiayaan }}</td>
-                                                {{-- <td>{{ $item->jenis_penelitian_pengabdian }}</td> --}}
+                                                <td>{{ $item->ppkm->judul }}</td>
+                                                <td>{{ $item->jenisLuaranLain->jenis_luaran_lain }}</td>
+                                                <td>{{ $item->judul_luaran_lain }}</td>
+                                                <td>{{ $item->keterangan }}</td>
+                                                <td>{{ $item->jumlah_sitasi }}</td>
 
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <form
-                                                            action="{{ route('ppkm-penelitian.destroy', ['id' => $item->id]) }}"
+                                                            action="{{ route('luaran-lain-ppkm.destroy', ['id' => $item->id]) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <a href="{{ route('ppkm-penelitian.edit', ['id' => $item->id]) }}"
+                                                            <a href="{{ route('luaran-lain-ppkm.edit', ['id' => $item->id]) }}"
                                                                 style="margin-right: 7px">
                                                                 Edit
                                                             </a>

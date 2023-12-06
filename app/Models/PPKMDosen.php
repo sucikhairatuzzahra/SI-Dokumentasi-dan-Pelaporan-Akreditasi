@@ -18,22 +18,13 @@ class PPKMDosen extends Model
         'id_ppkm','id_dosen',  'ketua', 'id_pt_unit'
     ];
 
-    public function luaran(): BelongsTo
-    {
-        return $this->belongsTo(Luaran::class, 'id_luaran');
-    }
-
-    public function luaranLain(): BelongsTo
-    {
-        return $this->belongsTo(LuaranLain::class, 'id_luaran_lain');
-    }
+  
 
     // Relationship dengan model ptUnit
     public function ptUnit(): BelongsTo
     {
         return $this->belongsTo(PTUnit::class, 'id_pt_unit');
     }
-
 
     public function dosens(): BelongsTo
     {

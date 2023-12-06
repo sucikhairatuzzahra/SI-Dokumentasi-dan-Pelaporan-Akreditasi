@@ -51,4 +51,14 @@ class Dosen extends Model
     {
         return $this->belongsToMany(PPKMDariDTPR::class, 'id_dosen', 'id_ppkm', 'id_pt_unit');
     }
+
+    public function luaranPpkmDosen(): HasMany
+    {
+        return $this->hasMany(LuaranPPKMDosen::class, 'id_dosen');
+    }
+
+    public function luaranlainPpkmDosen(): HasMany
+    {
+        return $this->hasMany(LuaranLainPPKMDosen::class, 'id_dosen');
+    }
 }

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\PTUnit;
+use App\Models\PPKM;
+use App\Models\JenisSumberPembiayaan;
+use Illuminate\Support\Facades\Gate; 
 
 class PPKMPengabdianController extends Controller
 {
@@ -14,7 +19,8 @@ class PPKMPengabdianController extends Controller
     public function index()
     {
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = PPKM::with('pembiayaan');
+            // $data = PPKM::with('pembiayaan');
+            $data = PPKM::where('jenis_penelitian_pengabdian', '=', 'pengabdian')->with('pembiayaan');
             $data = $data->paginate(20);
             return view('ppkm.pengabdian.index', compact('data'));
         }
@@ -29,7 +35,7 @@ class PPKMPengabdianController extends Controller
     {
         $pembiayaans = JenisSumberPembiayaan::all();
         // $ptUnit = Auth::user()->ptUnit;
-        return view('ppkm.create', compact('pembiayaans'));
+        return view('ppkm.pengabdian.create', compact('pembiayaans'));
     }
 
     /**
@@ -48,7 +54,7 @@ class PPKMPengabdianController extends Controller
             'sumber_pembiayaan' => $request->sumber_pembiayaan,
             'jenis_penelitian_pengabdian' => 'pengabdian',
         ]);
-        return redirect('ppkm')->with('success', 'Data berhasil disimpan');
+        return redirect('ppkm-pengabdian')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -59,9 +65,7 @@ class PPKMPengabdianController extends Controller
      */
     public function show($id)
     {
-        $pembiayaans = JenisSumberPembiayaan::all();
-        $data['editData'] = PPKM::find($id);
-        return view('ppkm.edit', $data, compact('pembiayaans'));
+        //
     }
 
     /**
@@ -74,7 +78,7 @@ class PPKMPengabdianController extends Controller
     {
         $pembiayaans = JenisSumberPembiayaan::all();
         $data['editData'] = PPKM::find($id);
-        return view('ppkm.edit', $data, compact('pembiayaans'));
+        return view('ppkm.pengabdian.edit', $data, compact('pembiayaans'));
     }
 
     /**
@@ -94,7 +98,7 @@ class PPKMPengabdianController extends Controller
             'sumber_pembiayaan' => $request->sumber_pembiayaan,
             'jenis_penelitian_pengabdian' => 'pengabdian',
         ]);
-        return redirect(route('ppkm.index'))->with('success', 'Data berhasil disimpan');
+        return redirect(route('ppkm-pengabdian.index'))->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -108,6 +112,6 @@ class PPKMPengabdianController extends Controller
         $ppkm = PPKM::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $ppkm->delete();
 
-        return redirect(route('ppkm.index'))->with('success', 'Data PPKM berhasil dihapus');
+        return redirect(route('ppkm-pengabdian.index'))->with('success', 'Data PPKM berhasil dihapus');
     }
 }

@@ -13,4 +13,17 @@ class LuaranPPKMDosen extends Model
     protected $fillable = [
         'id_luaran_ppkm','id_dosen'
     ];
+
+    public function dosens(): BelongsTo
+    {
+        return $this->belongsTo(Dosen::class, 'id_dosen');
+    }
+
+    public function luaranPpkm(): BelongsTo
+    {
+        return $this->belongsTo(LuaranPPKM::class, 'id_luaran_ppkm');
+    }
+
+
+
 }

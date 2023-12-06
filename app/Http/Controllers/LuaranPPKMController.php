@@ -80,8 +80,8 @@ class LuaranPPKMController extends Controller
     {
         $jenisLuarans = JenisLuaran::all();
         $ppkm = PPKM::all();
-        $data['editData'] = PPKM::find($id);
-        return view('ppkm.edit', $data, compact('jenisLuarans','ppkm'));
+        $data['editData'] = LuaranPPKM::find($id);
+        return view('luaran_ppkm.edit', $data, compact('jenisLuarans','ppkm'));
     }
 
     /**

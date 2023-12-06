@@ -37,12 +37,12 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+
                                 </div>
                                 <div class="card-block">
                                     <form action="{{ route('ppkm-dtpr.update', $editData->id) }}" method="POST">
                                         @csrf
-                                        @method('put')
+                                        @method('PUT')
 
                                         <div class="form-group">
                                             <label for="id_ppkm">Judul Penelitian Pengabdian</label>
@@ -59,7 +59,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="id_dosen">Nama DTPRs</label>
+                                            <label for="id_dosen">Nama Dosen</label>
                                             <select name="id_dosen" class="form-control">
                                                 @foreach ($dosens as $data)
                                                     <option value="{{ $data->id }}"

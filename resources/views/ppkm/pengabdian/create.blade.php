@@ -40,27 +40,22 @@
                                     {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                                 </div>
                                 <div class="card-block">
-                                    <form action="{{ route('ppkm-penelitian.update', $editData->id) }}" method="POST">
+                                    <form action="{{ route('ppkm-pengabdian.store') }}" method="POST">
                                         @csrf
-                                        @method('put')
-
                                         <div class="form-group">
                                             <label for="tahun">Tahun</label>
-                                            <input type="text" class="form-control" id="tahun" name="tahun"
-                                                value="{{ $editData->tahun }}">
+                                            <input type="text" class="form-control" id="tahun" name="tahun">
                                         </div>
                                         <div class="form-group">
                                             <label for="judul">Judul</label>
-                                            <input type="text" class="form-control" id="judul" name="judul"
-                                                value="{{ $editData->judul }}">
+                                            <input type="text" class="form-control" id="judul" name="judul">
                                         </div>
                                         <div class="form-group">
                                             <label for="id_jenis_sumber_pembiayaan">Jenis Sumber Pembiayaan</label>
                                             <select name="jenis_sumber_pembiayaan" id="jenis_sumber_pembiayaan"
                                                 class="form-control">
                                                 @foreach ($pembiayaans as $pembiayaan)
-                                                    <option value="{{ $pembiayaan->id }}"
-                                                        {{ $editData->id_jenis_sumber_pembiayaan == $pembiayaan->id ? 'selected' : '' }}>
+                                                    <option value="{{ $pembiayaan->id }}">
                                                         {{ $pembiayaan->jenis_sumber_pembiayaan }}
                                                     </option>
                                                 @endforeach
@@ -70,7 +65,7 @@
                                         <div class="form-group">
                                             <label for="sumber_pembiayaan">Sumber Pembiayaan</label>
                                             <input type="text" class="form-control" id="sumber_pembiayaan"
-                                                name="sumber_pembiayaan" value="{{ $editData->sumber_pembiayaan }}">
+                                                name="sumber_pembiayaan">
                                         </div>
 
                                         {{-- <div class="form-group">

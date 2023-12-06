@@ -37,24 +37,23 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
+
                                 </div>
                                 <div class="card-block">
-                                    <form action="{{ route('ppkm-dtpr.store') }}" method="POST">
+                                    <form action="{{ route('luaran-ppkm-dosen.store') }}" method="POST">
                                         @csrf
 
                                         <div class="form-group">
-                                            <label for="id_ppkm">Judul Penelitian Pengabdian</label>
-                                            {{-- <input type="text" class="form-control" id="nama_dtpr" name="nama_dtpr"> --}}
-                                            <select name="id_ppkm" class="form-control">
-                                                @foreach ($ppkm as $data)
+                                            <label for="id_luaran_ppkm">Judul Publikasi</label>
+                                            <select name="id_luaran_ppkm" class="form-control">
+                                                @foreach ($luaranPpkm as $data)
                                                     <option value="{{ $data->id }}"
-                                                        {{ old('id_ppkm') == $data->id ? 'selected' : '' }}>
-                                                        {{ $data->judul }}
+                                                        {{ old('id_luaran_ppkm') == $data->id ? 'selected' : '' }}>
+                                                        {{ $data->judul_luaran_ppkm }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <p class="text-danger">{{ $errors->first('id_ppkm') }}</p>
+                                            <p class="text-danger">{{ $errors->first('id_luaran_ppkm') }}</p>
                                         </div>
 
                                         <div class="form-group">
@@ -70,41 +69,6 @@
                                             <p class="text-danger">{{ $errors->first('id_dosen') }}</p>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="ketua">Ketua</label>
-                                            <select name="ketua" class="form-control">
-                                                <option value="ya">ya</option>
-                                                <option value="tidak">tidak</option>
-                                            </select>
-                                        </div>
-                                        {{-- <div class="form-group">
-                                            <label for="jenis_luaran">Jenis Luaran</label>
-                                            <select name="jenis_luaran" id="jenis_luaran" class="form-control">
-                                                @foreach ($luarans as $luaran)
-                                                    <option value="{{ $luaran->id }}">
-                                                        {{ $luaran->jenis_luaran }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="jenis_luaran_lain">Jenis Luaran Lain</label>
-                                            <select name="jenis_luaran_lain" id="jenis_luaran_lain" class="form-control">
-                                                @foreach ($luaranlains as $luaranLain)
-                                                    <option value="{{ $luaranLain->id }}">
-                                                        {{ $luaranLain->jenis_luaran_lain }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div> --}}
-
-                                        <div class="form-group">
-                                            <label for="id_pt_unit">Unit Kerja</label>
-                                            <input type="hidden" class="form-control" name="id_pt_unit"
-                                                value="{{ $ptUnit->id }}" required>
-                                            <input type="text" class="form-control" value="{{ $ptUnit->kode_pt_unit }}"
-                                                disabled>
-                                        </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>
                                     <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

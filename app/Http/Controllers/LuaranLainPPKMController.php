@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\PTUnit;
+use App\Models\PPKM;
+use App\Models\LuaranLainPPKM;
+use App\Models\JenisLuaranLain;
+use Illuminate\Support\Facades\Gate;
 
 class LuaranLainPPKMController extends Controller
 {
@@ -13,7 +19,12 @@ class LuaranLainPPKMController extends Controller
      */
     public function index()
     {
-        //
+        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
+            $data = LuaranLainPPKM::with('jenisLuaranLain','ppkm');
+            $data = $data->paginate(20);
+            return view('luaran_lain_ppkm.index', compact('data'));
+            
+        }
     }
 
     /**
@@ -23,7 +34,10 @@ class LuaranLainPPKMController extends Controller
      */
     public function create()
     {
-        //
+        $jenisLuaranLains = JenisLuaranLain::all();
+        $ppkm = PPKM::all();
+        // $ptUnit = Auth::user()->ptUnit;
+        return view('luaran_lain_ppkm.create', compact('jenisLuaranLains','ppkm'));
     }
 
     /**
@@ -34,7 +48,17 @@ class LuaranLainPPKMController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        LuaranLainPPKM::insert([
+            'id' => $request->id,
+            'tahun' => $request->tahun,
+            'id_ppkm' => $request->id_ppkm,
+            'id_jenis_luaran_lain' => $request->jenis_luaran_lain,
+            'judul_luaran_lain' => $request->judul_luaran_lain,
+            'keterangan' => $request->keterangan,
+            'jumlah_sitasi' => $request->jumlah_sitasi,
+          
+        ]);
+        return redirect('luaran-lain-ppkm')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -56,7 +80,10 @@ class LuaranLainPPKMController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jenisLuaranLains = JenisLuaranLain::all();
+        $ppkm = PPKM::all();
+        $data['editData'] = LuaranLainPPKM::find($id);
+        return view('luaran_lain_ppkm.edit', $data, compact('jenisLuaranLains','ppkm'));
     }
 
     /**
@@ -68,7 +95,16 @@ class LuaranLainPPKMController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $luaranppkm = LuaranLainPPKM::find($id);
+        $luaranppkm->update([
+            'tahun' => $request->tahun,
+            'id_ppkm' => $request->id_ppkm,
+            'id_jenis_luaran_lain' => $request->jenis_luaran_lain,
+            'judul_luaran_lain' => $request->judul_luaran_lain,
+            'keterangan' => $request->keterangan,
+            'jumlah_sitasi' => $request->jumlah_sitasi,
+        ]);
+        return redirect(route('luaran-lain-ppkm.index'))->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -79,6 +115,9 @@ class LuaranLainPPKMController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $luaranppkm = LuaranLainPPKM::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        $luaranppkm->delete();
+
+        return redirect(route('luaran-lain-ppkm.index'))->with('success', 'Data PPKM berhasil dihapus');
     }
 }

@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="page-header-title">
                         <h5 class="m-b-10">Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                        <p class="m-b-0">Data Penelitian Infokom</p>
+                        <p class="m-b-0">Data Publikasi Dosen</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -16,8 +16,7 @@
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
 
-                        <li class="breadcrumb-item"><a href="#!">Penelitian dan Kegiatan Pengabdian kepada Masyarakat
-                                dari DTPR</a>
+                        <li class="breadcrumb-item"><a href="#!">PPKM DTPR</a>
                         </li>
                     </ul>
                 </div>
@@ -31,47 +30,13 @@
             <div class="page-wrapper">
                 <!-- Page-body start -->
                 <div class="page-body">
-                    {{-- @can('isJurusan')
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-header-left">
-                                    <h5>Pilih Program Studi </h5>
-                                </div>
-                            </div>
-                            <div class="card-block">
-                                <form action="{{ route('ppkm-dtpr.index') }}" method="get">
-                                    <div class="row">
-                                        <div class="col-md-3 form-group">
-                                            <label for="">Program Studi</label>
-                                            <select name="id_pt_unit" class="form-control">
-                                                <option value="0">--Pilih Program Studi--</option>
-                                                <option value="5" {{ $request->id_pt_unit === '5' ? 'selected' : '' }}>D3
-                                                    MI
-                                                </option>
-                                                <option value="6" {{ $request->id_pt_unit === '6' ? 'selected' : '' }}>D3
-                                                    TK
-                                                </option>
-                                                <option value="4" {{ $request->id_pt_unit === '4' ? 'selected' : '' }}>D4
-                                                    TRPL
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2 form-group" style="margin-top:25px;">
-                                            <input type="submit" class="btn btn-primary" value="Filter">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            {{-- tabel  --}}
-                    {{-- <br>
-                        </div>
-                    @endcan --}}
+
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Data Penelitian Infokom</h5>
+                            <h5>Publikasi Dosen</h5>
                             @can('isAdmProdi')
-                                <a href="{{ route('ppkm-penelitian.create') }}">
+                                <a href="{{ route('luaran-ppkm-dosen.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
 
@@ -104,21 +69,11 @@
                                                 No
                                             </th>
                                             <th scope="col">
-                                                Tahun
+                                                Judul Publikasi
                                             </th>
                                             <th scope="col">
-                                                Judul
+                                                Dosen
                                             </th>
-                                            <th scope="col">
-                                                Jenis Sumber Pembiayaan
-                                            </th>
-                                            <th scope="col">
-                                                Sumber Pembiayaan
-                                            </th>
-                                            {{-- <th scope="col">
-                                                Jenis Penelitian dan Pengabdian
-                                            </th> --}}
-
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
@@ -131,20 +86,16 @@
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->tahun }}</td>
-                                                <td>{{ $item->judul }}</td>
-                                                <td>{{ $item->pembiayaan->jenis_sumber_pembiayaan }}</td>
-                                                <td>{{ $item->sumber_pembiayaan }}</td>
-                                                {{-- <td>{{ $item->jenis_penelitian_pengabdian }}</td> --}}
-
+                                                <td>{{ $item->luaranPpkm->judul_luaran_ppkm }}</td>
+                                                <td>{{ $nama_dosen[$no] }}</td>
                                                 @can('isAdmProdi')
                                                     <td>
                                                         <form
-                                                            action="{{ route('ppkm-penelitian.destroy', ['id' => $item->id]) }}"
+                                                            action="{{ route('luaran-ppkm-dosen.destroy', ['id' => $item->id]) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <a href="{{ route('ppkm-penelitian.edit', ['id' => $item->id]) }}"
+                                                            <a href="{{ route('luaran-ppkm-dosen.edit', ['id' => $item->id]) }}"
                                                                 style="margin-right: 7px">
                                                                 Edit
                                                             </a>
