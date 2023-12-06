@@ -82,10 +82,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         @foreach ($data as $no => $item)
                                             <tr align="center">
-                                                <td>{{ $no + 1 }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->luaranPpkm->judul_luaran_ppkm }}</td>
                                                 <td>{{ $nama_dosen[$no] }}</td>
                                                 @can('isAdmProdi')

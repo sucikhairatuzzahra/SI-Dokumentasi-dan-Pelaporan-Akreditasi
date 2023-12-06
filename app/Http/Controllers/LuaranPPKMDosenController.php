@@ -61,7 +61,7 @@ class LuaranPPKMDosenController extends Controller
      */
     public function store(Request $request)
     {
-        LuaranPPKMDosen::insert([
+        LuaranPPKMDosen::create([
             'id' => $request->id,
             'id_dosen' => $request->id_dosen,
             'id_luaran_ppkm' => $request->id_luaran_ppkm,
