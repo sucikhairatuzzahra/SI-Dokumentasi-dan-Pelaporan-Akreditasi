@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\IPKLulusanExport;
+use App\Models\TahunAkademik;
 use App\Models\IPKLulusan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;

@@ -36,14 +36,22 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Form Kesesuaian Bidang Kerja Lulusan</h5>
-                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+
                                 </div>
                                 <div class="card-block">
                                     <form action="{{ route('kerja-lulusan.store') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <label for="tahun_lulus">Tahun Lulus</label>
-                                            <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus">
+                                            <label for="thn_akademik">Tahun Lulus</label>
+                                            <select name="thn_akademik" class="form-control">
+                                                @foreach ($tahunAkademiks as $tahunAkademik)
+                                                    <option value="{{ $tahunAkademik->id }}"
+                                                        {{ old('thn_akademik') == $tahunAkademik->id ? 'selected' : '' }}>
+                                                        {{ $tahunAkademik->tahun }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <p class="text-danger">{{ $errors->first('thn_akademik') }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="jumlah_lulusan">Jumlah Lulusan</label>

@@ -43,9 +43,14 @@
                                         @csrf
                                         @method('put')
                                         <div class="form-group">
-                                            <label for="tahun_lulus">Tahun Lulus</label>
-                                            <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus"
-                                                value="{{ $editData->tahun_lulus }}">
+                                            <label for="thn_akademik">Tahun Lulus</label>
+                                            <select name="thn_akademik" class="form-control" required>
+                                                @foreach ($tahunAkademiks as $row)
+                                                    <option value="{{ $row->id }}"
+                                                        {{ $editData->id_thn_akademik == $row->id ? 'selected' : '' }}>
+                                                        {{ $row->tahun }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="jumlah_lulusan">Jumlah Lulusan</label>

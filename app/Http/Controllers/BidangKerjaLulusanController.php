@@ -7,7 +7,7 @@ use App\Models\BidangKerjaLulusan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\PTUnit;
-
+use App\Models\TahunAkademik;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -23,7 +23,7 @@ class BidangKerjaLulusanController extends Controller
         if (Gate::allows('isJurusan')) {
             $ptUnit = PTUnit::all();
             $data = BidangKerjaLulusan::orderBy('id', 'desc')
-                ->with('ptUnit')
+                ->with('ptUnit','tahunAkademik')
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
@@ -32,7 +32,7 @@ class BidangKerjaLulusanController extends Controller
 
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = BidangKerjaLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = BidangKerjaLulusan::with('ptUnit','tahunAkademik')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('bidang_kerja_lulusan.index', compact('data'));
         }
@@ -45,8 +45,9 @@ class BidangKerjaLulusanController extends Controller
      */
     public function create()
     {
+        $tahunAkademiks = TahunAkademik::all();
         $ptUnit = Auth::user()->ptUnit;
-        return view('bidang_kerja_lulusan.create', compact('ptUnit'));
+        return view('bidang_kerja_lulusan.create', compact('ptUnit','tahunAkademiks'));
     }
 
     /**
@@ -59,7 +60,7 @@ class BidangKerjaLulusanController extends Controller
     {
         BidangKerjaLulusan::create([
             'id' => $request->id,
-            'tahun_lulus' => $request->tahun_lulus,
+            'id_thn_akademik' => $request->thn_akademik,
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'bidang_infokom' => $request->bidang_infokom,
@@ -80,8 +81,9 @@ class BidangKerjaLulusanController extends Controller
      */
     public function edit($id)
     {
+        $tahunAkademiks = TahunAkademik::all();
         $data['editData'] = BidangKerjaLulusan::find($id);
-        return view('bidang_kerja_lulusan.edit', $data);
+        return view('bidang_kerja_lulusan.edit', $data, compact('tahunAkademiks'));
     }
 
     /**
@@ -95,7 +97,7 @@ class BidangKerjaLulusanController extends Controller
     {
         $kerjalulusan = BidangKerjaLulusan::find($id);
         $kerjalulusan->update([
-            'tahun_lulus' => $request->tahun_lulus,
+            'id_thn_akademik' => $request->thn_akademik,
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'bidang_infokom' => $request->bidang_infokom,
