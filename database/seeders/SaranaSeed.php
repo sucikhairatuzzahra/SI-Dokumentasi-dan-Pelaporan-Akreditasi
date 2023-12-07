@@ -22,7 +22,7 @@ class SaranaSeed extends Seeder
             'jml_mhs' => 28,
             'jam_lyn' => '07.30-16.00',
             'perangkat' => 'test',
-            'id_pt_unit' => 5,
+            
         ]);
         SaranaPrasarana::create([
             'sarana' => 'Ruang Dosen',
@@ -31,7 +31,7 @@ class SaranaSeed extends Seeder
             'jml_mhs' => 0,
             'jam_lyn' => '07.30-16.00',
             'perangkat' => 'tes1\r\ntes2',
-            'id_pt_unit' => 4,
+  
         ]);
     }
 }
