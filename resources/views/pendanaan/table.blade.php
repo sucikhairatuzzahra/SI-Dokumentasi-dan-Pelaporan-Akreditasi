@@ -19,7 +19,11 @@
             <th scope="col">
                 Unit Kerja
             </th>
-
+            @can('isAdmProdi')
+                <th scope="col" rowspan="2">
+                    Aksi
+                </th>
+            @endcan
         </tr>
     </thead>
     <tbody>
@@ -34,7 +38,18 @@
                 <td>{{ $item->bukti }}</td>
                 <td>{{ $item->keterangan }}</td>
                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
-
+                @can('isAdmProdi')
+                    <td>
+                        <form action="{{ route('pendanaan.destroy', ['id' => $item->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{ route('pendanaan.edit', ['id' => $item->id]) }}" style="margin-right: 7px">
+                                Edit
+                            </a>
+                            <button type="submit" class="btn btn-link">Hapus</button>
+                        </form>
+                    </td>
+                @endcan
             </tr>
         @endforeach
     </tbody>

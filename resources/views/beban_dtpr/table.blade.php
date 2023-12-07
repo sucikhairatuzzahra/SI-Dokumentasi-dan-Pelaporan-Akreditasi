@@ -5,6 +5,9 @@
                 No
             </th>
             <th scope="col" rowspan="2">
+                Tahun
+            </th>
+            <th scope="col" rowspan="2">
                 Nama Dosen
             </th>
             <th scope="col" colspan="3" style="align-content: center">
@@ -46,7 +49,10 @@
 
         @foreach ($data as $no => $item)
             <tr align="center">
+
                 <td>{{ $no + 1 }}</td>
+                <td>{{ $item->tahunAkademik->tahun }}</td>
+                {{-- <td>{{ $item->dosens->nama_dosen }}</td> --}}
                 <td>{{ $nama_dosen[$no] }}</td>
                 <td>{{ $item->pgjrn_ps_sendiri }}</td>
                 <td>{{ $item->pgjrn_ps_lain_pt_sendiri }}</td>

@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Illuminate\Support\Facades\Auth;
 
 class IPKLulusanExport implements FromView, ShouldAutoSize
 {
@@ -15,7 +16,7 @@ class IPKLulusanExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        $data = IPKLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        $data = IPKLulusan::with('tahunAkademik','ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
         return view('ipk_lulusan.table', compact('data'));
     }
 }

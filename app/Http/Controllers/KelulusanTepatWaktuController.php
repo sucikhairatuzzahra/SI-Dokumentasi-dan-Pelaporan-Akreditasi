@@ -88,7 +88,7 @@ class KelulusanTepatWaktuController extends Controller
         }
 
         if (Gate::allows('isAdmProdi')) {
-            $data = KelulusanTepatWaktu::with('ptUnit')->get();
+            $data = KelulusanTepatWaktu::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
 
             foreach ($data as $i => $data1) {
                 // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]
@@ -147,8 +147,8 @@ class KelulusanTepatWaktuController extends Controller
             return view('kelulusan_tw.index', compact('data'));
         }
         if (Gate::allows('isKaprodi')) {
-            $data = KelulusanTepatWaktu::with('ptUnit')->get();
-
+            $data = KelulusanTepatWaktu::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+        
             foreach ($data as $i => $data1) {
                 // data akhir_ts = data mahasiswa yang lulus di tahun ini, dan tahun masuk di $data['tahun_masuk]
                 $akhir_ts = KelulusanTepatWaktu::where('id_pt_unit', $data1['id_pt_unit'])
