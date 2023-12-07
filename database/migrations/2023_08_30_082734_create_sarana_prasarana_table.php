@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('jml_mhs');
             $table->string('jam_lyn');
             $table->text('perangkat');
-            $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
+            // $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

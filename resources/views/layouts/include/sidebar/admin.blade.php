@@ -41,9 +41,106 @@
     </li>
 </ul>
 
-{{-- <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Dosen</div>
-<div class="pcoded-navigation-label" data-i18n="nav.category.forms">Pegawai</div>
-<div class="pcoded-navigation-label" data-i18n="nav.category.forms">Tahun Akademik</div> --}}
+<div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Data LKPS</div>
+<ul class="pcoded-item pcoded-left-item">
+    <li class="">
+        <a href="{{ route('beban-dtpr.index') }}" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
+            <span class="pcoded-mtext" data-i18n="nav.dash.main">Beban DTPR</span>
+            <span class="pcoded-mcaret"></span>
+        </a>
+    </li>
+</ul>
+<ul class="pcoded-item pcoded-left-item">
+    <li class="">
+        <a href="{{ route('kependidikan.index') }}" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
+            <span class="pcoded-mtext" data-i18n="nav.dash.main">Tenaga Kependidikan</span>
+            <span class="pcoded-mcaret"></span>
+        </a>
+    </li>
+</ul>
+<ul class="pcoded-item pcoded-left-item">
+    <li class="">
+        <a href="{{ route('aksesibilitas.index') }}" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
+            <span class="pcoded-mtext" data-i18n="nav.dash.main">Aksesibilitas</span>
+            <span class="pcoded-mcaret"></span>
+        </a>
+    </li>
+</ul>
+<ul class="pcoded-item pcoded-left-item">
+    <li class="">
+        <a href="{{ route('sarana.index') }}" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
+            <span class="pcoded-mtext" data-i18n="nav.dash.main">Sarana dan Prasarana</span>
+            <span class="pcoded-mcaret"></span>
+        </a>
+    </li>
+</ul>
+<ul class="pcoded-item pcoded-left-item">
+    <li class="pcoded-hasmenu">
+        <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">PPKM</span>
+            {{-- <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Penelitian &amp; Pengabdian</span> --}}
+            <span class="pcoded-mcaret"></span>
+        </a>
+        <ul class="pcoded-submenu">
+            <li class=" ">
+                <a href="{{ route('ppkm-penelitian.index') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Penelitian Tema Infokom</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="{{ route('ppkm-pengabdian.index') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">PkM Diadobsi Masy Tema
+                        Infokom</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="{{ route('ppkm-dtpr.index') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">PPM Dosen</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="{{ route('luaran-ppkm.index') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Publikasi PPKM</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="{{ route('luaran-ppkm-dosen.index') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Publikasi PPKM Dosen</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="{{ route('luaran-lain-ppkm.index') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">HKI PPKM</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class=" ">
+                <a href="{{ route('luaran-lain-ppkm-dosen.index') }}" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">HKI PPKM Dosen</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
 
 
 <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Referensi</div>

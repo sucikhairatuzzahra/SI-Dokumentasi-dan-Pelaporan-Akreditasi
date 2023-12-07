@@ -10,10 +10,12 @@
             <th scope="col" colspan="4">
                 Sistem Pengolahan Data Ditangani
             </th>
-            <th scope="col" rowspan="2">
-                Unit Kerja
-            </th>
 
+            @can('isAdmin')
+                <th scope="col" rowspan="2">
+                    Aksi
+                </th>
+            @endcan
         </tr>
         <tr align="center">
             <th>
@@ -40,8 +42,19 @@
                 <td>{{ $item->tanpa_jrg }}</td>
                 <td>{{ $item->lan }}</td>
                 <td><a href="{{ $item->wan }}">{{ $item->wan }}</a></td>
-                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
-
+                {{-- <td>{{ $item->ptUnit->kode_pt_unit }}</td> --}}
+                @can('isAdmin')
+                    <td>
+                        <form action="{{ route('aksesibilitas.destroy', ['id' => $item->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{ route('aksesibilitas.edit', ['id' => $item->id]) }}" style="margin-right: 7px">
+                                Edit
+                            </a>
+                            <button type="submit" class="btn btn-link">Hapus</button>
+                        </form>
+                    </td>
+                @endcan
             </tr>
         @endforeach
     </tbody>

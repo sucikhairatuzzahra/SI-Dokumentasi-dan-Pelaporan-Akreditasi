@@ -35,7 +35,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Publikasi Dosen</h5>
-                            @can('isAdmProdi')
+                            @can('isAdmin')
                                 <a href="{{ route('luaran-ppkm-dosen.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
@@ -74,7 +74,7 @@
                                             <th scope="col">
                                                 Dosen
                                             </th>
-                                            @can('isAdmProdi')
+                                            @can('isAdmin')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
                                                 </th>
@@ -87,7 +87,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->luaranPpkm->judul_luaran_ppkm }}</td>
                                                 <td>{{ $nama_dosen[$no] }}</td>
-                                                @can('isAdmProdi')
+                                                @can('isAdmin')
                                                     <td>
                                                         <form
                                                             action="{{ route('luaran-ppkm-dosen.destroy', ['id' => $item->id]) }}"

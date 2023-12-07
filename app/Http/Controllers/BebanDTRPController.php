@@ -24,25 +24,25 @@ class BebanDTRPController extends Controller
      */
     public function index(Request $request)
     {
-        if (Gate::allows('isJurusan')) {
-            $ptUnit = PTUnit::all();
-            $data = BebanDTPR::orderBy('id', 'desc')
-                ->with('ptUnit','tahunAkademik')
-                ->when($request->id_pt_unit, function ($query) use ($request) {
-                    $query->where('id_pt_unit', $request->id_pt_unit);
-                })->paginate(20);
-             $nama_dosen = [];
-            foreach ($data as $value) {
-                $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
-                $nama_dosen[] = $pegawai['nama_pegawai'];
-            }
-            Log::debug($nama_dosen);
-            return view('beban_dtpr.index', compact('data', 'nama_dosen','request'));
+        // if (Gate::allows('isJurusan')) {
+        //     $ptUnit = PTUnit::all();
+        //     $data = BebanDTPR::orderBy('id', 'desc')
+        //         ->with('dosens','tahunAkademik')
+        //         ->when($request->id_pt_unit, function ($query) use ($request) {
+        //             $query->where('id_pt_unit', $request->id_pt_unit);
+        //         })->paginate(20);
+        //      $nama_dosen = [];
+        //     foreach ($data as $value) {
+        //         $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
+        //         $nama_dosen[] = $pegawai['nama_pegawai'];
+        //     }
+        //     Log::debug($nama_dosen);
+        //     return view('beban_dtpr.index', compact('data', 'nama_dosen','request'));
        
-        }
+        // }
 
-        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = BebanDTPR::with('ptUnit', 'dosens','tahunAkademik')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+       
+            $data = BebanDTPR::with('dosens','tahunAkademik')->get();
             $nama_dosen = [];
             foreach ($data as $value) {
                 $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
@@ -50,7 +50,7 @@ class BebanDTRPController extends Controller
             }
             Log::debug($nama_dosen);
             return view('beban_dtpr.index', compact('data', 'nama_dosen'));
-        }
+        
     }
 
     /**
@@ -61,9 +61,9 @@ class BebanDTRPController extends Controller
     public function create()
     { 
         $tahunAkademiks = TahunAkademik::all();
-        $ptUnit = Auth::user()->ptUnit;
+        // $ptUnit = Auth::user()->ptUnit;
         $dosens = Dosen::with('pegawai')->get();
-        return view('beban_dtpr.create', compact('ptUnit','dosens','tahunAkademiks'));
+        return view('beban_dtpr.create', compact('dosens','tahunAkademiks'));
 
     }
 
@@ -87,7 +87,7 @@ class BebanDTRPController extends Controller
             'sks_pengabdian' => $request->sks_pengabdian,
             'manajemen_pt_sendiri' => $request->manajemen_pt_sendiri,
             'manajemen_pt_lain' => $request->manajemen_pt_lain,
-            'id_pt_unit' => $request->id_pt_unit,
+            // 'id_pt_unit' => $request->id_pt_unit,
         ]);
         return redirect('beban-dtpr')->with('success', 'Data berhasil disimpan');
     }
@@ -101,10 +101,10 @@ class BebanDTRPController extends Controller
     public function edit($id)
     {
         $data['editData'] = BebanDTPR::find($id);
-        $ptUnit = Auth::user()->ptUnit;
+        // $ptUnit = Auth::user()->ptUnit;
         $tahunAkademiks = TahunAkademik::all();
         $dosens = Dosen::with('pegawai')->get();
-        return view('beban_dtpr.edit', $data, compact('ptUnit', 'dosens','tahunAkademiks'));
+        return view('beban_dtpr.edit', $data, compact('dosens','tahunAkademiks'));
     }
 
     /**
@@ -116,7 +116,6 @@ class BebanDTRPController extends Controller
      */
     public function update(Request $request, $id)
     { 
-        // $user = Auth::user();
 
         $dtpr = BebanDTPR::find($id);
         $dtpr->update([
@@ -129,7 +128,7 @@ class BebanDTRPController extends Controller
             'sks_pengabdian' => $request->sks_pengabdian,
             'manajemen_pt_sendiri' => $request->manajemen_pt_sendiri,
             'manajemen_pt_lain' => $request->manajemen_pt_lain,
-            'id_pt_unit' => $request->id_pt_unit,
+            // 'id_pt_unit' => $request->id_pt_unit,
         ]);
 
         return redirect('beban-dtpr')->with('success', 'Data berhasil disimpan');

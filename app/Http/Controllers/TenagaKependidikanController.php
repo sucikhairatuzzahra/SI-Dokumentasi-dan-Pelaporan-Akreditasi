@@ -20,61 +20,27 @@ class TenagaKependidikanController extends Controller
      */
     public function index(Request $request)
     {
-        if (Gate::allows('isJurusan')) {
-            $ptUnit = PTUnit::all();
-            $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'id_pt_unit')
-                ->with('ptUnit')
-                ->orderBy('jenis_tenaga_kependidikan')
-                ->when($request->id_pt_unit, function ($query) use ($request) {
-                    $query->where('id_pt_unit', $request->id_pt_unit);
-                })->get();
+        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'unit_kerja')->orderBy('jenis_tenaga_kependidikan')->get();
+        $tenaga_kependidikan2 = TenagaKependidikan::all();
 
-            $tenaga_kependidikan2 = TenagaKependidikan::all();
-
-            $data = [];
-            $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
-            foreach ($tenaga_kependidikan as $key => $value) {
-                $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
-                $data[$key] = [
-                    'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
-                    'nama' => $value->nama,
-                    'pt_unit' => $value->ptUnit->kode_pt_unit,
-                    'unit_kerja' => $value->unit_kerja,
-                    'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
-                    'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan', $value->jenis_tenaga_kependidikan)
-                        ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
-                            $jenjangCounts[$keyjp] = $item->count();
-                        })
-                ];
-            }
-            return view('kependidikan.index', compact('data', 'request', 'tenaga_kependidikan'));
+        $data = [];
+        $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
+        foreach ($tenaga_kependidikan as $key => $value) {
+            $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
+            $data[$key] = [
+                'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
+                'nama' => $value->nama,
+                'unit_kerja' => $value->unit_kerja,
+                'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
+                'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan', $value->jenis_tenaga_kependidikan)->where('jenjang_pendidikan', $value->jenjang_pendidikan)
+                ->groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'unit_kerja')->each(function ($item, $keyjp) use (&$jenjangCounts) 
+                {
+                 $jenjangCounts[$keyjp] = $item->count();
+                })
+            ];
         }
 
-        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'id_pt_unit')->with('ptUnit')
-                ->orderBy('jenis_tenaga_kependidikan')->get();
-            $tenaga_kependidikan2 = TenagaKependidikan::all();
-
-            $data = [];
-            $possibleJenjangs = ['sma', 'd1', 'd2', 'd3', 'd4', 's1', 's2', 's3'];
-            foreach ($tenaga_kependidikan as $key => $value) {
-                $jenjangCounts = array_fill_keys($possibleJenjangs, 0);
-                $data[$key] = [
-                    'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
-                    'nama' => $value->nama,
-                    'id_pt_unit' => $value->ptUnit->id,
-                    'pt_unit' => $value->ptUnit->kode_pt_unit,
-                    'unit_kerja' => $value->unit_kerja,
-                    'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
-                    'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan', $value->jenis_tenaga_kependidikan)
-                        ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
-                            $jenjangCounts[$keyjp] = $item->count();
-                        })
-                ];
-            }
-
-            return view('kependidikan.index', compact('data', 'tenaga_kependidikan'));
-        }
+        return view('kependidikan.index', compact('data', 'tenaga_kependidikan'));
     }
 
     /**
@@ -84,8 +50,8 @@ class TenagaKependidikanController extends Controller
      */
     public function create()
     {
-        $ptUnit = Auth::user()->ptUnit;
-        return view('kependidikan.create', compact('ptUnit'));
+       
+        return view('kependidikan.create');
     }
 
     /**
@@ -102,7 +68,7 @@ class TenagaKependidikanController extends Controller
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
-            'id_pt_unit' => $request->id_pt_unit,
+          
         ]);
 
         return redirect('kependidikan')->with('success', 'Data berhasil disimpan');
@@ -116,7 +82,8 @@ class TenagaKependidikanController extends Controller
      */
     public function show($id)
     {
-        $data = TenagaKependidikan::where('id_pt_unit', $id)->with('ptUnit')->get();
+        // $data = TenagaKependidikan::where('id_pt_unit', $id)->with('ptUnit')->get();
+        $data = TenagaKependidikan::where('unit_kerja', $id)->get();
         return view('kependidikan.show', compact('data'));
     }
 
@@ -147,7 +114,6 @@ class TenagaKependidikanController extends Controller
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
-            'id_pt_unit' => $request->id_pt_unit,
 
         ]);
 
@@ -174,10 +140,10 @@ class TenagaKependidikanController extends Controller
     public function byPtUnit($ptunitid)
     {
         $where = [
-            'id_pt_unit' => $ptunitid, // D4 TRPL
+            'unit_kerja' => $ptunitid, // D4 TRPL
         ];
         $data = TenagaKependidikan::where($where)->get();
         // dd($data);
-        return view('kependidikan.byidunit', compact('data'));
+        return view('kependidikan.show', compact('data'));
     }
 }

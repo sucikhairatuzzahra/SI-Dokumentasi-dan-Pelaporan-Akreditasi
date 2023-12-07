@@ -28,11 +28,9 @@ class PPKMPenelitianController extends Controller
         //     return view('ppkm.index', compact('data', 'request'));
         // }
 
-      
-            $data = PPKM::where('jenis_penelitian_pengabdian', '=', 'penelitian')->with('pembiayaan');
-            $data = $data->paginate(20);
-            return view('ppkm.penelitian.index', compact('data'));
-        
+        $data = PPKM::where('jenis_penelitian_pengabdian', '=', 'penelitian')->with('pembiayaan');
+        $data = $data->paginate(20);
+        return view('ppkm.penelitian.index', compact('data'));
     }
 
     /**

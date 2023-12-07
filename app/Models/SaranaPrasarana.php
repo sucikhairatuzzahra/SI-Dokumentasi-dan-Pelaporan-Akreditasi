@@ -12,11 +12,11 @@ class SaranaPrasarana extends Model
     protected $table = "sarana_prasarana";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'sarana', 'daya_tampung', 'luas_ruang', 'jml_mhs', 'jam_lyn', 'perangkat', 'id_pt_unit'
+        'sarana', 'daya_tampung', 'luas_ruang', 'jml_mhs', 'jam_lyn', 'perangkat'
     ];
 
-    public function ptUnit(): BelongsTo
-    {
-        return $this->belongsTo(PTUnit::class, 'id_pt_unit');
-    }
+    // public function ptUnit(): BelongsTo
+    // {
+    //     return $this->belongsTo(PTUnit::class, 'id_pt_unit');
+    // }
 }

@@ -115,7 +115,7 @@
             <li class=" ">
                 <a href="{{ route('ppkm-pengabdian.index') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">PkM Tema Infokom
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">PkM Diadobsi Masy Tema
                         Infokom</span>
                     <span class="pcoded-mcaret"></span>
                 </a>

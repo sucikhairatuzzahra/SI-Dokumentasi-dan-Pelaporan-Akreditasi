@@ -72,13 +72,7 @@
                                             <input type="text" class="form-control" id="perangkat" name="perangkat"
                                                 value="{{ $editData->perangkat }}">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="pt_unit">Unit Kerja</label>
-                                            <input type="hidden" class="form-control" name="id_pt_unit"
-                                                value="{{ $editData->ptUnit->id }}" required>
-                                            <input type="text" class="form-control"
-                                                value="{{ $editData->ptUnit->kode_pt_unit }}" disabled>
-                                        </div>
+
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>
                                     <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

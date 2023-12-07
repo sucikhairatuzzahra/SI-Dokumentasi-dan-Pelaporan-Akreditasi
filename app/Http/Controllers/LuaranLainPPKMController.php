@@ -22,8 +22,7 @@ class LuaranLainPPKMController extends Controller
         $data = LuaranLainPPKM::with('jenisLuaranLain','ppkm');
         $data = $data->paginate(20);
         return view('luaran_lain_ppkm.index', compact('data'));
-            
-        
+
     }
 
     /**

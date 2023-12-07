@@ -14,7 +14,7 @@ class Aksesibilitas extends Model
     protected $table = "aksesibilitas";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'jenis_data', 'secara_manual', 'tanpa_jrg', 'lan', 'wan', 'id_pt_unit'
+        'jenis_data', 'secara_manual', 'tanpa_jrg', 'lan', 'wan'
     ];
 
     public function user()

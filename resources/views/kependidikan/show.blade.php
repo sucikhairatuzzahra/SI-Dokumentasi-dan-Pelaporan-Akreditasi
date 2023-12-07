@@ -66,7 +66,7 @@
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
-                                            @can('isAdmProdi')
+                                            @can('isAdmin')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
                                                 </th>
@@ -81,8 +81,8 @@
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->jenis_tenaga_kependidikan }}</td>
                                                 <td>{{ $item->jenjang_pendidikan }} </td>
-                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
-                                                @can('isAdmProdi')
+                                                <td>{{ $item->unit_kerja }}</td>
+                                                @can('isAdmin')
                                                     <td>
                                                         <form action="{{ route('kependidikan.destroy', ['id' => $item->id]) }}"
                                                             method="POST">

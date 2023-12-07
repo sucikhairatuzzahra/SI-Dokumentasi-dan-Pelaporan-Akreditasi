@@ -30,46 +30,12 @@
             <div class="page-wrapper">
                 <!-- Page-body start -->
                 <div class="page-body">
-                    @can('isJurusan')
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-header-left">
-                                    <h5>Pilih Program Studi </h5>
-                                </div>
-                            </div>
-                            <div class="card-block">
-                                <form action="{{ route('sarana.index') }}" method="get">
-                                    <div class="row">
-                                        <div class="col-md-3 form-group">
-                                            <label for="">Program Studi</label>
-                                            <select name="id_pt_unit" class="form-control">
-                                                <option value="0">--Pilih Program Studi--</option>
-                                                <option value="5" {{ $request->id_pt_unit === '5' ? 'selected' : '' }}>D3
-                                                    MI
-                                                </option>
-                                                <option value="6" {{ $request->id_pt_unit === '6' ? 'selected' : '' }}>D3
-                                                    TK
-                                                </option>
-                                                <option value="4" {{ $request->id_pt_unit === '4' ? 'selected' : '' }}>D4
-                                                    TRPL
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2 form-group" style="margin-top:25px;">
-                                            <input type="submit" class="btn btn-primary" value="Filter">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            {{-- tabel  --}}
-                            <br>
-                        </div>
-                    @endcan
+
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
                             <h5>Pendayagunaan Sarana dan Prasarana Utama</h5>
-                            @can('isAdmProdi')
+                            @can('isAdmin')
                                 <a href="{{ route('sarana.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
@@ -126,10 +92,8 @@
                                             <th scope="col">
                                                 Perangkat Yang Dimiliki
                                             </th>
-                                            <th scope="col">
-                                                Unit Kerja
-                                            </th>
-                                            @can('isAdmProdi')
+
+                                            @can('isAdmin')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
                                                 </th>
@@ -149,8 +113,7 @@
                                                 <td>{{ $item->jml_mhs }}</td>
                                                 <td>{{ $item->jam_lyn }}</td>
                                                 <td>{{ $item->perangkat }}</td>
-                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
-                                                @can('isAdmProdi')
+                                                @can('isAdmin')
                                                     <td>
                                                         <form action="{{ route('sarana.destroy', ['id' => $item->id]) }}"
                                                             method="POST">

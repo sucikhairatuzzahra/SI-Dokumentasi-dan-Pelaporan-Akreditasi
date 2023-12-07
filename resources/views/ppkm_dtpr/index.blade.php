@@ -69,7 +69,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                            @can('isAdmProdi')
+                            @can('isAdmin')
                                 <a href="{{ route('ppkm-dtpr.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
@@ -112,7 +112,7 @@
                                                 Ketua
                                             </th>
 
-                                            @can('isAdmProdi')
+                                            @can('isAdmin')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
                                                 </th>
@@ -128,7 +128,7 @@
                                                 <td>{{ $nama_dosen[$no] }}</td>
                                                 <td>{{ $item->ketua }}</td>
 
-                                                @can('isAdmProdi')
+                                                @can('isAdmin')
                                                     <td>
                                                         <form action="{{ route('ppkm-dtpr.destroy', ['id' => $item->id]) }}"
                                                             method="POST">
