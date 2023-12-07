@@ -11,7 +11,7 @@ use App\Http\Controllers\KelulusanTepatWaktuController;
 use App\Http\Controllers\KepuasanPenggunaLulusanController;
 use App\Http\Controllers\MasaTungguLulusanController;
 use App\Http\Controllers\PendanaanController;
-use App\Http\Controllers\PenelitianPengabdian;
+use App\Http\Controllers\PenelitianPengabdianController;
 use App\Http\Controllers\SaranaPrasaranaController;
 use App\Http\Controllers\TenagaKependidikanController;
 use App\Http\Controllers\JumlahTenagaKependidikanController;
@@ -110,3 +110,6 @@ Route::resource('luaran-ppkm-dosen', LuaranPPKMDosenController::class)->except('
 
 Route::resource('luaran-lain-ppkm', LuaranLainPPKMController::class)->except('show')->parameters(['luaran-lain-ppkm' => 'id']);
 Route::resource('luaran-lain-ppkm-dosen', LuaranLainPPKMDosenController::class)->except('show')->parameters(['luaran-lain-ppkm-dosen' => 'id']);
+
+Route::resource('penelitian-pengabdian', PenelitianPengabdianController::class)->parameters(['penelitian-pengabdian' => 'id']);
+Route::get('penelitian-pengabdian-download', [PenelitianPengabdianController::class, 'download'])->name('penelitian-pengabdian.download');
