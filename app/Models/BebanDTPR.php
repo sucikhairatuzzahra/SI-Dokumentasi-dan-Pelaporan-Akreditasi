@@ -14,7 +14,7 @@ class BebanDTPR extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'id_thn_akademik','id_dosen', 'pgjrn_ps_sendiri', 'pgjrn_ps_lain_pt_sendiri', 'pgjrn_pt_lain', 'sks_penelitian',
-        'sks_penelitian', 'manajemen_pt_sendiri', 'manajemen_pt_lain'
+        'sks_pengabdian', 'manajemen_pt_sendiri', 'manajemen_pt_lain'
     ];
 
     // public function ptUnit(): BelongsTo {

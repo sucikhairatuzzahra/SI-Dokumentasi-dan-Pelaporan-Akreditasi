@@ -20,13 +20,13 @@ class TenagaKependidikanSeed extends Seeder
                 'nama' => 'Marissa Ayu Saphira',
                 'jenis_tenaga_kependidikan' => 'Administrasi',
                 'jenjang_pendidikan' => 'd3',
-                'id_pt_unit' => 3
+                'unit_kerja' => 'Program Studi D4-TRPL'
             ],
             [
                 'nama' => 'Suci Khairatuz Zahra',
                 'jenis_tenaga_kependidikan' => 'Tata niaga',
                 'jenjang_pendidikan' => 's2',
-                'id_pt_unit' => 5
+                'unit_kerja' => 'Program Studi D3-MI'
             ]
         ];
 
