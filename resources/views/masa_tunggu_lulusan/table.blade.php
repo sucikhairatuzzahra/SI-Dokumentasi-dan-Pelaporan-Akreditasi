@@ -24,7 +24,7 @@
         @foreach ($data as $no => $item)
             <tr align="center">
                 {{-- <td>{{ $no + 1 }}</td> --}}
-                <td>{{ $item->tahun_lulus }}</td>
+                <td>{{ $item->tahunAkademik->tahun }}</td>
                 <td>{{ $item->jumlah_lulusan }}</td>
                 <td>{{ $item->lulusan_terlacak }}</td>
                 <td>{{ $item->waktu_tunggu }}</td>

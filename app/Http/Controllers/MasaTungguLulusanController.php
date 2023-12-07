@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\MasaTungguLulusanExport;
 use App\Models\MasaTungguLulusan;
+use App\Models\TahunAkademik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\PTUnit;
@@ -23,7 +24,7 @@ class MasaTungguLulusanController extends Controller
         if (Gate::allows('isJurusan')) {
             $ptUnit = PTUnit::all();
             $data = MasaTungguLulusan::orderBy('id', 'desc')
-                ->with('ptUnit')
+                ->with('ptUnit','tahunAkademik')
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
@@ -32,7 +33,7 @@ class MasaTungguLulusanController extends Controller
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = MasaTungguLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = MasaTungguLulusan::with('ptUnit','tahunAkademik')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('masa_tunggu_lulusan.index', compact('data'));
         }
@@ -45,8 +46,9 @@ class MasaTungguLulusanController extends Controller
      */
     public function create()
     {
+        $tahunAkademiks = TahunAkademik::all();
         $ptUnit = Auth::user()->ptUnit;
-        return view('masa_tunggu_lulusan.create', compact('ptUnit'));
+        return view('masa_tunggu_lulusan.create', compact('ptUnit','tahunAkademiks'));
     }
 
     /**
@@ -59,7 +61,7 @@ class MasaTungguLulusanController extends Controller
     {
         MasaTungguLulusan::insert([
             'id' => $request->id,
-            'tahun_lulus' => $request->tahun_lulus,
+            'id_thn_akademik' => $request->thn_akademik,
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
@@ -87,9 +89,9 @@ class MasaTungguLulusanController extends Controller
      */
     public function edit($id)
     {
-
+        $tahunAkademiks = TahunAkademik::all();
         $data['editData'] = MasaTungguLulusan::find($id);
-        return view('masa_tunggu_lulusan.edit', $data);
+        return view('masa_tunggu_lulusan.edit', $data, compact('tahunAkademiks'));
 
         // $data['editData'] = DB::table('masa_tunggu_lulusan')
         //     ->where('id', $id)
@@ -108,7 +110,7 @@ class MasaTungguLulusanController extends Controller
     {
         $masatunggu = MasaTungguLulusan::find($id);
         $update = $masatunggu->update([
-            'tahun_lulus' => $request->tahun_lulus,
+            'id_thn_akademik' => $request->thn_akademik,
             'jumlah_lulusan' => $request->jumlah_lulusan,
             'lulusan_terlacak' => $request->lulusan_terlacak,
             'waktu_tunggu' => $request->waktu_tunggu,
@@ -122,20 +124,7 @@ class MasaTungguLulusanController extends Controller
                 window.location = '/admprodi.page.masa_tunggu_lulusan.index';
                 </script>";
         }
-        // $update = DB::table('masa_tunggu_lulusan')
-        //     ->where('id', $id)
-        //     ->update([
-        //         'tahun_lulus' => $request->tahun_lulus,
-        //         'waktu_tunggu' => $request->waktu_tunggu,
-        //     ]);
-        // if ($update) {
-        //     return redirect('masatunggu')->with('pesan', 'Data berhasil disimpan');
-        // } else {
-        //     echo "<script>
-        //         alert('Data gagal diinput, masukkan kebali data dengan benar');
-        //         window.location = '/admin.page.masa_tunggu_lulusan.index';
-        //         </script>";
-        // }
+        
     }
 
     /**

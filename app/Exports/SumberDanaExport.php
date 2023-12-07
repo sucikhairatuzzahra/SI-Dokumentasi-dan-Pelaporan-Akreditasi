@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Pendanaan;
+use App\Models\PTUnit;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -16,7 +17,9 @@ class SumberDanaExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        $data = Pendanaan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        
+
+        $data = Pendanaan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
         return view('pendanaan.table', compact('data'));
     }
 }

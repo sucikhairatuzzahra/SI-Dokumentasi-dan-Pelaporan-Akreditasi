@@ -20,13 +20,13 @@ class BebanDTPRExport implements FromView, ShouldAutoSize
     public function view(): View
     {
         // $data = BebanDTPR::with( 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
-        $data = BebanDTPR::with('ptUnit', 'dosens','tahunAkademik')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
-            $nama_dosen = [];
-            foreach ($data as $value) {
-                $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
-                $nama_dosen[] = $pegawai['nama_pegawai'];
-            }
-            Log::debug($nama_dosen);
+        $data = BebanDTPR::with('dosens','tahunAkademik')->get();
+        $nama_dosen = [];
+        foreach ($data as $value) {
+            $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();
+            $nama_dosen[] = $pegawai['nama_pegawai'];
+        }
+        Log::debug($nama_dosen);
         return view('beban_dtpr.table', compact('data', 'nama_dosen'));
     }
 }

@@ -10,7 +10,11 @@
             <th scope="col" rowspan="2">
                 Unit Kerja
             </th>
-
+            @can('isAdmin')
+                <th scope="col" rowspan="2">
+                    Aksi
+                </th>
+            @endcan
         </tr>
         <tr align="center">
             <th>
@@ -61,9 +65,17 @@
                 </td>
                 <td>{{ $item['jenjang_counts']['sma'] ?? 0 ? count($item['jenjang_counts']['sma']) : 0 }}
                 </td>
-                {{-- <td>{{ $item['unit_kerja'] }}</td> --}}
-                <td>{{ $item['pt_unit'] }}</td>
+                <td>{{ $item['unit_kerja'] }}</td>
+                {{-- <td>{{ $item['pt_unit'] }}</td> --}}
 
+                @can('isAdmin')
+                    <td>
+                        <a href="{{ route('kependidikan.show', ['id' => $item['unit_kerja']]) }}"
+                            style="margin-right: 7px">
+                            Lihat
+                        </a>
+                    </td>
+                @endcan
             </tr>
         @endforeach
     </tbody>
