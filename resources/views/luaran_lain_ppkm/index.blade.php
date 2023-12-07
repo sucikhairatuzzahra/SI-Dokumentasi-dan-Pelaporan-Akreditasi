@@ -70,7 +70,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Data HKI PPKM</h5>
-                            @can('isAdmProdi')
+                            @can('isAdmin')
                                 <a href="{{ route('luaran-lain-ppkm.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
@@ -122,7 +122,7 @@
                                                 Jumlah Sitasi
                                             </th>
 
-                                            @can('isAdmProdi')
+                                            @can('isAdmin')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
                                                 </th>
@@ -141,7 +141,7 @@
                                                 <td>{{ $item->keterangan }}</td>
                                                 <td>{{ $item->jumlah_sitasi }}</td>
 
-                                                @can('isAdmProdi')
+                                                @can('isAdmin')
                                                     <td>
                                                         <form
                                                             action="{{ route('luaran-lain-ppkm.destroy', ['id' => $item->id]) }}"

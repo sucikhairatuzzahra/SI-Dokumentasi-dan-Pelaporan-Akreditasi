@@ -24,7 +24,7 @@ return new class extends Migration
             $table->double('sks_pengabdian');
             $table->double('manajemen_pt_sendiri');
             $table->double('manajemen_pt_lain');
-            $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
+            // $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

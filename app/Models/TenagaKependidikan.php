@@ -17,7 +17,7 @@ class TenagaKependidikan extends Model
     protected $table = "tenaga_kpddkn";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'nama', 'jenis_tenaga_kependidikan', 'jenjang_pendidikan', 'id_pt_unit'
+        'nama', 'jenis_tenaga_kependidikan', 'jenjang_pendidikan', 'unit_kerja'
     ];
 
     public function lulusan()

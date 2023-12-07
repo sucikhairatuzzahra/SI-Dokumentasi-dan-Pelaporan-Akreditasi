@@ -68,13 +68,13 @@
                                             <input type="text" class="form-control" id="wan" name="wan"
                                                 value="{{ $editData->wan }}">
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="pt_unit">Unit Kerja</label>
                                             <input type="hidden" class="form-control" name="id_pt_unit"
                                                 value="{{ $editData->ptUnit->id }}" required>
                                             <input type="text" class="form-control"
                                                 value="{{ $editData->ptUnit->kode_pt_unit }}" disabled>
-                                        </div>
+                                        </div> --}}
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>
                                     <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

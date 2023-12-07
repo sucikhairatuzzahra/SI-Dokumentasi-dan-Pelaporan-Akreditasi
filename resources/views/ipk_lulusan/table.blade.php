@@ -35,7 +35,7 @@
         @foreach ($data as $no => $item)
             <tr align="center">
                 <td>{{ $no + 1 }}</td>
-                <td>{{ $item->tahun_lulus }}</td>
+                <td>{{ $item->tahunAkademik->tahun }}</td>
                 <td>{{ $item->jumlah_lulusan }}</td>
                 <td>{{ $item->ipk_min }}</td>
                 <td>{{ $item->ipk_rata_rata }}</td>

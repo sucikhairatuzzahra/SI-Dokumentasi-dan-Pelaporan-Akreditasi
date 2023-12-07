@@ -22,10 +22,8 @@
             <th scope="col">
                 Perangkat Yang Dimiliki
             </th>
-            <th scope="col">
-                Unit Kerja
-            </th>
-            @can('isAdmProdi')
+
+            @can('isAdmin')
                 <th scope="col" rowspan="2">
                     Aksi
                 </th>
@@ -45,8 +43,7 @@
                 <td>{{ $item->jml_mhs }}</td>
                 <td>{{ $item->jam_lyn }}</td>
                 <td>{{ $item->perangkat }}</td>
-                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
-                @can('isAdmProdi')
+                @can('isAdmin')
                     <td>
                         <form action="{{ route('sarana.destroy', ['id' => $item->id]) }}" method="POST">
                             @csrf

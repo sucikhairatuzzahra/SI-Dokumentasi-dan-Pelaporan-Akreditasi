@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('tanpa_jrg')->nullable();
             $table->string('lan')->nullable();
             $table->string('wan');
-            $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
+            // $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

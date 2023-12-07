@@ -31,46 +31,12 @@
             <div class="page-wrapper">
                 <!-- Page-body start -->
                 <div class="page-body">
-                    @can('isJurusan')
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-header-left">
-                                    <h5>Pilih Program Studi </h5>
-                                </div>
-                            </div>
-                            <div class="card-block">
-                                <form action="{{ route('mahasiswa.index') }}" method="get">
-                                    <div class="row">
-                                        <div class="col-md-3 form-group">
-                                            <label for="">Program Studi</label>
-                                            <select name="id_pt_unit" class="form-control">
-                                                <option value="0">--Pilih Program Studi--</option>
-                                                <option value="5" {{ $request->id_pt_unit === '5' ? 'selected' : '' }}>D3
-                                                    MI
-                                                </option>
-                                                <option value="6" {{ $request->id_pt_unit === '6' ? 'selected' : '' }}>D3
-                                                    TK
-                                                </option>
-                                                <option value="4" {{ $request->id_pt_unit === '4' ? 'selected' : '' }}>D4
-                                                    TRPL
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2 form-group" style="margin-top:25px;">
-                                            <input type="submit" class="btn btn-primary" value="Filter">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            {{-- tabel  --}}
-                            <br>
-                        </div>
-                    @endcan
+
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
                             <h5>Kualifikasi Tenaga Kependidikan</h5>
-                            @can('isAdmProdi')
+                            @can('isAdmin')
                                 <a href="{{ route('kependidikan.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
@@ -115,7 +81,7 @@
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
-                                            @can('isAdmProdi')
+                                            @can('isAdmin')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
                                                 </th>
@@ -170,12 +136,12 @@
                                                 </td>
                                                 <td>{{ $item['jenjang_counts']['sma'] ?? 0 ? count($item['jenjang_counts']['sma']) : 0 }}
                                                 </td>
-                                                {{-- <td>{{ $item['unit_kerja'] }}</td> --}}
-                                                <td>{{ $item['pt_unit'] }}</td>
-                                                {{-- <td>{{ $item['idPtunit'][0]['kode_pt_unit'] }}</td> --}}
-                                                @can('isAdmProdi')
+                                                <td>{{ $item['unit_kerja'] }}</td>
+                                                {{-- <td>{{ $item['pt_unit'] }}</td> --}}
+
+                                                @can('isAdmin')
                                                     <td>
-                                                        <a href="{{ route('kependidikan.show', ['id' => $item['id_pt_unit']]) }}"
+                                                        <a href="{{ route('kependidikan.show', ['id' => $item['unit_kerja']]) }}"
                                                             style="margin-right: 7px">
                                                             Lihat
                                                         </a>

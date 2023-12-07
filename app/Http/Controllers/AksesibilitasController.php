@@ -20,27 +20,27 @@ class AksesibilitasController extends Controller
      */
     public function index(Request $request)
     {
-        if (Gate::allows('isJurusan')) {
-            $ptUnit = PTUnit::all();
-            $data = Aksesibilitas::orderBy('id', 'desc')
-                ->with('ptUnit')
-                ->when($request->id_pt_unit, function ($query) use ($request) {
-                    $query->where('id_pt_unit', $request->id_pt_unit);
-                })->paginate(20);
-            return view('aksesibilitas.index', compact('data', 'request'));
-        }
+        // if (Gate::allows('isJurusan')) {
+        //     $ptUnit = PTUnit::all();
+        //     $data = Aksesibilitas::orderBy('id', 'desc')
+        //         ->with('ptUnit')
+        //         ->when($request->id_pt_unit, function ($query) use ($request) {
+        //             $query->where('id_pt_unit', $request->id_pt_unit);
+        //         })->paginate(20);
+        //     return view('aksesibilitas.index', compact('data', 'request'));
+        // }
 
-        if (Gate::allows('isAdmProdi')) {
-            $data = Aksesibilitas::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
-            $data = $data->paginate(20);
-            return view('aksesibilitas.index', compact('data'));
-        }
+        // if (Gate::allows('isAdmProdi')) {
+        //     $data = Aksesibilitas::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        //     $data = $data->paginate(20);
+        //     return view('aksesibilitas.index', compact('data'));
+        // }
 
-        if (Gate::allows('isKaprodi')) {
-            $data = Aksesibilitas::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
-            $data = $data->paginate(20);
-            return view('aksesibilitas.index', compact('data'));
-        }
+       
+        $data = Aksesibilitas::all();
+        // $data = $data->paginate(20);
+        return view('aksesibilitas.index', compact('data'));
+        
     }
 
     /**
@@ -50,8 +50,8 @@ class AksesibilitasController extends Controller
      */
     public function create()
     {
-        $ptUnit = Auth::user()->ptUnit;
-        return view('aksesibilitas.create', compact('ptUnit'));
+        // $ptUnit = Auth::user()->ptUnit;
+        return view('aksesibilitas.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class AksesibilitasController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
+
         $input = Aksesibilitas::insert([
             'id' => $request->id,
             'jenis_data' => $request->jenis_data,
@@ -70,8 +70,7 @@ class AksesibilitasController extends Controller
             'tanpa_jrg' => $request->tanpa_jrg,
             'lan' => $request->lan,
             'wan' => $request->wan,
-            'id_pt_unit' => $request->id_pt_unit,
-            // 'kode_pt_unit' => $user->kode_pt_unit,
+            // 'id_pt_unit' => $request->id_pt_unit,
 
         ]);
         return redirect('aksesibilitas')->with('success', 'Data berhasil disimpan');
@@ -105,8 +104,7 @@ class AksesibilitasController extends Controller
             'tanpa_jrg' => $request->tanpa_jrg,
             'lan' => $request->lan,
             'wan' => $request->wan,
-            'id_pt_unit' => $request->id_pt_unit,
-            // 'kode_pt_unit' => $request->kode_pt_unit,
+            // 'id_pt_unit' => $request->id_pt_unit,
         ]);
         return redirect('aksesibilitas')->with('success', 'Data berhasil disimpan');
     }

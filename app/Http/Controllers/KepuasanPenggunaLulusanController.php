@@ -67,7 +67,7 @@ class KepuasanPenggunaLulusanController extends Controller
             'id_pt_unit' => $request->id_pt_unit,
         ]);
 
-        return redirect(route('kepuasan_pengguna'))->with('success', 'Data berhasil disimpan');
+        return redirect(route('kepuasan-pengguna'))->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -101,7 +101,7 @@ class KepuasanPenggunaLulusanController extends Controller
             'rencana_tindak_lanjut' => $request->rencana_tindak_lanjut,
             'pt_unit' => $request->kode_pt_unit,
         ]);
-        return redirect('kepuasan_pengguna')->with('success', 'Data berhasil disimpan');
+        return redirect('kepuasan-pengguna')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -114,7 +114,7 @@ class KepuasanPenggunaLulusanController extends Controller
     {
         $kepuasan = KepuasanPenggunaLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kepuasan->delete();
-        return redirect()->route('kepuasan_pengguna')->with('success', 'Data Kepuasan Pengguna Lulusan berhasil dihapus');
+        return redirect()->route('kepuasan-pengguna')->with('success', 'Data Kepuasan Pengguna Lulusan berhasil dihapus');
     }
 
     public function download()

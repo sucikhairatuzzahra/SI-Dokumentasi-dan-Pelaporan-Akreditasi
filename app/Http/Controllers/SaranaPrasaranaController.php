@@ -19,26 +19,10 @@ class SaranaPrasaranaController extends Controller
      */
     public function index(Request $request)
     {
-        if (Gate::allows('isJurusan')) {
-            $ptUnit = PTUnit::all();
-            $data = SaranaPrasarana::orderBy('id', 'desc')
-                ->with('ptUnit')
-                ->when($request->id_pt_unit, function ($query) use ($request) {
-                    $query->where('id_pt_unit', $request->id_pt_unit);
-                })->paginate(20);
-
-            return view('sarana_prasarana.index', compact('data', 'request'));
-        }
-        // if (Gate::allows('isJurusan')) {
-        //     $data = SaranaPrasarana::paginate('20');
-        //     return view('sarana_prasarana.index', compact('data'));
-        // }
-
-        if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = SaranaPrasarana::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
-            $data = $data->paginate(20);
-            return view('sarana_prasarana.index', compact('data'));
-        }
+        $data = SaranaPrasarana::all();
+        // $data = $data->paginate(20);
+        return view('sarana_prasarana.index', compact('data'));
+        
     }
 
     /**
@@ -48,8 +32,8 @@ class SaranaPrasaranaController extends Controller
      */
     public function create()
     {
-        $ptUnit = Auth::user()->ptUnit;
-        return view('sarana_prasarana.create', compact('ptUnit'));
+        // $ptUnit = Auth::user()->ptUnit;
+        return view('sarana_prasarana.create');
     }
 
     /**
@@ -68,7 +52,7 @@ class SaranaPrasaranaController extends Controller
             'jml_mhs' => $request->jml_mhs,
             'jam_lyn' => $request->jam_lyn,
             'perangkat' => $request->perangkat,
-            'id_pt_unit' => $request->id_pt_unit,
+            // 'id_pt_unit' => $request->id_pt_unit,
 
         ]);
         return redirect('sarana')->with('pesan', 'Data berhasil disimpan');
@@ -103,7 +87,7 @@ class SaranaPrasaranaController extends Controller
             'jml_mhs' => $request->jml_mhs,
             'jam_lyn' => $request->jam_lyn,
             'perangkat' => $request->perangkat,
-            'id_pt_unit' => $request->id_pt_unit,
+            // 'id_pt_unit' => $request->id_pt_unit,
         ]);
         return redirect('sarana')->with('success', 'Data berhasil disimpan');
     }

@@ -24,12 +24,7 @@ class LuaranPPKMDosenController extends Controller
      */
     public function index(Request $request)
     {
-        // if (Gate::allows('isJurusan')) {
-        //     $data = LuaranPPKMDosen::orderBy('id', 'desc')->paginate(20);
-
-        //     return view('luaran_ppkm_dosen.index', compact('data', 'request'));
-
-        // }
+        
         $data = LuaranPPKMDosen::with('luaranPpkm', 'dosens')->get();
         $nama_dosen = [];
         foreach ($data as $value) {

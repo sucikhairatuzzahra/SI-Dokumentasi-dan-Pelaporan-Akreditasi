@@ -66,16 +66,13 @@
                                                 <option value="s2">S2</option>
                                                 <option value="s2">S3</option>
                                             </select>
-
                                         </div>
-
                                         <div class="form-group">
-                                            <label for="pt_unit">Unit Kerja</label>
-                                            <input type="hidden" class="form-control" name="id_pt_unit"
-                                                value="{{ $editData->ptUnit->id }}" required>
-                                            <input type="text" class="form-control"
-                                                value="{{ $editData->ptUnit->kode_pt_unit }}" disabled>
+                                            <label for="unit_kerja">Unit Kerja</label>
+                                            <input type="text" class="form-control" id="unit_kerja" name="unit_kerja"
+                                                value="{{ $editData->unit_kerja }}">
                                         </div>
+
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>
                                     <button class="btn btn-light" onclick="window.history.back()">Cancel</button>
