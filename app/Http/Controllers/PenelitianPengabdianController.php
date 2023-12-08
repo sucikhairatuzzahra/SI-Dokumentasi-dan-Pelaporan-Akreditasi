@@ -18,6 +18,7 @@ class PenelitianPengabdianController extends Controller
         $dosens = Dosen::with('pegawai')->get();
         $data = [];
         $b = [];
+        dd($dosens->modelKeys()->);
         foreach ($dosens as $dosen) {
             $item = [];
             $item['dosen'] = $dosen->pegawai->nama_pegawai;
@@ -38,9 +39,9 @@ class PenelitianPengabdianController extends Controller
                 }
             }
             $item['jumlah_hki'] = $total_hki;
-            
-            $pengabdian = $ppkm_dosen->load(['ppkm' => fn ($query) => $query->where('jenis_penelitian_pengabdian', 'Pengabdian')]);
-            $item['jumlah_hki_diadopsi'] = $pengabdian;
+
+            $pengabdian = $ppkm_dosen->load(['ppkm' => fn ($query) => $query->where('jenis_penelitian_pengabdian', 'Pengabdian')->where('adopsi_masy', 'ya')]);
+            $item['jumlah_hki_diadopsi'] = $pengabdian->count();
             $data[] = $item;
         }
 

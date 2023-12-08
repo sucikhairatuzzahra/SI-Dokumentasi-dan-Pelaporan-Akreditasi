@@ -17,6 +17,6 @@ class PPKMDosenSeeder extends Seeder
     {
         PPKMDosen::factory()
             ->count(10)
-            ->forDosen([]);
+            ->create();
     }
 }

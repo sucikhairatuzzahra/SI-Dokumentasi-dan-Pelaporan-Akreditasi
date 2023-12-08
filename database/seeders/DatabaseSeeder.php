@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\LuaranLainPPKM;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -37,6 +38,8 @@ class DatabaseSeeder extends Seeder
             // PegawaiSeeder::class,
             // DosenSeeder::class,
             // PPKMSeeder::class,
+            PPKMDosenSeeder::class,
+            LuaranLainPPKMSeeder::class,
         ]);
     }
 }

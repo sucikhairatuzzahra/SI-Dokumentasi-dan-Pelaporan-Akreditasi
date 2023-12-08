@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\MahasiswaExport;
+use App\Jobs\MhsbaruJob;
 use App\Models\Mhsbaru;
 use App\Models\PTUnit;
 use App\Models\TahunAkademik;
@@ -41,10 +42,10 @@ class CalonMhsBaruController extends Controller
         $ptUnit = Auth::user()->ptUnit;
         return view('mahasiswa.create', compact('tahunAkademiks', 'ptUnit'));
     }
+
     public function store(Request $request)
     {
-        Mhsbaru::insert([
-            'id' => $request->id,
+        Mhsbaru::create([
             'id_thn_akademik' => $request->thn_akademik,
             'id_pt_unit' => $request->id_pt_unit,
             'daya_tampung' => $request->daya_tampung,
@@ -57,6 +58,27 @@ class CalonMhsBaruController extends Controller
         ]);
         return redirect(route('mahasiswa.index'))->with('success', 'Data berhasil disimpan');
     }
+
+    public function massUploadForm()
+    {
+        return view('mahasiswa.bulk');
+    }
+
+    public function massUpload(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:xlsx,xls,csv'
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '-data-bayi.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/uploads', $filename);
+            MhsbaruJob::dispatch($filename);
+            return redirect()->back()->with(['success' => 'Import Data Balita Dijadwalkan!']);
+        }
+    }
+
     public function edit($id)
     {
         $tahunAkademiks = TahunAkademik::all();

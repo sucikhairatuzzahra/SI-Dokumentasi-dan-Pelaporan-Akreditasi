@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Dosen;
+use App\Models\PPKM;
 use App\Models\PPKMDosen;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,6 +21,8 @@ class PPKMDosenFactory extends Factory
     public function definition()
     {
         return [
+            'id_ppkm' => PPKM::factory(),
+            'id_dosen' => Dosen::factory(),
             'ketua' => fake()->randomElement(['ya', 'tidak']),
         ];
     }
