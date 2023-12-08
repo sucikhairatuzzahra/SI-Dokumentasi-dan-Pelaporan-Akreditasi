@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Dosen extends Model
 {
@@ -60,5 +60,10 @@ class Dosen extends Model
     public function luaranlainPpkmDosen(): HasMany
     {
         return $this->hasMany(LuaranLainPPKMDosen::class, 'id_dosen');
+    }
+
+    public function ppkm()
+    {
+        return $this->belongsToMany(PPKM::class);
     }
 }
