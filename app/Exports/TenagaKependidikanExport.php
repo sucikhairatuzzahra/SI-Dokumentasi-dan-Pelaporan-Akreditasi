@@ -16,8 +16,7 @@ class TenagaKependidikanExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'id_pt_unit')->with('ptUnit')
-        ->orderBy('jenis_tenaga_kependidikan')->get();
+        $tenaga_kependidikan = TenagaKependidikan::groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'unit_kerja')->orderBy('jenis_tenaga_kependidikan')->get();
         $tenaga_kependidikan2 = TenagaKependidikan::all();
 
         $data = [];
@@ -27,20 +26,16 @@ class TenagaKependidikanExport implements FromView, ShouldAutoSize
             $data[$key] = [
                 'jenis_tenaga_kependidikan' => $value->jenis_tenaga_kependidikan,
                 'nama' => $value->nama,
-                'id_pt_unit' => $value->ptUnit->id,
-                'pt_unit' => $value->ptUnit->kode_pt_unit,
                 'unit_kerja' => $value->unit_kerja,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
-                'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan', $value->jenis_tenaga_kependidikan)
-                    ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'pt_unit')->each(function ($item, $keyjp) use (&$jenjangCounts) {
-                        $jenjangCounts[$keyjp] = $item->count();
-                    })
+                'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan', $value->jenis_tenaga_kependidikan)->where('jenjang_pendidikan', $value->jenjang_pendidikan)
+                ->groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'unit_kerja')->each(function ($item, $keyjp) use (&$jenjangCounts) 
+                {
+                 $jenjangCounts[$keyjp] = $item->count();
+                })
             ];
         }
 
         return view('kependidikan.table', compact('data', 'tenaga_kependidikan'));
-        
-        // $data = TenagaKependidikan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
-        // return view('kependidikan.table', compact('data'));
     }
 }

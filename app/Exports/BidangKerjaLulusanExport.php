@@ -16,7 +16,7 @@ class BidangKerjaLulusanExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        $data = BidangKerjaLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        $data = BidangKerjaLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
         return view('bidang_kerja_lulusan.table', compact('data'));
 
     }

@@ -16,7 +16,7 @@ class AksesibilitasExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        $data = Mhsbaru::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
+        $data = Aksesibilitas::all();
         return view('aksesibilitas.table', compact('data'));
 
     }

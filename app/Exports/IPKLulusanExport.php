@@ -16,7 +16,7 @@ class IPKLulusanExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        $data = IPKLulusan::with('tahunAkademik','ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        $data = IPKLulusan::with('tahunAkademik','ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
         return view('ipk_lulusan.table', compact('data'));
     }
 }

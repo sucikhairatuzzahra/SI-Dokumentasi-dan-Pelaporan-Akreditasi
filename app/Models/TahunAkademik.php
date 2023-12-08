@@ -20,6 +20,9 @@ class TahunAkademik extends Model
     public function mhsBaru(): HasMany {
         return $this->hasMany(MhsBaru::class, 'id_thn_akademik');
     }
+    public function masaTunggu(): HasMany {
+        return $this->hasMany(MasaTungguLulusan::class, 'id_thn_akademik');
+    }
     public function bebanDtpr(): HasMany {
         return $this->hasMany(BebanDTPR::class, 'id_thn_akademik');
     }

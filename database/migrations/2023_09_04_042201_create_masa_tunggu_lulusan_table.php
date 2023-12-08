@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('masa_tunggu_lulusan', function (Blueprint $table) {
             $table->id();
-            $table->year('tahun_lulus');
+            $table->foreignId('id_thn_akademik')->constrained('tahun_akademik')->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('jumlah_lulusan');
             $table->integer('lulusan_terlacak');
             $table->integer('waktu_tunggu');

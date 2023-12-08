@@ -16,7 +16,7 @@ class MasaTungguLulusanExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        $data = MasaTungguLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+        $data = MasaTungguLulusan::with('ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit)->get();
         return view('masa_tunggu_lulusan.table', compact('data'));
     }
 }

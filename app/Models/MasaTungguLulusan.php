@@ -12,7 +12,7 @@ class MasaTungguLulusan extends Model
     protected $table = "masa_tunggu_lulusan";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'tahun_lulus', 'waktu_tunggu', 'id_pt_unit'
+        'id_thn_akademik', 'waktu_tunggu', 'id_pt_unit'
     ];
 
     public function user()
@@ -25,4 +25,10 @@ class MasaTungguLulusan extends Model
     {
         return $this->belongsTo(PTUnit::class, 'id_pt_unit');
     }
+    
+     // Relationship dengan model tahunAkademik
+     public function tahunAkademik(): BelongsTo
+     {
+         return $this->belongsTo(TahunAkademik::class, 'id_thn_akademik');
+     }
 }
