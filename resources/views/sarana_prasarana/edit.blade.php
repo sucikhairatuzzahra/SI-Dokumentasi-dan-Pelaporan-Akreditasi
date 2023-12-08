@@ -69,8 +69,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="perangkat">Perangkat Yang Dimiliki</label>
-                                            <input type="text" class="form-control" id="perangkat" name="perangkat"
-                                                value="{{ $editData->perangkat }}">
+                                            <textarea class="form-control" id="perangkat" name="perangkat" rows="4">{{ $editData->perangkat }}</textarea>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Simpan</button>

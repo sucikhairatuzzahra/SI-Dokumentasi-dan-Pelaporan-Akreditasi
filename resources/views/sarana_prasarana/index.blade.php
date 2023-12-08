@@ -100,7 +100,7 @@
                                             @endcan
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody align="center">
                                         <?php $no = 1;
                                         // dd($data);
                                         ?>
@@ -112,7 +112,9 @@
                                                 <td>{{ $item->luas_ruang }}</td>
                                                 <td>{{ $item->jml_mhs }}</td>
                                                 <td>{{ $item->jam_lyn }}</td>
-                                                <td>{{ $item->perangkat }}</td>
+                                                <td align="left">
+                                                    <pre>{{ $item->perangkat }}</pre>
+                                                </td>
                                                 @can('isAdmin')
                                                     <td>
                                                         <form action="{{ route('sarana.destroy', ['id' => $item->id]) }}"
