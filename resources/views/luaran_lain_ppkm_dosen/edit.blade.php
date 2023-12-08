@@ -39,15 +39,15 @@
                                     <h5>Form Hak Kekayaan Intelektual Dosen</h5>
                                 </div>
                                 <div class="card-block">
-                                    <form action="{{ route('luaran-lain-ppkm-dosen.update', $editData->id) }}"
+                                    <form action="{{ route('luaran-lain-ppkm-dosen.update', $luaranPpkmDosen->id) }}"
                                         method="POST">
                                         @csrf
                                         @method('PUT')
-
                                         <div class="form-group">
                                             <label for="id_luaran_lain_ppkm">Judul HKI</label>
                                             <select name="id_luaran_lain_ppkm" class="form-control">
                                                 @foreach ($luaranLainPpkm as $data)
+                                                    {{ $data }}
                                                     <option value="{{ $data->id }}"
                                                         {{ old('id_luaran_lain_ppkm') == $data->id ? 'selected' : '' }}>
                                                         {{ $data->judul_luaran_lain }}
@@ -62,7 +62,7 @@
                                             <select name="id_dosen" class="form-control">
                                                 @foreach ($dosens as $data)
                                                     <option value="{{ $data->id }}"
-                                                        {{ old('id_dosen') == $data->id ? 'selected' : '' }}>
+                                                        {{ $luaranPpkmDosen->id_dosen == $data->id ? 'selected' : '' }}>
                                                         {{ $data->pegawai->nama_pegawai }}
                                                     </option>
                                                 @endforeach

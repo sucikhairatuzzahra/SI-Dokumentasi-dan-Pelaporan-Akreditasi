@@ -26,5 +26,8 @@ class PPKM extends Model
         return $this->hasMany(PPKMDosen::class, 'id_ppkm');
     }
 
-    
+    public function dosen()
+    {
+        return $this->belongsToMany(Dosen::class);
+    }
 }

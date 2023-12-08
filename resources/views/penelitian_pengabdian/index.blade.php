@@ -44,13 +44,13 @@
                                             <label for="">Program Studi</label>
                                             <select name="id_pt_unit" class="form-control">
                                                 <option value="0">--Pilih Program Studi--</option>
-                                                <option value="5" {{ $request->id_pt_unit === '5' ? 'selected' : '' }}>D3
+                                                <option value="5" {{ old('id_pt_unit') === '5' ? 'selected' : '' }}>D3
                                                     MI
                                                 </option>
-                                                <option value="6" {{ $request->id_pt_unit === '6' ? 'selected' : '' }}>D3
+                                                <option value="6" {{ old('id_pt_unit') === '6' ? 'selected' : '' }}>D3
                                                     TK
                                                 </option>
-                                                <option value="4" {{ $request->id_pt_unit === '4' ? 'selected' : '' }}>D4
+                                                <option value="4" {{ old('id_pt_unit') === '4' ? 'selected' : '' }}>D4
                                                     TRPL
                                                 </option>
                                             </select>
@@ -120,9 +120,6 @@
                                             <th scope="col">
                                                 Jumlah PkM bertema INFOKOM yang mendapat HKI
                                             </th>
-                                            <th scope="col">
-                                                Unit Kerja
-                                            </th>
                                             @can('isAdmProdi')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
@@ -132,7 +129,7 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($data as $no => $item)
+                                        {{-- @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
                                                 <td>{{ $item->dosen->nama_dosen }}</td>
@@ -141,15 +138,15 @@
                                                 <td>{{ $item->jumlah_penelitian_infokom_hki }}</td>
                                                 <td>{{ $item->jumlah_pkm_diadopsi_masyarakat }}</td>
                                                 <td>{{ $item->jumlah_pkm_hki }}</td>
-                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td>
+                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td> 
                                                 <td>
-                                                    {{-- <a href="{{ route('ppkmdtprbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
+                                                    <a href="{{ route('ppkmdtprbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
                                                         style="margin-right: 7px">
                                                         Lihat
-                                                    </a> --}}
-                                                </td>
+                                                    </a>
+                                                </td> 
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
