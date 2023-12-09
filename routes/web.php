@@ -100,7 +100,7 @@ Route::get('kerja-lulusan-download', [BidangKerjaLulusanController::class, 'down
 //route untuk tabel ppkm, route hanya dibedakan berdasarkan jenis penelitian
 Route::resource('ppkm-penelitian', PPKMPenelitianController::class)->except('show')->parameters(['ppkm-penelitian' => 'id']);
 Route::resource('ppkm-pengabdian', PPKMPengabdianController::class)->except('show')->parameters(['ppkm-pengabdian' => 'id']);
- 
+
 Route::resource('ppkm-dtpr', PPKMDosenController::class)->except('show')->parameters(['ppkm-dtpr' => 'id']);
 Route::get('ppkm-dtpr-download', [PPKMDosenController::class, 'download'])->name('ppkm-dtpr.download');
 
@@ -113,3 +113,4 @@ Route::resource('luaran-lain-ppkm-dosen', LuaranLainPPKMDosenController::class)-
 
 Route::resource('penelitian-pengabdian', PenelitianPengabdianController::class)->parameters(['penelitian-pengabdian' => 'id']);
 Route::get('penelitian-pengabdian-download', [PenelitianPengabdianController::class, 'download'])->name('penelitian-pengabdian.download');
+

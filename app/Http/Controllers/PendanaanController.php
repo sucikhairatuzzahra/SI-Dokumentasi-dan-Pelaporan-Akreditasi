@@ -9,6 +9,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Models\PTUnit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PendanaanController extends Controller
 {
@@ -26,7 +28,7 @@ class PendanaanController extends Controller
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
                 })->paginate(20);
-            return view('pendanaan.index', compact('data','request'));
+            return view('pendanaan.index', compact('data', 'request'));
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
@@ -55,17 +57,30 @@ class PendanaanController extends Controller
      */
     public function store(Request $request)
     {
-        Pendanaan::create([
-            'id' => $request->id,
-            'sumber_dana' => $request->sumber_dana,
-            'jumlah' => $request->jumlah,
-            'bukti' => $request->bukti,
-            'keterangan' => $request->keterangan,
-            'id_pt_unit' => $request->id_pt_unit,
-
+        $this->validate($request, [
+            'sumber_dana' => 'required|string',
+            'jumlah' => 'required|string',
+            'bukti' => 'required|mimes:pdf,png,jpeg',
+            'keterangan' => 'required|string',
+            'id_pt_unit' => 'required|exists:pendanaan,id',
         ]);
 
-        return redirect('pendanaan')->with('success', 'Data berhasil disimpan');
+        if ($request->hasFile('bukti')) {
+            $file = $request->file('bukti');
+            $filename = time() . '-' . Str::slug($request->keterangan) . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/pendanaan', $filename);
+
+
+            Pendanaan::create([
+                'sumber_dana' => $request->sumber_dana,
+                'jumlah' => $request->jumlah,
+                'bukti' => $filename,
+                'keterangan' => $request->keterangan,
+                'id_pt_unit' => $request->id_pt_unit,
+            ]);
+
+            return redirect('pendanaan')->with('success', 'Data berhasil disimpan');
+        }
     }
 
     /**
@@ -89,14 +104,31 @@ class PendanaanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'sumber_dana' => 'required|string|max:100',
+            'jumlah' => 'required|string',
+            'bukti' => 'required|file|mimes:pdf,png,jpeg',
+            'keterangan' => 'required|string',
+            'id_pt_unit' => 'required|exists:pendanaan',
+        ]);
+
         $dana = Pendanaan::find($id);
-        $update = $dana->update([
+        $filename = $dana->bukti;
+        if ($request->hasFile('bukti')) {
+            $file = $request->file('bukti');
+            $filename = time() . Str::slug($request->keterangan) . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/pendanaan', $filename);
+            Storage::delete(storage_path('app/public/pendanaan/' . $dana->bukti));
+        }
+
+        $dana->update([
             'sumber_dana' => $request->sumber_dana,
             'jumlah' => $request->jumlah,
-            'bukti' => $request->bukti,
+            'bukti' => $filename,
             'keterangan' => $request->keterangan,
             'pt_unit' => $request->kode_pt_unit,
         ]);
+
         return redirect('pendanaan')->with('pesan', 'Data berhasil disimpan');
     }
 
@@ -109,6 +141,7 @@ class PendanaanController extends Controller
     public function destroy($id)
     {
         $dana = Pendanaan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        Storage::delete(storage_path('app/public/pendanaan/' . $dana->bukti));
         $dana->delete();
 
         return redirect()->route('pendanaan')->with('success', 'Data Pendanaan berhasil dihapus');
