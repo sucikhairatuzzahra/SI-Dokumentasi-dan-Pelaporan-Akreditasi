@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('kepuasan_pengguna_lulusan', function (Blueprint $table) {
             $table->id();
             $table->string('jenis_kemampuan');
-            $table->double('sangat_baik');
-            $table->double('baik');
-            $table->double('cukup');
-            $table->double('kurang');
+            $table->integer('sangat_baik');
+            $table->integer('baik');
+            $table->integer('cukup');
+            $table->integer('kurang');
             $table->string('rencana_tindak_lanjut');
             $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
