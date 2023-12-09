@@ -120,11 +120,7 @@
                                         <th scope="col">
                                             Jumlah PkM bertema INFOKOM yang mendapat HKI
                                         </th>
-                                        @can('isAdmProdi')
-                                        <th scope="col" rowspan="2">
-                                            Aksi
-                                        </th>
-                                        @endcan
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -137,13 +133,7 @@
                                         <td>{{ $item['jumlah_hki'] }}</td>
                                         <td>{{ $item['jumlah_hki_diadopsi'] }}</td>
                                         <td>{{ $item['jumlah_hki_pengabdian'] }}</td>
-                                        <td>#</td>
-                                        <td>
-                                            {{-- <a href="{{ route('ppkmdtprbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
-                                            style="margin-right: 7px">
-                                            Lihat
-                                            </a> --}}
-                                        </td>
+                                        
                                     </tr>
                                     @endforeach
                                 </tbody>

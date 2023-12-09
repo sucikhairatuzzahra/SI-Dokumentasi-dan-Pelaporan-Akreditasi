@@ -68,6 +68,7 @@ class TenagaKependidikanController extends Controller
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
+            'bukti' => $request->bukti,
           
         ]);
 
@@ -114,7 +115,7 @@ class TenagaKependidikanController extends Controller
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'unit_kerja' => $request->unit_kerja,
-
+            'bukti' => $request->bukti,
         ]);
 
         return redirect('kependidikan')->with('success', 'Data berhasil disimpan');
