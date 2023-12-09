@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\LuaranLainPPKM;
+use App\Models\LuaranPPKMDosen;
 use Illuminate\Database\Seeder;
 
-class LuaranLainPPKMSeeder extends Seeder
+class LuaranPPKMDosenSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class LuaranLainPPKMSeeder extends Seeder
      */
     public function run()
     {
-        LuaranLainPPKM::factory()->count(10)->create();
+        LuaranPPKMDosen::factory()->count(10)->create();
     }
 }

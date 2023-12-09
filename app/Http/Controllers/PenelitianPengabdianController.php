@@ -17,8 +17,6 @@ class PenelitianPengabdianController extends Controller
     {
         $dosens = Dosen::with('pegawai')->get();
         $data = [];
-        $b = [];
-        // dd($dosens->modelKeys()->);
         foreach ($dosens as $dosen) {
             $item = [];
             $item['dosen'] = $dosen->pegawai->nama_pegawai;
@@ -26,7 +24,7 @@ class PenelitianPengabdianController extends Controller
 
             $ppkm_dosen = PPKMDosen::where('id_dosen', $dosen->id)->get();
             $penelitian = $ppkm_dosen->load(['ppkm' => fn ($query) => $query->where('jenis_penelitian_pengabdian', 'Penelitian')]);
-            $item['jumlah_penelitian'] = $penelitian->count();;
+            $item['jumlah_penelitian'] = $penelitian->count();
 
             $ppkm_luaran_lain_dosen = LuaranLainPPKMDosen::where('id_dosen', $dosen->id)->with('luaranLainPpkm')->get();
 
@@ -42,10 +40,20 @@ class PenelitianPengabdianController extends Controller
 
             $pengabdian = $ppkm_dosen->load(['ppkm' => fn ($query) => $query->where('jenis_penelitian_pengabdian', 'Pengabdian')->where('adopsi_masy', 'ya')]);
             $item['jumlah_hki_diadopsi'] = $pengabdian->count();
+
+
+            $total_hki_pengabdian = 0;
+            foreach ($ppkm_luaran_lain_dosen as $ppkm_lld) {
+                foreach ($pengabdian as $penelitian_dosen) {
+                    if ($penelitian_dosen->id_ppkm == $ppkm_lld->luaranLainPpkm->id_ppkm) {
+                        $total_hki_pengabdian++;
+                    }
+                }
+            }
+
+            $item['jumlah_hki_pengabdian'] = $total_hki;
             $data[] = $item;
         }
-
-        // dd($data, $b);
         return view('penelitian_pengabdian.index', compact('data'));
     }
 }

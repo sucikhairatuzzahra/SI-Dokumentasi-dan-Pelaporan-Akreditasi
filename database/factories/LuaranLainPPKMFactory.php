@@ -20,11 +20,11 @@ class LuaranLainPPKMFactory extends Factory
     {
         return [
             'tahun' => fake()->year(),
-            'id_ppkm' => fake()->numberBetween(PPKM::all()->modelKeys()),
-            'id_jenis_luaran_lain' => fake()->numberBetween(JenisLuaranLain::all()->modelKeys()),
+            'id_ppkm' => fake()->randomElement(PPKM::all()->modelKeys()),
+            'id_jenis_luaran_lain' => fake()->randomElement(JenisLuaranLain::all()->modelKeys()),
             'judul_luaran_lain' => fake()->sentence(3),
             'keterangan' => fake()->numerify('EE########'),
-            'jumlah_sitasi' => fake()->numberBetween(0, 100)
+            'jumlah_sitasi' => fake()->numberBetween(0, 100),
         ];
     }
 }

@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             KelulusanTepatWaktuSeed::class,
             // IPKLulusanSeed::class,
             KepuasanPenggunaSeed::class,
-            MasaTungguLulusanSeed::class,
+            // MasaTungguLulusanSeed::class,
             // BidangKerjaLulusanSeed::class,
             // PPKMDariDTPRSeed::class,
             SaranaSeed::class,
@@ -40,6 +40,9 @@ class DatabaseSeeder extends Seeder
             // PPKMSeeder::class,
             PPKMDosenSeeder::class,
             LuaranLainPPKMSeeder::class,
+            LuaranLainPPKMDosenSeeder::class,
+            LuaranPPKMSeeder::class,
+            LuaranPPKMDosenSeeder::class
         ]);
     }
 }
