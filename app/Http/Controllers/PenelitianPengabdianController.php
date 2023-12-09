@@ -18,7 +18,7 @@ class PenelitianPengabdianController extends Controller
         $dosens = Dosen::with('pegawai')->get();
         $data = [];
         $b = [];
-        dd($dosens->modelKeys()->);
+        // dd($dosens->modelKeys()->);
         foreach ($dosens as $dosen) {
             $item = [];
             $item['dosen'] = $dosen->pegawai->nama_pegawai;
@@ -45,7 +45,7 @@ class PenelitianPengabdianController extends Controller
             $data[] = $item;
         }
 
-        dd($data, $b);
-        return view('penelitian_pengabdian.index');
+        // dd($data, $b);
+        return view('penelitian_pengabdian.index', compact('data'));
     }
 }

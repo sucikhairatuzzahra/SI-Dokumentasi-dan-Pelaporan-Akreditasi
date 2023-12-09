@@ -45,13 +45,14 @@ class PPKMPengabdianController extends Controller
      */
     public function store(Request $request)
     {
-        PPKM::insert([
-            'id' => $request->id,
+        PPKM::create([
+            // 'id' => $request->id,
             'tahun' => $request->tahun,
             'judul' => $request->judul,
             'id_jenis_sumber_pembiayaan' => $request->jenis_sumber_pembiayaan,
             'sumber_pembiayaan' => $request->sumber_pembiayaan,
             'jenis_penelitian_pengabdian' => 'pengabdian',
+            'adopsi_masy' => $request->adopsi_masy,
         ]);
         return redirect('ppkm-pengabdian')->with('success', 'Data berhasil disimpan');
     }

@@ -30,46 +30,12 @@
             <div class="page-wrapper">
                 <!-- Page-body start -->
                 <div class="page-body">
-                    @can('isJurusan')
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-header-left">
-                                    <h5>Pilih Program Studi </h5>
-                                </div>
-                            </div>
-                            <div class="card-block">
-                                <form action="{{ route('ppkm-dtpr.index') }}" method="get">
-                                    <div class="row">
-                                        <div class="col-md-3 form-group">
-                                            <label for="">Program Studi</label>
-                                            <select name="id_pt_unit" class="form-control">
-                                                <option value="0">--Pilih Program Studi--</option>
-                                                <option value="5" {{ old('id_pt_unit') === '5' ? 'selected' : '' }}>D3
-                                                    MI
-                                                </option>
-                                                <option value="6" {{ old('id_pt_unit') === '6' ? 'selected' : '' }}>D3
-                                                    TK
-                                                </option>
-                                                <option value="4" {{ old('id_pt_unit') === '4' ? 'selected' : '' }}>D4
-                                                    TRPL
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2 form-group" style="margin-top:25px;">
-                                            <input type="submit" class="btn btn-primary" value="Filter">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            {{-- tabel  --}}
-                            <br>
-                        </div>
-                    @endcan
+
                     <!-- Basic table card start -->
                     <div class="card">
                         <div class="card-header">
                             <h5>Penelitian dan Kegiatan Pengabdian kepada Masyarakat dari DTPR</h5>
-                            @can('isAdmProdi')
+                            @can('isAdmin')
                                 <a href="{{ route('ppkm-dtpr.create') }}">
                                     <span>Tambah data <code>disini</code></span>
                                 </a>
@@ -120,7 +86,7 @@
                                             <th scope="col">
                                                 Jumlah PkM bertema INFOKOM yang mendapat HKI
                                             </th>
-                                            @can('isAdmProdi')
+                                            @can('isAdmin')
                                                 <th scope="col" rowspan="2">
                                                     Aksi
                                                 </th>
@@ -129,24 +95,19 @@
                                     </thead>
                                     <tbody>
 
-                                        {{-- @foreach ($data as $no => $item)
+                                        @foreach ($data as $no => $item)
                                             <tr align="center">
                                                 <td>{{ $no + 1 }}</td>
-                                                <td>{{ $item->dosen->nama_dosen }}</td>
-                                                <td>{{ $item->jumlah_publikasi_infokom }}</td>
-                                                <td>{{ $item->jumlah_penelitian_infokom }}</td>
-                                                <td>{{ $item->jumlah_penelitian_infokom_hki }}</td>
-                                                <td>{{ $item->jumlah_pkm_diadopsi_masyarakat }}</td>
-                                                <td>{{ $item->jumlah_pkm_hki }}</td>
-                                                <td>{{ $item->ptUnit->kode_pt_unit }}</td> 
-                                                <td>
-                                                    <a href="{{ route('ppkmdtprbyptunit', ['ptunitid' => $item['id_pt_unit']]) }}"
-                                                        style="margin-right: 7px">
-                                                        Lihat
-                                                    </a>
-                                                </td> 
+                                                <td>{{ $item['dosen'] }}</td>
+                                                <td>{{ $item['jumlah_publikasi_infokom'] }}</td>
+                                                <td>{{ $item['jumlah_penelitian_infokom'] }}</td>
+                                                <td>{{ $item['jumlah_penelitian_infokom_hki'] }}</td>
+                                                <td>{{ $item['jumlah_pkm_diadopsi_masyarakat'] }}</td>
+                                                <td>{{ $item['jumlah_pkm_diadopsi_masyarakat'] }}</td>
+
+
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

@@ -73,13 +73,15 @@
                                                 name="sumber_pembiayaan" value="{{ $editData->sumber_pembiayaan }}">
                                         </div>
 
-                                        {{-- <div class="form-group">
-                                            <label for="jenis_penelitian_pengabdian">Jenis Penelitian Pengabdian</label>
-                                            <select name="jenis_penelitian_pengabdian" class="form-control">
-                                                <option value="penelitian">penelitian</option>
-                                                <option value="pengabdian">pengabdian</option>
+                                        <div class="form-group">
+                                            <label for="adobsi_masy">Adobsi Masyarakat</label>
+                                            <select name="adobsi_masy" class="form-control">
+                                                <option value="{{ $editData->adopsi_masy }}">{{ $editData->adopsi_masy }}
+                                                </option>
+                                                <option value="ya">ya</option>
+                                                <option value="tidak">tidak</option>
                                             </select>
-                                        </div> --}}
+                                        </div>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>
                                     <button class="btn btn-light" onclick="window.history.back()">Cancel</button>

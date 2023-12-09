@@ -81,6 +81,9 @@
                                             <th scope="col">
                                                 Sumber Pembiayaan
                                             </th>
+                                            <th scope="col">
+                                                Adopsi Masy
+                                            </th>
                                             {{-- <th scope="col">
                                                 Jenis Penelitian dan Pengabdian
                                             </th> --}}
@@ -101,6 +104,7 @@
                                                 <td>{{ $item->judul }}</td>
                                                 <td>{{ $item->pembiayaan->jenis_sumber_pembiayaan }}</td>
                                                 <td>{{ $item->sumber_pembiayaan }}</td>
+                                                <td>{{ $item->adopsi_masy }}</td>
                                                 {{-- <td>{{ $item->jenis_penelitian_pengabdian }}</td> --}}
 
                                                 @can('isAdmin')

@@ -57,6 +57,9 @@
                                         <div class="form-group">
                                             <label for="jenjang_pendidikan">Jenjang Pendidikan</label>
                                             <select name="jenjang_pendidikan" class="form-control">
+                                                <option value="{{ $editData->jenjang_pendidikan }}">
+                                                    {{ $editData->jenjang_pendidikan }}
+                                                </option>
                                                 <option value="sma">SMA/SMK</option>
                                                 <option value="d1">D1</option>
                                                 <option value="d2">D2</option>
