@@ -22,7 +22,7 @@ class BidangKerjaLulusanController extends Controller
     {
         if (Gate::allows('isJurusan')) {
             $ptUnit = PTUnit::all();
-            $data = BidangKerjaLulusan::orderBy('id', 'desc')
+            $data = BidangKerjaLulusan::orderBy('id_thn_akademik', 'asc')
                 ->with('ptUnit','tahunAkademik')
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
@@ -32,7 +32,7 @@ class BidangKerjaLulusanController extends Controller
 
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = BidangKerjaLulusan::with('ptUnit','tahunAkademik')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = BidangKerjaLulusan::orderBy('id_thn_akademik', 'asc')->with('ptUnit','tahunAkademik')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('bidang_kerja_lulusan.index', compact('data'));
         }

@@ -42,7 +42,7 @@ class BebanDTRPController extends Controller
         // }
 
        
-            $data = BebanDTPR::with('dosens','tahunAkademik')->get();
+            $data = BebanDTPR::orderBy('id_thn_akademik', 'asc')->with('dosens','tahunAkademik')->get();
             $nama_dosen = [];
             foreach ($data as $value) {
                 $pegawai = Pegawai::where('id', $value->dosens->id_pegawai)->first();

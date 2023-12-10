@@ -21,7 +21,7 @@ class CalonMhsBaruController extends Controller
     {
         if (Gate::allows('isJurusan')) {
             $ptUnit = PTUnit::all();
-            $data = Mhsbaru::orderBy('id', 'desc')
+            $data = Mhsbaru::orderBy('id', 'asc')
                 ->with('tahunAkademik', 'ptUnit')
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
@@ -30,7 +30,7 @@ class CalonMhsBaruController extends Controller
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = Mhsbaru::with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = Mhsbaru::orderBy('id_thn_akademik', 'asc')->with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('mahasiswa.index', compact('data'));
         }
