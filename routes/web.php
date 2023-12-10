@@ -54,13 +54,26 @@ Auth::routes();
 
 Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::prefix('admin')->group(function () {
-        Route::resource('users', DashboardController::class)->except(['show'])->parameters(['users' => 'id']);
-        Route::resource('dosen', DosenController::class)->parameters(['dosen' => 'id']);
-        Route::resource('ptunit', PTUnitController::class)->except(['show', 'edit', 'update'])->parameters(['ptunit' => 'id']);
-        Route::resource('ta', AdminController::class)->except(['show'])->parameters(['ta' => 'id']);
-        Route::resource('pegawai', PegawaiController::class)->except('show')->parameters(['pegawai' => 'id']);
-        Route::resource('luaran', JenisLuaranController::class)->except(['show', 'edit', 'update'])->parameters(['luaran' => 'id']);
-        Route::resource('luaran-lain', JenisLuaranLainController::class)->except(['show', 'edit', 'update'])->parameters(['luaran-lain' => 'id']);
+        Route::resource('users', DashboardController::class)
+            ->except(['show'])
+            ->parameters(['users' => 'id']);
+        Route::resource('dosen', DosenController::class)
+            ->parameters(['dosen' => 'id']);
+        Route::resource('ptunit', PTUnitController::class)
+            ->except(['show', 'edit', 'update'])
+            ->parameters(['ptunit' => 'id']);
+        Route::resource('ta', AdminController::class)
+            ->except(['show'])
+            ->parameters(['ta' => 'id']);
+        Route::resource('pegawai', PegawaiController::class)
+            ->except('show')
+            ->parameters(['pegawai' => 'id']);
+        Route::resource('luaran', JenisLuaranController::class)
+            ->except(['show', 'edit', 'update'])
+            ->parameters(['luaran' => 'id']);
+        Route::resource('luaran-lain', JenisLuaranLainController::class)
+            ->except(['show', 'edit', 'update'])
+            ->parameters(['luaran-lain' => 'id']);
     });
 });
 
@@ -88,29 +101,38 @@ Route::get('ipk-lulusan-download', [IPKLulusanController::class, 'download'])->n
 Route::resource('lulus-tw', KelulusanTepatWaktuController::class)->except('show')->parameters(['lulus-tw' => 'id']);
 Route::get('lulus-tw-download', [KelulusanTepatWaktuController::class, 'download'])->name('lulus-tw.download');
 
-Route::resource('kepuasan-pengguna', KepuasanPenggunaLulusanController::class)->except('show')->parameters(['kepuasan-pengguna' => 'id']);
-Route::get('kepuasan-pengguna-download', [KepuasanPenggunaLulusanController::class, 'download'])->name('kepuasan-pengguna.download');
+Route::resource('kepuasan-pengguna', KepuasanPenggunaLulusanController::class)
+    ->except('show')->parameters(['kepuasan-pengguna' => 'id']);
+Route::get('kepuasan-pengguna-download', [KepuasanPenggunaLulusanController::class, 'download'])
+    ->name('kepuasan-pengguna.download');
 
 Route::resource('masa-tunggu', MasaTungguLulusanController::class)->except('show')->parameters(['masa-tunggu' => 'id']);
 Route::get('masa-tunggu-download', [MasaTungguLulusanController::class, 'download'])->name('masa-tunggu.download');
 
-Route::resource('kerja-lulusan', BidangKerjaLulusanController::class)->except('show')->parameters(['kerja-lulusan' => 'id']);
+Route::resource('kerja-lulusan', BidangKerjaLulusanController::class)
+    ->except('show')->parameters(['kerja-lulusan' => 'id']);
 Route::get('kerja-lulusan-download', [BidangKerjaLulusanController::class, 'download'])->name('kerja-lulusan.download');
 
 //route untuk tabel ppkm, route hanya dibedakan berdasarkan jenis penelitian
-Route::resource('ppkm-penelitian', PPKMPenelitianController::class)->except('show')->parameters(['ppkm-penelitian' => 'id']);
-Route::resource('ppkm-pengabdian', PPKMPengabdianController::class)->except('show')->parameters(['ppkm-pengabdian' => 'id']);
+Route::resource('ppkm-penelitian', PPKMPenelitianController::class)
+    ->except('show')->parameters(['ppkm-penelitian' => 'id']);
+Route::resource('ppkm-pengabdian', PPKMPengabdianController::class)
+    ->except('show')->parameters(['ppkm-pengabdian' => 'id']);
 
 Route::resource('ppkm-dtpr', PPKMDosenController::class)->except('show')->parameters(['ppkm-dtpr' => 'id']);
 Route::get('ppkm-dtpr-download', [PPKMDosenController::class, 'download'])->name('ppkm-dtpr.download');
 
 
 Route::resource('luaran-ppkm', LuaranPPKMController::class)->except('show')->parameters(['luaran-ppkm' => 'id']);
-Route::resource('luaran-ppkm-dosen', LuaranPPKMDosenController::class)->except('show')->parameters(['luaran-ppkm-dosen' => 'id']);
+Route::resource('luaran-ppkm-dosen', LuaranPPKMDosenController::class)
+    ->except('show')->parameters(['luaran-ppkm-dosen' => 'id']);
 
-Route::resource('luaran-lain-ppkm', LuaranLainPPKMController::class)->except('show')->parameters(['luaran-lain-ppkm' => 'id']);
-Route::resource('luaran-lain-ppkm-dosen', LuaranLainPPKMDosenController::class)->except('show')->parameters(['luaran-lain-ppkm-dosen' => 'id']);
+Route::resource('luaran-lain-ppkm', LuaranLainPPKMController::class)
+    ->except('show')->parameters(['luaran-lain-ppkm' => 'id']);
+Route::resource('luaran-lain-ppkm-dosen', LuaranLainPPKMDosenController::class)
+    ->except('show')->parameters(['luaran-lain-ppkm-dosen' => 'id']);
 
-Route::resource('penelitian-pengabdian', PenelitianPengabdianController::class)->parameters(['penelitian-pengabdian' => 'id']);
-Route::get('penelitian-pengabdian-download', [PenelitianPengabdianController::class, 'download'])->name('penelitian-pengabdian.download');
-
+Route::resource('penelitian-pengabdian', PenelitianPengabdianController::class)
+    ->parameters(['penelitian-pengabdian' => 'id']);
+Route::get('penelitian-pengabdian-download', [PenelitianPengabdianController::class, 'download'])
+    ->name('penelitian-pengabdian.download');

@@ -23,7 +23,7 @@ class MasaTungguLulusanController extends Controller
     {
         if (Gate::allows('isJurusan')) {
             $ptUnit = PTUnit::all();
-            $data = MasaTungguLulusan::orderBy('id_thn_akademik', 'asc')
+            $data = MasaTungguLulusan::orderBy('id', 'desc')
                 ->with('ptUnit','tahunAkademik')
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
@@ -33,7 +33,7 @@ class MasaTungguLulusanController extends Controller
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = MasaTungguLulusan::orderBy('id_thn_akademik', 'asc')->with('ptUnit','tahunAkademik')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = MasaTungguLulusan::with('ptUnit','tahunAkademik')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('masa_tunggu_lulusan.index', compact('data'));
         }
