@@ -67,22 +67,22 @@ class TenagaKependidikanController extends Controller
         $this->validate($request, [
             'nama' => 'required|string',
             'jenis_tenaga_kependidikan' => 'required|string',
-            'jenjang_pendidikan' => 'required|string',
-            'unit_kerja' => 'required|string',
+            'jenjang_pendidikan' => 'required|in:sma,d1,d2,d3,d4,s1,s2,s3',
             'bukti' => 'required|mimes:pdf,png,jpeg',
+            'unit_kerja' => 'required|string',
+          
         ]);
         if ($request->hasFile('bukti')) {
             $file = $request->file('bukti');
             $filename = time() . '-' . Str::slug($request->keterangan) . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/kependidikan', $filename);
 
-
             TenagaKependidikan::create([
                 'nama' => $request->nama,
                 'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
                 'jenjang_pendidikan' => $request->jenjang_pendidikan,
-                'unit_kerja' => $request->unit_kerja,
                 'bukti' => $filename,
+                'unit_kerja' => $request->unit_kerja,
             ]);
 
             return redirect('kependidikan')->with('success', 'Data berhasil disimpan');
@@ -124,7 +124,23 @@ class TenagaKependidikanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama' => 'required|string',
+            'jenis_tenaga_kependidikan' => 'required|string',
+            'jenjang_pendidikan' => 'required|string',
+            'bukti' => 'required|mimes:pdf,png,jpeg',
+            'unit_kerja' => 'required|string',
+        ]);
+        //
         $kpddkn = TenagaKependidikan::find($id);
+        $filename = $kpddkn->bukti;
+        if ($request->hasFile('bukti')) {
+            $file = $request->file('bukti');
+            $filename = time() . Str::slug($request->keterangan) . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/pendanaan', $filename);
+            Storage::delete(storage_path('app/public/kependidikan/' . $kpddkn->bukti));
+        }
+
         $kpddkn->update([
             'nama' => $request->nama,
             'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
