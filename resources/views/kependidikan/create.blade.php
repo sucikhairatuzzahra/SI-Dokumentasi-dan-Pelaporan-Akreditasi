@@ -63,7 +63,11 @@
                                                 <option value="s2">S3</option>
                                             </select>
                                         </div>
-
+                                        <div class="form-group">
+                                            <label for="bukti">Bukti</label>
+                                            <input type="file" name="bukti" class="form-control"
+                                                value="{{ old('bukti') }}">
+                                        </div>
                                         <div class="form-group">
                                             <label for="unit_kerja">Unit Kerja</label>
                                             <input type="text" class="form-control" id="unit_kerja" name="unit_kerja">

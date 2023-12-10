@@ -35,7 +35,8 @@
                 <td>{{ $no + 1 }}</td>
                 <td>{{ $item->sumber_dana }}</td>
                 <td>{{ $item->jumlah }}</td>
-                <td>{{ $item->bukti }}</td>
+                <td><a href="{{ asset('storage/pendanaan/' . $item->bukti) }}" class="btn btn-warning btn-sm">Lihat
+                        Bukti</a></td>
                 <td>{{ $item->keterangan }}</td>
                 <td>{{ $item->ptUnit->kode_pt_unit }}</td>
                 @can('isAdmProdi')

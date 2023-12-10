@@ -71,6 +71,15 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label for="bukti">Bukti</label>
+                                            <br>
+                                            <strong>bukti saat ini: {{ $editData->bukti }}</strong>
+                                            <hr>
+                                            <input type="file" name="bukti" class="form-control">
+                                            <p><strong>Biarkan kosong jika tidak ingin mengganti bukti</strong></p>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="unit_kerja">Unit Kerja</label>
                                             <input type="text" class="form-control" id="unit_kerja" name="unit_kerja"
                                                 value="{{ $editData->unit_kerja }}">

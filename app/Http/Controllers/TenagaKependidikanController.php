@@ -10,6 +10,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class TenagaKependidikanController extends Controller
 {
@@ -62,17 +64,30 @@ class TenagaKependidikanController extends Controller
      */
     public function store(Request $request)
     {
-        TenagaKependidikan::create([
-            'id' => $request->id,
-            'nama' => $request->nama,
-            'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
-            'jenjang_pendidikan' => $request->jenjang_pendidikan,
-            'unit_kerja' => $request->unit_kerja,
-            'bukti' => $request->bukti,
-          
+        $this->validate($request, [
+            'nama' => 'required|string',
+            'jenis_tenaga_kependidikan' => 'required|string',
+            'jenjang_pendidikan' => 'required|string',
+            'unit_kerja' => 'required|string',
+            'bukti' => 'required|mimes:pdf,png,jpeg',
         ]);
+        if ($request->hasFile('bukti')) {
+            $file = $request->file('bukti');
+            $filename = time() . '-' . Str::slug($request->keterangan) . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/kependidikan', $filename);
 
-        return redirect('kependidikan')->with('success', 'Data berhasil disimpan');
+
+            TenagaKependidikan::create([
+                'nama' => $request->nama,
+                'jenis_tenaga_kependidikan' => $request->jenis_tenaga_kependidikan,
+                'jenjang_pendidikan' => $request->jenjang_pendidikan,
+                'unit_kerja' => $request->unit_kerja,
+                'bukti' => $filename,
+            ]);
+
+            return redirect('kependidikan')->with('success', 'Data berhasil disimpan');
+        }
+        
     }
 
     /**

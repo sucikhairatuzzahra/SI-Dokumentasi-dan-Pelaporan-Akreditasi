@@ -63,6 +63,9 @@
                                             <th scope="col" rowspan="2">
                                                 Jenjang Pendidikan
                                             </th>
+                                            <th scope="col">
+                                                Bukti
+                                            </th>
                                             <th scope="col" rowspan="2">
                                                 Unit Kerja
                                             </th>
@@ -81,6 +84,8 @@
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->jenis_tenaga_kependidikan }}</td>
                                                 <td>{{ $item->jenjang_pendidikan }} </td>
+                                                <td><a href="{{ asset('storage/kependidikan/' . $item->bukti) }}"
+                                                        class="btn btn-warning btn-sm">Lihat Bukti</a></td>
                                                 <td>{{ $item->unit_kerja }}</td>
                                                 @can('isAdmin')
                                                     <td>
