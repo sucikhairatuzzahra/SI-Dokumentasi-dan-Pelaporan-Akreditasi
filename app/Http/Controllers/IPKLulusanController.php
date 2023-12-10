@@ -22,7 +22,7 @@ class IPKLulusanController extends Controller
     {
         if (Gate::allows('isJurusan')) {
             $ptUnit = PTUnit::all();
-            $data = IPKLulusan::orderBy('id_thn_akademik', 'asc')
+            $data = IPKLulusan::orderBy('id', 'desc')
                 ->with('tahunAkademik','ptUnit')
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
@@ -31,7 +31,7 @@ class IPKLulusanController extends Controller
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = IPKLulusan::orderBy('id_thn_akademik', 'asc')->with('tahunAkademik','ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = IPKLulusan::with('tahunAkademik','ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('ipk_lulusan.index', compact('data'));
         }

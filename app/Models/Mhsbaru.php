@@ -17,13 +17,8 @@ class Mhsbaru extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'id_thn_akademik', 'daya_tampung', 'pendaftar', 'lulus_seleksi', 'maba_reguler',
-        'maba_transfer', 'mhs_aktif_reguler', 'mhs_aktif_transfer', 'pt_unit'
+        'maba_transfer', 'mhs_aktif_reguler', 'mhs_aktif_transfer', 'id_pt_unit'
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'pt_unit');
-    }
 
     // Relationship dengan model ptUnit
     public function ptUnit(): BelongsTo

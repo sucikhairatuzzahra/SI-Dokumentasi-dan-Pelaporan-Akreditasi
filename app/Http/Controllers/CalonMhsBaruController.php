@@ -20,8 +20,7 @@ class CalonMhsBaruController extends Controller
     public function index(Request $request)
     {
         if (Gate::allows('isJurusan')) {
-            $ptUnit = PTUnit::all();
-            $data = Mhsbaru::orderBy('id', 'asc')
+            $data = Mhsbaru::orderBy('id', 'desc')
                 ->with('tahunAkademik', 'ptUnit')
                 ->when($request->id_pt_unit, function ($query) use ($request) {
                     $query->where('id_pt_unit', $request->id_pt_unit);
@@ -30,7 +29,8 @@ class CalonMhsBaruController extends Controller
         }
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
-            $data = Mhsbaru::orderBy('id_thn_akademik', 'asc')->with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            // gunakan group by untuk membuat data berdasarkan tahun
+            $data = Mhsbaru::groupBy('id_thn_akademik')->with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('mahasiswa.index', compact('data'));
         }
@@ -45,6 +45,17 @@ class CalonMhsBaruController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'thn_akademik' => 'required',
+            'daya_tampung' => 'required|numeric',
+            'pendaftar' => 'required|numeric',
+            'lulus_seleksi' => 'required|numeric',
+            'maba_reguler' => 'required|numeric',
+            'maba_transfer' => 'required|numeric',
+            'mhs_aktif_reguler' => 'required|numeric',
+            'mhs_aktif_transfer' => 'required|numeric'
+        ]);
+
         Mhsbaru::create([
             'id_thn_akademik' => $request->thn_akademik,
             'id_pt_unit' => $request->id_pt_unit,
@@ -56,6 +67,7 @@ class CalonMhsBaruController extends Controller
             'mhs_aktif_reguler' => $request->mhs_aktif_reguler,
             'mhs_aktif_transfer' => $request->mhs_aktif_transfer
         ]);
+
         return redirect(route('mahasiswa.index'))->with('success', 'Data berhasil disimpan');
     }
 
@@ -88,6 +100,17 @@ class CalonMhsBaruController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'thn_akademik' => 'required',
+            'daya_tampung' => 'required|numeric',
+            'pendaftar' => 'required|numeric',
+            'lulus_seleksi' => 'required|numeric',
+            'maba_reguler' => 'required|numeric',
+            'maba_transfer' => 'required|numeric',
+            'mhs_aktif_reguler' => 'required|numeric',
+            'mhs_aktif_transfer' => 'required|numeric'
+        ]);
+
         $mhs = Mhsbaru::find($id);
         $mhs->update([
             'id_thn_akademik' => $request->thn_akademik,
