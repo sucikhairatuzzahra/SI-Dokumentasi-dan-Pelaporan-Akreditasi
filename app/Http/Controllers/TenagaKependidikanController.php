@@ -34,7 +34,8 @@ class TenagaKependidikanController extends Controller
                 'nama' => $value->nama,
                 'unit_kerja' => $value->unit_kerja,
                 'jenjang_pendidikan' => $value->get('jenjang_pendidikan'),
-                'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan', $value->jenis_tenaga_kependidikan)->where('jenjang_pendidikan', $value->jenjang_pendidikan)
+                'jenjang_counts' => $tenaga_kependidikan2->where('jenis_tenaga_kependidikan', $value->jenis_tenaga_kependidikan)
+                ->where('jenjang_pendidikan', $value->jenjang_pendidikan)->where('unit_kerja', $value->unit_kerja)
                 ->groupBy('jenjang_pendidikan', 'jenis_tenaga_kependidikan', 'unit_kerja')->each(function ($item, $keyjp) use (&$jenjangCounts) 
                 {
                  $jenjangCounts[$keyjp] = $item->count();
@@ -64,13 +65,13 @@ class TenagaKependidikanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate ([
             'nama' => 'required|string',
             'jenis_tenaga_kependidikan' => 'required|string',
             'jenjang_pendidikan' => 'required|in:sma,d1,d2,d3,d4,s1,s2,s3',
             'bukti' => 'required|mimes:pdf,png,jpeg',
             'unit_kerja' => 'required|string',
-          
+
         ]);
         if ($request->hasFile('bukti')) {
             $file = $request->file('bukti');
@@ -86,8 +87,7 @@ class TenagaKependidikanController extends Controller
             ]);
 
             return redirect('kependidikan')->with('success', 'Data berhasil disimpan');
-        }
-        
+        }    
     }
 
     /**
@@ -137,7 +137,7 @@ class TenagaKependidikanController extends Controller
         if ($request->hasFile('bukti')) {
             $file = $request->file('bukti');
             $filename = time() . Str::slug($request->keterangan) . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/pendanaan', $filename);
+            $file->storeAs('public/kependidikan', $filename);
             Storage::delete(storage_path('app/public/kependidikan/' . $kpddkn->bukti));
         }
 
@@ -161,8 +161,9 @@ class TenagaKependidikanController extends Controller
     public function destroy($id)
     {
         $kpddkn = TenagaKependidikan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
+        Storage::delete(storage_path('app/public/pendanaan/' . $kpddkn->bukti));
         $kpddkn->delete();
-        return redirect()->route('kependidikan')->with('success', 'Data Kualifikasi Tenaga Kependidikan berhasil dihapus');
+        return redirect('kependidikan')->with('success', 'Data Kualifikasi Tenaga Kependidikan berhasil dihapus');
     }
 
     public function download()

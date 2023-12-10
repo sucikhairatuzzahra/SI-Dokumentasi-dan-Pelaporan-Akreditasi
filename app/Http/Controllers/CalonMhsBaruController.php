@@ -108,7 +108,7 @@ class CalonMhsBaruController extends Controller
         $mhsbaru = Mhsbaru::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $mhsbaru->delete();
 
-        return redirect(route('mahasiswa.index'))->with('success', 'Data Calon Mahasiswa Baru berhasil dihapus');
+        return redirect('mahasiswa')->with('success', 'Data Calon Mahasiswa Baru berhasil dihapus');
     }
 
     public function export()

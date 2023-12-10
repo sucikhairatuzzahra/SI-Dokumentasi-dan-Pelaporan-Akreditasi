@@ -118,7 +118,7 @@ class PPKMDosenController extends Controller
     {
         $ppkmdtpr = PPKMDosen::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $ppkmdtpr->delete();
-        return redirect()->route('ppkm-dtpr')->with('success', 'Data PPKM berhasil dihapus');
+        return redirect('ppkm-dtpr')->with('success', 'Data PPKM berhasil dihapus');
     }
 
     public function download()

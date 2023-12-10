@@ -117,6 +117,6 @@ class LuaranPPKMDosenController extends Controller
     {
         $ppkm = LuaranPPKMDosen::findOrFail($id);
         $ppkm->delete();
-        return redirect()->route('luaran-ppkm-dosen')->with('success', 'Data Publikasi Dosen berhasil dihapus');
+        return redirect('luaran-ppkm-dosen')->with('success', 'Data Publikasi Dosen berhasil dihapus');
     }
 }

@@ -114,7 +114,7 @@ class KepuasanPenggunaLulusanController extends Controller
     {
         $kepuasan = KepuasanPenggunaLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kepuasan->delete();
-        return redirect()->route('kepuasan-pengguna')->with('success', 'Data Kepuasan Pengguna Lulusan berhasil dihapus');
+        return redirect('kepuasan-pengguna')->with('success', 'Data Kepuasan Pengguna Lulusan berhasil dihapus');
     }
 
     public function download()

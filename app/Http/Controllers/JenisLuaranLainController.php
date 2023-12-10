@@ -62,6 +62,6 @@ class JenisLuaranLainController extends Controller
         $data = LuaranLain::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $data->delete();
 
-        return redirect()->route('luaranlain')->with('success', 'Luaran Lain berhasil dihapus');
+        return redirect('luaranlain')->with('success', 'Luaran Lain berhasil dihapus');
     }
 }

@@ -120,7 +120,7 @@ class BidangKerjaLulusanController extends Controller
     {
         $kerjalulusan = BidangKerjaLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kerjalulusan->delete();
-        return redirect()->route('kerja-lulusan')->with('success', 'Data Bidang Kerja Lulusan berhasil dihapus');
+        return redirect('kerja-lulusan')->with('success', 'Data Bidang Kerja Lulusan berhasil dihapus');
     }
 
     public function download()

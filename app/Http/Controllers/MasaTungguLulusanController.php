@@ -137,7 +137,7 @@ class MasaTungguLulusanController extends Controller
     {
         $masatunggu = MasaTungguLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $masatunggu->delete();
-        return redirect()->route('masa-tunggu')->with('success', 'Data Masa Tunggu Lulusan Bekerja berhasil dihapus');
+        return redirect('masa-tunggu')->with('success', 'Data Masa Tunggu Lulusan Bekerja berhasil dihapus');
     }
 
     public function download()

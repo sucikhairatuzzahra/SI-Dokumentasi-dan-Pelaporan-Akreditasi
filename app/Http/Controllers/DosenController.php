@@ -129,6 +129,6 @@ class DosenController extends Controller
     {
         $data = Dosen::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $data->delete();
-        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil dihapus');
+        return redirect('dosen')->with('success', 'Dosen berhasil dihapus');
     }
 }

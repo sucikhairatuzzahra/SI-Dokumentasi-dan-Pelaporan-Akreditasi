@@ -113,6 +113,6 @@ class LuaranLainPPKMDosenController extends Controller
     {
         $ppkm = LuaranLainPPKMDosen::findOrFail($id);
         $ppkm->delete();
-        return redirect()->route('luaran-lain-ppkm-dosen')->with('success', 'Data HKI Dosen berhasil dihapus');
+        return redirect('luaran-lain-ppkm-dosen')->with('success', 'Data HKI Dosen berhasil dihapus');
     }
 }

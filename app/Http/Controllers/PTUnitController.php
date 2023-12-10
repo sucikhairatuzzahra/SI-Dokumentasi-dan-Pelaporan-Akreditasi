@@ -64,6 +64,6 @@ class PTUnitController extends Controller
         $data = PTUnit::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $data->delete();
 
-        return redirect()->route('ptunit.index')->with('success', 'Data PT Unit berhasil dihapus');
+        return redirect('ptunit')->with('success', 'Data PT Unit berhasil dihapus');
     }
 }

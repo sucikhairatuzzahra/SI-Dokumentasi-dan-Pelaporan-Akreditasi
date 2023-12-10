@@ -120,6 +120,6 @@ class PPKMPenelitianController extends Controller
         $ppkm = PPKM::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $ppkm->delete();
 
-        return redirect(route('ppkm-penelitian.index'))->with('success', 'Data PPKM berhasil dihapus');
+        return redirect('ppkm-penelitian')->with('success', 'Data PPKM berhasil dihapus');
     }
 }

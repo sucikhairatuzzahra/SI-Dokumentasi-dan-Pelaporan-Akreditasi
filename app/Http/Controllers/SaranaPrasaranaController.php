@@ -102,7 +102,7 @@ class SaranaPrasaranaController extends Controller
     {
         $sarana = SaranaPrasarana::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $sarana->delete();
-        return redirect()->route('sarana')->with('success', 'Data Sarana dan Prasarana berhasil dihapus');
+        return redirect('sarana')->with('success', 'Data Sarana dan Prasarana berhasil dihapus');
     }
 
     public function download()

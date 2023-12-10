@@ -125,7 +125,7 @@ class IPKLulusanController extends Controller
     {
         $ipk = IPKLulusan::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $ipk->delete();
-        return redirect()->route('ipk-lulusan')->with('success', 'Data IPK Lulusan berhasil dihapus');
+        return redirect('ipk-lulusan')->with('success', 'Data IPK Lulusan berhasil dihapus');
     }
 
     public function download()

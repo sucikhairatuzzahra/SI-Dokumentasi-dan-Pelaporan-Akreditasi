@@ -144,7 +144,7 @@ class BebanDTRPController extends Controller
     {
         $bebandtpr = BebanDTPR::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $bebandtpr->delete();
-        return redirect()->route('beban-dtpr')->with('success', 'Data Rata-Rata Beban DTPR Per Semester berhasil dihapus');
+        return redirect('beban-dtpr')->with('success', 'Data Rata-Rata Beban DTPR Per Semester berhasil dihapus');
     }
     public function download()
     {

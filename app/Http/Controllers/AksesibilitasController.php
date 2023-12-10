@@ -119,7 +119,7 @@ class AksesibilitasController extends Controller
     {
         $akses = Aksesibilitas::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $akses->delete();
-        return redirect()->route('aksesibilitas')->with('success', 'Data Aksesibilitas berhasil dihapus');
+        return redirect('aksesibilitas')->with('success', 'Data Aksesibilitas berhasil dihapus');
     }
     
     public function download()

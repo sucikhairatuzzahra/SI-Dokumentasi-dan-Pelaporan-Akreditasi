@@ -144,7 +144,7 @@ class PendanaanController extends Controller
         Storage::delete(storage_path('app/public/pendanaan/' . $dana->bukti));
         $dana->delete();
 
-        return redirect()->route('pendanaan')->with('success', 'Data Pendanaan berhasil dihapus');
+        return redirect('pendanaan')->with('success', 'Data Pendanaan berhasil dihapus');
     }
 
     public function download()

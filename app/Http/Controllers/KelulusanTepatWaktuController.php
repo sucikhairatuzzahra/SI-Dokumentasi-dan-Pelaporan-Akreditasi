@@ -288,7 +288,7 @@ class KelulusanTepatWaktuController extends Controller
     {
         $kelulusan = KelulusanTepatWaktu::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $kelulusan->delete();
-        return redirect()->route('lulus-tw')->with('success', 'Data Kelulusan Tepat Waktu Berhasil Dihapus');
+        return redirect('lulus-tw')->with('success', 'Data Kelulusan Tepat Waktu Berhasil Dihapus');
     }
 
     public function download()
