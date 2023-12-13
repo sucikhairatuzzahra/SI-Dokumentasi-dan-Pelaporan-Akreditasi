@@ -17,18 +17,18 @@
 
                 </div>
             </div>
-            
+
             <div class="main-menu-content">
                 <ul>
                     <li class="more-details">
                         {{-- <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
                          --}}
-                        <a href="{{ route('logout') }}"
+                        {{-- <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();"><i
                                 class="icon-inbox"></i>
                             {{ __('Logout') }}
-                        </a>
+                        </a> --}}
                     </li>
                 </ul>
             </div>

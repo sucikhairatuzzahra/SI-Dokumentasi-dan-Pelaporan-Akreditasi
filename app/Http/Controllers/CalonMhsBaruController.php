@@ -30,7 +30,7 @@ class CalonMhsBaruController extends Controller
 
         if (Gate::allows('isAdmProdi') xor Gate::allows('isKaprodi')) {
             // gunakan group by untuk membuat data berdasarkan tahun
-            $data = Mhsbaru::groupBy('id_thn_akademik')->with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
+            $data = Mhsbaru::orderBy('id', 'asc')->groupBy('id_thn_akademik')->with('tahunAkademik', 'ptUnit')->where('id_pt_unit', Auth::user()->id_pt_unit);
             $data = $data->paginate(20);
             return view('mahasiswa.index', compact('data'));
         }
@@ -94,8 +94,9 @@ class CalonMhsBaruController extends Controller
     public function edit($id)
     {
         $tahunAkademiks = TahunAkademik::all();
+        $ptUnit = Auth::user()->ptUnit;
         $data['editData'] = Mhsbaru::find($id);
-        return view('mahasiswa.edit', $data, compact('tahunAkademiks'));
+        return view('mahasiswa.edit', $data, compact('tahunAkademiks','ptUnit'));
     }
 
     public function update(Request $request, $id)
@@ -121,7 +122,7 @@ class CalonMhsBaruController extends Controller
             'maba_reguler' => $request->maba_reguler,
             'maba_transfer' => $request->maba_transfer,
             'mhs_aktif_reguler' => $request->mhs_aktif_reguler,
-            'mhs_aktif_transfer' => $request->mhs_aktif_transfer,
+            'mhs_aktif_transfer' => $request->mhs_aktif_transfer
         ]);
         return redirect(route('mahasiswa.index'))->with('success', 'Data berhasil disimpan');
     }

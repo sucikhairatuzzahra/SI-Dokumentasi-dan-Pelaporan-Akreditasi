@@ -11,9 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TenagaKependidikan extends Model
 {
     use HasFactory;
-
-
-
     protected $table = "tenaga_kpddkn";
     protected $primaryKey = 'id';
     protected $fillable = [

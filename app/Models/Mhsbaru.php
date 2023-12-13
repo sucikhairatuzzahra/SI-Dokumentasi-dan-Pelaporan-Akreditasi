@@ -17,7 +17,7 @@ class Mhsbaru extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'id_thn_akademik', 'daya_tampung', 'pendaftar', 'lulus_seleksi', 'maba_reguler',
-        'maba_transfer', 'mhs_aktif_reguler', 'mhs_aktif_transfer', 'id_pt_unit'
+        'maba_transfer', 'mhs_aktif_reguler', 'mhs_aktif_transfer', 'id_pt_unit',
     ];
 
     // Relationship dengan model ptUnit

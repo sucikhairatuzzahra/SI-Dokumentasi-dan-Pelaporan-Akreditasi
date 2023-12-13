@@ -68,6 +68,7 @@
                                             <label for="keterangan">Keterangan</label>
                                             <input type="text" class="form-control" name="keterangan">
                                         </div>
+
                                         <div class="form-group">
                                             <label for="id_pt_unit">Unit Kerja</label>
                                             <input type="hidden" class="form-control" name="id_pt_unit"
