@@ -105,6 +105,6 @@ class PegawaiController extends Controller
         $data = Pegawai::findOrFail($id); // Ganti dengan model dan nama tabel yang sesuai
         $data->delete();
 
-        return redirect('pegawai')->with('success', 'Data Pegawai berhasil dihapus');
+        return redirect('admin/pegawai')->with('success', 'Data Pegawai berhasil dihapus');
     }
 }

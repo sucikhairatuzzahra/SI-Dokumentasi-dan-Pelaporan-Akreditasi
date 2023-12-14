@@ -67,7 +67,7 @@ class KepuasanPenggunaLulusanController extends Controller
             'id_pt_unit' => $request->id_pt_unit,
         ]);
 
-        return redirect(route('kepuasan-pengguna'))->with('success', 'Data berhasil disimpan');
+        return redirect(route('kepuasan-pengguna.index'))->with('success', 'Data berhasil disimpan');
     }
 
     /**

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('id_thn_akademik')->constrained('tahun_akademik')->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('jumlah_lulusan');
             $table->integer('lulusan_terlacak');
-            $table->integer('waktu_tunggu');
+            $table->double('waktu_tunggu');
             $table->foreignId('id_pt_unit')->constrained('pt_unit')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
